@@ -6,9 +6,13 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.ApplicationModel.VoiceCommands;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
+using FlygoApp.Views;
 
 namespace FlygoApp.ViewModels
 {
@@ -17,6 +21,7 @@ namespace FlygoApp.ViewModels
         #region Instance Fields
         private ICommand _openMenuCommand;
         private bool _menuOpen;
+        private Frame _currentFrame;
 
         #endregion
         #region Properties
@@ -40,9 +45,32 @@ namespace FlygoApp.ViewModels
             }
         }
 
+        public Frame CurrentFrame
+        {
+            get { return _currentFrame; }
+            set
+            {
+                _currentFrame = value;
+                OnPropertyChanged();
+            }
+        }
+
         public HomePageViewModel()
         {
-            
+            WindowAndTitleBarStyling();
+            CurrentFrame = new Frame();
+            CurrentFrame.Navigate(typeof (TaskListPage));
+        }
+
+        
+        public void WindowAndTitleBarStyling()
+        {
+
+            var view = ApplicationView.GetForCurrentView();
+            view.TitleBar.BackgroundColor = Color.FromArgb(100, 99, 89, 89);
+            view.TitleBar.ButtonBackgroundColor = Color.FromArgb(100, 99, 89, 89);
+            view.TitleBar.ForegroundColor = Colors.WhiteSmoke;
+
         }
         #endregion
         #region Notify Changed Region
