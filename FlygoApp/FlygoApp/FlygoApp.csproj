@@ -95,18 +95,26 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commons\INavigationService.cs" />
+    <Compile Include="Commons\NavigationService.cs" />
     <Compile Include="Commons\RelayCommand.cs" />
+    <Compile Include="Commons\RelayCommandWithParameter.cs" />
+    <Compile Include="Commons\WindowStyling.cs" />
+    <Compile Include="Models\Flyrute.cs" />
+    <Compile Include="Models\FlyruteRegister.cs" />
+    <Compile Include="Persistency\FlyrutePersistency.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
-    <Compile Include="ViewModels\IndstillingerPage.xaml.cs">
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Views\IndstillingerPage.xaml.cs">
       <DependentUpon>IndstillingerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\StatistikPage.xaml.cs">
+    <Compile Include="Views\StatistikPage.xaml.cs">
       <DependentUpon>StatistikPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\TaskListViewModel.cs" />
-    <Compile Include="ViewModels\TilføjFlyrutePage.xaml.cs">
+    <Compile Include="Views\TilføjFlyrutePage.xaml.cs">
       <DependentUpon>TilføjFlyrutePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
@@ -127,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\461105.jpg" />
+    <Content Include="Assets\99920.jpg" />
     <Content Include="Assets\airplane-wallpaper-3.jpg" />
     <Content Include="Assets\airport-wallpaper-960x540.jpg" />
     <Content Include="Assets\airport-wallpaper-hd-1.jpg" />
@@ -147,18 +156,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ViewModels\IndstillingerPage.xaml">
+    <Page Include="Views\IndstillingerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewModels\StatistikPage.xaml">
+    <Page Include="Views\StatistikPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewModels\TilføjFlyrutePage.xaml">
+    <Page Include="Views\TilføjFlyrutePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
