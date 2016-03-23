@@ -25,6 +25,9 @@ namespace FlygoApp.ViewModels
         private string _selectedDestinationFra;
         private string _selectedDestinationTil;
         private ICommand _deleteOpgaveCommand;
+        private string _selectedDateTimeFra;
+        private string _selectedDateTimeTil;
+        private DateTime _now;
 
         #endregion
         #region Properties
@@ -34,8 +37,8 @@ namespace FlygoApp.ViewModels
         public string DestinationTil { get; set; }
         public TimeSpan TidFra { get; set; }
         public TimeSpan TidTil { get; set; }
-        public DateTime DatoFra { get; set; }
-        public DateTime DatoTil { get; set; }
+        public DateTimeOffset DatoFra { get; set; }
+        public DateTimeOffset DatoTil { get; set; }
         public ICommand TilføjRuteCommand
         {
             get { return _tilføjRuteCommand ?? (_tilføjRuteCommand = new RelayCommand(AddOpgave)); }
@@ -59,14 +62,7 @@ namespace FlygoApp.ViewModels
             set { _deleteOpgaveCommand = value; }
         }
 
-        public ObservableCollection<Flyrute> FlyruterOC { get; set; }
-        public void AddOpgave()
-        {
-            DateTime fra = DateAndTimeConverter(DatoFra, TidFra);
-            DateTime til = DateAndTimeConverter(DatoTil, TidTil);
-            FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "AirBus 323", DateTime.Now, DateTime.Now, "København", "Madrid"));
-            FlyrutePersistency.SaveFlyruteAsJsonAsync(FlyruteRegisterProp.Flyruter);
-        }
+        public ObservableCollection<Flyrute> FlyruterOC { get; set; }     
         public FlyruteRegister FlyruteRegisterProp { get; set; }
         public string SelectedFlyruteNr
         {
@@ -101,22 +97,45 @@ namespace FlygoApp.ViewModels
             set
             {
                 _selectedIndex = value;
-                //SelectedDestinationFra = FlyruteRegisterProp.Flyruter[SelectedIndex].DestinationFra;
-                //SelectedDestinationTil = FlyruteRegisterProp.Flyruter[SelectedIndex].DestinationTil;
-                //SelectedFlyruteNr = FlyruteRegisterProp.Flyruter[SelectedIndex].FlyruteNr;
+                if (value != -1)
+                {              
+                        SelectedDestinationFra = FlyruteRegisterProp.Flyruter[_selectedIndex].DestinationFra;
+                        SelectedDestinationTil = FlyruteRegisterProp.Flyruter[_selectedIndex].DestinationTil;
+                        SelectedFlyruteNr = FlyruteRegisterProp.Flyruter[_selectedIndex].FlyruteNr;
+                        SelectedDateTimeFra = FlyruteRegisterProp.Flyruter[_selectedIndex].Ankomst.ToString("MM/dd/yyyy HH:mm");
+                        SelectedDateTimeTil = FlyruteRegisterProp.Flyruter[_selectedIndex].Afgang.ToString("mm/dd/yyyy HH:mm");
+                 }
                 OnPropertyChanged();
-
+                
+            }
+        }
+        public string SelectedDateTimeFra
+        {
+            get { return _selectedDateTimeFra; }
+            set
+            {
+                _selectedDateTimeFra = value;
+                OnPropertyChanged();
+            }
+        }
+        public string SelectedDateTimeTil
+        {
+            get { return _selectedDateTimeTil; }
+            set
+            {
+                _selectedDateTimeTil = value;
+                OnPropertyChanged();
             }
         }
 
+        public DateTimeOffset Now { get; set; }
         #endregion
-
         public TaskListViewModel()
         {
             FlyruteRegisterProp = new FlyruteRegister(this);
-            LoadMovie();           
+            LoadMovie();
+            Now = DateTime.Now;
         }
-
         #region Metoder
         public async void LoadMovie()
         {
@@ -130,19 +149,34 @@ namespace FlygoApp.ViewModels
                 }
             }
         }
-        public DateTime DateAndTimeConverter(DateTime dato, TimeSpan tid)
+        public async void AddOpgave()
+        {
+            try
+            {
+                DateTime fra = DateAndTimeConverter(DatoFra, TidFra);
+                DateTime til = DateAndTimeConverter(DatoTil, TidTil);
+                Flyrute tempFlyrute = new Flyrute(FlyruteNr, Flytype, fra, til, DestinationFra, DestinationTil);
+                FlyruteRegisterProp.AddFlyrute(tempFlyrute);           
+                FlyrutePersistency.SaveFlyruteAsJsonAsync(FlyruteRegisterProp.Flyruter);
+            }
+            catch (ArgumentException ex)
+            {
+                await new MessageDialog(ex.Message).ShowAsync();
+            }
+        }
+        public DateTime DateAndTimeConverter(DateTimeOffset dato, TimeSpan tid)
         {
             return new DateTime(dato.Year, dato.Month, dato.Day, tid.Hours, tid.Minutes, 0);
         }
-
         public void DeleteOpgave(object param)
         {
-            string flyrute = (string) param;
+            string flyrute = (string)param;
             Flyrute tempFlyrute = FlyruteRegisterProp.Flyruter.First(x => x.FlyruteNr.Equals(flyrute));
             if (tempFlyrute != null)
             {
                 FlyruteRegisterProp.Flyruter.Remove(tempFlyrute);
             }
+            FlyruteRegisterProp.Flyruter.Clear();
             FlyrutePersistency.SaveFlyruteAsJsonAsync(FlyruteRegisterProp.Flyruter);
         }
         #endregion
