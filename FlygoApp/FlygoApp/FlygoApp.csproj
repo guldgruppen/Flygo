@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commons\INavigationService.cs" />
+    <Compile Include="Commons\MessagePopUp.cs" />
     <Compile Include="Commons\NavigationService.cs" />
     <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Commons\RelayCommandWithParameter.cs" />

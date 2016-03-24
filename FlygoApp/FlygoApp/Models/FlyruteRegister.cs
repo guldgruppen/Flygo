@@ -16,10 +16,6 @@ namespace FlygoApp.Models
         {
             TaskListViewModel = tlvm;
             Flyruter = new ObservableCollection<Flyrute>();
-            Flyruter.Add(new Flyrute("SK400","AirBus 323",DateTime.Now,DateTime.Now, "København","Madrid"));
-            Flyruter.Add(new Flyrute("SK400", "AirBus 323", DateTime.Now, DateTime.Now, "København", "Madrid"));
-            Flyruter.Add(new Flyrute("SK400", "AirBus 323", DateTime.Now, DateTime.Now, "København", "Madrid"));
-            Flyruter.Add(new Flyrute("SK400", "AirBus 323", DateTime.Now, DateTime.Now, "København", "Madrid"));
 
         }
 
