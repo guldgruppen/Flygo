@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -134,7 +136,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public DateTimeOffset Now { get; set; }
         #endregion
         public TaskListViewModel()
@@ -146,22 +147,35 @@ namespace FlygoApp.ViewModels
         }
         public async void UpdateFlyrute()
         {
-            if (SelectedIndex != -1)
+            try
             {
-                Flyrute updateFlyrute = FlyruteRegisterProp.Flyruter[SelectedIndex];
-                var MyMessageDialog = new MessageDialog("Er du sikker på at opdatere flyruten: " + updateFlyrute.FlyruteNr, "Opdatere flyrute");
-                MyMessageDialog.Commands.Add(new UICommand("YES", command =>
+                if (SelectedIndex != -1)
                 {
-                    updateFlyrute.FlyruteNr = SelectedFlyruteNr;
-                    updateFlyrute.DestinationFra = SelectedDestinationFra;
-                    updateFlyrute.DestinationTil = SelectedDestinationTil;
-                    updateFlyrute.Afgang = DateTime.Parse(SelectedDateTimeTil);
-                    updateFlyrute.Ankomst = DateTime.Parse(SelectedDateTimeFra);
-                    FlyrutePersistency.SaveFlyruteAsJsonAsync(FlyruteRegisterProp.Flyruter);
-                }));
-                MyMessageDialog.Commands.Add(new UICommand("NO", command => { }));
-                await MyMessageDialog.ShowAsync();
-
+                    Flyrute updateFlyrute = FlyruteRegisterProp.Flyruter[SelectedIndex];
+                    if (DateTime.Parse(SelectedDateTimeFra) < DateTime.Now ||
+                        DateTime.Parse(SelectedDateTimeTil) < DateTime.Now)
+                    {
+                        throw new ArgumentException("Du kan ikke opdatere dato, med en dato tidligere end idag!");
+                    }
+                    var MyMessageDialog =
+                        new MessageDialog("Er du sikker på at opdatere flyruten: " + updateFlyrute.FlyruteNr,
+                            "Opdatere flyrute");
+                    MyMessageDialog.Commands.Add(new UICommand("YES", command =>
+                    {
+                        updateFlyrute.FlyruteNr = SelectedFlyruteNr;
+                        updateFlyrute.DestinationFra = SelectedDestinationFra;
+                        updateFlyrute.DestinationTil = SelectedDestinationTil;
+                        updateFlyrute.Afgang = DateTime.Parse(SelectedDateTimeTil);
+                        updateFlyrute.Ankomst = DateTime.Parse(SelectedDateTimeFra);
+                        FlyrutePersistency.SaveFlyruteAsJsonAsync(FlyruteRegisterProp.Flyruter);
+                    }));
+                    MyMessageDialog.Commands.Add(new UICommand("NO", command => { }));
+                    await MyMessageDialog.ShowAsync();
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                new MessageDialog(ex.Message).ShowAsync();
             }
         }
         #region Metoder
@@ -183,6 +197,8 @@ namespace FlygoApp.ViewModels
             {
                 DateTime fra = DateAndTimeConverter(DatoFra, TidFra);
                 DateTime til = DateAndTimeConverter(DatoTil, TidTil);
+                CheckDate(fra);
+                CheckDate(til);
                 Flyrute tempFlyrute = new Flyrute(FlyruteNr, Flytype, fra, til, DestinationFra, DestinationTil);
                 FlyruteRegisterProp.AddFlyrute(tempFlyrute);           
                 FlyrutePersistency.SaveFlyruteAsJsonAsync(FlyruteRegisterProp.Flyruter);
@@ -191,6 +207,14 @@ namespace FlygoApp.ViewModels
             catch (ArgumentException ex)
             {
                 await new MessageDialog(ex.Message).ShowAsync();
+            }
+        }
+        public void CheckDate(DateTime dt)
+        {
+            int result = DateTime.Compare(DateTime.Now, dt);
+            if (result >= 0)
+            {
+                throw new ArgumentException("Afgang og ankomst skal forekomme i efter idag");
             }
         }
         public DateTime DateAndTimeConverter(DateTimeOffset dato, TimeSpan tid)
@@ -220,7 +244,6 @@ namespace FlygoApp.ViewModels
             Timer.Tick += MyTimer_Tick;
             Timer.Start();
         }
-
         public void MyTimer_Tick(object o, object sender)
         {
             foreach (var flyrute in FlyruteRegisterProp.Flyruter)
@@ -228,8 +251,24 @@ namespace FlygoApp.ViewModels
                 var now = DateTimeOffset.Parse(DateTimeOffset.Now.ToString("T"));
                 var deadline = DateTime.Parse(flyrute.Afgang.ToString("T"));
                 var span = deadline - now;
-                flyrute.DatePart = flyrute.Afgang.ToString("yyyy MMMM dd");
-                flyrute.TimePart = span.ToString();
+                if (flyrute.Afgang >= DateTime.Now)
+                {
+                    if (!flyrute.Afgang.Date.Equals(DateTime.Now.Date))
+                    {
+                        flyrute.DatePart = flyrute.Afgang.ToString("yyyy MMMM dd");                        
+                        flyrute.TimePart = flyrute.Afgang.ToString("t");
+                    }
+                    else
+                    {
+                        flyrute.TimePart = span.ToString();
+                        flyrute.DatePart = "";
+                    }
+                }
+                else
+                {
+                    flyrute.TimePart = "Done";
+                }
+
             }
         }
         #endregion

@@ -7,12 +7,88 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="#7F000000">
+    <Grid Background="#CC000000">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="545*"/>
+            <ColumnDefinition Width="676*"/>
+            <ColumnDefinition Width="699*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="83*"/>
+            <RowDefinition Height="89*"/>
+            <RowDefinition Height="967*"/>
+            <RowDefinition Height="24*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Statistik" Width="306" FontSize="53.333" Foreground="White" d:LayoutOverrides="TopPosition, BottomPosition"/>
+        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Statistik" Width="545" FontSize="53.333" Foreground="White"/>
+        <StackPanel HorizontalAlignment="Left" Height="967" Grid.Row="1" VerticalAlignment="Top" Width="545">
+            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Opgaver" FontSize="40" Foreground="White" HorizontalAlignment="Center"/>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="79" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Opgaver udført" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="23" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Opgaver denne måned" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="60" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock7" TextWrapping="Wrap" Text="Opgaver i år" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="13" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="Opgaver forsinket" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="7" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="Opgaver fejl" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="967" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Width="676">
+            <TextBlock x:Name="textBlock20" TextWrapping="Wrap" Text="Tid" FontSize="40" Foreground="White" HorizontalAlignment="Center"/>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock21" TextWrapping="Wrap" Text="1:30:00" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock22" TextWrapping="Wrap" Text="Gennemsnitstid pr. opgave" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock23" TextWrapping="Wrap" Text="00:34:00" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock24" TextWrapping="Wrap" Text="Korteste tid" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock25" TextWrapping="Wrap" Text="1:50:00" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock26" TextWrapping="Wrap" Text="Længste tid" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock27" TextWrapping="Wrap" Text="00:20:00" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock28" TextWrapping="Wrap" Text="Forsinket tid i gennemsnit" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock29" TextWrapping="Wrap" Text="79" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock30" TextWrapping="Wrap" Text="Opgaver udført" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="967" Grid.Row="1" Grid.Column="2" VerticalAlignment="Top" Width="699">
+            <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Medarbejderes tid" FontSize="40" Foreground="White" HorizontalAlignment="Center"/>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="79" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock14" TextWrapping="Wrap" Text="Opgaver udført" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock15" TextWrapping="Wrap" Text="79" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock16" TextWrapping="Wrap" Text="Opgaver udført" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock17" TextWrapping="Wrap" Text="79" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock18" TextWrapping="Wrap" Text="Opgaver udført" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock19" TextWrapping="Wrap" Text="79" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock31" TextWrapping="Wrap" Text="Opgaver udført" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Height="150" Margin="0">
+                <TextBlock x:Name="textBlock32" TextWrapping="Wrap" Text="79" FontSize="66.667" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock33" TextWrapping="Wrap" Text="Opgaver udført" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+
 
     </Grid>
 </Page>

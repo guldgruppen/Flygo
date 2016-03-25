@@ -46,8 +46,6 @@ namespace FlygoApp.Models
             CheckFlyrutetype(flytype);
             CheckDestination(destinationFra);
             CheckDestination(destinationTil);
-            CheckDate(ankomst);
-            CheckDate(afgang);
             FlyruteNr = flyruteNr;
             Flytype = flytype;
             Ankomst = ankomst;
@@ -73,8 +71,8 @@ namespace FlygoApp.Models
         }
         public void CheckDate(DateTime dt)
         {          
-                int result = DateTime.Compare(DateTime.Now, dt.Date);              
-                if (result > 0)
+                int result = DateTime.Compare(DateTime.Now, dt);              
+                if (result >= 0)
                 {
                     throw new ArgumentException("Afgang og ankomst skal forekomme i efter idag");
                 }            
