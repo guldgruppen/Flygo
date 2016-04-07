@@ -23,7 +23,7 @@ namespace FlygoApp.ViewModels
         private bool _menuOpen;
         private Frame _currentFrame;
         private ICommand _goToStatistikPageCommand;
-        private NavigationService _navService;
+        private readonly NavigationService _navService;
         private ICommand _goToTilføjFlyrutePageCommand;
         private ICommand _goToIndstillingerPageCommand;
         private ICommand _logudCommand;
