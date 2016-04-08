@@ -18,11 +18,11 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="41*"/>
-            <RowDefinition Height="499*"/>
+            <RowDefinition Height="17*"/>
+            <RowDefinition Height="163*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" Margin="0,-10,0,0" TextWrapping="Wrap" Text="Tilføj Flyrute" FontSize="46.667" Foreground="White" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
-        <StackPanel Grid.Row="1" d:LayoutOverrides="LeftPosition, RightPosition, TopPosition, BottomPosition" Grid.Column="1" Margin="0,20,0,0">
+        <TextBlock x:Name="textBlock" Margin="0" TextWrapping="Wrap" Text="Tilføj Flyrute" FontSize="46.667" Foreground="White" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,20,0,0">
             <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Flyrute nummer:" Height="64" FontSize="29.333" Foreground="White"/>
             <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Flytype:" FontSize="29.333" Foreground="White" Height="64" Margin="0"/>
             <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Destination fra:" Height="64" FontSize="29.333" Foreground="White" Margin="0"/>

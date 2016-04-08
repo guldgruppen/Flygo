@@ -31,47 +31,47 @@
                     <Grid Margin="10" Background="#D8FFFFFF" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="124"/>
-                            <ColumnDefinition Width="192"/>
-                            <ColumnDefinition Width="97"/>
-                            <ColumnDefinition Width="121"/>
-                            <ColumnDefinition Width="54"/>
+                            <ColumnDefinition Width="165"/>
+                            <ColumnDefinition Width="114"/>
+                            <ColumnDefinition Width="143"/>
+                            <ColumnDefinition Width="42"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel>
-                            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Flyrute:" d:LayoutOverrides="Width, LeftPosition, RightPosition, TopPosition, BottomPosition" FontSize="26.667" Margin="15,0,0,0" HorizontalAlignment="Center"/>
-                            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding FlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" d:LayoutOverrides="Width, LeftPosition, RightPosition" FontSize="29.333" Margin="20,10,0,0" HorizontalAlignment="Center"/>
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Height="58" Margin="20,21,20,20" Width="84">
+                            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Flyrute:" d:LayoutOverrides="Width, LeftPosition, RightPosition, TopPosition, BottomPosition" FontSize="21.333" Margin="15,0,0,0" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding FlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" d:LayoutOverrides="Width, LeftPosition, RightPosition" FontSize="21.333" Margin="20,0,0,0" HorizontalAlignment="Center"/>
                         </StackPanel>
-                        <StackPanel Grid.Column="1">
-                            <StackPanel Orientation="Horizontal" Height="47" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel Margin="0,21,0,20" VerticalAlignment="Center" HorizontalAlignment="Center" Height="58" Width="165" Grid.Column="1">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="165">
                                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Fra:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333"/>
-                                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding DestinationFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="138" FontSize="21.333" Height="42" Margin="10,0,0,0"/>
+                                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding DestinationFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="138" FontSize="21.333" Margin="10,0,0,0"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Height="47" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7,0,0,0">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="165">
                                 <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Til:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333"/>
                                 <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="{Binding DestinationTil, Mode=TwoWay}" VerticalAlignment="Top" FontSize="21.333" Margin="20,0,0,0"/>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Grid.Column="2" HorizontalAlignment="Center" Width="97" VerticalAlignment="Center" Height="104" Margin="0,-2,0,-3">
-                            <TextBlock x:Name="textBlock7" TextWrapping="Wrap" Text="Deadline:" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Height="96" Margin="15,2,2,1" Width="97">
+                            <TextBlock x:Name="textBlock7" TextWrapping="Wrap" Text="Deadline:" FontSize="21.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock x:Name="textBlock99" TextWrapping="Wrap" Text="{Binding DatePart, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="16" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                            <TextBlock x:Name="textBlock6" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding TimePart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="33.333" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="textBlock6" Margin="0" TextWrapping="Wrap" Text="{Binding TimePart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="21.333" Foreground="Black" HorizontalAlignment="Center"/>
 
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Left" Height="99" VerticalAlignment="Top" Width="121" Grid.Column="3">
-                            <StackPanel Height="33" Orientation="Horizontal" Margin="10,0,0,0">
-                                <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Fuldført:" FontSize="20"/>
-                                <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="5" Margin="10,0,0,0" FontSize="20"/>
+                        <StackPanel Height="99" Width="144" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,41,0" Grid.ColumnSpan="2" Padding="0,15,0,0">
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Fuldført:" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="5" Margin="30,0,0,0" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </StackPanel>
-                            <StackPanel Height="33" Orientation="Horizontal" Margin="10,0,0,0">
-                                <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Forsinket:" FontSize="20"/>
-                                <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="0" Margin="10,0,0,0" FontSize="20"/>
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Forsinket:" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="0" Margin="19,0,0,0" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </StackPanel>
-                            <StackPanel Height="33" Orientation="Horizontal" Margin="10,0,0,0">
-                                <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Fejl:" FontSize="20"/>
-                                <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="0" Margin="10,0,0,0" FontSize="20"/>
+                            <StackPanel Orientation="Horizontal" Margin="10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Fejl:" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="0" Margin="63,0,0,0" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
-                        <Button x:Name="button" Content="&#59540;" Grid.Column="4" Command="{Binding DataContext.DeleteOpgaveCommand, ElementName=listView}" CommandParameter="{Binding FlyruteNr}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,3,22,0" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Background="#CCFF0000" Foreground="White" Height="22" Width="22"/>
+                        <Button x:Name="button" Content="&#59540;" Grid.Column="4" Command="{Binding DataContext.DeleteOpgaveCommand, ElementName=listView}" CommandParameter="{Binding FlyruteNr}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,3,11,0" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Background="#CCFF0000" Foreground="White" Height="22" Width="22"/>
                     </Grid>
                 </DataTemplate>
                 <Style x:Key="ListViewItemStyle1" TargetType="ListViewItem">
@@ -122,9 +122,9 @@
                 <ColumnDefinition Width="312"/>
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Grid.Column="2">
+            <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Grid.Column="2" Height="38" Grid.ColumnSpan="2">
                 <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Sortér efter:" VerticalAlignment="Center" FontSize="20" Margin="5,0" Foreground="#FFEEEEEE"/>
-                <ComboBox x:Name="comboBox" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="5,0,0,0" Width="162"/>
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="5,6,0,6" Width="162"/>
             </StackPanel>
             <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Opgaveliste" VerticalAlignment="Center" Height="58" Width="245" FontSize="34.667" Grid.ColumnSpan="3" Margin="302,0,307,0" Foreground="WhiteSmoke"/>
         </Grid>

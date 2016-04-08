@@ -14,8 +14,8 @@ namespace FlygoApp.Commons
         {
 
             var view = ApplicationView.GetForCurrentView();
-            view.TitleBar.BackgroundColor = Color.FromArgb(100, 99, 89, 89);
-            view.TitleBar.ButtonBackgroundColor = Color.FromArgb(100, 99, 89, 89);
+            view.TitleBar.BackgroundColor = Color.FromArgb(100, 60, 60, 60);
+            view.TitleBar.ButtonBackgroundColor = Color.FromArgb(100, 60, 60, 60);
             view.TitleBar.ForegroundColor = Colors.WhiteSmoke;
 
         }

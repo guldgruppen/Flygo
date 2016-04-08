@@ -188,7 +188,7 @@ namespace FlygoApp.ViewModels
             var loadedMovies = await FlyrutePersistency.LoadFlyruteFromJsonAsync();
             if (loadedMovies != null)
             {
-                //FlyruteRegisterProp.Flyruter.Clear();
+                FlyruteRegisterProp.Flyruter.Clear();
                 foreach (var film in loadedMovies)
                 {
                     FlyruteRegisterProp.Flyruter.Add(film);
@@ -247,7 +247,6 @@ namespace FlygoApp.ViewModels
             Timer.Interval = new TimeSpan(0,0,0,1,0);
             Timer.Tick += MyTimer_Tick;
             Timer.Start();
-            //Bare virk
         }
         public void MyTimer_Tick(object o, object sender)
         {
