@@ -243,6 +243,7 @@ namespace FlygoApp.ViewModels
             Timer.Interval = new TimeSpan(0,0,0,1,0);
             Timer.Tick += MyTimer_Tick;
             Timer.Start();
+            //Bare virk
         }
         public void MyTimer_Tick(object o, object sender)
         {
