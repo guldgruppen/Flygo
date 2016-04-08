@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media.Animation;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
 using FlygoApp.Models;
@@ -147,7 +148,8 @@ namespace FlygoApp.ViewModels
             //FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));
             LoadMovie();
             Now = DateTime.Now;
-            CountdownToDeadline();           
+            CountdownToDeadline();  
+            
         }
         public async void UpdateFlyrute()
         {
