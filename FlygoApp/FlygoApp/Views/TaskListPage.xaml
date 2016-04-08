@@ -8,7 +8,7 @@
     x:Class="FlygoApp.Views.TaskListPage"
     mc:Ignorable="d">
 
-    <Grid Background="Transparent">
+    <Grid Background="#00FD5C5C">
         <Grid.RowDefinitions>
             <RowDefinition Height="26*"/>
             <RowDefinition Height="29*"/>
@@ -25,53 +25,53 @@
         <Grid.DataContext>
             <ViewModels:TaskListViewModel/>
         </Grid.DataContext>
-        <ListView x:Name="listView" Grid.Column="1" Grid.Row="2" Background="#7F000000" ItemsSource="{Binding FlyruteRegisterProp.Flyruter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,16,10" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView x:Name="listView" Grid.Column="1" Grid.Row="2" Background="#7F000000" ItemsSource="{Binding FlyruteRegisterProp.Flyruter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.Resources>
                 <DataTemplate x:Key="DataTemplate1">
-                    <Grid Height="99" Width="834" Margin="0,10" Background="#D8FFFFFF" Padding="0">
+                    <Grid Margin="10" Background="#D8FFFFFF" Padding="0" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="218*"/>
-                            <ColumnDefinition Width="287*"/>
-                            <ColumnDefinition Width="149*"/>
-                            <ColumnDefinition Width="145*"/>
-                            <ColumnDefinition Width="35*"/>
+                            <ColumnDefinition Width="124"/>
+                            <ColumnDefinition Width="192"/>
+                            <ColumnDefinition Width="97"/>
+                            <ColumnDefinition Width="121"/>
+                            <ColumnDefinition Width="54"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Flyrute:" d:LayoutOverrides="Width, LeftPosition, RightPosition, TopPosition, BottomPosition" FontSize="26.667"/>
-                            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding FlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" d:LayoutOverrides="Width, LeftPosition, RightPosition" FontSize="40" Margin="10,0,0,0"/>
+                            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Flyrute:" d:LayoutOverrides="Width, LeftPosition, RightPosition, TopPosition, BottomPosition" FontSize="26.667" Margin="15,0,0,0" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding FlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" d:LayoutOverrides="Width, LeftPosition, RightPosition" FontSize="29.333" Margin="20,10,0,0" HorizontalAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1">
-                            <StackPanel Orientation="Horizontal" Height="47" Width="460" VerticalAlignment="Top">
-                                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Fra:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="33.333"/>
-                                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding DestinationFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="271" FontSize="33.333" Height="42" Margin="20,0,0,0"/>
+                            <StackPanel Orientation="Horizontal" Height="47" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Fra:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333"/>
+                                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding DestinationFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="138" FontSize="21.333" Height="42" Margin="10,0,0,0"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Height="47" Width="460" VerticalAlignment="Top">
-                                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Til:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="33.333"/>
-                                <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="{Binding DestinationTil, Mode=TwoWay}" VerticalAlignment="Top" Width="271" FontSize="33.333" Height="42" Margin="20,0,0,0"/>
+                            <StackPanel Orientation="Horizontal" Height="47" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7,0,0,0">
+                                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Til:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333"/>
+                                <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="{Binding DestinationTil, Mode=TwoWay}" VerticalAlignment="Top" FontSize="21.333" Margin="20,0,0,0"/>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Grid.Column="2">
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Center" Width="97" VerticalAlignment="Center" Height="104" Margin="0,-2,0,-3">
                             <TextBlock x:Name="textBlock7" TextWrapping="Wrap" Text="Deadline:" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock x:Name="textBlock99" TextWrapping="Wrap" Text="{Binding DatePart, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="16" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                            <TextBlock x:Name="textBlock6" Margin="0" TextWrapping="Wrap" Text="{Binding TimePart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="33.333" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="textBlock6" Margin="0,0,0,10" TextWrapping="Wrap" Text="{Binding TimePart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="33.333" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                         </StackPanel>
-                        <StackPanel HorizontalAlignment="Left" Height="99" VerticalAlignment="Top" Width="191" Grid.Column="3" Margin="0,0,-11,0" Grid.ColumnSpan="2">
+                        <StackPanel HorizontalAlignment="Left" Height="99" VerticalAlignment="Top" Width="121" Grid.Column="3">
                             <StackPanel Height="33" Orientation="Horizontal" Margin="10,0,0,0">
                                 <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Fuldført:" FontSize="20"/>
-                                <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="5" Margin="40,0,0,0" FontSize="20"/>
+                                <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="5" Margin="10,0,0,0" FontSize="20"/>
                             </StackPanel>
                             <StackPanel Height="33" Orientation="Horizontal" Margin="10,0,0,0">
                                 <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Forsinket:" FontSize="20"/>
-                                <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="0" Margin="30,0,0,0" FontSize="20"/>
+                                <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="0" Margin="10,0,0,0" FontSize="20"/>
                             </StackPanel>
                             <StackPanel Height="33" Orientation="Horizontal" Margin="10,0,0,0">
                                 <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Fejl:" FontSize="20"/>
-                                <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="0" Margin="80,0,0,0" FontSize="20"/>
+                                <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="0" Margin="10,0,0,0" FontSize="20"/>
                             </StackPanel>
                         </StackPanel>
-                        <Button x:Name="button" Content="&#59540;" Grid.Column="4" Command="{Binding DataContext.DeleteOpgaveCommand, ElementName=listView}" CommandParameter="{Binding FlyruteNr}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="25" Margin="10,0,0,0" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Background="#CCFF0000" Foreground="White"/>
+                        <Button x:Name="button" Content="&#59540;" Grid.Column="4" Command="{Binding DataContext.DeleteOpgaveCommand, ElementName=listView}" CommandParameter="{Binding FlyruteNr}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,3,22,0" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Background="#CCFF0000" Foreground="White" Height="22" Width="22"/>
                     </Grid>
                 </DataTemplate>
                 <Style x:Key="ListViewItemStyle1" TargetType="ListViewItem">
@@ -115,49 +115,50 @@
                 <StaticResource ResourceKey="DataTemplate1"/>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Column="1" Grid.Row="1" Background="#FF252525" Margin="0,0,16,0">
+        <Grid Grid.Column="1" Grid.Row="1" Background="#FF252525">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="304*"/>
                 <ColumnDefinition Width="238*"/>
                 <ColumnDefinition Width="312"/>
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel Height="58" VerticalAlignment="Top" Orientation="Horizontal" Grid.Column="2">
+            <StackPanel VerticalAlignment="Top" Orientation="Horizontal" Grid.Column="2">
                 <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Sortér efter:" VerticalAlignment="Center" FontSize="20" Margin="5,0" Foreground="#FFEEEEEE"/>
-                <ComboBox x:Name="comboBox" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="5,10,0,10" Width="162"/>
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="5,0,0,0" Width="162"/>
             </StackPanel>
             <TextBlock x:Name="textBlock1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Opgaveliste" VerticalAlignment="Center" Height="58" Width="245" FontSize="34.667" Grid.ColumnSpan="3" Margin="302,0,307,0" Foreground="WhiteSmoke"/>
         </Grid>
-        <Grid Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Margin="0,5">
+        <Grid Grid.Column="3" Grid.Row="1" Grid.RowSpan="2" Margin="0,0,0,5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="29*"/>
-                <RowDefinition Height="420*"/>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="595*"/>
             </Grid.RowDefinitions>
-            <StackPanel HorizontalAlignment="Left" Height="58" VerticalAlignment="Top" Width="853" Background="#FF252525">
-                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Opgave beskrivelse" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="34.667" Foreground="White"/>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="838" Grid.Row="1" VerticalAlignment="Top" Width="853" Background="#CC000000" Orientation="Horizontal">
-                <StackPanel Margin="10,0" Orientation="Vertical" Width="362">
-                    <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="19:44" Foreground="#FFFFFF5F" FontSize="66.667" Height="77" VerticalAlignment="Center" HorizontalAlignment="Center" Width="179" Margin="310,0,-127,0"/>
-                    <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Flyrute nr:" FontSize="33.333" VerticalAlignment="Center" Foreground="White"/>
-                    <TextBox x:Name="textBlock4" TextWrapping="Wrap" Text="{Binding SelectedFlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="33.333" VerticalAlignment="Center" Foreground="White" Width="300" HorizontalAlignment="Left"/>
-                    <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Destination fra:                                " FontSize="33.333" VerticalAlignment="Center" Foreground="White"/>
-                    <TextBox x:Name="textBlock7" TextWrapping="Wrap" Text="{Binding SelectedDestinationFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="33.333" VerticalAlignment="Center" Foreground="White" Width="300" HorizontalAlignment="Left"/>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF252525" Height="0" Margin="281,18,280,15" Width="0"/>
+            <StackPanel HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Background="#CC000000" Orientation="Horizontal" Width="561" Height="595" Margin="0,5,0,0">
+                <StackPanel Margin="10,60,10,0" Orientation="Vertical" Width="212">
+                    <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Flyrute nr:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBox x:Name="textBlock4" TextWrapping="Wrap" Text="{Binding SelectedFlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Width="200" HorizontalAlignment="Left"/>
+                    <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Destination fra:                                " FontSize="24" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBox x:Name="textBlock7" TextWrapping="Wrap" Text="{Binding SelectedDestinationFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Width="200" HorizontalAlignment="Left"/>
 
-                    <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Destination til:                                " FontSize="33.333" VerticalAlignment="Center" Foreground="White"/>
-                    <TextBox x:Name="textBlock9" TextWrapping="Wrap" Text="{Binding SelectedDestinationTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="33.333" VerticalAlignment="Center" Foreground="White" Width="300" HorizontalAlignment="Left"/>
+                    <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Destination til:                                " FontSize="24" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBox x:Name="textBlock9" TextWrapping="Wrap" Text="{Binding SelectedDestinationTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Width="200" HorizontalAlignment="Left"/>
 
-                    <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Ankomst:                                " FontSize="33.333" VerticalAlignment="Center" Foreground="White"/>
-                    <TextBox x:Name="textBlock11" TextWrapping="Wrap" Text="{Binding SelectedDateTimeFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="33.333" VerticalAlignment="Center" Foreground="White" Width="300" HorizontalAlignment="Left"/>
+                    <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Ankomst:                                " FontSize="24" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBox x:Name="textBlock11" TextWrapping="Wrap" Text="{Binding SelectedDateTimeFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Width="200" HorizontalAlignment="Left"/>
 
-                    <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Afgang:                                " FontSize="33.333" VerticalAlignment="Center" Foreground="White"/>
-                    <TextBox x:Name="textBlock13" TextWrapping="Wrap" Text="{Binding SelectedDateTimeTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="33.333" VerticalAlignment="Center" Foreground="White" Width="300" HorizontalAlignment="Left"/>
-                    <Button x:Name="button" Content="Opdater" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="83" Margin="0,50,62,0" Background="#CCFFE25F" FontSize="40" Width="300" Command="{Binding ChangeFlyruteCommand}"/>
+                    <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Afgang:                                " FontSize="24" VerticalAlignment="Center" Foreground="White"/>
+                    <TextBox x:Name="textBlock13" TextWrapping="Wrap" Text="{Binding SelectedDateTimeTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Width="200" HorizontalAlignment="Left"/>
+                    <Button x:Name="button" Content="Opdater" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,20" Background="#CCFFE25F" FontSize="26.667" Command="{Binding ChangeFlyruteCommand}" Width="200"/>
                 </StackPanel>
-                <StackPanel Margin="0,0,250,10" Orientation="Vertical" Width="472">
-                    <ListView x:Name="listView1" Background="#7FFFFFFF" Height="460" Margin="0,120,80,0"/>
+                <StackPanel Margin="0,0,0,10" Orientation="Vertical" Width="319">
+                    <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="19:44" Foreground="#FFFFFF5F" FontSize="53.333" Margin="-223,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ListView x:Name="listView1" Background="#7FFFFFFF" Height="326" Margin="0,22,40,0"/>
                 </StackPanel>
             </StackPanel>
+            <Grid HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Width="561" Background="#FF252525" Grid.RowSpan="2">
+                <TextBlock x:Name="textBlock2" Margin="0" TextWrapping="Wrap" Text="Opgave i detalje" Foreground="#FFEEEEEE" FontSize="18.667" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
         </Grid>
 
     </Grid>

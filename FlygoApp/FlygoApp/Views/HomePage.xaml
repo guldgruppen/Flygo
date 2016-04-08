@@ -88,7 +88,7 @@
                 </ListBox>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame x:Name="frame" Margin="20,20,0,0" Content="{Binding CurrentFrame, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Height="991" Width="1823" Grid.ColumnSpan="2">
+                <Frame x:Name="frame" Margin="20,20,20,20" Content="{Binding CurrentFrame, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2">
                     <Frame.Background>
                         <ImageBrush Stretch="Fill"/>
                     </Frame.Background>

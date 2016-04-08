@@ -140,7 +140,11 @@ namespace FlygoApp.ViewModels
         #endregion
         public TaskListViewModel()
         {
-            FlyruteRegisterProp = new FlyruteRegister(this);       
+            FlyruteRegisterProp = new FlyruteRegister(this);   
+            FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400","Airbus 323",DateTime.Now,DateTime.Now,"København","Stockholm"));
+            FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));
+            FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));
+            FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));
             LoadMovie();
             Now = DateTime.Now;
             CountdownToDeadline();           
@@ -184,7 +188,7 @@ namespace FlygoApp.ViewModels
             var loadedMovies = await FlyrutePersistency.LoadFlyruteFromJsonAsync();
             if (loadedMovies != null)
             {
-                FlyruteRegisterProp.Flyruter.Clear();
+                //FlyruteRegisterProp.Flyruter.Clear();
                 foreach (var film in loadedMovies)
                 {
                     FlyruteRegisterProp.Flyruter.Add(film);
