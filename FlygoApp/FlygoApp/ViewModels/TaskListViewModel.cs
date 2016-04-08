@@ -141,10 +141,10 @@ namespace FlygoApp.ViewModels
         public TaskListViewModel()
         {
             FlyruteRegisterProp = new FlyruteRegister(this);   
-            FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400","Airbus 323",DateTime.Now,DateTime.Now,"København","Stockholm"));
-            FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));
-            FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));
-            FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));
+            //FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400","Airbus 323",DateTime.Now,DateTime.Now,"København","Stockholm"));
+            //FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));
+            //FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));
+            //FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));
             LoadMovie();
             Now = DateTime.Now;
             CountdownToDeadline();           
