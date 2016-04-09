@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="#7F000000">
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="98,84,0,0" TextWrapping="Wrap" Text="Indstillinger" VerticalAlignment="Top" Height="74" Width="288" FontSize="53.333" Foreground="White"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Indstillinger" VerticalAlignment="Top" Height="74" Width="288" FontSize="53.333" Foreground="White" Margin="20,20,0,0"/>
 
     </Grid>
 </Page>
