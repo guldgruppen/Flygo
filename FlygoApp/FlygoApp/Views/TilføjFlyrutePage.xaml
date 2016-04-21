@@ -12,35 +12,48 @@
             <local:TaskListViewModel/>
         </Grid.DataContext>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="77*"/>
+
+            <ColumnDefinition Width="166*"/>
+            <ColumnDefinition Width="77*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="17*"/>
             <RowDefinition Height="163*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" Margin="0" TextWrapping="Wrap" Text="Tilføj Flyrute" FontSize="46.667" Foreground="White" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
-        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,20,0,0">
-            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Flyrute nummer:" Height="64" FontSize="29.333" Foreground="White"/>
-            <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Flytype:" FontSize="29.333" Foreground="White" Height="64" Margin="0"/>
-            <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Destination fra:" Height="64" FontSize="29.333" Foreground="White" Margin="0"/>
-            <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Destination til:" FontSize="29.333" Height="64" Foreground="White" Margin="0"/>
-            <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Dato fra:" FontSize="29.333" Height="64" Foreground="White" Margin="0"/>
-            <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Dato til:" FontSize="29.333" Height="64" Foreground="White" Margin="0,60,0,0"/>
+        <StackPanel Orientation="Vertical" Margin="5,0,0,0" Grid.Column="1">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Tilføj Flyrute" FontSize="46.667" Foreground="White" HorizontalAlignment="Center" Width="253" Height="68"/>
         </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1" Margin="0,20,0,0">
-            <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="24" Margin="15,5,15,0" Padding="10,3,6,5"/>
-            <TextBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15,20,15,0" FontSize="24" Text="{Binding Flytype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="comboBox1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15,20,15,0" FontSize="24" Text="{Binding DestinationFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="comboBox2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15,15,15,0" FontSize="24" Text="{Binding DestinationTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,20,0,0" Date="{Binding DatoFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding Now, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="15,0"/>
-            <TimePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="15,10,15,0" ClockIdentifier="24HourClock" Time="{Binding TidFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,20,0,0" Date="{Binding DatoTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding Now, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="15,0"/>
-            <TimePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="15,10,15,0" ClockIdentifier="24HourClock" Time="{Binding TidTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button x:Name="button" Content="Opret flyrute" HorizontalAlignment="Stretch" Command="{Binding TilføjRuteCommand}" VerticalAlignment="Stretch" Margin="-318,20,15,0" Height="56" Background="#FF383838" FontSize="33.333" Foreground="White"/>
-        </StackPanel>
+        <Grid Margin="5,5,0,20" Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="567*"/>
+                <RowDefinition Height="80*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="81*"/>
+                <ColumnDefinition Width="82*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="0">
+                <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Flyrute nummer:" Height="64" FontSize="29.333" Foreground="White"/>
+                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Flytype:" FontSize="29.333" Foreground="White" Height="64" Margin="0"/>
+                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Destination fra:" Height="64" FontSize="29.333" Foreground="White" Margin="0"/>
+                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Destination til:" FontSize="29.333" Height="64" Foreground="White" Margin="0"/>
+                <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Dato fra:" FontSize="29.333" Height="64" Foreground="White" Margin="0"/>
+                <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Dato til:" FontSize="29.333" Height="64" Foreground="White" Margin="0,60,0,0"/>
+            </StackPanel>
+            <StackPanel Margin="0,2,1,0" Grid.Column="1">
+                <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="24" Margin="0,5,0,0" Padding="10,3,6,5"/>
+                <TextBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0" FontSize="24" Text="{Binding Flytype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Name="comboBox1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0" FontSize="24" Text="{Binding DestinationFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox x:Name="comboBox2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,15,0,0" FontSize="24" Text="{Binding DestinationTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,20,0,0" Date="{Binding DatoFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding Now, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0"/>
+                <TimePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,10,0,0" ClockIdentifier="24HourClock" Time="{Binding TidFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,20,0,0" Date="{Binding DatoTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding Now, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0"/>
+                <TimePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,10,0,0" ClockIdentifier="24HourClock" Time="{Binding TidTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
+            <Button x:Name="button" Content="Opret flyrute" HorizontalAlignment="Stretch" Command="{Binding TilføjRuteCommand}" VerticalAlignment="Stretch" Margin="0" Background="#FF383838" FontSize="33.333" Foreground="White" Grid.ColumnSpan="2" Grid.Row="1"/>
+
+        </Grid>
 
     </Grid>
 </Page>

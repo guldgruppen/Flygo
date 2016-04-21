@@ -7,87 +7,303 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="#CC000000">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="363*"/>
-            <ColumnDefinition Width="451*"/>
-            <ColumnDefinition Width="378*"/>
-            <ColumnDefinition Width="88*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Background="#7F000000">
         <Grid.RowDefinitions>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="317*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="329*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Statistik" FontSize="53.333" Foreground="White" Grid.ColumnSpan="4" HorizontalAlignment="Center" Margin="0,0,100,0"/>
-        <StackPanel HorizontalAlignment="Center" Height="645" Grid.Row="1" VerticalAlignment="Top" Width="363" Grid.RowSpan="2" Margin="0,20,0,-15">
-            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Opgaver" FontSize="33.333" Foreground="White" HorizontalAlignment="Center"/>
-            <StackPanel Height="98" Margin="0">
-                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="79" FontSize="40" Margin="0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Opgaver udført" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="98" Margin="0">
-                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="23" FontSize="40" Margin="0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Opgaver denne måned" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="96" Margin="0">
-                <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="60" FontSize="40" Margin="0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock7" TextWrapping="Wrap" Text="Opgaver i år" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="102" Margin="0">
-                <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="13" FontSize="40" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="Opgaver forsinket" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="124" Margin="0">
-                <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="7" FontSize="40" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="Opgaver fejl" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Center" Height="645" Grid.Row="1" VerticalAlignment="Top" Width="446" Grid.RowSpan="2" Margin="5,20,0,-15" Grid.Column="1">
-            <TextBlock x:Name="textBlock111" TextWrapping="Wrap" Text="Tid" FontSize="33.333" Foreground="White" HorizontalAlignment="Center"/>
-            <StackPanel Height="98" Margin="0">
-                <TextBlock x:Name="textBlock21" TextWrapping="Wrap" Text="30:50" FontSize="40" Margin="0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock31" TextWrapping="Wrap" Text="Gennemsnits tid" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="98" Margin="0">
-                <TextBlock x:Name="textBlock41" TextWrapping="Wrap" Text="55:30" FontSize="40" Margin="0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock51" TextWrapping="Wrap" Text="Længste tid" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="96" Margin="0">
-                <TextBlock x:Name="textBlock61" TextWrapping="Wrap" Text="18:00" FontSize="40" Margin="0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock71" TextWrapping="Wrap" Text="Korteste tid" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="102" Margin="0">
-                <TextBlock x:Name="textBlock81" TextWrapping="Wrap" Text="5:00" FontSize="40" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock91" TextWrapping="Wrap" Text="Gennemsnit tid forsinket" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="124" Margin="0">
-                <TextBlock x:Name="textBlock101" TextWrapping="Wrap" Text="15:33" FontSize="40" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock1119" TextWrapping="Wrap" Text="Noget andet med tid" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Center" Height="645" Grid.Row="1" VerticalAlignment="Top" Width="378" Grid.RowSpan="2" Margin="0,20,0,-15" Grid.Column="2">
-            <TextBlock x:Name="textBlock150" TextWrapping="Wrap" Text="Medarbejdere" FontSize="33.333" Foreground="White" HorizontalAlignment="Center"/>
-            <StackPanel Height="98" Margin="0">
-                <TextBlock x:Name="textBlock20" TextWrapping="Wrap" Text="Rengøring" FontSize="40" Margin="0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock30" TextWrapping="Wrap" Text="Hurtigste medarbejdere" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="98" Margin="0">
-                <TextBlock x:Name="textBlock40" TextWrapping="Wrap" Text="23" FontSize="40" Margin="0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock50" TextWrapping="Wrap" Text="Noget andet" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="96" Margin="0">
-                <TextBlock x:Name="textBlock60" TextWrapping="Wrap" Text="60" FontSize="40" Margin="0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock70" TextWrapping="Wrap" Text="Opgaver i år" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="102" Margin="0">
-                <TextBlock x:Name="textBlock80" TextWrapping="Wrap" Text="13" FontSize="40" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock90" TextWrapping="Wrap" Text="Opgaver forsinket" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Height="124" Margin="0">
-                <TextBlock x:Name="textBlock100" TextWrapping="Wrap" Text="7" FontSize="40" Margin="0,10,0,0" Foreground="#FFEEE641" HorizontalAlignment="Center"/>
-                <TextBlock x:Name="textBlock110" TextWrapping="Wrap" Text="Opgaver fejl" FontSize="26.667" Foreground="White" HorizontalAlignment="Center"/>
-            </StackPanel>
+
+        <Pivot Margin="0,10,0,0" FontSize="30" Grid.Row="1">
+            <PivotItem Margin="0,0,0,0" Background="Transparent" FontSize="40">
+                <PivotItem.Header>
+                    <TextBlock Foreground="#FFF5AB35">General</TextBlock>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="68*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
+                            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock20" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock21" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock22" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
+                            <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
+                            <TextBlock x:Name="textBlock23" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Height="56" Width="640">
+                        <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="General" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,0,0,0" FontSize="40"/>
+                    </StackPanel>
+
+                </Grid>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Foreground="#FFF5AB35">Flymekaniker</TextBlock>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="68*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
+                            <TextBlock x:Name="textBlock111" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock211" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock101" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock201" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock112" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock212" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock122" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock222" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
+                            <TextBlock x:Name="textBlock132" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
+                            <TextBlock x:Name="textBlock232" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Height="56" Width="640">
+                        <TextBlock x:Name="textBlock361" TextWrapping="Wrap" Text="Flymekaniker" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,0,0,0" FontSize="40"/>
+                    </StackPanel>
+
+                </Grid>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Foreground="#FFF5AB35">Crew</TextBlock>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="68*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
+                            <TextBlock x:Name="textBlock19" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock29" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock109" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock209" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock119" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock219" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock129" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock229" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
+                            <TextBlock x:Name="textBlock139" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
+                            <TextBlock x:Name="textBlock239" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Height="56" Width="640">
+                        <TextBlock x:Name="textBlock39" TextWrapping="Wrap" Text="Crew" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,0,0,0" FontSize="40"/>
+                    </StackPanel>
+
+                </Grid>
+            </PivotItem>
+            <PivotItem >
+                <PivotItem.Header>
+                    <TextBlock Foreground="#FFF5AB35">Rengøring</TextBlock>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="68*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
+                            <TextBlock x:Name="textBlock18" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock28" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock108" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock208" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock118" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock218" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock128" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock228" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
+                            <TextBlock x:Name="textBlock138" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
+                            <TextBlock x:Name="textBlock238" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Height="56" Width="640">
+                        <TextBlock x:Name="textBlock38" TextWrapping="Wrap" Text="Rengøring" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,0,0,0" FontSize="40"/>
+                    </StackPanel>
+
+                </Grid>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Foreground="#FFF5AB35" SelectionHighlightColor="White">Caters</TextBlock>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="68*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
+                            <TextBlock x:Name="textBlock17" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock27" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock107" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock207" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock177" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock217" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock127" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock227" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
+                            <TextBlock x:Name="textBlock137" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
+                            <TextBlock x:Name="textBlock237" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Height="56" Width="640">
+                        <TextBlock x:Name="textBlock37" TextWrapping="Wrap" Text="Caters" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,0,0,0" FontSize="40"/>
+                    </StackPanel>
+
+                </Grid>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Foreground="#FFF5AB35" SelectionHighlightColor="White">Baggagers</TextBlock>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="68*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
+                            <TextBlock x:Name="textBlock16" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock26" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock106" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock206" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock116" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock216" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock126" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock226" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
+                            <TextBlock x:Name="textBlock136" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
+                            <TextBlock x:Name="textBlock236" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Height="56" Width="640">
+                        <TextBlock x:Name="textBlock36" TextWrapping="Wrap" Text="Baggagers" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,0,0,0" FontSize="40"/>
+                    </StackPanel>
+
+                </Grid>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Foreground="#FFF5AB35" SelectionHighlightColor="White">Fuelers</TextBlock>
+                </PivotItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7*"/>
+                        <RowDefinition Height="68*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1">
+                        <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
+                            <TextBlock x:Name="textBlock15" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock25" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock105" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock205" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock115" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock215" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock125" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock225" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
+                            <TextBlock x:Name="textBlock135" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
+                            <TextBlock x:Name="textBlock235" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Height="56" Width="640">
+                        <TextBlock x:Name="textBlock35" TextWrapping="Wrap" Text="Fuelers" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,0,0,0" FontSize="40"/>
+                    </StackPanel>
+
+                </Grid>
+            </PivotItem>
+        </Pivot>
+        <StackPanel>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Statistik" FontSize="50" HorizontalAlignment="Center" Foreground="White"/>
         </StackPanel>
 
 
