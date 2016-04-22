@@ -10,9 +10,8 @@
     mc:Ignorable="d">
 
     <Grid>
-
         <Grid.Background>
-            <ImageBrush Stretch="UniformToFill" ImageSource="ms-appx:///Assets/99920.jpg"/>
+            <ImageBrush Stretch="UniformToFill" ImageSource="ms-appx:///Assets/Planesample1.jpg"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -27,16 +26,28 @@
 			CompactPaneLength="56" IsPaneOpen="{Binding MenuOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMode="CompactOverlay">
             <SplitView.Pane>
                 <ListBox SelectionMode="Single" Background="#FF3C3C3C" Margin="0" HorizontalAlignment="Left" Width="600">
-
-                    <ListBoxItem x:Name="Hjem">
+                    <ListBoxItem x:Name="LukMenu">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped" SourceObject="{Binding ElementName=LukMenu}">
+                                <Core:InvokeCommandAction Command="{Binding OpenMenuCommand}"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                        <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
+                            <TextBlock Name="Hej" Text="&#xE700;" FontSize="40" FontFamily="Segoe MDL2 Assets" Foreground="#FFF5AB35" Height="45" Width="52" Padding="0"/>
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
+								<Run Text="Luk menu"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="Hjem" Height="71">
                         <Interactivity:Interaction.Behaviors>
                             <Core:EventTriggerBehavior EventName="Tapped" SourceObject="{Binding ElementName=Hjem}">
                                 <Core:InvokeCommandAction Command="{Binding GoToTaskListPageCommand}"/>
                             </Core:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE80F;" Foreground="#FFF5AB35" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35">
+                        <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
+                            <Image Source="ms-appx:///Assets/1461351761_01.png" Height="61" Width="52" />
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
 								<Run Text="Hjem"/>
                             </TextBlock>
                         </StackPanel>
@@ -47,10 +58,9 @@
                                 <Core:InvokeCommandAction Command="{Binding GoToTilføjFlyrutePageCommand}"/>
                             </Core:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE710;" Foreground="#FFF5AB35" >
-                            </TextBlock>
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35">
+                        <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
+                            <Image Source="ms-appx:///Assets/1461286350_plus_add_green.png" Height="55" Width="46" />
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
 								<Run Text="Tilføj Flyrute"/>
                             </TextBlock>
                         </StackPanel>
@@ -61,13 +71,9 @@
                                 <Core:InvokeCommandAction Command="{Binding GoToStatistikPageCommand}"/>
                             </Core:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xEA37;" Foreground="#FFF5AB35" >
-                                <TextBlock.Projection>
-                                    <PlaneProjection RotationZ="90"/>
-                                </TextBlock.Projection>
-                            </TextBlock>
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35">
+                        <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
+                            <Image Source="ms-appx:///Assets/1461286384_Stats.png" Height="50" Width="45" />
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
 								<Run Text="Statistik"/>
                             </TextBlock>
                         </StackPanel>
@@ -78,10 +84,23 @@
                                 <Core:InvokeCommandAction Command="{Binding GoToIndstillingerPageCommand}"/>
                             </Core:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE713;" Foreground="#FFF5AB35" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35">
+                        <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
+                            <Image Source="ms-appx:///Assets/1461286405_Settings.png" Height="54" Width="48" />
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
 								<Run Text="Indstillinger"/>
+                            </TextBlock>
+                        </StackPanel>
+                    </ListBoxItem>
+                    <ListBoxItem x:Name="Logud">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped" SourceObject="{Binding ElementName=Logud}">
+                                <Core:InvokeCommandAction Command="{Binding LogudCommand}"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                        <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
+                            <Image Source="ms-appx:///Assets/1461286313_Log Out.png" Height="54" Width="48" />
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
+								<Run Text="Log ud"/>
                             </TextBlock>
                         </StackPanel>
                     </ListBoxItem>
@@ -95,7 +114,7 @@
                 </Frame>
             </SplitView.Content>
         </SplitView>
-        <Grid HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="1280" Background="#FF3C3C3C">
+        <!--<Grid HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="1280" Background="#FF3C3C3C">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="55*"/>
                 <ColumnDefinition Width="1116*"/>
@@ -103,7 +122,7 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="button1" Content="Log ud" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="7,0,0,0" Background="#7F000000" Foreground="#FFF5AB35" FontSize="26.667" Grid.Column="2" Command="{Binding LogudCommand}"/>
             <Button x:Name="button" Content="&#xE700;" HorizontalAlignment="Left" VerticalAlignment="Top" Height="59" Width="56" Command="{Binding OpenMenuCommand}" FontFamily="Segoe MDL2 Assets" FontSize="34.667" Background="#FF3C3C3C" Foreground="#FFF5AB35" Grid.ColumnSpan="2"/>
-        </Grid>
+        </Grid>-->
 
 
     </Grid>
