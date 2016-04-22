@@ -44,9 +44,9 @@
                             <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock22" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
-                            <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
-                            <TextBlock x:Name="textBlock23" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock23" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">
@@ -85,9 +85,9 @@
                             <TextBlock x:Name="textBlock122" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock222" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
-                            <TextBlock x:Name="textBlock132" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
-                            <TextBlock x:Name="textBlock232" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock132" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock232" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">
@@ -126,9 +126,9 @@
                             <TextBlock x:Name="textBlock129" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock229" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
-                            <TextBlock x:Name="textBlock139" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
-                            <TextBlock x:Name="textBlock239" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock139" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock239" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">
@@ -167,9 +167,9 @@
                             <TextBlock x:Name="textBlock128" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock228" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
-                            <TextBlock x:Name="textBlock138" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
-                            <TextBlock x:Name="textBlock238" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock138" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock238" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">
@@ -208,9 +208,9 @@
                             <TextBlock x:Name="textBlock127" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock227" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
-                            <TextBlock x:Name="textBlock137" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
-                            <TextBlock x:Name="textBlock237" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock137" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock237" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">
@@ -249,9 +249,9 @@
                             <TextBlock x:Name="textBlock126" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock226" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
-                            <TextBlock x:Name="textBlock136" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
-                            <TextBlock x:Name="textBlock236" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock136" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock236" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">
@@ -290,9 +290,9 @@
                             <TextBlock x:Name="textBlock125" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock225" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,415,0,0">
-                            <TextBlock x:Name="textBlock135" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="25"/>
-                            <TextBlock x:Name="textBlock235" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="25"/>
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock135" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock235" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">

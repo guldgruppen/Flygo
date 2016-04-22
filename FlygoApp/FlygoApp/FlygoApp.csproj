@@ -139,6 +139,11 @@
     <None Include="FlygoApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\1461286239_todo-list.png" />
+    <Content Include="Assets\1461286313_Log Out.png" />
+    <Content Include="Assets\1461286350_plus_add_green.png" />
+    <Content Include="Assets\1461286384_Stats.png" />
+    <Content Include="Assets\1461286405_Settings.png" />
     <Content Include="Assets\99920.jpg" />
     <Content Include="Assets\airplane-wallpaper-3.jpg" />
     <Content Include="Assets\FlygoSplash1240x600.scale-200.png" />
