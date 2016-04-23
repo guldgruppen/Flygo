@@ -146,7 +146,6 @@
     <None Include="FlygoApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1461351761_01.png" />
     <Content Include="Assets\1461286239_todo-list.png" />
     <Content Include="Assets\1461286313_Log Out.png" />
     <Content Include="Assets\1461286350_plus_add_green.png" />

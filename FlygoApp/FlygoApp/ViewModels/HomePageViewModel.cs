@@ -119,7 +119,7 @@ namespace FlygoApp.ViewModels
         {
             WindowStyling.WindowAndTitleBarStyling();
             CurrentFrame = new Frame();
-            CurrentFrame.Navigate(typeof(RedcapTaskPage));
+            CurrentFrame.Navigate(typeof(TaskListPage));
             _navService = new NavigationService();
             
         }
