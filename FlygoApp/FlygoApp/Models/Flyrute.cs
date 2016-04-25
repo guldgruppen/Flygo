@@ -29,7 +29,6 @@ namespace FlygoApp.Models
                 OnPropertyChanged();
             }
         }
-
         public string DatePart
         {
             get { return _datePart; }
@@ -39,13 +38,8 @@ namespace FlygoApp.Models
                 OnPropertyChanged();
             }
         }
-
         public Flyrute(string flyruteNr, string flytype, DateTime ankomst, DateTime afgang, string destinationFra, string destinationTil)
         {
-            CheckFlyruteNr(flyruteNr);
-            CheckFlyrutetype(flytype);
-            CheckDestination(destinationFra);
-            CheckDestination(destinationTil);
             FlyruteNr = flyruteNr;
             Flytype = flytype;
             Ankomst = ankomst;
@@ -54,29 +48,6 @@ namespace FlygoApp.Models
             DestinationTil = destinationTil;
         }
 
-        public void CheckFlyruteNr(string flyrutenr)
-        {
-                if(String.IsNullOrEmpty(flyrutenr) || flyrutenr.Length > 6)
-                throw new ArgumentException("Flyrute nummeret eksisterer ikke");
-        }
-        public void CheckFlyrutetype(string flytype)
-        {
-            if (String.IsNullOrEmpty(flytype))
-                throw new ArgumentException("Flytypen eksisterer ikke");
-        }
-        public void CheckDestination(string destination)
-        {
-            if (string.IsNullOrEmpty(destination))
-                throw new ArgumentException("Destinationen eksisterer ikke");
-        }
-        public void CheckDate(DateTime dt)
-        {          
-                int result = DateTime.Compare(DateTime.Now, dt);              
-                if (result >= 0)
-                {
-                    throw new ArgumentException("Afgang og ankomst skal forekomme i efter idag");
-                }            
-        }
         public override string ToString()
         {
             return $"FlyruteNr: {FlyruteNr}, Flytype: {Flytype}, Ankomst: {Ankomst}, Afgang: {Afgang}, DestinationFra: {DestinationFra}, DestinationTil: {DestinationTil}";

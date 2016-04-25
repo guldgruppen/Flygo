@@ -19,9 +19,9 @@ namespace FlygoApp.Models
 
         }
 
-        public void AddFlyrute(Flyrute flyrute)
+        public void AddFlyrute(Flyrute r)
         {
-            Flyruter.Add(flyrute);
+            Flyruter.Add(r);
         }
 
         

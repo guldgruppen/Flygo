@@ -94,7 +94,6 @@ namespace FlygoApp.ViewModels
             }
             set { _logudCommand = value; }
         }
-
         public bool MenuOpen
         {
             get { return _menuOpen; }
@@ -113,7 +112,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         #endregion
         public HomePageViewModel()
         {

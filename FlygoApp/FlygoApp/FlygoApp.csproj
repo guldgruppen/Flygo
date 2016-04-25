@@ -104,7 +104,6 @@
     <Compile Include="Commons\WindowStyling.cs" />
     <Compile Include="Models\Flyrute.cs" />
     <Compile Include="Models\FlyruteRegister.cs" />
-    <Compile Include="Models\Person.cs" />
     <Compile Include="Models\WorkerTest.cs" />
     <Compile Include="Persistency\FlyrutePersistency.cs" />
     <Compile Include="Properties\Annotations.cs" />
