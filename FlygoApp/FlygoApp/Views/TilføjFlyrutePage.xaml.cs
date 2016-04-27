@@ -26,5 +26,6 @@ namespace FlygoApp.ViewModels
         {
             this.InitializeComponent();
         }
+      
     }
 }
