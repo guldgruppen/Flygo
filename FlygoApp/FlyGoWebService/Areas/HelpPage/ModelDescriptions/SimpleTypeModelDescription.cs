@@ -1,0 +1,6 @@
+namespace FlyGoWebService.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
