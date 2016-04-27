@@ -1,66 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Popups;
-using FlygoApp.Annotations;
 
 namespace FlygoApp.Models
 {
-    public class Flyrute : INotifyPropertyChanged
+    public class Flyrute
     {
-        private string _timePart;
-        private string _datePart;
-        public string FlyruteNr { get; set; }
-        public string Flytype { get; set; }
-        public DateTime Ankomst { get; set; }
+        public int Id { get; set; }
         public DateTime Afgang { get; set; }
-        public string DestinationFra { get; set; }
-        public string DestinationTil { get; set; }
-        public string TimePart
+        public DateTime Ankomt { get; set; }
+        public Destination DestinationFra { get; set; }
+        public Destination DestinationTil { get; set; }
+        public Fly Fly { get; set; }
+        public string FlyruteNummer { get; set; }
+        public Hangar Hangar { get; set; }
+
+        public Flyrute(int id, DateTime afgang, DateTime ankomt, Destination destinationFra, Destination destinationTil, Fly fly, string flyruteNummer, Hangar hangar)
         {
-            get { return _timePart; }
-            set
-            {
-                _timePart = value;
-                OnPropertyChanged();
-            }
-        }
-        public string DatePart
-        {
-            get { return _datePart; }
-            set
-            {
-                _datePart = value;
-                OnPropertyChanged();
-            }
-        }
-        public Flyrute(string flyruteNr, string flytype, DateTime ankomst, DateTime afgang, string destinationFra, string destinationTil)
-        {
-            FlyruteNr = flyruteNr;
-            Flytype = flytype;
-            Ankomst = ankomst;
+            Id = id;
             Afgang = afgang;
+            Ankomt = ankomt;
             DestinationFra = destinationFra;
             DestinationTil = destinationTil;
+            Fly = fly;
+            FlyruteNummer = flyruteNummer;
+            Hangar = hangar;
         }
 
-        public override string ToString()
-        {
-            return $"FlyruteNr: {FlyruteNr}, Flytype: {Flytype}, Ankomst: {Ankomst}, Afgang: {Afgang}, DestinationFra: {DestinationFra}, DestinationTil: {DestinationTil}";
-        }
 
-        #region Notify Changed Region
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        } 
-        #endregion
+    
     }
 }
