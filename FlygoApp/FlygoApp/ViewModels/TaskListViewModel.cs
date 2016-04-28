@@ -24,22 +24,15 @@ namespace FlygoApp.ViewModels
         #region Instance Fields
         #endregion
         #region Properties         
-        public FlyruteRegister FlyruteRegisterProp { get; set; }
+        
         public DateTimeOffset Now { get; set; }
         #endregion
         public TaskListViewModel()
         {
-            FlyruteRegisterProp = new FlyruteRegister(this);
-            FlyruteRegisterProp.AddFlyrute(new Flyrute("SK400", "Airbus 323", DateTime.Now, DateTime.Now, "København", "Stockholm"));           
-            ObservableCollection.Add(new WorkerTest("Rengøring","Færdig"));
-            ObservableCollection.Add(new WorkerTest("Caters", "Ikke begyndt"));
-            ObservableCollection.Add(new WorkerTest("Mekaniker", "Forsinket"));
-            ObservableCollection.Add(new WorkerTest("Fuelers", "Fejl"));
-            ObservableCollection.Add(new WorkerTest("Crew", "Færdig"));
-            ObservableCollection.Add(new WorkerTest("Baggagers", "Færdig"));
+           
         }
 
-        public ObservableCollection<WorkerTest> ObservableCollection { get; set; } = new ObservableCollection<WorkerTest>();
+       
        
         #region Metoder       
         #endregion

@@ -102,6 +102,9 @@
     <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Commons\RelayCommandWithParameter.cs" />
     <Compile Include="Commons\WindowStyling.cs" />
+    <Compile Include="Exceptions\LoginInfoWrongException.cs" />
+    <Compile Include="Exceptions\LoginIsNullOrEmptyException.cs" />
+    <Compile Include="Models\BrugerLogIn.cs" />
     <Compile Include="Models\Destination.cs" />
     <Compile Include="Models\DestinationHandler.cs" />
     <Compile Include="Models\Fly.cs" />
@@ -111,6 +114,8 @@
     <Compile Include="Models\Hangar.cs" />
     <Compile Include="Models\HangarHandler.cs" />
     <Compile Include="Models\IHandler.cs" />
+    <Compile Include="Models\LoginHandler.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Persistency\DTOSingleton.cs" />
     <Compile Include="Persistency\FlyrutePersistency.cs" />
     <Compile Include="Properties\Annotations.cs" />

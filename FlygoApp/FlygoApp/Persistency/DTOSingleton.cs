@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using FlygoApp.Models;
+using FlyGoWebService;
 
 namespace FlygoApp.Persistency
 {
@@ -16,15 +17,16 @@ namespace FlygoApp.Persistency
         public List<Fly> FlyListe = new List<Fly>();
         public List<Flyrute> FlyruteListe = new List<Flyrute>();
         public List<Hangar> HangarListe = new List<Hangar>();
+        public Dictionary<string, string> BrugerLogInsDictionary = new Dictionary<string, string>();
         private static DTOSingleton Singleton;
 
         private DTOSingleton()
         {
-            
+            LoadBrugerLogins();
         }
 
         public static DTOSingleton GetInstance()
-        {        
+        {
             return Singleton ?? (Singleton = new DTOSingleton());
         }
 
@@ -65,13 +67,48 @@ namespace FlygoApp.Persistency
         public
             void LoadDestination()
         {
-            
+
         }
 
         public void LoadFly()
         {
-            
+
         }
 
+        public void LoadBrugerLogins()
+        {
+            const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
+
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+
+                    var response = client.GetAsync("api/BrugerLogIns").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        IEnumerable<BrugerLogIn> brugerLogin =
+                            response.Content.ReadAsAsync<IEnumerable<BrugerLogIn>>().Result;
+                        foreach (var bruger in brugerLogin)
+                        {
+                            BrugerLogInsDictionary.Add(bruger.BrugerNavn, bruger.Password);
+                        }
+
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+        }
     }
 }
