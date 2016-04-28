@@ -13,7 +13,7 @@ namespace FlygoApp.Persistency
 {
     public class DTOSingleton
     {
-       
+
         public List<Fly> FlyListe = new List<Fly>();
         public List<Flyrute> FlyruteListe = new List<Flyrute>();
         public List<Hangar> HangarListe = new List<Hangar>();
@@ -22,20 +22,16 @@ namespace FlygoApp.Persistency
 
         private DTOSingleton()
         {
-<<<<<<< HEAD
             LoadFly();
             Loadhangar();
-        }
-
-        public static DTOSingleton GetInstance()
-        {      
-=======
             LoadBrugerLogins();
         }
 
+
+
         public static DTOSingleton GetInstance()
         {
->>>>>>> refs/remotes/origin/UdviklerBranch
+
             return Singleton ?? (Singleton = new DTOSingleton());
         }
 
@@ -108,18 +104,14 @@ namespace FlygoApp.Persistency
             }
         }
 
-<<<<<<< HEAD
-=======
         public
             void LoadDestination()
         {
 
         }
->>>>>>> refs/remotes/origin/UdviklerBranch
 
         public void Loadhangar()
         {
-<<<<<<< HEAD
             const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
 
             HttpClientHandler handler = new HttpClientHandler();
@@ -153,11 +145,8 @@ namespace FlygoApp.Persistency
 
         }
 
-        
 
-=======
 
-        }
 
         public void LoadBrugerLogins()
         {
@@ -194,6 +183,6 @@ namespace FlygoApp.Persistency
             }
 
         }
->>>>>>> refs/remotes/origin/UdviklerBranch
+
     }
 }

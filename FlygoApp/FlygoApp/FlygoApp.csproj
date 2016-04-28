@@ -102,14 +102,9 @@
     <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Commons\RelayCommandWithParameter.cs" />
     <Compile Include="Commons\WindowStyling.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="Exceptions\LoginInfoWrongException.cs" />
     <Compile Include="Exceptions\LoginIsNullOrEmptyException.cs" />
     <Compile Include="Models\BrugerLogIn.cs" />
-    <Compile Include="Models\Destination.cs" />
-    <Compile Include="Models\DestinationHandler.cs" />
->>>>>>> refs/remotes/origin/UdviklerBranch
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\FlyHandler.cs" />
     <Compile Include="Models\Flyrute.cs" />
