@@ -102,14 +102,14 @@
     <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Commons\RelayCommandWithParameter.cs" />
     <Compile Include="Commons\WindowStyling.cs" />
-    <Compile Include="Models\Destination.cs" />
-    <Compile Include="Models\DestinationHandler.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\FlyHandler.cs" />
     <Compile Include="Models\Flyrute.cs" />
+    <Compile Include="Models\FlyRuteFactory.cs" />
     <Compile Include="Models\FlyruteHandler.cs" />
     <Compile Include="Models\Hangar.cs" />
     <Compile Include="Models\HangarHandler.cs" />
+    <Compile Include="Models\IFactory.cs" />
     <Compile Include="Models\IHandler.cs" />
     <Compile Include="Persistency\DTOSingleton.cs" />
     <Compile Include="Persistency\FlyrutePersistency.cs" />
@@ -130,6 +130,9 @@
       <DependentUpon>StatistikPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\TaskListViewModel.cs" />
+    <Compile Include="Views\test.xaml.cs">
+      <DependentUpon>test.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TilføjFlyrutePage.xaml.cs">
       <DependentUpon>TilføjFlyrutePage.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatistikPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

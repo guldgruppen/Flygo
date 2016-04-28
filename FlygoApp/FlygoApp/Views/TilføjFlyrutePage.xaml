@@ -49,10 +49,10 @@
             </StackPanel>
             <StackPanel Margin="0,2,1,0" Grid.Column="1">
                 <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="24" Margin="0,5,0,0" Padding="10,3,6,5"/>
-                <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0" FontSize="24"/>
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0" FontSize="24" ItemsSource="{Binding FlyHandler.Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <ComboBox x:Name="comboBox1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0" FontSize="24"/>
                 <ComboBox x:Name="comboBox2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,15,0,0" FontSize="24" />
-                <ComboBox x:Name="comboBox2_Copy" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,15,0,0" FontSize="24" />
+                <ComboBox x:Name="comboBox2_Copy" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,15,0,0" FontSize="24" ItemsSource="{Binding HangarHandler.Hangar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,20,0,0" Date="{Binding DatoFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding Now, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0"/>
                 <TimePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,10,0,0" ClockIdentifier="24HourClock" Time="{Binding TidFra, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,20,0,0" Date="{Binding DatoTil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding Now, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0"/>

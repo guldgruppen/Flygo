@@ -25,7 +25,7 @@
         <Grid.DataContext>
             <ViewModels:TaskListViewModel/>
         </Grid.DataContext>
-        <ListView x:Name="listView" Grid.Column="1" Grid.Row="2" Background="#7F000000" ItemsSource="{Binding FlyruteRegisterProp.Flyruter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView x:Name="listView" Grid.Column="1" Grid.Row="2" Background="#7F000000" ItemsSource="{Binding FlyHandler.Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.Resources>
                 <DataTemplate x:Key="DataTemplate1">
                     <Grid Margin="10" Background="#D8FFFFFF" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

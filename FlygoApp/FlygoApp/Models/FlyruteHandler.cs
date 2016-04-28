@@ -12,12 +12,23 @@ namespace FlygoApp.Models
     public class FlyruteHandler : IHandler
     {
 
-        public ObservableCollection<Flyrute> Flyruter { get; set; } = new ObservableCollection<Flyrute>();
         public DTOSingleton  DTO { get; set; } = DTOSingleton.GetInstance();
+        public ObservableCollection<Flyrute> Flyruter { get; set; } = new ObservableCollection<Flyrute>();
+      
 
         public void Add(Flyrute flyrute)
         {
 
+        }
+
+        public void CheckEksisterendeFlyrute(Flyrute flyrute)
+        {
+            
+        }
+
+        public Flyrute CreateFlyrute()
+        {
+            return null;
         }
 
         public Flyrute Get(int Id)
@@ -35,20 +46,12 @@ namespace FlygoApp.Models
            
         }
 
-        public void CheckEksisterendeFlyrute(Flyrute flyrute)
-        {
-            
-        }
-
-        public void CheckInfo(Flyrute flyrute)
-        {
-            
-        }
-
         public void LoadDTOFlyruter()
         {
             
         }
+
+        
 
     }
 }

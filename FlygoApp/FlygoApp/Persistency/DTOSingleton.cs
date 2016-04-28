@@ -12,7 +12,7 @@ namespace FlygoApp.Persistency
 {
     public class DTOSingleton
     {
-        public List<Destination> DestinationListe = new List<Destination>();
+       
         public List<Fly> FlyListe = new List<Fly>();
         public List<Flyrute> FlyruteListe = new List<Flyrute>();
         public List<Hangar> HangarListe = new List<Hangar>();
@@ -20,12 +20,48 @@ namespace FlygoApp.Persistency
 
         private DTOSingleton()
         {
-            
+            LoadFly();
+            Loadhangar();
         }
 
         public static DTOSingleton GetInstance()
-        {        
+        {      
             return Singleton ?? (Singleton = new DTOSingleton());
+        }
+
+        public void LoadFly()
+        {
+
+            const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
+
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+
+                    var response = client.GetAsync("api/flys").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        IEnumerable<Fly> flydata = response.Content.ReadAsAsync<IEnumerable<Fly>>().Result;
+                        foreach (var F in flydata)
+                        {
+                            FlyListe.Add(F);
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
         }
 
         public void Loadflyrute()
@@ -62,16 +98,43 @@ namespace FlygoApp.Persistency
             }
         }
 
-        public
-            void LoadDestination()
+
+        public void Loadhangar()
         {
-            
+            const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
+
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+
+                    var response = client.GetAsync("api/Hangars").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        IEnumerable<Hangar> Hangardata = response.Content.ReadAsAsync<IEnumerable<Hangar>>().Result;
+                        foreach (var H in Hangardata)
+                        {
+                            HangarListe.Add(H);
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+
         }
 
-        public void LoadFly()
-        {
-            
-        }
+        
 
     }
 }
