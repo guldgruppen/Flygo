@@ -34,9 +34,9 @@
 
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Bruger Login" Height="80" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="61.333" FontFamily="Segoe UI Light" Margin="136,10,136,0" Foreground="#FFEEEEEE"/>
             <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="brugernavn" FontFamily="Segoe UI Semilight" FontSize="32" Margin="16,15,0,0" Height="38.4000015258789" Foreground="#FFEEEEEE"/>
-            <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="16,5,16,0" FontSize="20" Foreground="#FFEEEEEE"/>
+            <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding BrugerNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="16,5,16,0" FontSize="20" Foreground="#FFEEEEEE"/>
             <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="kodeord" FontFamily="Segoe UI Semilight" FontSize="32" Margin="16,20,0,0" Foreground="#FFEEEEEE"/>
-            <PasswordBox x:Name="passwordBox" Margin="16,5,16,0" Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Foreground="#FFEEEEEE"/>
+            <PasswordBox x:Name="passwordBox" Margin="16,5,16,0" Password="{Binding Kodeord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Foreground="#FFEEEEEE"/>
             <StackPanel Height="71" Margin="16,25,16,0" Orientation="Horizontal" HorizontalAlignment="Center" Width="588">
                 <Button x:Name="button" Content="Log in" HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="589" FontSize="40" FontFamily="Segoe WP Black" Command="{Binding GoToHomePageCommand}" Margin="0,0,0,0" Foreground="LightGray" Background="#99000000"/>
             </StackPanel>

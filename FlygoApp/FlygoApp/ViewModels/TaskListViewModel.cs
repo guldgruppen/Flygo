@@ -25,7 +25,11 @@ namespace FlygoApp.ViewModels
         #region Instance Fields
         #endregion
         #region Properties         
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> refs/remotes/origin/UdviklerBranch
         public DateTimeOffset Now { get; set; }
         #endregion
 
@@ -35,16 +39,25 @@ namespace FlygoApp.ViewModels
 
         public TaskListViewModel()
         {
+<<<<<<< HEAD
           FlyHandler = new FlyHandler();  
             FlyHandler.LoadDtoFly();
 
             HangarHandler = new HangarHandler();
             HangarHandler.LoadDtoHangar();
+=======
+           
+>>>>>>> refs/remotes/origin/UdviklerBranch
         }
         
         
 
 
+<<<<<<< HEAD
+=======
+       
+       
+>>>>>>> refs/remotes/origin/UdviklerBranch
         #region Metoder       
         #endregion
         #region NotifyChange Region
