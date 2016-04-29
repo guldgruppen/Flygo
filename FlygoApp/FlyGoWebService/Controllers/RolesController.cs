@@ -8,13 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using FlyGoWebService;
+using FlyGoWebService.Models;
 
 namespace FlyGoWebService.Controllers
 {
     public class RolesController : ApiController
     {
-        private FlyGoEF db = new FlyGoEF();
+        private FlygoEntityContext db = new FlygoEntityContext();
 
         // GET: api/Roles
         public IQueryable<Roles> GetRoles()

@@ -1,4 +1,4 @@
-namespace FlyGoWebService
+namespace FlyGoWebService.Models
 {
     using System;
     using System.Collections.Generic;
@@ -6,26 +6,30 @@ namespace FlyGoWebService
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Fly")]
-    public partial class Fly
+    [Table("FlyRute")]
+    public partial class FlyRute
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Fly()
+        public FlyRute()
         {
-            FlyRute = new HashSet<FlyRute>();
+            OpgaveArkiv = new HashSet<OpgaveArkiv>();
         }
 
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Producent { get; set; }
+        public DateTime Ankomst { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Type { get; set; }
+        public DateTime Afgang { get; set; }
+
+        public int FlyId { get; set; }
+
+        public int HangarId { get; set; }
+
+        public virtual Fly Fly { get; set; }
+
+        public virtual Hangar Hangar { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FlyRute> FlyRute { get; set; }
+        public virtual ICollection<OpgaveArkiv> OpgaveArkiv { get; set; }
     }
 }

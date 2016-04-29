@@ -8,21 +8,21 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using FlyGoWebService;
+using FlyGoWebService.Models;
 
 namespace FlyGoWebService.Controllers
 {
-    public class FlysController : ApiController
+    public class FliesController : ApiController
     {
-        private FlyGoEF db = new FlyGoEF();
+        private FlygoEntityContext db = new FlygoEntityContext();
 
-        // GET: api/Flys
+        // GET: api/Flies
         public IQueryable<Fly> GetFly()
         {
             return db.Fly;
         }
 
-        // GET: api/Flys/5
+        // GET: api/Flies/5
         [ResponseType(typeof(Fly))]
         public IHttpActionResult GetFly(int id)
         {
@@ -35,7 +35,7 @@ namespace FlyGoWebService.Controllers
             return Ok(fly);
         }
 
-        // PUT: api/Flys/5
+        // PUT: api/Flies/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutFly(int id, Fly fly)
         {
@@ -70,7 +70,7 @@ namespace FlyGoWebService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Flys
+        // POST: api/Flies
         [ResponseType(typeof(Fly))]
         public IHttpActionResult PostFly(Fly fly)
         {
@@ -85,7 +85,7 @@ namespace FlyGoWebService.Controllers
             return CreatedAtRoute("DefaultApi", new { id = fly.Id }, fly);
         }
 
-        // DELETE: api/Flys/5
+        // DELETE: api/Flies/5
         [ResponseType(typeof(Fly))]
         public IHttpActionResult DeleteFly(int id)
         {

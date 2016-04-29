@@ -1,4 +1,4 @@
-namespace FlyGoWebService
+namespace FlyGoWebService.Models
 {
     using System;
     using System.Collections.Generic;
