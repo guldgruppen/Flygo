@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlygoApp.Exceptions
 {
-    class LoginInfoWrongException : Exception
+    public class LoginInfoWrongException : Exception
     {
         public LoginInfoWrongException()
         {

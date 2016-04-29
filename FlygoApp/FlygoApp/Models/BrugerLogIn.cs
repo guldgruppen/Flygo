@@ -9,21 +9,11 @@ namespace FlyGoWebService
     [Table("BrugerLogIn")]
     public partial class BrugerLogIn
     {
-        private string _brugerNavn;
         public int Id { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string BrugerNavn
-        {
-            get { return _brugerNavn; }
-            set {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentNullException("Brugernavn er null or empty");
-                }
-                    _brugerNavn = value; }
-        }
+        public string BrugerNavn { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -32,5 +22,17 @@ namespace FlyGoWebService
         public int RoleId { get; set; }
 
         public virtual Roles Roles { get; set; }
+
+
+        public BrugerLogIn()
+        {
+            
+        }
+
+        public BrugerLogIn(string password, int roleId)
+        {
+            Password = password;
+            RoleId = roleId; 
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace FlygoApp.Persistency
         public List<Fly> FlyListe = new List<Fly>();
         public List<Flyrute> FlyruteListe = new List<Flyrute>();
         public List<Hangar> HangarListe = new List<Hangar>();
-        public Dictionary<string, string> BrugerLogInsDictionary = new Dictionary<string, string>();
+        public Dictionary<string, BrugerLogIn> BrugerLogInsDictionary = new Dictionary<string, BrugerLogIn>();
         private static DTOSingleton Singleton;
 
         private DTOSingleton()
@@ -104,8 +104,7 @@ namespace FlygoApp.Persistency
             }
         }
 
-        public
-            void LoadDestination()
+        public void LoadDestination()
         {
 
         }
@@ -171,7 +170,7 @@ namespace FlygoApp.Persistency
                             response.Content.ReadAsAsync<IEnumerable<BrugerLogIn>>().Result;
                         foreach (var bruger in brugerLogin)
                         {
-                            BrugerLogInsDictionary.Add(bruger.BrugerNavn, bruger.Password);
+                            BrugerLogInsDictionary.Add(bruger.BrugerNavn, new BrugerLogIn(bruger.Password, bruger.RoleId));
                         }
 
                     }

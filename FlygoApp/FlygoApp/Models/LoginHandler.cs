@@ -10,15 +10,15 @@ using FlygoApp.Views;
 
 namespace FlygoApp.Models
 {
-    class LoginHandler
+    public class LoginHandler
     {
-        private DTOSingleton s;
-        private NavigationService _navigationService; 
+        public DTOSingleton s;
+        public NavigationService NavigationService;
 
         public LoginHandler()
         {
             s = DTOSingleton.GetInstance();
-            _navigationService = new NavigationService();
+            NavigationService = new NavigationService();
         }
 
 
@@ -41,13 +41,34 @@ namespace FlygoApp.Models
             int x = s.BrugerLogInsDictionary.Count;
 
             foreach (var login in s.BrugerLogInsDictionary)
-            { 
+            {
                 x--; 
 
-                if (login.Key == brugernavn && login.Value == kodeord)
+                if (login.Key == brugernavn && login.Value.Password == kodeord)
                 {
-                    _navigationService.Navigate(typeof(HomePage));
-                    break; 
+                    if (login.Value.RoleId == 1)
+                    {
+                        NavigationService.Navigate(typeof(HomePage));
+                        break;
+                    }
+                    if (login.Value.RoleId == 2 || login.Value.RoleId == 3 || login.Value.RoleId == 4 ||
+                        login.Value.RoleId == 5 || login.Value.RoleId == 6)
+                    {
+                        NavigationService.Navigate(typeof(WorkerPage));
+                        break;
+                    }
+                    if (login.Value.RoleId == 7)
+                    {
+                        NavigationService.Navigate(typeof(RedcapTaskListPage));
+                        break;
+                    }
+                    if (login.Value.RoleId == 8)
+                    {
+                        NavigationService.Navigate(typeof(HomePage));
+                        break;
+                    }
+
+                    
                 }
 
                 if (x == 0)
@@ -56,7 +77,7 @@ namespace FlygoApp.Models
                 }
             }
 
-            
+
 
         }
 
