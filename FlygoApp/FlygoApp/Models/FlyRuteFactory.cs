@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace FlygoApp.Models
 {
-    public class FlyRuteFactory:IFactory
+    public class FlyRuteFactory : IFactory
     {
-        private Flyrute _Flyrute;
-
-
-        public Flyrute CreateFlyrute()
+        
+        public Flyrute CreateFlyrute(DateTimeOffset afgang, DateTimeOffset ankomst, Fly fly, Hangar hangar, string nummer)
         {
-            return null;
+
+          Flyrute _flyrute = new Flyrute(afgang,ankomst,fly,nummer,hangar);
+            return _flyrute;
+
         }
+
     }
 }

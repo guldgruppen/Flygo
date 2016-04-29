@@ -9,7 +9,6 @@ namespace FlygoApp.Models
 {
     public interface IHandler
     {
-        void Add(Flyrute flyrute);
         Flyrute Get(int Id);
         void Remove(Flyrute flyrute);
         void Update(Flyrute flyrute);

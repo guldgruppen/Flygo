@@ -13,9 +13,9 @@ namespace FlygoApp.Models
         public string Type { get; set; }
         public string FlyNavn { get; set; }
 
-        public Fly(int id, string producent, string type)
+        public Fly( string producent, string type)     
         {
-            Id = id;
+           
             Producent = producent;
             Type = type;
 

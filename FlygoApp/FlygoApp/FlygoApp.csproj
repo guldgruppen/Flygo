@@ -117,7 +117,6 @@
     <Compile Include="Models\LoginHandler.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Persistency\DTOSingleton.cs" />
-    <Compile Include="Persistency\FlyrutePersistency.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />

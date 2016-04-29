@@ -9,6 +9,6 @@ namespace FlygoApp.Models
 {
     public interface IFactory
     {
-        Flyrute CreateFlyrute();
+        Flyrute CreateFlyrute(DateTimeOffset afgang, DateTimeOffset ankomst, Fly fly, Hangar hangar, string nummer);
     }
 }

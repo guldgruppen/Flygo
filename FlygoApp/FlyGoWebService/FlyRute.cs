@@ -21,10 +21,6 @@ namespace FlyGoWebService
 
         public DateTime Afgang { get; set; }
 
-        public int DestinationFraId { get; set; }
-
-        public int DestinationTilId { get; set; }
-
         public int FlyId { get; set; }
 
         public int HangarId { get; set; }

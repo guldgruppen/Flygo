@@ -25,6 +25,7 @@ namespace FlygoApp.Persistency
             LoadFly();
             Loadhangar();
             LoadBrugerLogins();
+            Loadflyrute();
         }
 
 
@@ -182,6 +183,32 @@ namespace FlygoApp.Persistency
             }
 
         }
+
+        public async void PostFlyRuter(Flyrute rute)
+        {
+
+            const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
+
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+
+                   await client.PostAsJsonAsync("api/FlyRutes",rute);
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+        }
+
 
     }
 }
