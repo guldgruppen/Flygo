@@ -21,9 +21,15 @@ namespace FlygoApp.ViewModels
 {
     public class TaskListViewModel : INotifyPropertyChanged
     {
+        private int _selectedIndex;
 
         #region Instance Fields
+
+        private ICommand _createFlyruteCommand;
+        private ICommand _showCommand;
+
         #endregion
+
         #region Properties         
 
         public DateTimeOffset Now { get; set; }
@@ -33,19 +39,56 @@ namespace FlygoApp.ViewModels
 
         public HangarHandler HangarHandler { get; set; }
 
+        public FlyruteHandler FlyruteHandler { get; set; }
+
+        public string FlyruteNr { get; set; }
+        public Fly Fly { get; set; } = new Fly("Airbus","B111");
+        public Hangar Hangar { get; set; } = new Hangar(2,"D3");
+        public DateTimeOffset Afgang { get; set; }
+        public DateTimeOffset Ankomst { get; set; }
+
+        public ICommand CreateFlyruteCommand
+        {
+            get { return _createFlyruteCommand ?? (_createFlyruteCommand = new RelayCommand(CreateFlyrute)); }
+            set { _createFlyruteCommand = value; }
+        }
+
+        public ICommand ShowCommand
+        {
+            get
+            {
+                return _showCommand ?? (_showCommand = new RelayCommand(() =>
+                { new MessageDialog(FlyruteHandler.Flyruter.Count.ToString()).ShowAsync(); }
+                    ));
+            }
+            set { _showCommand = value; }
+        }
+
         public TaskListViewModel()
         {
 
-          FlyHandler = new FlyHandler();  
+            FlyHandler = new FlyHandler();  
             FlyHandler.LoadDtoFly();
 
             HangarHandler = new HangarHandler();
             HangarHandler.LoadDtoHangar();
+
+            FlyruteHandler = new FlyruteHandler();
+            FlyruteHandler.Flyruter.Add(new Flyrute(DateTime.Now,DateTime.Now,Fly,"Virker",Hangar));
+
+
         }
         
         
 
-        #region Metoder       
+        #region Metoder
+
+        public void CreateFlyrute()
+        {
+             
+                FlyruteHandler.Add(DateTime.Now, DateTime.Now, Hangar, Fly, FlyruteNr);
+
+        }    
         #endregion
         #region NotifyChange Region
         public event PropertyChangedEventHandler PropertyChanged;
