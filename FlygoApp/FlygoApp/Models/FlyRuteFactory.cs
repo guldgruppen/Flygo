@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FlyGoWebService.Models;
 
 namespace FlygoApp.Models
 {
     public class FlyRuteFactory : IFactory
     {
         
-        public Flyrute CreateFlyrute(DateTimeOffset afgang, DateTimeOffset ankomst, Fly fly, Hangar hangar, string nummer)
+        public FlyRute CreateFlyrute(DateTimeOffset afgang, DateTimeOffset ankomst, int flyid, int hangarid, string nummer)
         {
-
-          Flyrute _flyrute = new Flyrute(afgang,ankomst,fly,nummer,hangar);
-            return _flyrute;
+            DateTime fra = DateTime.Parse(ankomst.ToString());
+            DateTime til = DateTime.Parse(afgang.ToString());
+          
+            return new FlyRute() {Afgang = til, Ankomst = fra, FlyId = flyid,HangarId = hangarid, FlyRuteNummer = nummer};
 
         }
 

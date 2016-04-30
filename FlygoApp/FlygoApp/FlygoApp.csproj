@@ -107,7 +107,7 @@
     <Compile Include="Models\BrugerLogIn.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\FlyHandler.cs" />
-    <Compile Include="Models\Flyrute.cs" />
+    <Compile Include="Models\FlyRute.cs" />
     <Compile Include="Models\FlyRuteFactory.cs" />
     <Compile Include="Models\FlyruteHandler.cs" />
     <Compile Include="Models\Hangar.cs" />
@@ -115,6 +115,7 @@
     <Compile Include="Models\IFactory.cs" />
     <Compile Include="Models\IHandler.cs" />
     <Compile Include="Models\LoginHandler.cs" />
+    <Compile Include="Models\OpgaveArkiv.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Persistency\DTOSingleton.cs" />
     <Compile Include="Properties\Annotations.cs" />

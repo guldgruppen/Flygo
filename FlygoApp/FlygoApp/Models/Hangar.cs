@@ -24,7 +24,7 @@ namespace FlygoApp.Models
 
         public override string ToString()
         {
-            return $" Placering: {Placering}";
+            return $"{Placering}";
         }
     }
 }
