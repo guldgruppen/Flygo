@@ -31,8 +31,6 @@ namespace FlygoApp.Persistency
             Loadflyrute();
         }
 
-
-
         public static DTOSingleton GetInstance()
         {
 
@@ -94,6 +92,7 @@ namespace FlygoApp.Persistency
                     if (response.IsSuccessStatusCode)
                     {
                         IEnumerable<FlyRute> flyrutedata = response.Content.ReadAsAsync<IEnumerable<FlyRute>>().Result;
+                        FlyruteListe.Clear();
                         foreach (var Fly in flyrutedata)
                         {
                             FlyruteListe.Add(Fly);
@@ -203,6 +202,29 @@ namespace FlygoApp.Persistency
             }
         }
 
+        public async void DeleteFlyrute(int id)
+        {
+
+            const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
+
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    await client.DeleteAsync("api/flyRutes/" + id);                   
+                }
+                catch (Exception ex)
+                {
+                    new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
 
     }
 }

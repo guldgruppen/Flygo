@@ -28,7 +28,7 @@
         <ListView x:Name="listView" Grid.Column="1" Grid.Row="2" Background="#7F000000" ItemsSource="{Binding FlyruteHandler.Flyruter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.Resources>
                 <DataTemplate x:Key="DataTemplate1">
-                    <Grid Margin="10" Background="#D8FFFFFF" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Name="opgaveview" Margin="10" Background="#D8FFFFFF" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="112*"/>
                             <ColumnDefinition Width="292*"/>
@@ -40,15 +40,15 @@
                             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Flyrute:" d:LayoutOverrides="Width, LeftPosition, RightPosition, TopPosition, BottomPosition" FontSize="21.333" Margin="15,0,0,0" HorizontalAlignment="Center"/>
                             <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding FlyRuteNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" d:LayoutOverrides="Width, LeftPosition, RightPosition" FontSize="21.333" Margin="20,0,0,0" HorizontalAlignment="Center"/>
                         </StackPanel>
-                        <StackPanel Margin="0" Grid.Column="1">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <StackPanel Margin="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Fra:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333"/>
-                                <TextBlock x:Name="textBlock3_Copy" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333"/>
+                                <TextBlock x:Name="textBlock3_Copy" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333" Text="{Binding AnkomstSomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Til:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333"/>
-                                <TextBlock x:Name="textBlock4_Copy" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333"/>
+                                <TextBlock x:Name="textBlock4_Copy" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333" Text="{Binding AfgangSomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                         </StackPanel>
 
@@ -67,7 +67,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="4"  Orientation="Vertical">
-                            <Button x:Name="button" Content="&#xE894;" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Background="#CCFF0000" Foreground="White" Height="22" Width="22"/>
+                            <Button x:Name="button" Content="&#xE894;" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Command="{Binding DataContext.DeleteOpgaveCommand, ElementName=listView}" CommandParameter="{Binding FlyRuteNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Background="#CCFF0000" Foreground="White" Height="22" Width="22"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

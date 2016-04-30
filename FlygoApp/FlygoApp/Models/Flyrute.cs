@@ -10,6 +10,9 @@ namespace FlyGoWebService.Models
     [Table("FlyRute")]
     public partial class FlyRute
     {
+        private DateTime _ankomst;
+        private DateTime _afgang;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FlyRute()
         {
@@ -17,11 +20,29 @@ namespace FlyGoWebService.Models
             
         }
 
+        public string AfgangSomText { get; set; }
+        public string AnkomstSomText { get; set; }
         public int Id { get; set; }
 
-        public DateTime Ankomst { get; set; }
+        public DateTime Ankomst
+        {
+            get { return _ankomst; }
+            set
+            {
+                _ankomst = value;
+                AnkomstSomText = Ankomst.ToString("MM/dd/yyyy HH:mm");
+            }
+        }
 
-        public DateTime Afgang { get; set; }
+        public DateTime Afgang
+        {
+            get { return _afgang; }
+            set
+            {
+                _afgang = value;
+                AfgangSomText = Afgang.ToString("MM/dd/yyyy HH:mm");
+            }
+        }
 
         public int FlyId { get; set; }
 

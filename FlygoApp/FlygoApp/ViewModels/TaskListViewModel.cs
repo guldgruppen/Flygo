@@ -32,6 +32,7 @@ namespace FlygoApp.ViewModels
         private ICommand _showCommand;
         private int _selectedFlyIndex;
         private int _selectedHangarIndex;
+        private ICommand _deleteOpgaveCommand;
 
         #endregion
 
@@ -87,6 +88,12 @@ namespace FlygoApp.ViewModels
             set { _showCommand = value; }
         }
 
+        public ICommand DeleteOpgaveCommand
+        {
+            get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayCommandWithParameter(DeleteOpgave)); }
+            set { _deleteOpgaveCommand = value; }
+        }
+
         public TaskListViewModel()
         {
 
@@ -100,9 +107,41 @@ namespace FlygoApp.ViewModels
             FlyruteHandler.LoadDTOFlyruter();
 
         }
-              
+
 
         #region Metoder
+
+        public async void DeleteOpgave(object param)
+        {
+            try
+            {
+                string flyrute = (string) param;
+                FlyRute tempFlyrute = FlyruteHandler.Flyruter.First(x => x.FlyRuteNummer.Equals(flyrute));
+                if (tempFlyrute != null)
+                {
+                    var MyMessageDialog =
+                        new MessageDialog("Er du sikker på at slette flyruten: " + tempFlyrute.FlyRuteNummer,
+                            "Sletning af flyrute");
+                    MyMessageDialog.Commands.Add(new UICommand("YES", command =>
+                    {
+                        
+                        int id = tempFlyrute.Id;
+                        FlyruteHandler.DTO.DeleteFlyrute(id);
+                        FlyruteHandler.Flyruter.Remove(tempFlyrute);
+                        FlyruteHandler.DTO.Loadflyrute();
+                        
+                    }));
+                    MyMessageDialog.Commands.Add(new UICommand("NO", command => { }));
+                    await MyMessageDialog.ShowAsync();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                new MessageDialog(ex.Message).ShowAsync();
+            }
+
+        }
 
         public async void CreateFlyrute()
         {
