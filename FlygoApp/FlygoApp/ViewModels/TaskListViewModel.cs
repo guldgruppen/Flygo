@@ -33,6 +33,12 @@ namespace FlygoApp.ViewModels
         private int _selectedFlyIndex;
         private int _selectedHangarIndex;
         private ICommand _deleteOpgaveCommand;
+        private int _selectedOpgaveIndex = -1;
+        private string _selectedFlyruteNummerDetail;
+        private string _selectedHangarDetail;
+        private string _selectedFlyDetail;
+        private string _selectedAnkomstDetail;
+        private string _selectedAfgangDetail;
 
         #endregion
 
@@ -67,6 +73,76 @@ namespace FlygoApp.ViewModels
             set
             {
                 _selectedHangarIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SelectedFlyruteNummerDetail
+        {
+            get { return _selectedFlyruteNummerDetail; }
+            set
+            {
+                _selectedFlyruteNummerDetail = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SelectedHangarDetail
+        {
+            get { return _selectedHangarDetail; }
+            set
+            {
+                _selectedHangarDetail = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string SelectedFlyDetail
+        {
+            get { return _selectedFlyDetail; }
+            set
+            {
+                _selectedFlyDetail = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SelectedAnkomstDetail
+        {
+            get { return _selectedAnkomstDetail; }
+            set
+            {
+                _selectedAnkomstDetail = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SelectedAfgangDetail
+        {
+            get { return _selectedAfgangDetail; }
+            set
+            {
+                _selectedAfgangDetail = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int SelectedOpgaveIndex
+        {
+            get { return _selectedOpgaveIndex; }
+            set
+            {
+                _selectedOpgaveIndex = value;
+                if (_selectedOpgaveIndex > 0)
+                {
+                    SelectedFlyruteNummerDetail = FlyruteHandler.Flyruter[_selectedOpgaveIndex].FlyRuteNummer;
+                    SelectedAfgangDetail = FlyruteHandler.Flyruter[_selectedOpgaveIndex].AfgangSomText;
+                    SelectedAnkomstDetail = FlyruteHandler.Flyruter[_selectedOpgaveIndex].AnkomstSomText;                   
+                    int hangarId = FlyruteHandler.Flyruter[_selectedOpgaveIndex].HangarId;                
+                    int flyId = FlyruteHandler.Flyruter[_selectedOpgaveIndex].FlyId;
+                    SelectedHangarDetail = HangarHandler.Hangar.Single((x) => x.Id.Equals(hangarId)).ToString();
+                    SelectedFlyDetail = FlyHandler.Fly.Single((x) => x.Id.Equals(flyId)).ToString();
+                }
                 OnPropertyChanged();
             }
         }

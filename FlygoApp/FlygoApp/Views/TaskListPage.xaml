@@ -25,7 +25,7 @@
         <Grid.DataContext>
             <ViewModels:TaskListViewModel/>
         </Grid.DataContext>
-        <ListView x:Name="listView" Grid.Column="1" Grid.Row="2" Background="#7F000000" ItemsSource="{Binding FlyruteHandler.Flyruter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView x:Name="listView" Grid.Column="1" Grid.Row="2" Background="#7F000000" ItemsSource="{Binding FlyruteHandler.Flyruter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedOpgaveIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.Resources>
                 <DataTemplate x:Key="DataTemplate1">
                     <Grid Name="opgaveview" Margin="10" Background="#D8FFFFFF" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -124,19 +124,19 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Margin="10,0" Grid.Row="1" VerticalAlignment="Top" Height="504">
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Flyrute nr:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock4" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="textBlock4" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedFlyruteNummerDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Fly:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock11" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="textBlock11" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedFlyDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Hangar:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock13" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="textBlock13" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedHangarDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock x:Name="textBlock128" TextWrapping="Wrap" Text="Ankomst:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock137" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="textBlock137" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedAnkomstDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock x:Name="textBlock127" TextWrapping="Wrap" Text="Afgang:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock138" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="textBlock138" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedAfgangDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <ListView x:Name="listView1" Background="#7F000000" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Margin="0,20,0,0" Height="0">
                 <ListView.ItemContainerStyle>
