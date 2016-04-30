@@ -24,10 +24,10 @@ namespace FlygoApp.ViewModels
 {
     public class TaskListViewModel : INotifyPropertyChanged
     {
-        private int _selectedIndex;
+
 
         #region Instance Fields
-
+        private int _selectedIndex;
         private ICommand _createFlyruteCommand;
         private ICommand _showCommand;
         private int _selectedFlyIndex;
@@ -41,12 +41,9 @@ namespace FlygoApp.ViewModels
         private string _selectedAfgangDetail;
 
         #endregion
-
         #region Properties         
 
         public DateTimeOffset Now { get; set; }
-        #endregion
-
         public FlyHandler FlyHandler { get; set; }
         public HangarHandler HangarHandler { get; set; }
         public FlyruteHandler FlyruteHandler { get; set; }
@@ -92,7 +89,7 @@ namespace FlygoApp.ViewModels
             get { return _selectedHangarDetail; }
             set
             {
-                _selectedHangarDetail = value; 
+                _selectedHangarDetail = value;
                 OnPropertyChanged();
             }
         }
@@ -133,12 +130,12 @@ namespace FlygoApp.ViewModels
             set
             {
                 _selectedOpgaveIndex = value;
-                if (_selectedOpgaveIndex > 0)
+                if (_selectedOpgaveIndex >= 0)
                 {
                     SelectedFlyruteNummerDetail = FlyruteHandler.Flyruter[_selectedOpgaveIndex].FlyRuteNummer;
                     SelectedAfgangDetail = FlyruteHandler.Flyruter[_selectedOpgaveIndex].AfgangSomText;
-                    SelectedAnkomstDetail = FlyruteHandler.Flyruter[_selectedOpgaveIndex].AnkomstSomText;                   
-                    int hangarId = FlyruteHandler.Flyruter[_selectedOpgaveIndex].HangarId;                
+                    SelectedAnkomstDetail = FlyruteHandler.Flyruter[_selectedOpgaveIndex].AnkomstSomText;
+                    int hangarId = FlyruteHandler.Flyruter[_selectedOpgaveIndex].HangarId;
                     int flyId = FlyruteHandler.Flyruter[_selectedOpgaveIndex].FlyId;
                     SelectedHangarDetail = HangarHandler.Hangar.Single((x) => x.Id.Equals(hangarId)).ToString();
                     SelectedFlyDetail = FlyHandler.Fly.Single((x) => x.Id.Equals(flyId)).ToString();
@@ -170,6 +167,8 @@ namespace FlygoApp.ViewModels
             set { _deleteOpgaveCommand = value; }
         }
 
+        #endregion
+
         public TaskListViewModel()
         {
 
@@ -183,7 +182,6 @@ namespace FlygoApp.ViewModels
             FlyruteHandler.LoadDTOFlyruter();
 
         }
-
 
         #region Metoder
 

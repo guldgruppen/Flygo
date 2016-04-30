@@ -80,14 +80,14 @@ namespace FlyGoWebService.Models
         }
         public void CheckFlyId(int id)
         {
-            if (FlyId < 0)
+            if (id < 0)
             {
                 throw new IndexOutOfRangeException("Du mangler at vælge et fly");
             }
         }
         public void CheckHangarId(int id)
         {
-            if (HangarId < 0)
+            if (id < 0)
             {
                 throw new IndexOutOfRangeException("Du mangler at vælge en hangar");
             }

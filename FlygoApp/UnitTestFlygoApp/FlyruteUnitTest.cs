@@ -26,5 +26,31 @@ namespace UnitTestFlygoApp
             string nummer = "";
             Assert.ThrowsException<ArgumentException>(() => flyrute.CheckFlyruteNummer(nummer));
         }
+        [TestMethod]
+        public void TestMethod2()
+        {
+            DateTime fra = DateTime.Now;
+            DateTime til = DateTime.Now;
+            Assert.ThrowsException<ArgumentException>(() => flyrute.CheckAfgangAnkomst(til,fra));
+        }
+        [TestMethod]
+        public void TestMethod3()
+        {
+            int id = -1;
+            Assert.ThrowsException<IndexOutOfRangeException>(() => flyrute.CheckFlyId(id));            
+        }
+        [TestMethod]
+        public void TestMethod4()
+        {
+            int id = -1;
+            Assert.ThrowsException<IndexOutOfRangeException>(() => flyrute.CheckHangarId(id));
+        }
+        [TestMethod]
+        public void TestMethod5()
+        {
+            DateTime fra = DateTime.Now.AddDays(-4);
+            DateTime til = DateTime.Now.AddDays(-1);
+            Assert.ThrowsException<ArgumentException>(() => flyrute.CheckAfgangAnkomst(til, fra));
+        }
     }
 }
