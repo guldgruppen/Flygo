@@ -44,7 +44,7 @@ namespace FlygoApp.ViewModels
             {
                 new MessageDialog(ex.Message).ShowAsync();
             }
-            catch (LoginInfoWrongException ex)
+            catch (InfoWrongException ex)
             {
                 new MessageDialog(ex.Message).ShowAsync(); 
             }

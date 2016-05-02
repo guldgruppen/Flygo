@@ -58,7 +58,7 @@ namespace UnitTestFlygoApp
             string brugernavn = "Ole Lukøje";
             string kodeord = "123";
 
-            Assert.ThrowsException<LoginInfoWrongException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
+            Assert.ThrowsException<InfoWrongException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
         }
 
        

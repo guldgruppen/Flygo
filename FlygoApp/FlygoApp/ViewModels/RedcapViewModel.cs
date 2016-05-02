@@ -18,7 +18,7 @@ namespace FlygoApp.ViewModels
     {
         public string FlyRuteNr { get; set; }
 
-        public DateTimeOffset DateTime { get; set; }
+        public DateTimeOffset Date { get; set; }
 
         public ICommand SearchCommand
         {
@@ -38,11 +38,17 @@ namespace FlygoApp.ViewModels
 
         public async void Search()
         {
+            DateTime tempt = DateTime.Parse(Date.ToString());
+
             try
             {
-                handler.SearchForFlyRute(FlyRuteNr, DateTime);
+                handler.SearchForFlyRute(FlyRuteNr, tempt);
             }
             catch (NullOrEmptyException ex)
+            {
+                await new MessageDialog(ex.Message).ShowAsync();
+            }
+            catch (InfoWrongException ex)
             {
                 await new MessageDialog(ex.Message).ShowAsync(); 
             }
