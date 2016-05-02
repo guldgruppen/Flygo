@@ -8,18 +8,24 @@ namespace FlyGoWebService.Models
     {
         public int Id { get; set; }
 
-        public DateTime Baggers { get; set; }
+        public DateTime? Baggers { get; set; }
 
-        public DateTime Caters { get; set; }
+        public DateTime? Caters { get; set; }
 
-        public DateTime Crew { get; set; }
+        public DateTime? Crew { get; set; }
 
         public int FlyRuteId { get; set; }
 
-        public DateTime Fuelers { get; set; }
+        public DateTime? Fuelers { get; set; }
 
-        public DateTime Mekanikker { get; set; }
+        public DateTime? Mekanikker { get; set; }
 
+        //Ikke nødvendig
         public virtual FlyRute FlyRute { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Baggers: {Baggers}";
+        }
     }
 }

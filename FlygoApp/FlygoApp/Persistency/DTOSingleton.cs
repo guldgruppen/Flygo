@@ -15,13 +15,12 @@ namespace FlygoApp.Persistency
 {
     public class DTOSingleton
     {
-
         public List<Fly> FlyListe = new List<Fly>();
         public List<FlyRute> FlyruteListe;
         public List<Hangar> HangarListe = new List<Hangar>();
+        public List<OpgaveArkiv> OpgaveArkivListe = new List<OpgaveArkiv>(); 
         public Dictionary<string, BrugerLogIn> BrugerLogInsDictionary = new Dictionary<string, BrugerLogIn>();
         private static DTOSingleton Singleton;
-
         private DTOSingleton()
         {
             FlyruteListe = new List<FlyRute>();
@@ -29,14 +28,46 @@ namespace FlygoApp.Persistency
             Loadhangar();
             LoadBrugerLogins();
             Loadflyrute();
+            LoadOpgaveArkiv();
         }
-
         public static DTOSingleton GetInstance()
         {
 
             return Singleton ?? (Singleton = new DTOSingleton());
         }
+        public void LoadOpgaveArkiv()
+        {
+            const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
 
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+
+                    var response = client.GetAsync("api/OpgaveArkivs/GetOpgaveArkiv").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        IEnumerable<OpgaveArkiv> opgavearkivdata = response.Content.ReadAsAsync<IEnumerable<OpgaveArkiv>>().Result;
+                        foreach (var opg in opgavearkivdata)
+                        {
+                            OpgaveArkivListe.Add(opg);
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+        }
         public void LoadFly()
         {
 
@@ -53,7 +84,7 @@ namespace FlygoApp.Persistency
                 try
                 {
 
-                    var response = client.GetAsync("api/Flies").Result;
+                    var response = client.GetAsync("api/Flies/GetFly").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -71,7 +102,6 @@ namespace FlygoApp.Persistency
                 }
             }
         }
-
         public void Loadflyrute()
         {
             const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
@@ -86,8 +116,7 @@ namespace FlygoApp.Persistency
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-
-                    var response = client.GetAsync("api/FlyRutes").Result;
+                    var response = client.GetAsync("api/FlyRutes/GetFlyRute").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -106,7 +135,37 @@ namespace FlygoApp.Persistency
                 }
             }
         }
-      
+
+        public int LoadIdFromFlyrute()
+        {
+            const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
+
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+
+                    var response = client.GetAsync("api/Flyrutes/GetId").Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        int Hangardata = response.Content.ReadAsAsync<int>().Result;
+                        return Hangardata;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
+            return -1;
+        }
         public void Loadhangar()
         {
             const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
@@ -122,7 +181,7 @@ namespace FlygoApp.Persistency
                 try
                 {
 
-                    var response = client.GetAsync("api/Hangars").Result;
+                    var response = client.GetAsync("api/Hangars/GetHangar").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -141,7 +200,6 @@ namespace FlygoApp.Persistency
             }
 
         }
-
         public void LoadBrugerLogins()
         {
             const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
@@ -156,8 +214,7 @@ namespace FlygoApp.Persistency
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-
-                    var response = client.GetAsync("api/BrugerLogIns").Result;
+                    var response = client.GetAsync("api/BrugerLogIns/GetBrugerLogIn").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -177,7 +234,6 @@ namespace FlygoApp.Persistency
             }
 
         }
-
         public async void PostFlyRuter(FlyRute rute)
         {
 
@@ -193,15 +249,14 @@ namespace FlygoApp.Persistency
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {                 
-                   await client.PostAsJsonAsync("api/FlyRutes",rute);
+                   await client.PostAsJsonAsync("api/FlyRutes/PostFlyRute", rute);
                 }
                 catch (Exception ex)
                 {
-                    new MessageDialog(ex.Message).ShowAsync();
+                    await new MessageDialog(ex.Message).ShowAsync();
                 }
             }
         }
-
         public async void DeleteFlyrute(int id)
         {
 
@@ -217,11 +272,33 @@ namespace FlygoApp.Persistency
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-                    await client.DeleteAsync("api/flyRutes/" + id);                   
+                    await client.DeleteAsync("api/flyRutes/DeleteFlyRute" + id);                   
                 }
                 catch (Exception ex)
                 {
                     new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }
+        public async void PostOpgaveArkiv(OpgaveArkiv opg)
+        {
+            const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
+
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.UseDefaultCredentials = true;
+
+            using (var client = new HttpClient(handler))
+            {
+                client.BaseAddress = new Uri(ServerUrl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    await client.PostAsJsonAsync("api/OpgaveArkivs/PostOpgaveArkiv", opg);
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
                 }
             }
         }

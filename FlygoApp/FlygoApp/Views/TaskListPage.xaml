@@ -32,7 +32,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="112*"/>
                             <ColumnDefinition Width="292*"/>
-                            
+
                             <ColumnDefinition Width="151*"/>
                             <ColumnDefinition Width="28*"/>
                         </Grid.ColumnDefinitions>
@@ -138,41 +138,32 @@
                 <TextBlock x:Name="textBlock127" TextWrapping="Wrap" Text="Afgang:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
                 <TextBox x:Name="textBlock138" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedAfgangDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
-            <ListView x:Name="listView1" Background="#7F000000" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Margin="0,20,0,0" Height="0">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                        <Setter Property="VerticalAlignment" Value="Stretch"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
-
-                <ListView.Resources>
-                    <DataTemplate x:Key="WorkerTemplate">
-                        <Grid Margin="5" Padding="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FFE0E0E0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="145*"/>
-                                <ColumnDefinition Width="138*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin">
-                                <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="25" Margin="10,0,0,0" Foreground="Black"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="1" d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition" HorizontalAlignment="Center">
-                                <TextBlock x:Name="textBlock2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Status:" VerticalAlignment="Center" FontSize="22"/>
-                                <TextBlock x:Name="textBlock3" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="22"/>
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.Resources>
-                <ListView.ItemTemplate>
-                    <StaticResource ResourceKey="WorkerTemplate"/>
-                </ListView.ItemTemplate>
-            </ListView>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="125" Width="842" Margin="0,24,0,22">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="125" Width="561" Margin="0,-6,0,429" Grid.RowSpan="2">
                 <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="13:40" Foreground="#FFECD91F" FontSize="70" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
             <Button x:Name="button" Content="Opdater" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#CCFFE25F" FontSize="26.667" Command="{Binding ShowCommand}" Grid.Row="2"/>
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <StackPanel Height="60" Background="#FF8CFF19" Orientation="Horizontal">
+                    <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Mekaniker" FontSize="20"/>
+                    <TextBlock x:Name="textBlock14" TextWrapping="Wrap" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="40,0,0,0"/>
+                </StackPanel>
+                <StackPanel Height="60" Background="#FF51EC24" Orientation="Horizontal">
+                    <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Caters" FontSize="20"/>
+                    <TextBlock x:Name="textBlock15" TextWrapping="Wrap" Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="60,0,0,0"/>
+                </StackPanel>
+                <StackPanel Height="60" Background="#FFFFA70D" Orientation="Horizontal">
+                    <TextBlock x:Name="textBlock7" TextWrapping="Wrap" Text="Crews" FontSize="20"/>
+                    <TextBlock x:Name="textBlock16" TextWrapping="Wrap" Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="60,0,0,0"/>
+                </StackPanel>
+                <StackPanel Height="60" Background="White" Orientation="Horizontal">
+                    <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Fuelers" FontSize="20"/>
+                    <TextBlock x:Name="textBlock18" TextWrapping="Wrap" Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="50,0,0,0"/>
+                </StackPanel>
+                <StackPanel Height="60" Background="#FFFF3333" Orientation="Horizontal">
+                    <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="Baggers" FontSize="20"/>
+                    <TextBlock x:Name="textBlock17" TextWrapping="Wrap" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="40,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
         </Grid>
         <StackPanel Grid.Column="3" Grid.Row="1" Background="#7F000000">
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Opgave i detalje" Foreground="#FFEAEAEA" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>

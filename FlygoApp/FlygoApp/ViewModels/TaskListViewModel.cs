@@ -39,6 +39,11 @@ namespace FlygoApp.ViewModels
         private string _selectedFlyDetail;
         private string _selectedAnkomstDetail;
         private string _selectedAfgangDetail;
+        private string _selectedMekanikerDetails;
+        private string _selectedCatersDetails;
+        private string _selectedCrewDetails;
+        private string _selectedFulersDetails;
+        private string _selectedBaggersDetails;
 
         #endregion
         #region Properties         
@@ -55,6 +60,52 @@ namespace FlygoApp.ViewModels
 
         public DateTimeOffset MinYear { get; set; } = DateTime.Now;
 
+        public string SelectedMekanikerDetails
+        {
+            get { return _selectedMekanikerDetails; }
+            set
+            {
+                _selectedMekanikerDetails = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string SelectedCatersDetails
+        {
+            get { return _selectedCatersDetails; }
+            set
+            {
+                _selectedCatersDetails = value;
+                OnPropertyChanged();
+            }
+        }
+        public string SelectedCrewDetails
+        {
+            get { return _selectedCrewDetails; }
+            set
+            {
+                _selectedCrewDetails = value;
+                OnPropertyChanged();
+            }
+        }
+        public string SelectedFulersDetails
+        {
+            get { return _selectedFulersDetails; }
+            set
+            {
+                _selectedFulersDetails = value;
+                OnPropertyChanged();
+            }
+        }
+        public string SelectedBaggersDetails
+        {
+            get { return _selectedBaggersDetails; }
+            set
+            {
+                _selectedBaggersDetails = value;
+                OnPropertyChanged();
+            }
+        }
         public int SelectedFlyIndex
         {
             get { return _selectedFlyIndex; }
@@ -73,7 +124,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedFlyruteNummerDetail
         {
             get { return _selectedFlyruteNummerDetail; }
@@ -83,7 +133,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedHangarDetail
         {
             get { return _selectedHangarDetail; }
@@ -93,7 +142,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedFlyDetail
         {
             get { return _selectedFlyDetail; }
@@ -103,7 +151,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedAnkomstDetail
         {
             get { return _selectedAnkomstDetail; }
@@ -139,6 +186,11 @@ namespace FlygoApp.ViewModels
                     int flyId = FlyruteHandler.Flyruter[_selectedOpgaveIndex].FlyId;
                     SelectedHangarDetail = HangarHandler.Hangar.Single((x) => x.Id.Equals(hangarId)).ToString();
                     SelectedFlyDetail = FlyHandler.Fly.Single((x) => x.Id.Equals(flyId)).ToString();
+                    //var selectedOpgaveArkiv =
+                    //    FlyruteHandler.OpgaveArkivs.Single(
+                    //        x => x.FlyRuteId.Equals(FlyruteHandler.Flyruter[_selectedOpgaveIndex].Id));
+                    //SelectedMekanikerDetails = selectedOpgaveArkiv.Mekanikker.ToString("F");
+
                 }
                 OnPropertyChanged();
             }
@@ -171,7 +223,7 @@ namespace FlygoApp.ViewModels
 
         public TaskListViewModel()
         {
-
+            
             FlyHandler = new FlyHandler();  
             FlyHandler.LoadDtoFly();
 
@@ -180,6 +232,7 @@ namespace FlygoApp.ViewModels
 
             FlyruteHandler = new FlyruteHandler();
             FlyruteHandler.LoadDTOFlyruter();
+            
 
         }
 
@@ -226,7 +279,6 @@ namespace FlygoApp.ViewModels
             FlyruteHandler.Add(til,fra,flyId,hangarId,FlyruteNr); 
             FlyruteHandler.DTO.Loadflyrute(); 
         }
-
         public DateTime DateAndTimeConverter(DateTimeOffset dato, TimeSpan tid)
         {
             return new DateTime(dato.Year, dato.Month, dato.Day, tid.Hours, tid.Minutes, 0);

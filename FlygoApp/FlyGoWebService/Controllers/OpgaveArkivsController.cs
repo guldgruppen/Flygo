@@ -15,12 +15,12 @@ namespace FlyGoWebService.Controllers
     public class OpgaveArkivsController : ApiController
     {
         private FlygoEntityContext db = new FlygoEntityContext();
-
         // GET: api/OpgaveArkivs
         public IQueryable<OpgaveArkiv> GetOpgaveArkiv()
         {
             return db.OpgaveArkiv;
         }
+
 
         // GET: api/OpgaveArkivs/5
         [ResponseType(typeof(OpgaveArkiv))]
@@ -39,6 +39,7 @@ namespace FlyGoWebService.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutOpgaveArkiv(int id, OpgaveArkiv opgaveArkiv)
         {
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -70,6 +71,8 @@ namespace FlyGoWebService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
+
         // POST: api/OpgaveArkivs
         [ResponseType(typeof(OpgaveArkiv))]
         public IHttpActionResult PostOpgaveArkiv(OpgaveArkiv opgaveArkiv)
@@ -81,6 +84,7 @@ namespace FlyGoWebService.Controllers
 
             db.OpgaveArkiv.Add(opgaveArkiv);
             db.SaveChanges();
+
 
             return CreatedAtRoute("DefaultApi", new { id = opgaveArkiv.Id }, opgaveArkiv);
         }

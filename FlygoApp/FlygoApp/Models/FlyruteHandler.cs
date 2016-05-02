@@ -19,16 +19,20 @@ namespace FlygoApp.Models
 
         public DTOSingleton  DTO { get; set; }
         public ObservableCollection<FlyRute> Flyruter { get; set; }
+        public ObservableCollection<OpgaveArkiv> OpgaveArkivs { get; set; }
         public IFactory FlyRuteFactory { get; set; }
-
-    
-
-        public async void Add(DateTimeOffset afgang, DateTimeOffset ankomst, int id, int hanid, string nummer)
+   
+        public async void Add(DateTimeOffset afgang, DateTimeOffset ankomst, int flyid, int hangarid, string nummer)
         {
             try
             {
-                FlyRute rute = FlyRuteFactory.CreateFlyrute(afgang, ankomst, id, hanid, nummer);
+                FlyRute rute = FlyRuteFactory.CreateFlyrute(afgang, ankomst, flyid, hangarid, nummer);
                 DTO.PostFlyRuter(rute);
+                DTO.Loadflyrute();
+                int id = DTO.FlyruteListe.Last().Id;
+
+                OpgaveArkiv temp = new OpgaveArkiv() {FlyRuteId = id};              
+                DTO.PostOpgaveArkiv(temp);
             }
             catch (ArgumentException ex)
             {
@@ -48,15 +52,13 @@ namespace FlygoApp.Models
             DTO = DTOSingleton.GetInstance();
             FlyRuteFactory = new FlyRuteFactory();
             Flyruter = new ObservableCollection<FlyRute>();
-            
+            OpgaveArkivs = new ObservableCollection<OpgaveArkiv>();
+                                              
         }
 
         public void CheckEksisterendeFlyrute(FlyRute flyrute)
         {
-            foreach (var Flyrute in Flyruter)
-            {
-                
-            }
+            
         }
 
         public FlyRute Get(int Id)
@@ -79,9 +81,15 @@ namespace FlygoApp.Models
         public void LoadDTOFlyruter()
         {
             foreach (var flyrute in DTO.FlyruteListe)
-            {
+            {               
                 Flyruter.Add(flyrute);
+
             }
+            foreach (var opgaveArkiv in DTO.OpgaveArkivListe)
+            {
+                OpgaveArkivs.Add(opgaveArkiv);
+            }
+            
         }
 
         

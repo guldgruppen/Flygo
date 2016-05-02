@@ -15,13 +15,14 @@ namespace FlyGoWebService.Controllers
     public class FlyRutesController : ApiController
     {
         private FlygoEntityContext db = new FlygoEntityContext();
-
+        public int Id { get; set; }
         // GET: api/FlyRutes
         public IQueryable<FlyRute> GetFlyRute()
         {
             return db.FlyRute;
         }
 
+     
         // GET: api/FlyRutes/5
         [ResponseType(typeof(FlyRute))]
         public IHttpActionResult GetFlyRute(int id)
@@ -80,7 +81,10 @@ namespace FlyGoWebService.Controllers
             }
 
             db.FlyRute.Add(flyRute);
+
             db.SaveChanges();
+
+            Id = flyRute.Id;
 
             return CreatedAtRoute("DefaultApi", new { id = flyRute.Id }, flyRute);
         }

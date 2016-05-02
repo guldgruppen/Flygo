@@ -96,6 +96,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commons\Extender.cs" />
     <Compile Include="Commons\INavigationService.cs" />
     <Compile Include="Commons\MessagePopUp.cs" />
     <Compile Include="Commons\NavigationService.cs" />
