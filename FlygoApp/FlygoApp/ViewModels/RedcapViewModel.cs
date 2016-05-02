@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
+using FlygoApp.Commons;
 using FlygoApp.Exceptions;
 using FlygoApp.Models;
 using FlygoApp.Persistency;
@@ -16,14 +18,22 @@ namespace FlygoApp.ViewModels
     {
         public string FlyRuteNr { get; set; }
 
-        public DateTime DateTime { get; set; }
+        public DateTimeOffset DateTime { get; set; }
+
+        public ICommand SearchCommand
+        {
+            get { return _searchCommand ?? (new RelayCommand(Search)); } 
+            set { _searchCommand = value; }
+        }
 
         private RedcapHandler handler;
+        private ICommand _searchCommand;
 
 
         public RedcapViewModel()
         {
             handler = new RedcapHandler();
+            
         }
 
         public async void Search()
@@ -37,6 +47,8 @@ namespace FlygoApp.ViewModels
                 await new MessageDialog(ex.Message).ShowAsync(); 
             }
             
+            
+
         }
 
 

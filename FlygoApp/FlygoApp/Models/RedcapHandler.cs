@@ -3,39 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FlygoApp.Commons;
 using FlygoApp.Exceptions;
 using FlygoApp.Persistency;
+using FlygoApp.Views;
 using FlyGoWebService.Models;
 
 namespace FlygoApp.Models
 {
-    class RedcapHandler
+    public class RedcapHandler
     {
-        public DTOSingleton s;
+        public DTOSingleton DtoSingleton;
 
-        public List<FlyRute> RedcapFlyRuteList; 
+        public SearchListSingleton SearchListSingleton; 
+
+        public NavigationService NavigationService; 
+
+
 
         public RedcapHandler()
         {
-            s = DTOSingleton.GetInstance();
-            RedcapFlyRuteList = new List<FlyRute>();
+            DtoSingleton = DTOSingleton.GetInstance();
+            SearchListSingleton = SearchListSingleton.GetInstance();
+            NavigationService = new NavigationService();
         }
 
-        public void SearchForFlyRute(string flyRuteNr, DateTime dateTime)
+        public void SearchForFlyRute(string flyRuteNr, DateTimeOffset dateTime)
         {
+            SearchListSingleton.RedcapFlyRuteList.Clear(); 
+
             if (string.IsNullOrEmpty(flyRuteNr))
             {
                 throw new NullOrEmptyException("Flyrute nummeret er tomt. Udfyld venligst dette!");
             }
 
 
-            foreach (var rute in s.FlyruteListe)
+            foreach (var rute in DtoSingleton.FlyruteListe)
             {
-                if (rute.FlyRuteNummer == flyRuteNr && rute.Afgang == dateTime)
+                
+                if (rute.FlyRuteNummer == flyRuteNr && rute.Afgang == dateTime) 
                 {
-                    RedcapFlyRuteList.Add(rute);
+                    SearchListSingleton.RedcapFlyRuteList.Add(rute);
+                    NavigationService.Navigate(typeof(RedcapTaskListPage));
+                    break; 
                 }
             }
+
 
 
         }
