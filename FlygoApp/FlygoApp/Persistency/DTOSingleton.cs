@@ -87,7 +87,7 @@ namespace FlygoApp.Persistency
                 try
                 {
 
-                    var response = client.GetAsync("api/FlyRutes").Result;
+                    var response = client.GetAsync("api/FlyRutes/GetFlyrute").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -157,7 +157,7 @@ namespace FlygoApp.Persistency
                 try
                 {
 
-                    var response = client.GetAsync("api/BrugerLogIns").Result;
+                    var response = client.GetAsync("api/BrugerLogIns/GetBrugerLogin").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
