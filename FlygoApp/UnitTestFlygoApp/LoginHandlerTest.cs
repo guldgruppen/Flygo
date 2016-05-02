@@ -29,7 +29,7 @@ namespace UnitTestFlygoApp
             string kodeord = "1234";
 
 
-            Assert.ThrowsException<LoginIsNullOrEmptyException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
+            Assert.ThrowsException<NullOrEmptyException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace UnitTestFlygoApp
             string brugernavn = "Ole Henriksen";
             string kodeord = "";
 
-            Assert.ThrowsException<LoginIsNullOrEmptyException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
+            Assert.ThrowsException<NullOrEmptyException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace UnitTestFlygoApp
             string brugernavn = "";
             string kodeord = "";
 
-            Assert.ThrowsException<LoginIsNullOrEmptyException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
+            Assert.ThrowsException<NullOrEmptyException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
 
         }
 

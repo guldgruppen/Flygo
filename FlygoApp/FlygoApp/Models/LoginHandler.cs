@@ -27,15 +27,15 @@ namespace FlygoApp.Models
         {
             if (string.IsNullOrEmpty(brugernavn) && string.IsNullOrEmpty(kodeord))
             {
-                throw new LoginIsNullOrEmptyException("Brugernavnet og kodeordet er tomt. Venligst udfyld dette!");
+                throw new NullOrEmptyException("Brugernavnet og kodeordet er tomt. Venligst udfyld dette!");
             }
             else if (string.IsNullOrEmpty(brugernavn))
             {
-                throw new LoginIsNullOrEmptyException("Brugernavnet er tomt. Venligst udfyld dette!");
+                throw new NullOrEmptyException("Brugernavnet er tomt. Venligst udfyld dette!");
             }
             else if (string.IsNullOrEmpty(kodeord))
             {
-                throw new LoginIsNullOrEmptyException("Kodeordet er tomt. Venligst udfyld dette!");
+                throw new NullOrEmptyException("Kodeordet er tomt. Venligst udfyld dette!");
             }
 
             int x = s.BrugerLogInsDictionary.Count;
@@ -59,7 +59,7 @@ namespace FlygoApp.Models
                     }
                     if (login.Value.RoleId == 7)
                     {
-                        NavigationService.Navigate(typeof(RedcapTaskListPage));
+                        NavigationService.Navigate(typeof(RedcapTaskPage));
                         break;
                     }
                     if (login.Value.RoleId == 8)

@@ -103,7 +103,7 @@
     <Compile Include="Commons\RelayCommandWithParameter.cs" />
     <Compile Include="Commons\WindowStyling.cs" />
     <Compile Include="Exceptions\LoginInfoWrongException.cs" />
-    <Compile Include="Exceptions\LoginIsNullOrEmptyException.cs" />
+    <Compile Include="Exceptions\NullOrEmptyException.cs" />
     <Compile Include="Models\BrugerLogIn.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\FlyHandler.cs" />
@@ -116,12 +116,14 @@
     <Compile Include="Models\IHandler.cs" />
     <Compile Include="Models\LoginHandler.cs" />
     <Compile Include="Models\OpgaveArkiv.cs" />
+    <Compile Include="Models\RedcapHandler.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Persistency\DTOSingleton.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\RedcapViewModel.cs" />
     <Compile Include="Views\IndstillingerPage.xaml.cs">
       <DependentUpon>IndstillingerPage.xaml</DependentUpon>
     </Compile>

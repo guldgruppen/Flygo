@@ -40,7 +40,7 @@ namespace FlygoApp.ViewModels
             {
                 handler.CheckLoginInfo(BrugerNavn, Kodeord);
             }
-            catch (LoginIsNullOrEmptyException ex)
+            catch (NullOrEmptyException ex)
             {
                 new MessageDialog(ex.Message).ShowAsync();
             }
