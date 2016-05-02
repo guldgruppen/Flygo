@@ -28,25 +28,32 @@ namespace FlygoApp.Models
             NavigationService = new NavigationService();
         }
 
-        public void SearchForFlyRute(string flyRuteNr, DateTimeOffset dateTime)
+        public void SearchForFlyRute(string flyRuteNr, DateTime dateTime)
         {
-            SearchListSingleton.RedcapFlyRuteList.Clear(); 
+            //SearchListSingleton.RedcapFlyRuteList.Clear(); 
 
             if (string.IsNullOrEmpty(flyRuteNr))
             {
                 throw new NullOrEmptyException("Flyrute nummeret er tomt. Udfyld venligst dette!");
             }
 
+            int x = DtoSingleton.FlyruteListe.Count; 
 
             foreach (var rute in DtoSingleton.FlyruteListe)
             {
-                
-                if (rute.FlyRuteNummer == flyRuteNr && rute.Afgang == dateTime) 
+                x--; 
+                if (rute.FlyRuteNummer == flyRuteNr && rute.Afgang.Date == dateTime.Date) 
                 {
                     SearchListSingleton.RedcapFlyRuteList.Add(rute);
                     NavigationService.Navigate(typeof(RedcapTaskListPage));
                     break; 
                 }
+
+                if (x == 0)
+                {
+                    throw new InfoWrongException("Flyrute nummeret og dato matcher ikke. Prøv venligst igen!");
+                }
+                     
             }
 
 

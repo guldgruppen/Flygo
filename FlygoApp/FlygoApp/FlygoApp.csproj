@@ -102,7 +102,7 @@
     <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Commons\RelayCommandWithParameter.cs" />
     <Compile Include="Commons\WindowStyling.cs" />
-    <Compile Include="Exceptions\LoginInfoWrongException.cs" />
+    <Compile Include="Exceptions\InfoWrongException.cs" />
     <Compile Include="Exceptions\NullOrEmptyException.cs" />
     <Compile Include="Models\BrugerLogIn.cs" />
     <Compile Include="Models\Fly.cs" />

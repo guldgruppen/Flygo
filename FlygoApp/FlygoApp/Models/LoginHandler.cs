@@ -73,7 +73,7 @@ namespace FlygoApp.Models
 
                 if (x == 0)
                 {
-                    throw new LoginInfoWrongException("Brugernavnet eller kodeordet er forkert. Prøv venligst igen!");
+                    throw new InfoWrongException("Brugernavnet eller kodeordet er forkert. Prøv venligst igen!");
                 }
             }
 
