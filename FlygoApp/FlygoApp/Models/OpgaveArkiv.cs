@@ -1,8 +1,12 @@
-namespace FlyGoWebService.Models
-{
-    using System;
-    using System.ComponentModel.DataAnnotations.Schema;
+using FlyGoWebService.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace FlygoApp.Models
+{
+   
     [Table("OpgaveArkiv")]
     public partial class OpgaveArkiv
     {
@@ -20,12 +24,6 @@ namespace FlyGoWebService.Models
 
         public DateTime? Mekanikker { get; set; }
 
-        //Ikke nødvendig
         public virtual FlyRute FlyRute { get; set; }
-
-        public override string ToString()
-        {
-            return $"Id: {Id}, Baggers: {Baggers}";
-        }
     }
 }

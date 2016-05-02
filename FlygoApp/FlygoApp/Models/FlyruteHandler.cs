@@ -27,12 +27,12 @@ namespace FlygoApp.Models
             try
             {
                 FlyRute rute = FlyRuteFactory.CreateFlyrute(afgang, ankomst, flyid, hangarid, nummer);
-                DTO.PostFlyRuter(rute);
+                await DTO.PostFlyRuter(rute);
                 DTO.Loadflyrute();
                 int id = DTO.FlyruteListe.Last().Id;
 
                 OpgaveArkiv temp = new OpgaveArkiv() {FlyRuteId = id};              
-                DTO.PostOpgaveArkiv(temp);
+                await DTO.PostOpgaveArkiv(temp);
             }
             catch (ArgumentException ex)
             {

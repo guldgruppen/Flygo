@@ -234,7 +234,7 @@ namespace FlygoApp.Persistency
             }
 
         }
-        public async void PostFlyRuter(FlyRute rute)
+        public async Task PostFlyRuter(FlyRute rute)
         {
 
             const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
@@ -280,7 +280,7 @@ namespace FlygoApp.Persistency
                 }
             }
         }
-        public async void PostOpgaveArkiv(OpgaveArkiv opg)
+        public async Task PostOpgaveArkiv(OpgaveArkiv opg)
         {
             const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
 
