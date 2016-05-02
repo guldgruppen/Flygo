@@ -28,7 +28,7 @@ namespace FlygoApp.Models
 
         public override string ToString()
         {
-            return $" Producent: {Producent}, Type: {Type}";
+            return $"{Producent} {Type}";
         }
     }
 }

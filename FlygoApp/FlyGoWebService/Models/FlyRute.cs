@@ -25,6 +25,9 @@ namespace FlyGoWebService.Models
 
         public int HangarId { get; set; }
 
+        [StringLength(50)]
+        public string FlyRuteNummer { get; set; }
+
         public virtual Fly Fly { get; set; }
 
         public virtual Hangar Hangar { get; set; }

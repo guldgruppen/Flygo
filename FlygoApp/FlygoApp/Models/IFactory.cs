@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Media.Audio;
+using FlyGoWebService.Models;
 
 namespace FlygoApp.Models
 {
     public interface IFactory
     {
-        Flyrute CreateFlyrute(DateTimeOffset afgang, DateTimeOffset ankomst, Fly fly, Hangar hangar, string nummer);
+        FlyRute CreateFlyrute(DateTimeOffset afgang, DateTimeOffset ankomst, int flyid, int hangarid, string nummer);
     }
 }
