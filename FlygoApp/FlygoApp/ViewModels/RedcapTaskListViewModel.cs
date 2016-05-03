@@ -22,7 +22,6 @@ namespace FlygoApp.ViewModels
             ObservableCollection = new ObservableCollection<FlyRute>();
             s = SearchListSingleton.GetInstance();
             AddToCollection();
-            ObservableCollection.Add(new FlyRute(DateTime.Today, DateTime.Today, 4, 5, "aa1234"));
         }
 
         public void AddToCollection()
