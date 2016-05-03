@@ -60,10 +60,10 @@ namespace FlyGoWebService.Models
 
         public FlyRute(DateTime afgang, DateTime ankomst, int flyid, int hangarid, string flyrutenummer)
         {
-            CheckAfgangAnkomst(afgang, ankomst);
-            CheckFlyId(flyid);
-            CheckHangarId(hangarid);
-            CheckFlyruteNummer(flyrutenummer);
+            //CheckAfgangAnkomst(afgang, ankomst);
+            //CheckFlyId(flyid);
+            //CheckHangarId(hangarid);
+            //CheckFlyruteNummer(flyrutenummer);
             Afgang = afgang;
             Ankomst = ankomst;
             FlyId = flyid;
@@ -103,6 +103,11 @@ namespace FlyGoWebService.Models
             {
                 throw new ArgumentException("Ankomst og afgang skal forekomme efter dags dato");
             }
+        }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Ankomst: {Ankomst}, Afgang: {Afgang}, FlyRuteNummer: {FlyRuteNummer}, Fly: {Fly}, Hangar: {Hangar}";
         }
     }
 }

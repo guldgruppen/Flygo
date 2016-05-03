@@ -30,7 +30,7 @@ namespace FlygoApp.Models
 
         public void SearchForFlyRute(string flyRuteNr, DateTime dateTime)
         {
-            //SearchListSingleton.RedcapFlyRuteList.Clear(); 
+            SearchListSingleton.RedcapFlyRuteList.Clear();
 
             if (string.IsNullOrEmpty(flyRuteNr))
             {
