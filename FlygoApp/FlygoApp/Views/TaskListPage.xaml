@@ -5,9 +5,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:FlygoApp.ViewModels"
+    xmlns:converters="using:FlygoApp.Converters"
     x:Class="FlygoApp.Views.TaskListPage"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <converters:BaggersColorConverter x:Key="BaggersColorConverter"/>
+        <converters:CrewColorConverter x:Key="CrewColorConverter"/>
+        <converters:CatersColorConverter x:Key="CatersColorConverter"/>
+        <converters:MekanikerColorConverter x:Key="MekanikerColorConverter"/>
+        <converters:FuelerColorConverter x:Key="FuelerColorConverter"/>
+    </Page.Resources>
     <Grid Background="#00FD5C5C">
         <Grid.RowDefinitions>
             <RowDefinition Height="26*"/>
@@ -143,23 +150,23 @@
             </StackPanel>
             <Button x:Name="button" Content="Opdater" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#CCFFE25F" FontSize="26.667" Command="{Binding ShowCommand}" Grid.Row="2"/>
             <StackPanel Grid.Column="1" Grid.Row="1">
-                <StackPanel Height="60" Background="#FF8CFF19" Orientation="Horizontal">
+                <StackPanel Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MekanikerColorConverter}}" Orientation="Horizontal">
                     <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Mekaniker" FontSize="20"/>
                     <TextBlock x:Name="textBlock14" TextWrapping="Wrap" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="40,0,0,0"/>
                 </StackPanel>
-                <StackPanel Height="60" Background="#FF51EC24" Orientation="Horizontal">
+                <StackPanel Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CatersColorConverter}}" Orientation="Horizontal">
                     <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Caters" FontSize="20"/>
                     <TextBlock x:Name="textBlock15" TextWrapping="Wrap" Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="60,0,0,0"/>
                 </StackPanel>
-                <StackPanel Height="60" Background="#FFFFA70D" Orientation="Horizontal">
+                <StackPanel Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CrewColorConverter}}" Orientation="Horizontal">
                     <TextBlock x:Name="textBlock7" TextWrapping="Wrap" Text="Crews" FontSize="20"/>
                     <TextBlock x:Name="textBlock16" TextWrapping="Wrap" Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="60,0,0,0"/>
                 </StackPanel>
-                <StackPanel Height="60" Background="White" Orientation="Horizontal">
+                <StackPanel Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FuelerColorConverter}}" Orientation="Horizontal">
                     <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Fuelers" FontSize="20"/>
                     <TextBlock x:Name="textBlock18" TextWrapping="Wrap" Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="50,0,0,0"/>
                 </StackPanel>
-                <StackPanel Height="60" Background="#FFFF3333" Orientation="Horizontal">
+                <StackPanel x:Name="baggers" Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BaggersColorConverter}}" Orientation="Horizontal">
                     <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="Baggers" FontSize="20"/>
                     <TextBlock x:Name="textBlock17" TextWrapping="Wrap" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="40,0,0,0"/>
                 </StackPanel>

@@ -44,6 +44,9 @@ namespace FlygoApp.ViewModels
         private string _selectedCrewDetails;
         private string _selectedFulersDetails;
         private string _selectedBaggersDetails;
+        private OpgaveArkiv _selectedOpgaveArkiv;
+        private FlyRute _selectedFlyrute;
+        private OpgaveAdapter _opgaveAdapter;
 
         #endregion
         #region Properties         
@@ -66,6 +69,22 @@ namespace FlygoApp.ViewModels
             set
             {
                 _selectedMekanikerDetails = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public OpgaveAdapter OpgaveAdapter
+        {
+            get { return _opgaveAdapter; }
+            set { _opgaveAdapter = value;OnPropertyChanged(); }
+        }
+
+        public FlyRute SelectedFlyrute
+        {
+            get { return _selectedFlyrute; }
+            set
+            {
+                _selectedFlyrute = value;
                 OnPropertyChanged();
             }
         }
@@ -186,10 +205,17 @@ namespace FlygoApp.ViewModels
                     int flyId = FlyruteHandler.Flyruter[_selectedOpgaveIndex].FlyId;
                     SelectedHangarDetail = HangarHandler.Hangar.Single((x) => x.Id.Equals(hangarId)).ToString();
                     SelectedFlyDetail = FlyHandler.Fly.Single((x) => x.Id.Equals(flyId)).ToString();
-                    //var selectedOpgaveArkiv =
-                    //    FlyruteHandler.OpgaveArkivs.Single(
-                    //        x => x.FlyRuteId.Equals(FlyruteHandler.Flyruter[_selectedOpgaveIndex].Id));
-                    //SelectedMekanikerDetails = selectedOpgaveArkiv.Mekanikker.ToString("F");
+
+                    OpgaveArkiv selectedArkiv =
+                        FlyruteHandler.OpgaveArkivs.Single(
+                            x => x.FlyRuteId.Equals(FlyruteHandler.Flyruter[_selectedOpgaveIndex].Id));
+                    SelectedMekanikerDetails = selectedArkiv.Mekanikker.ToString();
+                    SelectedBaggersDetails = selectedArkiv.Baggers.ToString();
+                    SelectedCatersDetails = selectedArkiv.Caters.ToString();
+                    SelectedCrewDetails = selectedArkiv.Crew.ToString();
+                    SelectedFulersDetails = selectedArkiv.Fuelers.ToString();
+                    SelectedFlyrute = FlyruteHandler.Flyruter[_selectedOpgaveIndex];
+                    OpgaveAdapter = new OpgaveAdapter(selectedArkiv,SelectedFlyrute);
 
                 }
                 OnPropertyChanged();
