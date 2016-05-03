@@ -65,8 +65,8 @@
         <StackPanel HorizontalAlignment="Left" Height="100" Margin="0,43,0,0" VerticalAlignment="Top" Width="400" Grid.Column="3" Grid.RowSpan="2">
             <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Worker Information" FontWeight="Bold" FontStyle="Italic" FontSize="35" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
-        <ListView x:Name="ListWorkerInformation" Background="#9BDCDCDC" Grid.Column="3" Grid.Row="2"/>
-        <ListView x:Name="listView" Background="#99DCDCDC" ItemsSource="{Binding ObservableCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource DataTemplate1}" Grid.Column="1" Grid.Row="2" />
+        <ListView x:Name="ListWorkerInformation" HorizontalAlignment="Left" Height="438" VerticalAlignment="Top" Width="400" Background="#9BDCDCDC" Grid.Column="3" Grid.Row="2"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="438" VerticalAlignment="Top" Width="400" Background="#99DCDCDC" ItemsSource="{Binding ObservableCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource DataTemplate1}" Grid.Column="1" Grid.Row="2" />
 
     </Grid>
 </Page>

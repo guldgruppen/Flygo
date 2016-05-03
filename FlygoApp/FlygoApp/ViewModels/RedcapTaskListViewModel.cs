@@ -12,25 +12,27 @@ namespace FlygoApp.ViewModels
 {
     public class RedcapTaskListViewModel
     {
-        private SearchListSingleton s; 
+        private SearchListSingleton s;
 
-        public ObservableCollection<FlyRute> ObservableCollection { get; set; }
+        public string FlyRuteNr { get; set; }
+
+        public string Afgang { get; set; }
+        public string Ankomst { get; set; }
+        public Fly FlyType { get; set; }
+        public Hangar Hangar { get; set; }
+
 
         public RedcapTaskListViewModel()
-        {
-           
-            ObservableCollection = new ObservableCollection<FlyRute>();
+        {  
             s = SearchListSingleton.GetInstance();
-            AddToCollection();
+            FlyRuteNr = s.FlyRute.FlyRuteNummer;
+            Afgang = s.FlyRute.AfgangSomText;
+            Ankomst = s.FlyRute.AnkomstSomText;
+            FlyType = s.FlyRute.Fly;
+            Hangar = s.FlyRute.Hangar; 
         }
 
-        public void AddToCollection()
-        {
-            foreach (var rute in s.RedcapFlyRuteList)
-            {
-                ObservableCollection.Add(rute);
-            }
-        }
+        
 
 
     }

@@ -9,13 +9,13 @@ namespace FlygoApp.Persistency
 {
     public class SearchListSingleton
     {
-        public List<FlyRute> RedcapFlyRuteList; 
+        public FlyRute FlyRute; 
 
         private static SearchListSingleton _instance;
 
         private SearchListSingleton()
         {
-            RedcapFlyRuteList = new List<FlyRute>();
+            FlyRute = new FlyRute();
         }
 
         public static SearchListSingleton GetInstance()
