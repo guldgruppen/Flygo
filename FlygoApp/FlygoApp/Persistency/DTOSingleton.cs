@@ -98,7 +98,7 @@ namespace FlygoApp.Persistency
                 }
                 catch (Exception ex)
                 {
-                    throw;
+                    
                 }
             }
         }

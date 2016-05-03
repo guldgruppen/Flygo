@@ -128,7 +128,7 @@
                 <RowDefinition Height="671*"/>
                 <RowDefinition Height="80*"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Vertical" Margin="10,0" Grid.Row="1" VerticalAlignment="Top" Height="504">
+            <StackPanel Orientation="Vertical" Margin="10,0" Grid.Row="1">
                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Flyrute nr:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
                 <TextBox x:Name="textBlock4" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedFlyruteNummerDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -144,11 +144,11 @@
                 <TextBlock x:Name="textBlock127" TextWrapping="Wrap" Text="Afgang:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
                 <TextBox x:Name="textBlock138" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedAfgangDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2" Height="125" Width="561" Margin="0,-6,0,429" Grid.RowSpan="2">
-                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="13:40" Foreground="#FFECD91F" FontSize="70" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <StackPanel Grid.ColumnSpan="2" Margin="10,0">
+                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding SelectedCountdown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFECD91F" FontSize="70" Margin="0" HorizontalAlignment="Center"/>
             </StackPanel>
-            <Button x:Name="button" Content="Opdater" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#CCFFE25F" FontSize="26.667" Command="{Binding ShowCommand}" Grid.Row="2"/>
-            <StackPanel Grid.Column="1" Grid.Row="1">
+            <Button x:Name="button" Content="Opdater" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#CCFFE25F" FontSize="26.667" Command="{Binding ShowCommand}" Grid.Row="2" Margin="10,0,0,10"/>
+            <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,30,20,0">
                 <StackPanel Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MekanikerColorConverter}}" Orientation="Horizontal">
                     <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Mekaniker" FontSize="20"/>
                     <TextBlock x:Name="textBlock14" TextWrapping="Wrap" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="40,0,0,0"/>

@@ -97,11 +97,11 @@
                 <TextBlock x:Name="textBlock3_Copy8" TextWrapping="Wrap" Text="Erro!" Foreground="White" FontSize="20" Margin="0,30,0,0"/>
             </StackPanel>
         </StackPanel>
-        <Button x:Name="button" Content="" HorizontalAlignment="Stretch" Margin="30,10,40,10" VerticalAlignment="Stretch" Command="{Binding BackCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <!--<Button x:Name="button" Content="" HorizontalAlignment="Stretch" Margin="30,10,40,10" VerticalAlignment="Stretch" Command="{Binding BackCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <Button.Background>
                 <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/TilbageknapFlygo1.png"/>
             </Button.Background>
-        </Button>
+        </Button>-->
 
     </Grid>
 </Page>
