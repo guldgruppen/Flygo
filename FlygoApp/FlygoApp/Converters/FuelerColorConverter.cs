@@ -31,6 +31,8 @@ namespace FlygoApp.Converters
                 OpgaveArkiv arkiv = opg.OpgaveArkiv;
                 FlyRute rute = opg.FlyRute;
 
+                if (arkiv.Fuelers == DateTime.Parse("01-01-1995"))
+                    return red;
                 if (rute.Ankomst > DateTime.Now)
                     return white;
                 if (arkiv.Fuelers > rute.Afgang)
@@ -38,7 +40,7 @@ namespace FlygoApp.Converters
                 if (arkiv.Fuelers < rute.Afgang)
                     return green;
                 if (arkiv.Fuelers == null)
-                    return red;
+                    return white;
             }
             return null;
         }

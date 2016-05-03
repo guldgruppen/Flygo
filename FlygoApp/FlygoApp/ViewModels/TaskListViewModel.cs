@@ -25,7 +25,6 @@ namespace FlygoApp.ViewModels
     public class TaskListViewModel : INotifyPropertyChanged
     {
 
-
         #region Instance Fields
         private int _selectedIndex;
         private ICommand _createFlyruteCommand;
@@ -60,9 +59,7 @@ namespace FlygoApp.ViewModels
         public DateTimeOffset AnkomstDato { get; set; }
         public TimeSpan AfgangTid { get; set; }
         public TimeSpan AnkomstTid { get; set; }
-
         public DateTimeOffset MinYear { get; set; } = DateTime.Now;
-
         public string SelectedMekanikerDetails
         {
             get { return _selectedMekanikerDetails; }
@@ -72,13 +69,11 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public OpgaveAdapter OpgaveAdapter
         {
             get { return _opgaveAdapter; }
             set { _opgaveAdapter = value;OnPropertyChanged(); }
         }
-
         public FlyRute SelectedFlyrute
         {
             get { return _selectedFlyrute; }
@@ -88,7 +83,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedCatersDetails
         {
             get { return _selectedCatersDetails; }
@@ -179,7 +173,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedAfgangDetail
         {
             get { return _selectedAfgangDetail; }
@@ -189,7 +182,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public int SelectedOpgaveIndex
         {
             get { return _selectedOpgaveIndex; }
@@ -221,13 +213,11 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public ICommand CreateFlyruteCommand
         {
             get { return _createFlyruteCommand ?? (_createFlyruteCommand = new RelayCommand(CreateFlyrute)); }
             set { _createFlyruteCommand = value; }
         }
-
         public ICommand ShowCommand
         {
             get
@@ -238,15 +228,12 @@ namespace FlygoApp.ViewModels
             }
             set { _showCommand = value; }
         }
-
         public ICommand DeleteOpgaveCommand
         {
             get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayCommandWithParameter(DeleteOpgave)); }
             set { _deleteOpgaveCommand = value; }
         }
-
         #endregion
-
         public TaskListViewModel()
         {
             

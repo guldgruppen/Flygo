@@ -58,7 +58,6 @@
                                 <TextBlock x:Name="textBlock4_Copy" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333" Text="{Binding AfgangSomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                         </StackPanel>
-
                         <StackPanel Grid.Column="2">
                             <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
                                 <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Fuldført:" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
