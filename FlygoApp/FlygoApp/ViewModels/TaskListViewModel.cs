@@ -46,6 +46,8 @@ namespace FlygoApp.ViewModels
         private OpgaveArkiv _selectedOpgaveArkiv;
         private FlyRute _selectedFlyrute;
         private OpgaveAdapter _opgaveAdapter;
+        private DispatcherTimer Timer = new DispatcherTimer();
+        private string _selectedCountdown;
 
         #endregion
         #region Properties         
@@ -198,6 +200,20 @@ namespace FlygoApp.ViewModels
                     SelectedHangarDetail = HangarHandler.Hangar.Single((x) => x.Id.Equals(hangarId)).ToString();
                     SelectedFlyDetail = FlyHandler.Fly.Single((x) => x.Id.Equals(flyId)).ToString();
 
+                    //SelectedDateTimeFra = FlyruteRegisterProp.Flyruter[_selectedIndex].Ankomst.ToString("MM/dd/yyyy HH:mm");
+
+                    DateTime til = FlyruteHandler.Flyruter[_selectedOpgaveIndex].Afgang;
+                    TimeSpan span = til - DateTime.Now;
+                    if (DateTime.Now >= til)
+                    {
+                        SelectedCountdown = "færdig";
+                    }
+                    else
+                    {
+                        SelectedCountdown = span.ToString(@"dd\.hh\:mm\:ss");
+                    }
+                
+
                     OpgaveArkiv selectedArkiv =
                         FlyruteHandler.OpgaveArkivs.Single(
                             x => x.FlyRuteId.Equals(FlyruteHandler.Flyruter[_selectedOpgaveIndex].Id));
@@ -208,6 +224,7 @@ namespace FlygoApp.ViewModels
                     SelectedFulersDetails = selectedArkiv.Fuelers.ToString();
                     SelectedFlyrute = FlyruteHandler.Flyruter[_selectedOpgaveIndex];
                     OpgaveAdapter = new OpgaveAdapter(selectedArkiv,SelectedFlyrute);
+                    CountdownToDeadline();
 
                 }
                 OnPropertyChanged();
@@ -233,6 +250,15 @@ namespace FlygoApp.ViewModels
             get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayCommandWithParameter(DeleteOpgave)); }
             set { _deleteOpgaveCommand = value; }
         }
+        public string SelectedCountdown
+        {
+            get { return _selectedCountdown; }
+            set
+            {
+                _selectedCountdown = value; 
+                OnPropertyChanged();
+            }
+        }
         #endregion
         public TaskListViewModel()
         {
@@ -250,6 +276,27 @@ namespace FlygoApp.ViewModels
         }
 
         #region Metoder
+
+        public void CountdownToDeadline()
+        {
+            Timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            Timer.Tick += MyTimer_Tick;
+            Timer.Start();
+        }
+        
+        public void MyTimer_Tick(object o, object sender)
+        {
+            DateTime til = FlyruteHandler.Flyruter[_selectedOpgaveIndex].Afgang;
+            TimeSpan span = til - DateTime.Now;
+            if (DateTime.Now >= til)
+            {
+                SelectedCountdown = "færdig";
+            }
+            else
+            {
+                SelectedCountdown = span.ToString(@"dd\.hh\:mm\:ss");
+            }
+        }
 
         public async void DeleteOpgave(object param)
         {
