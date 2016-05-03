@@ -30,7 +30,7 @@ namespace FlygoApp.Models
 
         public void SearchForFlyRute(string flyRuteNr, DateTime dateTime)
         {
-            SearchListSingleton.RedcapFlyRuteList.Clear();
+            //SearchListSingleton.RedcapFlyRuteList.Clear();
 
             if (string.IsNullOrEmpty(flyRuteNr))
             {
@@ -42,9 +42,9 @@ namespace FlygoApp.Models
             foreach (var rute in DtoSingleton.FlyruteListe)
             {
                 x--; 
-                if (rute.FlyRuteNummer == flyRuteNr && rute.Afgang.Date == dateTime.Date) 
+                if (rute.FlyRuteNummer == flyRuteNr && rute.Afgang.Date == dateTime.Date)
                 {
-                    SearchListSingleton.RedcapFlyRuteList.Add(rute);
+                    SearchListSingleton.FlyRute = rute; 
                     NavigationService.Navigate(typeof(RedcapTaskListPage));
                     break; 
                 }
