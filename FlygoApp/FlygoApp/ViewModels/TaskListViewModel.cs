@@ -253,6 +253,7 @@ namespace FlygoApp.ViewModels
 
         public async void DeleteOpgave(object param)
         {
+            int name;
             try
             {
                 string flyrute = (string) param;
