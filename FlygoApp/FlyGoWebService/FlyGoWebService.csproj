@@ -271,8 +271,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Properties\PublishProfiles\FlyGoWebService1 %284%29.pubxml" />
+    <None Include="Properties\PublishProfiles\FlyGoWebService1 %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

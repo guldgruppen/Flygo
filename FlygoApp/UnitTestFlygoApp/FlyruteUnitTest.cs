@@ -33,12 +33,16 @@ namespace UnitTestFlygoApp
             DateTime til = DateTime.Now;
             Assert.ThrowsException<ArgumentException>(() => flyrute.CheckAfgangAnkomst(til,fra));
         }
+
         [TestMethod]
         public void TestMethod3()
         {
             int id = -1;
-            Assert.ThrowsException<IndexOutOfRangeException>(() => flyrute.CheckFlyId(id));            
+            Assert.ThrowsException<IndexOutOfRangeException>(() => flyrute.CheckFlyId(id));
         }
+
+
+
         [TestMethod]
         public void TestMethod4()
         {

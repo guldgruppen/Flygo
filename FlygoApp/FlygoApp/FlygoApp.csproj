@@ -96,14 +96,23 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commons\Extender.cs" />
     <Compile Include="Commons\INavigationService.cs" />
     <Compile Include="Commons\MessagePopUp.cs" />
     <Compile Include="Commons\NavigationService.cs" />
     <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Commons\RelayCommandWithParameter.cs" />
     <Compile Include="Commons\WindowStyling.cs" />
+    <Compile Include="Converters\BaggersColorConverter.cs" />
+    <Compile Include="Converters\CatersColorConverter.cs" />
+    <Compile Include="Converters\CrewColorConverter.cs" />
+    <Compile Include="Converters\FuelerColorConverter.cs" />
+    <Compile Include="Converters\MekanikerColorConverter.cs" />
+    <Compile Include="Exceptions\DateWrongException.cs" />
+    <Compile Include="Exceptions\InfoWrongException.cs" />
     <Compile Include="Exceptions\LoginInfoWrongException.cs" />
     <Compile Include="Exceptions\LoginIsNullOrEmptyException.cs" />
+    <Compile Include="Exceptions\NullOrEmptyException.cs" />
     <Compile Include="Models\BrugerLogIn.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\FlyHandler.cs" />
@@ -115,13 +124,18 @@
     <Compile Include="Models\IFactory.cs" />
     <Compile Include="Models\IHandler.cs" />
     <Compile Include="Models\LoginHandler.cs" />
+    <Compile Include="Models\OpgaveAdapter.cs" />
     <Compile Include="Models\OpgaveArkiv.cs" />
+    <Compile Include="Models\RedcapHandler.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Persistency\DTOSingleton.cs" />
+    <Compile Include="Persistency\SearchListSingleton.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\RedcapTaskListViewModel.cs" />
+    <Compile Include="ViewModels\RedcapViewModel.cs" />
     <Compile Include="Views\IndstillingerPage.xaml.cs">
       <DependentUpon>IndstillingerPage.xaml</DependentUpon>
     </Compile>
@@ -180,9 +194,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\IndstillingerPage.xaml">
       <SubType>Designer</SubType>

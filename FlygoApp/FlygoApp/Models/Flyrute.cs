@@ -92,6 +92,8 @@ namespace FlyGoWebService.Models
                 throw new IndexOutOfRangeException("Du mangler at vælge en hangar");
             }
         }
+
+        
         public void CheckAfgangAnkomst(DateTime afgang, DateTime ankomst)
         {
 
@@ -103,6 +105,10 @@ namespace FlyGoWebService.Models
             {
                 throw new ArgumentException("Ankomst og afgang skal forekomme efter dags dato");
             }
+        }
+        public override string ToString()
+        {
+            return $"Id: {Id}, Ankomst: {Ankomst}, Afgang: {Afgang}, FlyRuteNummer: {FlyRuteNummer}, Fly: {Fly}, Hangar: {Hangar}";
         }
     }
 }

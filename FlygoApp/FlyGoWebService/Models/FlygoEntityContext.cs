@@ -8,7 +8,7 @@ namespace FlyGoWebService.Models
     public partial class FlygoEntityContext : DbContext
     {
         public FlygoEntityContext()
-            : base("name=FlygoEntityContext1")
+            : base("name=FlygoEntityContext2")
         {
             Configuration.ProxyCreationEnabled = false;
         }

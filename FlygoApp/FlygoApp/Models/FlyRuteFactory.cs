@@ -14,8 +14,10 @@ namespace FlygoApp.Models
         {
             DateTime fra = DateTime.Parse(ankomst.ToString());
             DateTime til = DateTime.Parse(afgang.ToString());
-          
-            return new FlyRute() {Afgang = til, Ankomst = fra, FlyId = flyid,HangarId = hangarid, FlyRuteNummer = nummer};
+            DateTime fraDanskTid = fra.AddHours(1);
+            DateTime tilDanskTid = til.AddHours(1);
+            
+            return new FlyRute() {Afgang = tilDanskTid, Ankomst = fraDanskTid, FlyId = flyid,HangarId = hangarid, FlyRuteNummer = nummer};
 
         }
 
