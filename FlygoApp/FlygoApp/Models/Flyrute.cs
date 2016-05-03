@@ -60,10 +60,10 @@ namespace FlyGoWebService.Models
 
         public FlyRute(DateTime afgang, DateTime ankomst, int flyid, int hangarid, string flyrutenummer)
         {
-            //CheckAfgangAnkomst(afgang, ankomst);
-            //CheckFlyId(flyid);
-            //CheckHangarId(hangarid);
-            //CheckFlyruteNummer(flyrutenummer);
+            CheckAfgangAnkomst(afgang, ankomst);
+            CheckFlyId(flyid);
+            CheckHangarId(hangarid);
+            CheckFlyruteNummer(flyrutenummer);
             Afgang = afgang;
             Ankomst = ankomst;
             FlyId = flyid;

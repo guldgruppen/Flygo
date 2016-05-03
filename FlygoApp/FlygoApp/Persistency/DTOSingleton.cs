@@ -16,7 +16,7 @@ namespace FlygoApp.Persistency
     public class DTOSingleton
     {
 
-        public List<Fly> FlyListe = new List<Fly>();
+        public List<Fly> FlyListe;
         public List<FlyRute> FlyruteListe;
         public List<Hangar> HangarListe = new List<Hangar>();
         public Dictionary<string, BrugerLogIn> BrugerLogInsDictionary = new Dictionary<string, BrugerLogIn>();
@@ -25,6 +25,7 @@ namespace FlygoApp.Persistency
         private DTOSingleton()
         {
             FlyruteListe = new List<FlyRute>();
+            FlyListe = new List<Fly>();
             LoadFly();
             Loadhangar();
             LoadBrugerLogins();
@@ -53,7 +54,7 @@ namespace FlygoApp.Persistency
                 try
                 {
 
-                    var response = client.GetAsync("api/Flies").Result;
+                    var response = client.GetAsync("api/Flies/GetFly").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -122,7 +123,7 @@ namespace FlygoApp.Persistency
                 try
                 {
 
-                    var response = client.GetAsync("api/Hangars").Result;
+                    var response = client.GetAsync("api/Hangars/GetHangar").Result;
 
                     if (response.IsSuccessStatusCode)
                     {

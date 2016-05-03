@@ -16,6 +16,7 @@ namespace FlygoApp.ViewModels
 {
     public class RedcapViewModel
     {
+        public DateTimeOffset DateTimeNow { get; set; }
         public string FlyRuteNr { get; set; }
 
         public DateTimeOffset Date { get; set; }
@@ -33,7 +34,7 @@ namespace FlygoApp.ViewModels
         public RedcapViewModel()
         {
             handler = new RedcapHandler();
-            
+            DateTimeNow = DateTimeOffset.Now;
         }
 
         public async void Search()

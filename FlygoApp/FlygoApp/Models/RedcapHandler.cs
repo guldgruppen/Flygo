@@ -30,7 +30,7 @@ namespace FlygoApp.Models
 
         public void SearchForFlyRute(string flyRuteNr, DateTime dateTime)
         {
-            //SearchListSingleton.RedcapFlyRuteList.Clear();
+       
 
             if (string.IsNullOrEmpty(flyRuteNr))
             {
@@ -43,8 +43,8 @@ namespace FlygoApp.Models
             {
                 x--; 
                 if (rute.FlyRuteNummer == flyRuteNr && rute.Afgang.Date == dateTime.Date)
-                {
-                    SearchListSingleton.FlyRute = rute; 
+                {           
+                    SearchListSingleton.FlyRute = rute;                   
                     NavigationService.Navigate(typeof(RedcapTaskListPage));
                     break; 
                 }
