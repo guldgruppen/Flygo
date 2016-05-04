@@ -110,8 +110,6 @@
     <Compile Include="Converters\MekanikerColorConverter.cs" />
     <Compile Include="Exceptions\DateWrongException.cs" />
     <Compile Include="Exceptions\InfoWrongException.cs" />
-    <Compile Include="Exceptions\LoginInfoWrongException.cs" />
-    <Compile Include="Exceptions\LoginIsNullOrEmptyException.cs" />
     <Compile Include="Exceptions\NullOrEmptyException.cs" />
     <Compile Include="Models\BrugerLogIn.cs" />
     <Compile Include="Models\Fly.cs" />
