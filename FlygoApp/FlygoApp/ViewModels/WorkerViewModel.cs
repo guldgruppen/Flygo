@@ -111,7 +111,6 @@ namespace FlygoApp.ViewModels
             HubConnection.Start();
 
             proxy.On<FlyRute>("Broadcast", OnMessage);
-            CountdownToDeadline();
         }
 
 
@@ -144,7 +143,7 @@ namespace FlygoApp.ViewModels
         public void MyTimer_Tick(object o, object sender)
         {
             TimeSpan spantid = AfgangDateTime - DateTime.Now;
-            CountdownTid = spantid.ToString();
+            CountdownTid = spantid.ToString(@"dd\.hh\:mm\:ss");
             //if (DateTime.Now >= AfgangDateTime)
             //{
             //    CountdownTid = "færdig";
