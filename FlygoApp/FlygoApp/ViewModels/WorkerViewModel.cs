@@ -110,6 +110,7 @@ namespace FlygoApp.ViewModels
             HubConnection.Start();
 
             proxy.On<FlyRute>("Broadcast", OnMessage);
+            CountdownToDeadline();
         }
 
 
@@ -129,8 +130,7 @@ namespace FlygoApp.ViewModels
 
                 TimeSpanCountdown = msg.Afgang - DateTime.Now;
                 CountdownTid = TimeSpanCountdown.ToString();
-
-                CountdownToDeadline();
+                
             });
         }
         public void CountdownToDeadline()
