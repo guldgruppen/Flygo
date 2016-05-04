@@ -25,6 +25,7 @@ namespace FlygoApp.ViewModels
         private DateTime _afgangDateTime;
         private TimeSpan _timeSpanCountdown;
         private string _tid;
+        private string _countdownTid;
 
         public string Ankomst
         {
@@ -45,7 +46,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string FlyruteNummer
         {
             get { return _flyruteNummer; }
@@ -55,14 +55,20 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string Tid
         {
             get { return _tid; }
             set { _tid = value;OnPropertyChanged(); }
         }
-
-        public string CountdownTid { get; set; }
+        public string CountdownTid
+        {
+            get { return _countdownTid; }
+            set
+            {
+                _countdownTid = value;
+                OnPropertyChanged();
+            }
+        }
         public int test { get; set; } = 5;
         public HubConnection HubConnection { get; set; }
         public IHubProxy proxy { get; set; }
@@ -120,8 +126,6 @@ namespace FlygoApp.ViewModels
 
                 TimeSpan tidspan = msg.Afgang - msg.Ankomst;
                 Tid = tidspan.ToString();
-
-
 
                 TimeSpanCountdown = msg.Afgang - DateTime.Now;
                 CountdownTid = TimeSpanCountdown.ToString();
