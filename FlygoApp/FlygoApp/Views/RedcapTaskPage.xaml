@@ -7,6 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:FlygoApp.ViewModels"
     mc:Ignorable="d">
+    <Page.DataContext>
+        <viewModels:RedcapViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,9 +26,9 @@
             <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/Planesample1.jpg"/>
         </Grid.Background>
         <StackPanel Grid.Row="1" Background="White" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
-            <DatePicker HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold"/>
-            <TextBox x:Name="textBox" TextWrapping="Wrap" Text="" Width="274" FontSize="20" Padding="13,3,6,5" PlaceholderText="Søg efter flyrute nummer" FontWeight="Bold"/>
-            <Button x:Name="button" Content="&#59166;" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Background="#FFD38C26" FontFamily="Segoe MDL2 Assets" FontSize="25" Width="130" FontWeight="Bold"/>
+            <DatePicker HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Date="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding DateTimeNow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyRuteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="274" FontSize="20" Padding="13,3,6,5" PlaceholderText="Søg efter flyrute nummer" FontWeight="Bold"/>
+            <Button x:Name="button" Content="&#59166;" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Background="#FFD38C26" FontFamily="Segoe MDL2 Assets" FontSize="25" Width="130" FontWeight="Bold" Command="{Binding SearchCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
 

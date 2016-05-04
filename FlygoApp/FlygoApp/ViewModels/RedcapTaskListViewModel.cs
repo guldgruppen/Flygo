@@ -36,16 +36,16 @@ namespace FlygoApp.ViewModels
         public RedcapTaskListViewModel()
         {
 
-            //navigationService = new NavigationService();
-            //s1 = DTOSingleton.GetInstance();
-            //s = SearchListSingleton.GetInstance();
-            //FlyRuteNr = s.FlyRute.FlyRuteNummer;
-            //Afgang = s.FlyRute.AfgangSomText;
-            //Ankomst = s.FlyRute.AnkomstSomText;
-            //FlyId = s.FlyRute.FlyId;
-            //HangarId = s.FlyRute.HangarId;
-            //GetFlyObject();
-            //GetHangarObject();
+            navigationService = new NavigationService();
+            s1 = DTOSingleton.GetInstance();
+            s = SearchListSingleton.GetInstance();
+            FlyRuteNr = s.FlyRute.FlyRuteNummer;
+            Afgang = s.FlyRute.AfgangSomText;
+            Ankomst = s.FlyRute.AnkomstSomText;
+            FlyId = s.FlyRute.FlyId;
+            HangarId = s.FlyRute.HangarId;
+            GetFlyObject();
+            GetHangarObject();
 
 
         }
