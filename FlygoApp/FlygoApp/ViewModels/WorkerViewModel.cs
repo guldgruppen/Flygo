@@ -67,6 +67,7 @@ namespace FlygoApp.ViewModels
             {
                 _countdownTid = value;
                 OnPropertyChanged();
+                CountdownToDeadline();
             }
         }
         public int test { get; set; } = 5;
@@ -142,15 +143,16 @@ namespace FlygoApp.ViewModels
 
         public void MyTimer_Tick(object o, object sender)
         {
-            
-            if (DateTime.Now >= AfgangDateTime)
-            {
-                CountdownTid = "færdig";
-            }
-            else
-            {
-                CountdownTid = TimeSpanCountdown.ToString(@"dd\.hh\:mm\:ss");
-            }
+            TimeSpan spantid = AfgangDateTime - DateTime.Now;
+            CountdownTid = spantid.ToString();
+            //if (DateTime.Now >= AfgangDateTime)
+            //{
+            //    CountdownTid = "færdig";
+            //}
+            //else
+            //{
+            //    CountdownTid = TimeSpanCountdown.ToString(@"dd\.hh\:mm\:ss");
+            //}
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
