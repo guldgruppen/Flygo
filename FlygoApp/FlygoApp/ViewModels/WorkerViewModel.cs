@@ -21,6 +21,10 @@ namespace FlygoApp.ViewModels
         private string _afgang;
         private string _flyruteNummer;
         private DispatcherTimer timer = new DispatcherTimer();
+        private DateTime _ankomstDateTime;
+        private DateTime _afgangDateTime;
+        private TimeSpan _timeSpanCountdown;
+        private string _tid;
 
         public string Ankomst
         {
@@ -52,14 +56,47 @@ namespace FlygoApp.ViewModels
             }
         }
 
-        public string Tid { get; set; }
+        public string Tid
+        {
+            get { return _tid; }
+            set { _tid = value;OnPropertyChanged(); }
+        }
+
         public string CountdownTid { get; set; }
         public int test { get; set; } = 5;
         public HubConnection HubConnection { get; set; }
         public IHubProxy proxy { get; set; }
-        public TimeSpan TimeSpanCountdown { get; set; }
-        public DateTime AnkomstDateTime { get; set; }
-        public DateTime AfgangDateTime { get; set; }
+
+        public TimeSpan TimeSpanCountdown
+        {
+            get { return _timeSpanCountdown; }
+            set
+            {
+                _timeSpanCountdown = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime AnkomstDateTime
+        {
+            get { return _ankomstDateTime; }
+            set
+            {
+                _ankomstDateTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public DateTime AfgangDateTime
+        {
+            get { return _afgangDateTime; }
+            set
+            {
+                _afgangDateTime = value;
+                OnPropertyChanged();
+            }
+        }
+
         public WorkerViewModel()
         {
             HubConnection = new HubConnection("http://flygowebservice1.azurewebsites.net/");
@@ -77,12 +114,15 @@ namespace FlygoApp.ViewModels
                 FlyruteNummer = msg.FlyRuteNummer;
                 Ankomst = msg.Ankomst.ToString();
                 Afgang = msg.Afgang.ToString();
-
+                
                 AnkomstDateTime = msg.Ankomst;
                 AfgangDateTime = msg.Afgang;
 
                 TimeSpan tidspan = msg.Afgang - msg.Ankomst;
                 Tid = tidspan.ToString();
+
+
+
                 TimeSpanCountdown = msg.Afgang - DateTime.Now;
                 CountdownTid = TimeSpanCountdown.ToString();
 
