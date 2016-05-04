@@ -128,7 +128,7 @@ namespace FlygoApp.ViewModels
                 Tid = tidspan.ToString();
 
                 TimeSpanCountdown = msg.Afgang - DateTime.Now;
-                CountdownTid = TimeSpanCountdown.ToString();
+                CountdownTid = TimeSpanCountdown.ToString(@"dd\.hh\:mm\:ss");
 
                 CountdownToDeadline();
                 
