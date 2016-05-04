@@ -66,8 +66,7 @@ namespace FlygoApp.ViewModels
             set
             {
                 _countdownTid = value;
-                OnPropertyChanged();
-                CountdownToDeadline();
+                OnPropertyChanged();               
             }
         }
         public int test { get; set; } = 5;
@@ -130,6 +129,8 @@ namespace FlygoApp.ViewModels
 
                 TimeSpanCountdown = msg.Afgang - DateTime.Now;
                 CountdownTid = TimeSpanCountdown.ToString();
+
+                CountdownToDeadline();
                 
             });
         }
