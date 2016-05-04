@@ -23,7 +23,7 @@
             <ViewModels:WorkerViewModel/>
         </Grid.DataContext>
         <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="568" Grid.Row="1" VerticalAlignment="Top" Width="500" Background="#66000000">
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="33:29" Foreground="#FFEEE641" FontSize="53.333" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding CountdownTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFEEE641" FontSize="53.333" HorizontalAlignment="Center"/>
             <StackPanel Height="429" Margin="0,20,0,0" Background="#CC000000">
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Center" Padding="0" Margin="0,70,0,0">
                     <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Flyrute:" FontSize="26.667" Foreground="White" Margin="0,0,30,0"/>
@@ -47,7 +47,7 @@
                 </StackPanel>
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Center" Padding="0" Margin="0">
                     <TextBlock x:Name="textBlock14" TextWrapping="Wrap" Text="Tid:" FontSize="26.667" Foreground="White" Margin="0,0,30,0"/>
-                    <TextBlock x:Name="textBlock24" TextWrapping="Wrap" Text="40 minutter" Foreground="#FFEEE641" FontSize="26.667"/>
+                    <TextBlock x:Name="textBlock24" TextWrapping="Wrap" Text="{Binding Tid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFEEE641" FontSize="26.667"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Height="50" Orientation="Horizontal" VerticalAlignment="Bottom">

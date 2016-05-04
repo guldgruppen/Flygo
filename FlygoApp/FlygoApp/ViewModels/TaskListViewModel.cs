@@ -290,8 +290,10 @@ namespace FlygoApp.ViewModels
         public void Send()
         {
             FlyRute rute = FlyruteHandler.Flyruter[_selectedOpgaveIndex];
-
-            proxy.Invoke("BroadcastOpgave", rute);
+            if (rute != null)
+            {
+                proxy.Invoke("BroadcastOpgave", rute);
+            }
         }
 
         #region Metoder

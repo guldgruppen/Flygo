@@ -7,7 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Chat;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using FlygoApp.Annotations;
+using FlygoApp.Models;
 using FlyGoWebService.Models;
 using Microsoft.AspNet.SignalR.Client;
 
@@ -18,6 +20,7 @@ namespace FlygoApp.ViewModels
         private string _ankomst;
         private string _afgang;
         private string _flyruteNummer;
+        private DispatcherTimer timer = new DispatcherTimer();
 
         public string Ankomst
         {
@@ -49,10 +52,14 @@ namespace FlygoApp.ViewModels
             }
         }
 
+        public string Tid { get; set; }
+        public string CountdownTid { get; set; }
         public int test { get; set; } = 5;
         public HubConnection HubConnection { get; set; }
         public IHubProxy proxy { get; set; }
-
+        public TimeSpan TimeSpanCountdown { get; set; }
+        public DateTime AnkomstDateTime { get; set; }
+        public DateTime AfgangDateTime { get; set; }
         public WorkerViewModel()
         {
             HubConnection = new HubConnection("http://flygowebservice1.azurewebsites.net/");
@@ -62,10 +69,6 @@ namespace FlygoApp.ViewModels
             proxy.On<FlyRute>("Broadcast", OnMessage);
         }
 
-        //public void GetBroadcast(FlyRute msg)
-        //{
-        //    proxy.On<FlyRute>("broadcastMessage", OnMessage);           
-        //}
 
         private async void OnMessage(FlyRute msg)
         {
@@ -74,7 +77,36 @@ namespace FlygoApp.ViewModels
                 FlyruteNummer = msg.FlyRuteNummer;
                 Ankomst = msg.Ankomst.ToString();
                 Afgang = msg.Afgang.ToString();
+
+                AnkomstDateTime = msg.Ankomst;
+                AfgangDateTime = msg.Afgang;
+
+                TimeSpan tidspan = msg.Afgang - msg.Ankomst;
+                Tid = tidspan.ToString();
+                TimeSpanCountdown = msg.Afgang - DateTime.Now;
+                CountdownTid = TimeSpanCountdown.ToString();
+
+                CountdownToDeadline();
             });
+        }
+        public void CountdownToDeadline()
+        {
+            timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            timer.Tick += MyTimer_Tick;
+            timer.Start();
+        }
+
+        public void MyTimer_Tick(object o, object sender)
+        {
+            
+            if (DateTime.Now >= AfgangDateTime)
+            {
+                CountdownTid = "færdig";
+            }
+            else
+            {
+                CountdownTid = TimeSpanCountdown.ToString(@"dd\.hh\:mm\:ss");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
