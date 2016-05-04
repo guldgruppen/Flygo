@@ -49,7 +49,7 @@ namespace FlygoApp.ViewModels
             }
         }
 
-
+        public int test { get; set; } = 5;
         public HubConnection HubConnection { get; set; }
         public IHubProxy proxy { get; set; }
 
