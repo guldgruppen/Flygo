@@ -19,6 +19,7 @@ using FlygoApp.Commons;
 using FlygoApp.Models;
 using FlygoApp.Persistency;
 using FlyGoWebService.Models;
+using Microsoft.AspNet.SignalR.Client;
 
 namespace FlygoApp.ViewModels
 {
@@ -48,6 +49,7 @@ namespace FlygoApp.ViewModels
         private OpgaveAdapter _opgaveAdapter;
         private DispatcherTimer Timer = new DispatcherTimer();
         private string _selectedCountdown;
+        private ICommand _sendOpgaveCommand;
 
         #endregion
         #region Properties         
@@ -262,7 +264,10 @@ namespace FlygoApp.ViewModels
         #endregion
         public TaskListViewModel()
         {
-            
+            conn = new HubConnection("http://flygowebservice1.azurewebsites.net/");
+            proxy = conn.CreateHubProxy("OpgaveHub");
+            conn.Start();
+
             FlyHandler = new FlyHandler();  
             FlyHandler.LoadDtoFly();
 
@@ -273,6 +278,20 @@ namespace FlygoApp.ViewModels
             FlyruteHandler.LoadDTOFlyruter();
             
 
+        }
+        public HubConnection conn { get; set; }
+        public IHubProxy proxy { get; set; }
+        public ICommand SendOpgaveCommand
+        {
+            get { return _sendOpgaveCommand ?? (_sendOpgaveCommand = new RelayCommand(Send)); }
+            set { _sendOpgaveCommand = value; }
+        }
+
+        public void Send()
+        {
+            FlyRute rute = FlyruteHandler.Flyruter[_selectedOpgaveIndex];
+
+            proxy.Invoke("BroadcastOpgave", rute);
         }
 
         #region Metoder

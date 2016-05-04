@@ -1,10 +1,11 @@
 ﻿<Page
-    x:Class="FlygoApp.Views.WorkerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FlygoApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:FlygoApp.ViewModels"
+    x:Class="FlygoApp.Views.WorkerPage"
     mc:Ignorable="d">
 
     <Grid Background="#FF3C3C3C">
@@ -18,24 +19,26 @@
             <ColumnDefinition Width="250*"/>
             <ColumnDefinition Width="193*"/>
         </Grid.ColumnDefinitions>
+        <Grid.DataContext>
+            <ViewModels:WorkerViewModel/>
+        </Grid.DataContext>
         <StackPanel Grid.Column="1" HorizontalAlignment="Left" Height="568" Grid.Row="1" VerticalAlignment="Top" Width="500" Background="#66000000">
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="33:29" Foreground="#FFEEE641" FontSize="53.333" HorizontalAlignment="Center"/>
             <StackPanel Height="429" Margin="0,20,0,0" Background="#CC000000">
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Center" Padding="0" Margin="0,70,0,0">
                     <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Flyrute:" FontSize="26.667" Foreground="White" Margin="0,0,30,0"/>
-                    <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="SK400" Foreground="#FFEEE641" FontSize="26.667"/>
+                    <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding FlyruteNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFEEE641" FontSize="26.667"/>
                 </StackPanel>
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Center" Padding="0" Margin="0">
                     <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Ankomst:" FontSize="26.667" Foreground="White" Margin="0,0,30,0"/>
-                    <TextBlock x:Name="textBlock20" TextWrapping="Wrap" Text="19:00" Foreground="#FFEEE641" FontSize="26.667"/>
+                    <TextBlock x:Name="textBlock20" TextWrapping="Wrap" Text="{Binding Ankomst, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFEEE641" FontSize="26.667"/>
                 </StackPanel>
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Center" Padding="0" Margin="0">
                     <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="Afgang:" FontSize="26.667" Foreground="White" Margin="0,0,30,0"/>
-                    <TextBlock x:Name="textBlock21" TextWrapping="Wrap" Text="19:40" Foreground="#FFEEE641" FontSize="26.667"/>
+                    <TextBlock x:Name="textBlock21" TextWrapping="Wrap" Text="{Binding Afgang, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFEEE641" FontSize="26.667"/>
                 </StackPanel>
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Center" Padding="0" Margin="0">
-                    <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Destination fra:
-                               " FontSize="26.667" Foreground="White" Margin="0,0,30,0"/>
+                    <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Destination fra:                                " FontSize="26.667" Foreground="White" Margin="0,0,30,0"/>
                     <TextBlock x:Name="textBlock22" TextWrapping="Wrap" Text="Kastrup" Foreground="#FFEEE641" FontSize="26.667"/>
                 </StackPanel>
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Center" Padding="0" Margin="0">

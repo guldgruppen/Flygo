@@ -23,6 +23,8 @@ namespace FlyGoWebService.Models
 
         public DateTime? Mekanikker { get; set; }
 
+        public DateTime? Rengøring { get; set; }
+
         public virtual FlyRute FlyRute { get; set; }
     }
 }

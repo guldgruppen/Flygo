@@ -14,7 +14,7 @@ namespace FlyGoWebService.Controllers
 {
     public class RolesController : ApiController
     {
-        private FlygoEntityContext db = new FlygoEntityContext();
+        private FlygoContext db = new FlygoContext();
 
         // GET: api/Roles
         public IQueryable<Roles> GetRoles()

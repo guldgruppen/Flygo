@@ -5,10 +5,10 @@ namespace FlyGoWebService.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class FlygoEntityContext : DbContext
+    public partial class FlygoContext : DbContext
     {
-        public FlygoEntityContext()
-            : base("name=FlygoEntityContext2")
+        public FlygoContext()
+            : base("name=FlygoContext")
         {
             Configuration.ProxyCreationEnabled = false;
         }

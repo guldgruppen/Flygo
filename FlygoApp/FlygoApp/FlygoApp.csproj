@@ -136,6 +136,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RedcapTaskListViewModel.cs" />
     <Compile Include="ViewModels\RedcapViewModel.cs" />
+    <Compile Include="ViewModels\WorkerViewModel.cs" />
     <Compile Include="Views\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>

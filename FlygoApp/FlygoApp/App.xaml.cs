@@ -5,8 +5,10 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Chat;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -16,6 +18,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using FlygoApp.ViewModels;
 using FlygoApp.Views;
+using FlyGoWebService.Models;
+using Microsoft.AspNet.SignalR.Client;
+
 
 namespace FlygoApp
 {
@@ -28,11 +33,23 @@ namespace FlygoApp
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+
+        
+        public HubConnection conn { get; set; }
+        public IHubProxy proxy { get; set; }
+
         public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+        public void SignalR()
+        {
+            conn = new HubConnection("http://flygowebservice1.azurewebsites.net/");
+            proxy = conn.CreateHubProxy("OpgaveHub");
+            conn.Start();
+           
+        }      
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
