@@ -79,25 +79,28 @@
                 <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="{Binding Afgang, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,30,0,0" FontSize="20" Foreground="White"/>
                 <TextBlock x:Name="textBlock2_Copy3" TextWrapping="Wrap" Text="{Binding FlyType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,30,0,0" FontSize="20" Foreground="White"/>
                 <TextBlock x:Name="textBlock2_Copy4" TextWrapping="Wrap" Text="{Binding Hangar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,30,0,0" FontSize="20" Foreground="White"/>
+                <StackPanel Margin="0,30,0,0">
+                    <Button x:Name="button1" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="35" Margin="0,0,10,0">
+                        <Button.Background>
+                            <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/Uddeleger opgavebutton.png"/>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
-        <StackPanel x:Name="højre" Grid.Column="3" Margin="0" Grid.Row="2" Background="#A5000000" Orientation="Horizontal">
-            <StackPanel Width="200">
-                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Baggager:" Foreground="White" FontSize="20" FontWeight="Bold" Margin="10,10,0,0"/>
-                <TextBlock x:Name="textBlock3_Copy" TextWrapping="Wrap" Text="Cater:" Foreground="White" FontSize="20" FontWeight="Bold" Margin="10,30,0,0"/>
-                <TextBlock x:Name="textBlock3_Copy1" TextWrapping="Wrap" Text="Crew:" Foreground="White" FontSize="20" FontWeight="Bold" Margin="10,30,0,0"/>
-                <TextBlock x:Name="textBlock3_Copy2" TextWrapping="Wrap" Text="Fueler:" Foreground="White" FontSize="20" FontWeight="Bold" Margin="10,30,0,0"/>
-                <TextBlock x:Name="textBlock3_Copy3" TextWrapping="Wrap" Text="Mekanikker:" Foreground="White" FontSize="20" FontWeight="Bold" Margin="10,30,0,0"/>
-            </StackPanel>
-            <StackPanel Width="200">
-                <TextBlock x:Name="textBlock3_Copy4" TextWrapping="Wrap" Text="Allmost Done!" Foreground="White" FontSize="20" Margin="0,10,0,0"/>
-                <TextBlock x:Name="textBlock3_Copy5" TextWrapping="Wrap" Text="Done!" Foreground="White" FontSize="20" Margin="0,30,0,0"/>
-                <TextBlock x:Name="textBlock3_Copy6" TextWrapping="Wrap" Text="Done!" Foreground="White" FontSize="20" Margin="0,30,0,0"/>
-                <TextBlock x:Name="textBlock3_Copy7" TextWrapping="Wrap" Text="Allmost Done!" Foreground="White" FontSize="20" Margin="0,30,0,0"/>
-                <TextBlock x:Name="textBlock3_Copy8" TextWrapping="Wrap" Text="Erro!" Foreground="White" FontSize="20" Margin="0,30,0,0"/>
-            </StackPanel>
+        <StackPanel x:Name="højre" Grid.Column="3" Margin="0" Grid.Row="2" Background="#A5000000">
+            <StackPanel Height="73" Background="Black"/>
+            <StackPanel Height="73" Background="#FF6F3D3D"/>
+            <StackPanel Height="73" Background="#FF659A32"/>
+            <StackPanel Height="73" Background="#FF5A2180"/>
+            <StackPanel Height="73" Background="#FF2D8580"/>
+            <StackPanel Height="73" Background="Red"/>
         </StackPanel>
-        <Button x:Name="button" Content="BackButton" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="48" Width="120" Command="{Binding BackCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Height="58" Width="64" Command="{Binding BackCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.RowSpan="2">
+            <Button.Background>
+                <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/1462365794_circle-back-arrow-outline-stroke.png"/>
+            </Button.Background>
+        </Button>
         <!--<Button x:Name="button" Content="" HorizontalAlignment="Stretch" Margin="30,10,40,10" VerticalAlignment="Stretch" Command="{Binding BackCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <Button.Background>
                 <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/TilbageknapFlygo1.png"/>
