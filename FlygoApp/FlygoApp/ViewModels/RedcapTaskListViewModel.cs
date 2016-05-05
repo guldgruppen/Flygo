@@ -181,31 +181,31 @@ namespace FlygoApp.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                OpgaveArkiv arkiv = new OpgaveArkiv();
+                
                 switch (roleId)
                 {
                     case 2:
                         SelectedMekanikerDetails = DateTime.Now.ToString();
-                        arkiv.Mekanikker = DateTime.Now;
+                        OpgaveArkiv.Mekanikker = DateTime.Now;
                         break;
                     case 3:
                         SelectedCrewDetails = DateTime.Now.ToString();
-                        arkiv.Crew = DateTime.Now;
+                        OpgaveArkiv.Crew = DateTime.Now;
                         break;
                     case 4:
                         SelectedFulersDetails = DateTime.Now.ToString();
-                        arkiv.Fuelers = DateTime.Now;
+                        OpgaveArkiv.Fuelers = DateTime.Now;
                         break;
                     case 5:
                         SelectedBaggersDetails = DateTime.Now.ToString();
-                        arkiv.Baggers = DateTime.Now;
+                        OpgaveArkiv.Baggers = DateTime.Now;
                         break;
                     case 6:
                         SelectedCatersDetails = DateTime.Now.ToString();
-                        arkiv.Caters = DateTime.Now;
+                        OpgaveArkiv.Caters = DateTime.Now;
                         break;
                 }
-                _dtoOpgaveArkiv.UpdateOpgaveArkiv(arkiv,arkiv.Id);
+                _dtoOpgaveArkiv.UpdateOpgaveArkiv(OpgaveArkiv, OpgaveArkiv.Id);
 
                
                 _dtoOpgaveArkiv.LoadOpgaveArkiv();
