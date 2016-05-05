@@ -205,8 +205,9 @@ namespace FlygoApp.ViewModels
                         OpgaveArkiv.Caters = DateTime.Now;
                         break;
                 }
+                OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv,FlyRute);
+                OnPropertyChanged();
                 _dtoOpgaveArkiv.UpdateOpgaveArkiv(OpgaveArkiv, OpgaveArkiv.Id);
-
                
                 _dtoOpgaveArkiv.LoadOpgaveArkiv();
 
