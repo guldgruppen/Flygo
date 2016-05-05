@@ -13,5 +13,10 @@ namespace FlyGoWebService.Hubs
         {
             Clients.All.Broadcast(rute);
         }
+
+        public void BroadcastSvar(int roleId)
+        {
+            Clients.All.Svar(roleId);
+        }
     }
 }

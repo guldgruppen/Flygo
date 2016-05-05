@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
+using System.Globalization;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Chat;
+using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using FlygoApp.Annotations;
-using FlygoApp.Models;
+using FlygoApp.Commons;
+using FlygoApp.Persistency;
+using FlyGoWebService;
 using FlyGoWebService.Models;
 using Microsoft.AspNet.SignalR.Client;
 
@@ -17,6 +16,8 @@ namespace FlygoApp.ViewModels
 {
     public class WorkerViewModel : INotifyPropertyChanged
     {
+        #region instance fields
+
         private string _ankomst;
         private string _afgang;
         private string _flyruteNummer;
@@ -26,7 +27,10 @@ namespace FlygoApp.ViewModels
         private TimeSpan _timeSpanCountdown;
         private string _tid;
         private string _countdownTid;
+        private ICommand _sendSvarCommand;
 
+        #endregion
+        #region Properties
         public string Ankomst
         {
             get { return _ankomst; }
@@ -36,7 +40,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string Afgang
         {
             get { return _afgang; }
@@ -58,7 +61,7 @@ namespace FlygoApp.ViewModels
         public string Tid
         {
             get { return _tid; }
-            set { _tid = value;OnPropertyChanged(); }
+            set { _tid = value; OnPropertyChanged(); }
         }
         public string CountdownTid
         {
@@ -66,13 +69,11 @@ namespace FlygoApp.ViewModels
             set
             {
                 _countdownTid = value;
-                OnPropertyChanged();               
+                OnPropertyChanged();
             }
-        }
-        public int test { get; set; } = 5;
+        }     
         public HubConnection HubConnection { get; set; }
-        public IHubProxy proxy { get; set; }
-
+        public IHubProxy Proxy { get; set; }
         public TimeSpan TimeSpanCountdown
         {
             get { return _timeSpanCountdown; }
@@ -82,7 +83,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public DateTime AnkomstDateTime
         {
             get { return _ankomstDateTime; }
@@ -92,7 +92,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public DateTime AfgangDateTime
         {
             get { return _afgangDateTime; }
@@ -103,14 +102,37 @@ namespace FlygoApp.ViewModels
             }
         }
 
+        public BrugerLogIn BrugerLogIn { get; set; }
+
+        #endregion
+
+        public ICommand SendSvarCommand
+        {
+            get { return _sendSvarCommand ?? (_sendSvarCommand = new RelayCommand(SendSvar)); }
+            set { _sendSvarCommand = value; }
+        }
+
         public WorkerViewModel()
         {
+            var loginBruger = LoginBrugerSingleton.GetInstance();
             HubConnection = new HubConnection("http://flygowebservice1.azurewebsites.net/");
-            proxy = HubConnection.CreateHubProxy("OpgaveHub");
+            Proxy = HubConnection.CreateHubProxy("OpgaveHub");
             HubConnection.Start();
 
-            proxy.On<FlyRute>("Broadcast", OnMessage);
+            BrugerLogIn = loginBruger.BrugerLogIn;
+            
+            Proxy.On<FlyRute>("Broadcast", OnMessage);
         }
+
+
+        #region Metoder
+
+        public void SendSvar()
+        {
+            int brugerId = BrugerLogIn.RoleId;
+            Proxy.Invoke("BroadcastSvar",brugerId);
+        }
+
 
 
         private async void OnMessage(FlyRute msg)
@@ -118,9 +140,9 @@ namespace FlygoApp.ViewModels
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 FlyruteNummer = msg.FlyRuteNummer;
-                Ankomst = msg.Ankomst.ToString();
-                Afgang = msg.Afgang.ToString();
-                
+                Ankomst = msg.Ankomst.ToString(CultureInfo.InvariantCulture);
+                Afgang = msg.Afgang.ToString(CultureInfo.InvariantCulture);
+
                 AnkomstDateTime = msg.Ankomst;
                 AfgangDateTime = msg.Afgang;
 
@@ -131,7 +153,7 @@ namespace FlygoApp.ViewModels
                 CountdownTid = TimeSpanCountdown.ToString(@"dd\.hh\:mm\:ss");
 
                 CountdownToDeadline();
-                
+
             });
         }
         public void CountdownToDeadline()
@@ -144,23 +166,19 @@ namespace FlygoApp.ViewModels
         public void MyTimer_Tick(object o, object sender)
         {
             TimeSpan spantid = AfgangDateTime - DateTime.Now;
-            CountdownTid = spantid.ToString(@"dd\.hh\:mm\:ss");
-            //if (DateTime.Now >= AfgangDateTime)
-            //{
-            //    CountdownTid = "færdig";
-            //}
-            //else
-            //{
-            //    CountdownTid = TimeSpanCountdown.ToString(@"dd\.hh\:mm\:ss");
-            //}
+            CountdownTid = (DateTime.Now >= AfgangDateTime) ? "færdig" : spantid.ToString(@"dd\.hh\:mm\:ss");
+
         }
 
+        #endregion
+        #region OnPropertyChanged region
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        } 
+        #endregion
     }
 }

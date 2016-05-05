@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using FlygoApp.Persistency;
 
 namespace FlygoApp.Models
@@ -12,18 +7,19 @@ namespace FlygoApp.Models
     {
         public  ObservableCollection<Hangar> Hangar { get; set; }
 
-        public DTOSingleton Dto = DTOSingleton.GetInstance();
+        private DtoHangarSingleton _dtoHangar;
 
         public HangarHandler()
         {
+            _dtoHangar = DtoHangarSingleton.GetInstance();
            Hangar= new ObservableCollection<Hangar>();
         }
 
         public void LoadDtoHangar()
         {
-            foreach (var H in Dto.HangarListe)
+            foreach (var h in _dtoHangar.HangarListe)
             {
-                Hangar.Add(H);
+                Hangar.Add(h);
             }
         }
 

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.ApplicationModel.VoiceCommands;
-using Windows.UI;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;

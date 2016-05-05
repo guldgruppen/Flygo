@@ -5,9 +5,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:FlygoApp.ViewModels"
+    xmlns:converters="using:FlygoApp.Converters"
     x:Class="FlygoApp.Views.RedcapTaskListPage"
     mc:Ignorable="d">
     <Page.Resources>
+            <converters:BaggersColorConverter x:Key="BaggersColorConverter"/>
+            <converters:CrewColorConverter x:Key="CrewColorConverter"/>
+            <converters:CatersColorConverter x:Key="CatersColorConverter"/>
+            <converters:MekanikerColorConverter x:Key="MekanikerColorConverter"/>
+            <converters:FuelerColorConverter x:Key="FuelerColorConverter"/>
         <DataTemplate x:Key="flyinformation">
             <Grid/>
         </DataTemplate>
@@ -79,33 +85,47 @@
                 <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="{Binding Afgang, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,30,0,0" FontSize="20" Foreground="White"/>
                 <TextBlock x:Name="textBlock2_Copy3" TextWrapping="Wrap" Text="{Binding FlyType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,30,0,0" FontSize="20" Foreground="White"/>
                 <TextBlock x:Name="textBlock2_Copy4" TextWrapping="Wrap" Text="{Binding Hangar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,30,0,0" FontSize="20" Foreground="White"/>
-                <StackPanel Margin="0,30,0,0">
-                    <Button x:Name="button1" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="35" Margin="0,0,10,0">
-                        <Button.Background>
-                            <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/Uddeleger opgavebutton.png"/>
-                        </Button.Background>
-                    </Button>
-                </StackPanel>
+                <StackPanel Margin="0,30,0,0"/>
             </StackPanel>
         </StackPanel>
         <StackPanel x:Name="højre" Grid.Column="3" Margin="0" Grid.Row="2" Background="#A5000000">
-            <StackPanel Height="73" Background="Black"/>
-            <StackPanel Height="73" Background="#FF6F3D3D"/>
-            <StackPanel Height="73" Background="#FF659A32"/>
-            <StackPanel Height="73" Background="#FF5A2180"/>
-            <StackPanel Height="73" Background="#FF2D8580"/>
-            <StackPanel Height="73" Background="Red"/>
+            <StackPanel>
+                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="{Binding SelectedCountdown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FFCDEC41"/>
+
+            </StackPanel>
+            <StackPanel  Background="{Binding OpgaveAdapter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MekanikerColorConverter}}" Orientation="Horizontal">
+                <TextBlock Text="Mekaniker" Foreground="Black" FontSize="25" VerticalAlignment="Center" Margin="10,10,0,10" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="50,0,0,0"  Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="20" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+            <StackPanel Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CrewColorConverter}}" Orientation="Horizontal">
+                <TextBlock Text="Crew" Foreground="Black" FontSize="25" VerticalAlignment="Center" Margin="10,10,0,10" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="50,0,0,0"  Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="20" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+            <StackPanel  Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CatersColorConverter}}" Orientation="Horizontal">
+                <TextBlock Text="Caters" Foreground="Black" FontSize="25" VerticalAlignment="Center" Margin="10,10,0,10" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="50,0,0,0"  Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="20" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+            <StackPanel  Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BaggersColorConverter}}" Orientation="Horizontal">
+                <TextBlock Text="Baggers" Foreground="Black" FontSize="25" VerticalAlignment="Center" Margin="10,10,0,10" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="50,0,0,0"  Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="20" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+            <StackPanel  Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FuelerColorConverter}}" Orientation="Horizontal">
+                <TextBlock Text="Fuelers" Foreground="Black" FontSize="25" VerticalAlignment="Center" Margin="10,10,0,10" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="50,0,0,0"  Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="20" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+            <StackPanel  Background="WhiteSmoke" Orientation="Horizontal">
+                <TextBlock Text="Rengøring" Foreground="Black" FontSize="25" VerticalAlignment="Center" Margin="10,10,0,10" FontWeight="Bold"></TextBlock>
+                <TextBlock Margin="50,0,0,0"  Text="2016-01-01 bla bla" Foreground="Black" FontSize="20" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+            <Button x:Name="button1" Content="Start opgave" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="25" Background="#CCDCBA21" Command="{Binding SendOpgaveCommand}"/>
+
+
         </StackPanel>
         <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Height="58" Width="64" Command="{Binding BackCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.RowSpan="2">
             <Button.Background>
                 <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/1462365794_circle-back-arrow-outline-stroke.png"/>
             </Button.Background>
         </Button>
-        <!--<Button x:Name="button" Content="" HorizontalAlignment="Stretch" Margin="30,10,40,10" VerticalAlignment="Stretch" Command="{Binding BackCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            <Button.Background>
-                <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/TilbageknapFlygo1.png"/>
-            </Button.Background>
-        </Button>-->
 
     </Grid>
 </Page>

@@ -22,6 +22,11 @@ namespace FlygoApp.Models
             
         }
 
+        public Hangar(string placering)
+        {
+            Placering = placering;
+        }
+
         public override string ToString()
         {
             return $"{Placering}";

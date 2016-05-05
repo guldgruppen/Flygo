@@ -51,7 +51,7 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Height="50" Orientation="Horizontal" VerticalAlignment="Bottom">
-                <Button x:Name="button" Content="Fuldført" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="247" Background="#E526F71D" FontSize="22.667"/>
+                <Button x:Name="button" Content="Fuldført" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="247" Background="#E526F71D" FontSize="22.667" Command="{Binding SendSvarCommand}"/>
                 <Button x:Name="button1" Content="Fejl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="254" Background="#E5FF2B2B" FontSize="22.667" Foreground="White"/>
             </StackPanel>
         </StackPanel>

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FlygoApp.Commons;
 using FlygoApp.Exceptions;
 using FlygoApp.Persistency;
@@ -12,7 +8,7 @@ namespace FlygoApp.Models
 {
     public class RedcapHandler
     {
-        public DTOSingleton DtoSingleton;
+        private readonly DtoFlyruteSingleton _dtoFlyrute;
 
         public SearchListSingleton SearchListSingleton;
 
@@ -22,7 +18,7 @@ namespace FlygoApp.Models
 
         public RedcapHandler()
         {
-            DtoSingleton = DTOSingleton.GetInstance();
+            _dtoFlyrute = DtoFlyruteSingleton.GetInstance();
             SearchListSingleton = SearchListSingleton.GetInstance();
             NavigationService = new NavigationService();
         }
@@ -41,9 +37,9 @@ namespace FlygoApp.Models
                 throw new DateWrongException("Datoen er mindre end dagsdato. Udfyld venligst korrekt dato!");
             }
 
-            int x = DtoSingleton.FlyruteListe.Count;
+            int x = _dtoFlyrute.FlyruteListe.Count;
 
-            foreach (var rute in DtoSingleton.FlyruteListe)
+            foreach (var rute in _dtoFlyrute.FlyruteListe)
             {
                 x--;
                 if (rute.FlyRuteNummer == flyRuteNr && rute.Afgang.Date == dateTime.Date)

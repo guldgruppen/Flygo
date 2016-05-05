@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using Windows.Security.Cryptography.Core;
 using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls;
 using FlygoApp.Commons;
 using FlygoApp.Exceptions;
 using FlygoApp.Models;
-using FlygoApp.Persistency;
-using FlygoApp.Views;
+using System;
 
 namespace FlygoApp.ViewModels
 {
@@ -19,7 +13,7 @@ namespace FlygoApp.ViewModels
         public string BrugerNavn { get; set; }
         public string Kodeord { get; set; }
 
-        private LoginHandler handler; 
+        private LoginHandler _handler; 
 
         private ICommand _goToHomePageCommand;
         public ICommand GoToHomePageCommand
@@ -31,23 +25,28 @@ namespace FlygoApp.ViewModels
         public LoginViewModel()
         {
             WindowStyling.WindowAndTitleBarStyling();
-            handler = new LoginHandler();
+            _handler = new LoginHandler();
         }
 
-        public void Login()
+        public async void Login()
         {
+            MessageDialog messageDialog;
             try
             {
-                handler.CheckLoginInfo(BrugerNavn, Kodeord);
+                _handler.CheckLoginInfo(BrugerNavn, Kodeord);
             }
             catch (NullOrEmptyException ex)
             {
-                new MessageDialog(ex.Message).ShowAsync();
+                messageDialog = new MessageDialog(ex.Message);
+                await messageDialog.ShowAsync();
             }
             catch (InfoWrongException ex)
             {
-                new MessageDialog(ex.Message).ShowAsync(); 
+                messageDialog = new MessageDialog(ex.Message);
+                await messageDialog.ShowAsync();
             }
+            
+            
         }
         
 

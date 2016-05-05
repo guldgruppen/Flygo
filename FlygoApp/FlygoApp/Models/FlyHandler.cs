@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using FlygoApp.Persistency;
 
 namespace FlygoApp.Models
@@ -13,8 +7,7 @@ namespace FlygoApp.Models
     {
         public ObservableCollection<Fly> Fly { get; set; }
 
-        public DTOSingleton Dto = DTOSingleton.GetInstance();
-
+        private DtoFlySingleton _dtoFly = DtoFlySingleton.GetInstance();
 
         public FlyHandler()
         {
@@ -23,7 +16,7 @@ namespace FlygoApp.Models
 
         public void LoadDtoFly()
         {
-            foreach (var f in Dto.FlyListe)
+            foreach (var f in _dtoFly.FlyListe)
             {
                 Fly.Add(f);
             }

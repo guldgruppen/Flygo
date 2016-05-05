@@ -13,6 +13,12 @@ namespace FlygoApp.ViewModels
 {
     public class RedcapViewModel
     {
+        #region instance fields
+        private RedcapHandler handler;
+        private ICommand _searchCommand; 
+        #endregion
+        #region Properties
+
         public DateTimeOffset DateTimeNow { get; set; }
         public string FlyRuteNr { get; set; }
 
@@ -24,16 +30,13 @@ namespace FlygoApp.ViewModels
             set { _searchCommand = value; }
         }
 
-        private RedcapHandler handler;
-        private ICommand _searchCommand;
-
-
+        #endregion
         public RedcapViewModel()
         {
             handler = new RedcapHandler();
             DateTimeNow = DateTimeOffset.Now;
         }
-
+        #region Metoder
         public async void Search()
         {
             DateTime tempt = DateTime.Parse(Date.ToString());
@@ -57,6 +60,7 @@ namespace FlygoApp.ViewModels
 
 
 
-        }
+        } 
+        #endregion
     }
 }

@@ -21,13 +21,13 @@ namespace UnitTestFlygoApp
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void TestFlyruteNummer()
         {
             string nummer = "";
             Assert.ThrowsException<ArgumentException>(() => flyrute.CheckFlyruteNummer(nummer));
         }
         [TestMethod]
-        public void TestMethod2()
+        public void TestFlyruteAfgangAnkomstDif()
         {
             DateTime fra = DateTime.Now;
             DateTime til = DateTime.Now;
@@ -35,7 +35,7 @@ namespace UnitTestFlygoApp
         }
 
         [TestMethod]
-        public void TestMethod3()
+        public void TestFlyId()
         {
             int id = -1;
             Assert.ThrowsException<IndexOutOfRangeException>(() => flyrute.CheckFlyId(id));
@@ -44,13 +44,13 @@ namespace UnitTestFlygoApp
 
 
         [TestMethod]
-        public void TestMethod4()
+        public void TestHangarId()
         {
             int id = -1;
             Assert.ThrowsException<IndexOutOfRangeException>(() => flyrute.CheckHangarId(id));
         }
         [TestMethod]
-        public void TestMethod5()
+        public void TestFlyruteAfgangAnkomstFørNu()
         {
             DateTime fra = DateTime.Now.AddDays(-4);
             DateTime til = DateTime.Now.AddDays(-1);
