@@ -108,6 +108,8 @@
     <Compile Include="Converters\CrewColorConverter.cs" />
     <Compile Include="Converters\FuelerColorConverter.cs" />
     <Compile Include="Converters\MekanikerColorConverter.cs" />
+    <Compile Include="Converters\RedcapColorConverter.cs" />
+    <Compile Include="Converters\RengøringColorConverter.cs" />
     <Compile Include="Exceptions\DateWrongException.cs" />
     <Compile Include="Exceptions\InfoWrongException.cs" />
     <Compile Include="Exceptions\NullOrEmptyException.cs" />

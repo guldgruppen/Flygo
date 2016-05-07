@@ -22,6 +22,7 @@ namespace FlygoApp.ViewModels
         private DtoHangarSingleton _dtoHangar;
         private DtoFlySingleton _dtoFly;
         private DtoOpgaveArkivSingleton _dtoOpgaveArkiv;
+        private LoginBrugerSingleton _loginBruger;
         private ICommand _backCommand;
         private NavigationService navigationService;
         private string _selectedMekanikerDetails;
@@ -110,6 +111,8 @@ namespace FlygoApp.ViewModels
             }
         }
 
+        public string LogInBrugernavn { get; set; }
+        public string LogInRole { get; set; }
         public ICommand BackCommand
         {
             get { return _backCommand ?? (new RelayCommand((() => navigationService.Navigate(typeof(RedcapTaskPage))))); }
@@ -120,11 +123,9 @@ namespace FlygoApp.ViewModels
             get { return _sendOpgaveCommand ?? (_sendOpgaveCommand = new RelayCommand(Send)); }
             set { _sendOpgaveCommand = value; }
         }
-
         public FlyRute FlyRute { get; set; }
         public HubConnection Conn { get; set; }
         public IHubProxy Proxy { get; set; }
-
         public OpgaveAdapter OpgaveAdapter
         {
             get { return _opgaveAdapter; }
@@ -143,13 +144,16 @@ namespace FlygoApp.ViewModels
             navigationService = new NavigationService();
             _dtoHangar = DtoHangarSingleton.GetInstance();
             _dtoFly = DtoFlySingleton.GetInstance();  
-            _dtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance();            
+            _dtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance();  
+            _loginBruger = LoginBrugerSingleton.GetInstance();
+            LogInBrugernavn = _loginBruger.BrugerLogIn.BrugerNavn;
+                    
             var s = SearchListSingleton.GetInstance();
+
             FlyRute = s.FlyRute;
             OpgaveArkiv = _dtoOpgaveArkiv.OpgaveArkivListe.Single(x => x.FlyRuteId.Equals(FlyRute.Id));
             FlyRuteNr = FlyRute.FlyRuteNummer;
             Afgang = FlyRute.AfgangSomText;
-            Ankomst = FlyRute.AnkomstSomText;
             FlyId = FlyRute.FlyId;
             HangarId = FlyRute.HangarId;
             GetFlyObject();

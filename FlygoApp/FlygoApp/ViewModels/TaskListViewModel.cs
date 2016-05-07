@@ -189,13 +189,10 @@ namespace FlygoApp.ViewModels
                     int flyId = FlyruteHandler.Flyruter[_selectedOpgaveIndex].FlyId;
                     SelectedHangarDetail = HangarHandler.Hangar.Single(x => x.Id.Equals(hangarId)).ToString();
                     SelectedFlyDetail = FlyHandler.Fly.Single(x => x.Id.Equals(flyId)).ToString();
-
-                    //SelectedDateTimeFra = FlyruteRegisterProp.Flyruter[_selectedIndex].Ankomst.ToString("MM/dd/yyyy HH:mm");
-
+             
                     DateTime til = FlyruteHandler.Flyruter[_selectedOpgaveIndex].Afgang;
                     TimeSpan span = til - DateTime.Now;
                     SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
-                    
 
                     OpgaveArkiv selectedArkiv =
                         FlyruteHandler.OpgaveArkivs.Single(

@@ -26,7 +26,7 @@ namespace FlygoApp.ViewModels
 
         public ICommand SearchCommand
         {
-            get { return _searchCommand ?? (new RelayCommand(Search)); }
+            get { return _searchCommand ?? (new RelayCommand(SearchAsync)); }
             set { _searchCommand = value; }
         }
 
@@ -37,10 +37,9 @@ namespace FlygoApp.ViewModels
             DateTimeNow = DateTimeOffset.Now;
         }
         #region Metoder
-        public async void Search()
+        public async void SearchAsync()
         {
             DateTime tempt = DateTime.Parse(Date.ToString());
-
             try
             {
                 handler.SearchForFlyRute(FlyRuteNr, tempt);
