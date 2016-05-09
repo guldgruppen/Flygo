@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 using FlygoApp.Models;
+using FlyGoWebService.Models;
 
 namespace FlygoApp.Persistency
 {

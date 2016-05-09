@@ -10,6 +10,7 @@ namespace FlyGoWebService.Models
         public FlygoEntityFrameworkContext()
             : base("name=FlygoEntityFrameworkContext")
         {
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<BrugerLogIn> BrugerLogIn { get; set; }

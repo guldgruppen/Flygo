@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Windows.UI.Popups;
 using FlygoApp.Persistency;
 using FlyGoWebService.Models;
@@ -20,6 +21,11 @@ namespace FlygoApp.Models
         {
             try
             {
+                bool match = Regex.IsMatch(nummer, @"^[a-zA-Z]{2}\d{3,4}$");
+                if (!match)
+                {
+                    throw new ArgumentException("Flyrutenummer skal starte 2 bogstaver og slutte med 4 cifre");
+                }
                 FlyRute rute = FlyRuteFactory.CreateFlyrute(afgang, ankomst, flyid, hangarid, nummer);
                 await DtoFlyrute.PostFlyRuter(rute);
                 DtoFlyrute.Loadflyrute();

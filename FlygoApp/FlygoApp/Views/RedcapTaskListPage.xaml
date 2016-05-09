@@ -14,6 +14,8 @@
         <converters:CatersColorConverter x:Key="CatersColorConverter"/>
         <converters:MekanikerColorConverter x:Key="MekanikerColorConverter"/>
         <converters:FuelerColorConverter x:Key="FuelerColorConverter"/>
+        <converters:RengøringColorConverter x:Key="RengøringColorConverter"/>
+        <converters:RedcapColorConverter x:Key="RedcapColorConverter"/>
     </Page.Resources>
     <Grid>
         <Grid.DataContext>
@@ -73,7 +75,7 @@
             <StackPanel Grid.Column="2">
                 <Button Name="Fuldført" Content="Fuldført" Command="{Binding SendKorrektSvarCommand}" Background="#FF3AF53A" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
                 <Button Name="Fejl" Content="Fejl" Command="{Binding SendFejlSvarCommand}" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
-                <Button Name="Forsinket" Content="Forsinket" Background="Yellow" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
+                <Button Name="Forsinket" Command="{Binding SendForsinketSvarCommand}" Content="Forsinket" Background="Yellow" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
                 <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" ItemsSource="{Binding ForsinketTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedForsinketTidIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             </StackPanel>
@@ -92,63 +94,63 @@
             </Grid.RowDefinitions>
             <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MekanikerColorConverter}}">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="269*"/>
-                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Name="MekanikerOpgave" Margin="20,0,0,0" Text="Mekaniker" FontSize="25" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-                <TextBlock Name="MekanikerTimestamp" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock Name="MekanikerTimestamp" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
             <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CatersColorConverter}}" Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="269*"/>
-                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="CaterOpgave" Margin="20,0,0,0" Text="Cater" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="CaterTimestamp" Margin="0" Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Name="CaterOpgave" Margin="20,32,0,32" Text="Cater" FontSize="25" VerticalAlignment="Center" Height="33"/>
+                <TextBlock Name="CaterTimestamp" Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
-            <Grid Background="LightBlue" Grid.Row="2">
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RengøringColorConverter}}" Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="269*"/>
-                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Name="RengøringOpgave" Margin="20,0,0,0" Text="Rengøring" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="RengøringTimestamp" Margin="0" Text="{Binding SelectedRengøringDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock Name="RengøringTimestamp" Text="{Binding SelectedRengøringDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
             </Grid>
             <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FuelerColorConverter}}" Grid.Row="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="269*"/>
-                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Name="FuelerOpgave" Margin="20,0,0,0" Text="Fueler" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="FuelerTimestamp" Margin="0" Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock Name="FuelerTimestamp"  Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
             </Grid>
-            <Grid Background="Purple" Grid.Row="4">
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RedcapColorConverter}}" Grid.Row="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="269*"/>
-                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Name="RedcapOpgave" Margin="20,0,0,0" Text="Redcap" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="RedcapTimestamp" Margin="0" Text="20:20.00" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock Name="RedcapTimestamp" Text="{Binding SelectedRedcapDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
             </Grid>
             <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BaggersColorConverter}}" Grid.Row="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="269*"/>
-                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Name="BaggersOpgave" Margin="20,0,0,0" Text="Baggers" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="BaggersTimestamp" Margin="0" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock Name="BaggersTimestamp" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
             </Grid>
             <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CrewColorConverter}}" Grid.Row="6">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="269*"/>
-                    <ColumnDefinition Width="61*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Name="CrewOpgave" Margin="20,0,0,0" Text="Crew" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="CrewTimestamp" Margin="0" Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock Name="CrewTimestamp"  Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
             </Grid>
         </Grid>

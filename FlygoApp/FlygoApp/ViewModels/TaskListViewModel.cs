@@ -2,9 +2,11 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
 using FlygoApp.Models;
@@ -38,6 +40,8 @@ namespace FlygoApp.ViewModels
         private readonly DispatcherTimer _timer = new DispatcherTimer();
         private string _selectedCountdown;
         private ICommand _sendOpgaveCommand;
+        private string _flyruteNr;
+        private Uri _imageSource;
 
         #endregion
         #region Properties         
@@ -46,12 +50,42 @@ namespace FlygoApp.ViewModels
         public FlyHandler FlyHandler { get; set; }
         public HangarHandler HangarHandler { get; set; }
         public FlyruteHandler FlyruteHandler { get; set; }
-        public string FlyruteNr { get; set; }
+
+        public string FlyruteNr
+        {
+            get { return _flyruteNr; }
+            set
+            {
+                _flyruteNr = value;
+                bool match = Regex.IsMatch(value, @"^[a-zA-Z]{2}\d{3,4}$");
+                if (match)
+                {
+                    ImageSource = new Uri("ms-appx:///Assets/1461516027_accepted_48.png");
+                }
+                else
+                {
+                    ImageSource = new Uri("ms-appx:///Assets/1461516030_cancel_48.png");
+                }
+                OnPropertyChanged();
+            }
+        }
+
         public DateTimeOffset AfgangDato { get; set; }
         public DateTimeOffset AnkomstDato { get; set; }
         public TimeSpan AfgangTid { get; set; }
         public TimeSpan AnkomstTid { get; set; }
         public DateTimeOffset MinYear { get; set; } = DateTime.Now;
+
+        public Uri ImageSource
+        {
+            get { return _imageSource; }
+            set
+            {
+                _imageSource = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string SelectedMekanikerDetails
         {
             get { return _selectedMekanikerDetails; }
@@ -315,6 +349,7 @@ namespace FlygoApp.ViewModels
 
         public void CreateFlyrute()
         {
+            
             int flyId = FlyHandler.Fly[SelectedFlyIndex].Id;
             int hangarId = HangarHandler.Hangar[SelectedHangarIndex].Id;
             DateTime fra = DateAndTimeConverter(AnkomstDato, AnkomstTid);

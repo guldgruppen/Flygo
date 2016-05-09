@@ -42,6 +42,7 @@ namespace FlygoApp.ViewModels
         private ICommand _sendForsinketSvarCommand;
         private ICommand _sendFejlSvarCommand;
         private int _selectedForsinketTidIndex;
+        private string _selectedRedcapDetails;
 
         #endregion
         #region Properties
@@ -107,6 +108,16 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string SelectedRedcapDetails
+        {
+            get { return _selectedRedcapDetails; }
+            set
+            {
+                _selectedRedcapDetails = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string SelectedCountdown
         {
             get { return _selectedCountdown; }
@@ -245,7 +256,7 @@ namespace FlygoApp.ViewModels
 
         public void SendForsinketSvar()
         {
-            TimeSpan chosenSpan = TimeSpan.FromTicks(ForsinketTid[SelectedForsinketTidIndex]);            
+            TimeSpan chosenSpan = TimeSpan.FromMinutes(ForsinketTid[SelectedForsinketTidIndex]);       
             Proxy.Invoke("BroadcastForsinketSvar", _loginBruger.BrugerLogIn.RoleId, chosenSpan);           
         }
 
@@ -280,6 +291,14 @@ namespace FlygoApp.ViewModels
                     case 6:
                         SelectedCatersDetails = DateTime.Now.ToString();
                         OpgaveArkiv.Caters = DateTime.Now;
+                        break;
+                    case 7:
+                        SelectedRedcapDetails = DateTime.Now.ToString();
+                        OpgaveArkiv.Redcap = DateTime.Now;
+                        break;
+                    case 9:
+                        SelectedRengøringDetails = DateTime.Now.ToString();
+                        OpgaveArkiv.Rengøring = DateTime.Now;
                         break;
                 }
                 OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv,FlyRute);
@@ -318,6 +337,14 @@ namespace FlygoApp.ViewModels
                         SelectedCatersDetails = "Forventet klar: " + forsinketTime;
                         OpgaveArkiv.Caters = forsinketTime;
                         break;
+                    case 7:
+                        SelectedRedcapDetails = "Forventet klar: " + forsinketTime;
+                        OpgaveArkiv.Redcap = forsinketTime;
+                        break;
+                    case 9:
+                        SelectedRengøringDetails = "Forventet klar: " + forsinketTime;
+                        OpgaveArkiv.Rengøring = forsinketTime;
+                        break;
                 }
                 OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, FlyRute);
                 OnPropertyChanged();
@@ -354,6 +381,14 @@ namespace FlygoApp.ViewModels
                         SelectedCatersDetails = "Fejl";
                         OpgaveArkiv.Caters = DateTime.Parse("01-01-1995");
                         break;
+                    case 7:
+                        SelectedRedcapDetails = "Fejl";
+                        OpgaveArkiv.Redcap = DateTime.Parse("01-01-1995");
+                        break;
+                    case 9:
+                        SelectedRengøringDetails = "Fejl";
+                        OpgaveArkiv.Rengøring = DateTime.Parse("01-01-1995");
+                        break;
                 }
                 OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, FlyRute);
                 OnPropertyChanged();
@@ -386,7 +421,8 @@ namespace FlygoApp.ViewModels
             SelectedCatersDetails = (OpgaveArkiv.Caters == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Caters.ToString();
             SelectedCrewDetails = (OpgaveArkiv.Crew == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Crew.ToString();
             SelectedFulersDetails = (OpgaveArkiv.Fuelers == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Fuelers.ToString();
-            //SelectedRengøringDetails = (OpgaveArkiv.Cleaner == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Cleaner.ToString();
+            SelectedRengøringDetails = (OpgaveArkiv.Rengøring == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Rengøring.ToString();
+            SelectedRedcapDetails = (OpgaveArkiv.Redcap == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Redcap.ToString();
         }
 
         public void GetFlyObject()

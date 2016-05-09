@@ -31,15 +31,15 @@ namespace FlygoApp.Converters
             {
                 OpgaveArkiv arkiv = opg.OpgaveArkiv;
                 FlyRute rute = opg.FlyRute;
-                if (arkiv.Baggers == DateTime.Parse("01-01-1995"))
+                if (arkiv.Rengøring == DateTime.Parse("01-01-1995"))
                     return red;
                 if (rute.Ankomst > DateTime.Now)
                     return white;
-                if (arkiv.Baggers > rute.Afgang)
+                if (arkiv.Rengøring > rute.Afgang)
                     return yellow;
-                if (arkiv.Baggers < rute.Afgang)
+                if (arkiv.Rengøring < rute.Afgang)
                     return green;
-                if (arkiv.Baggers == null)
+                if (arkiv.Rengøring == null)
                     return white;
             }
             return null;
