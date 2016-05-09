@@ -53,7 +53,7 @@ namespace FlygoApp.Models
                     if (login.Value.RoleId == 2 || login.Value.RoleId == 3 || login.Value.RoleId == 4 ||
                         login.Value.RoleId == 5 || login.Value.RoleId == 6)
                     {
-                        NavigationService.Navigate(typeof(WorkerPage));
+                        NavigationService.Navigate(typeof(RedcapTaskPage));
                         break;
                     }
                     if (login.Value.RoleId == 7)

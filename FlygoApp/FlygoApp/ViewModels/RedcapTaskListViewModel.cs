@@ -186,7 +186,11 @@ namespace FlygoApp.ViewModels
             navigationService = new NavigationService();
             SignalRConnection();
             InitData();
-            InsertForsinketTidValgmuligheder();         
+            InsertForsinketTidValgmuligheder();
+
+            Proxy.On<int>("KorrektSvar", OnKorrektMessage);
+            Proxy.On<int>("FejlSvar", OnFejlMessage);
+            Proxy.On<int, TimeSpan>("ForsinketSvar", OnForsinketMessage);
 
         }
 
@@ -228,9 +232,7 @@ namespace FlygoApp.ViewModels
             Proxy = Conn.CreateHubProxy("OpgaveHub");
             Conn.Start();
 
-            Proxy.On<int>("KorrektSvar", OnKorrektMessage);
-            Proxy.On<int>("FejlSvar", OnFejlMessage);
-            Proxy.On<int,TimeSpan>("ForsinketSvar", OnForsinketMessage);
+            
 
         }
 
