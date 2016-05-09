@@ -42,7 +42,7 @@ namespace FlygoApp.Models
             foreach (var rute in _dtoFlyrute.FlyruteListe)
             {
                 x--;
-                if (rute.FlyRuteNummer == flyRuteNr && rute.Afgang.Date == dateTime.Date)
+                if (String.Equals(rute.FlyRuteNummer, flyRuteNr, StringComparison.CurrentCultureIgnoreCase) && rute.Afgang.Date == dateTime.Date)
                 {
                     SearchListSingleton.FlyRute = rute;
                     NavigationService.Navigate(typeof(RedcapTaskListPage));
@@ -51,7 +51,7 @@ namespace FlygoApp.Models
 
                 if (x == 0)
                 {
-                    throw new InfoWrongException("Flyrute nummeret og dato matcher ikke. Prøv venligst igen!");
+                    throw new InfoWrongException("Flyrute nummeret eller dato matcher ikke. Prøv venligst igen!");
                 }
 
             }
