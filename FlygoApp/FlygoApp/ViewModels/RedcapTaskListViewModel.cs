@@ -386,7 +386,7 @@ namespace FlygoApp.ViewModels
             SelectedCatersDetails = (OpgaveArkiv.Caters == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Caters.ToString();
             SelectedCrewDetails = (OpgaveArkiv.Crew == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Crew.ToString();
             SelectedFulersDetails = (OpgaveArkiv.Fuelers == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Fuelers.ToString();
-            //SelectedRengøringDetails = (OpgaveArkiv.Reng == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Fuelers.ToString();
+            //SelectedRengøringDetails = (OpgaveArkiv.Cleaner == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Cleaner.ToString();
         }
 
         public void GetFlyObject()

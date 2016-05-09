@@ -230,7 +230,7 @@
     <Compile Include="Hubs\OpgaveHub.cs" />
     <Compile Include="Models\BrugerLogIn.cs" />
     <Compile Include="Models\Fly.cs" />
-    <Compile Include="Models\FlygoContext.cs" />
+    <Compile Include="Models\FlygoEntityFrameworkContext.cs" />
     <Compile Include="Models\FlyRute.cs" />
     <Compile Include="Models\Hangar.cs" />
     <Compile Include="Models\OpgaveArkiv.cs" />

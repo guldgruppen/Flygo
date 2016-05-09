@@ -14,7 +14,7 @@ namespace FlyGoWebService.Controllers
 {
     public class FliesController : ApiController
     {
-        private FlygoContext db = new FlygoContext();
+        private FlygoEntityFrameworkContext db = new FlygoEntityFrameworkContext();
 
         // GET: api/Flies
         public IQueryable<Fly> GetFly()

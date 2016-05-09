@@ -25,6 +25,8 @@ namespace FlyGoWebService.Models
 
         public DateTime? Rengøring { get; set; }
 
+        public DateTime? Redcap { get; set; }
+
         public virtual FlyRute FlyRute { get; set; }
     }
 }

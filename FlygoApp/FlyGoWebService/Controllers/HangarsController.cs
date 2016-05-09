@@ -14,7 +14,7 @@ namespace FlyGoWebService.Controllers
 {
     public class HangarsController : ApiController
     {
-        private FlygoContext db = new FlygoContext();
+        private FlygoEntityFrameworkContext db = new FlygoEntityFrameworkContext();
 
         // GET: api/Hangars
         public IQueryable<Hangar> GetHangar()

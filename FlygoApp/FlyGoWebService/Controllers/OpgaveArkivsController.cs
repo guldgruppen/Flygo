@@ -14,7 +14,7 @@ namespace FlyGoWebService.Controllers
 {
     public class OpgaveArkivsController : ApiController
     {
-        private FlygoContext db = new FlygoContext();
+        private FlygoEntityFrameworkContext db = new FlygoEntityFrameworkContext();
 
         // GET: api/OpgaveArkivs
         public IQueryable<OpgaveArkiv> GetOpgaveArkiv()

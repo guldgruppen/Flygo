@@ -74,7 +74,8 @@
                 <Button Name="Fuldført" Content="Fuldført" Command="{Binding SendKorrektSvarCommand}" Background="#FF3AF53A" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
                 <Button Name="Fejl" Content="Fejl" Command="{Binding SendFejlSvarCommand}" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
                 <Button Name="Forsinket" Content="Forsinket" Background="Yellow" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
-                
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" ItemsSource="{Binding ForsinketTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedForsinketTidIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
             </StackPanel>
 
         </Grid>
@@ -94,7 +95,7 @@
                     <ColumnDefinition Width="269*"/>
                     <ColumnDefinition Width="61*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="MekanikerOpgave" Margin="20,31,0,31" Text="Mekaniker" FontSize="25" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                <TextBlock Name="MekanikerOpgave" Margin="20,0,0,0" Text="Mekaniker" FontSize="25" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
                 <TextBlock Name="MekanikerTimestamp" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
             </Grid>
             <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CatersColorConverter}}" Grid.Row="1">
