@@ -34,7 +34,7 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/Planesample1.jpg"/>
         </Grid.Background>
-        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="118" Grid.Row="1" VerticalAlignment="Top" Width="880" Background="#66000000">
+        <Grid Grid.Column="1" Grid.Row="1" Background="#66000000">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="139*"/>
                 <ColumnDefinition Width="126*"/>
@@ -47,7 +47,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Name="Rolle" Text="Rolle:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
-                    <TextBlock Name="Mekaniker" Text="Mekaniker" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock Name="Mekaniker" Text="{Binding LogInRole, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
                 <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding SelectedCountdown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="40" Foreground="#FFC9F500" HorizontalAlignment="Center" Margin="0"/>
             </StackPanel>
@@ -71,15 +71,15 @@
 
             </StackPanel>
             <StackPanel Grid.Column="2">
-                <Button Name="Fuldført" Content="Fuldført" Background="#FF3AF53A" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
+                <Button Name="Fuldført" Content="Fuldført" Command="{Binding SendKorrektSvarCommand}" Background="#FF3AF53A" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
+                <Button Name="Fejl" Content="Fejl" Command="{Binding SendFejlSvarCommand}" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
                 <Button Name="Forsinket" Content="Forsinket" Background="Yellow" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
-                <Button Name="Fejl" Content="Fejl" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
-
+                
             </StackPanel>
 
         </Grid>
 
-        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="452" Grid.Row="3" VerticalAlignment="Top" Width="880">
+        <Grid Grid.Column="1" Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="54*"/>
                 <RowDefinition Height="54*"/>
@@ -89,41 +89,69 @@
                 <RowDefinition Height="54*"/>
                 <RowDefinition Height="54*"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MekanikerColorConverter}}" Height="65" VerticalAlignment="Top" Width="880">
-                <TextBlock Name="MekanikerOpgave" Margin="20,0,0,0" Text="Mekaniker" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="MekanikerTimestamp" Margin="50,0,0,0" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CatersColorConverter}}" Height="65" Grid.Row="1" VerticalAlignment="Top" Width="880">
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MekanikerColorConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="269*"/>
+                    <ColumnDefinition Width="61*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="MekanikerOpgave" Margin="20,31,0,31" Text="Mekaniker" FontSize="25" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                <TextBlock Name="MekanikerTimestamp" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+            </Grid>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CatersColorConverter}}" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="269*"/>
+                    <ColumnDefinition Width="61*"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Name="CaterOpgave" Margin="20,0,0,0" Text="Cater" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="CaterTimestamp" Margin="50,0,0,0" Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="LightBlue" Height="64" Grid.Row="2" VerticalAlignment="Top" Width="880">
+                <TextBlock Name="CaterTimestamp" Margin="0" Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Background="LightBlue" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="269*"/>
+                    <ColumnDefinition Width="61*"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Name="RengøringOpgave" Margin="20,0,0,0" Text="Rengøring" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="RengøringTimestamp" Margin="50,0,0,0" Text="{Binding SelectedRengøringDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock Name="RengøringTimestamp" Margin="0" Text="{Binding SelectedRengøringDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FuelerColorConverter}}" Height="65" Grid.Row="3" VerticalAlignment="Top" Width="880">
+            </Grid>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FuelerColorConverter}}" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="269*"/>
+                    <ColumnDefinition Width="61*"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Name="FuelerOpgave" Margin="20,0,0,0" Text="Fueler" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="FuelerTimestamp" Margin="50,0,0,0" Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock Name="FuelerTimestamp" Margin="0" Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="Purple" Height="64" Grid.Row="4" VerticalAlignment="Top" Width="880">
+            </Grid>
+            <Grid Background="Purple" Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="269*"/>
+                    <ColumnDefinition Width="61*"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Name="RedcapOpgave" Margin="20,0,0,0" Text="Redcap" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="RedcapTimestamp" Margin="50,0,0,0" Text="20:20.00" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock Name="RedcapTimestamp" Margin="0" Text="20:20.00" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BaggersColorConverter}}" Height="65" Grid.Row="5" VerticalAlignment="Top" Width="880">
+            </Grid>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BaggersColorConverter}}" Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="269*"/>
+                    <ColumnDefinition Width="61*"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Name="BaggersOpgave" Margin="20,0,0,0" Text="Baggers" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="BaggersTimestamp" Margin="50,0,0,0" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock Name="BaggersTimestamp" Margin="0" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CrewColorConverter}}" Height="64" Grid.Row="6" VerticalAlignment="Top" Width="880">
+            </Grid>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CrewColorConverter}}" Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="269*"/>
+                    <ColumnDefinition Width="61*"/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Name="CrewOpgave" Margin="20,0,0,0" Text="Crew" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="CrewTimestamp" Margin="50,0,0,0" Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock Name="CrewTimestamp" Margin="0" Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
-            </StackPanel>
+            </Grid>
         </Grid>
-        <Grid Grid.Column="1" HorizontalAlignment="Left" Height="72" Grid.Row="2" VerticalAlignment="Top" Width="880" Background="#66000000">
+        <Grid Grid.Column="1" Grid.Row="2" Background="#66000000">
             <StackPanel HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="880" Orientation="Horizontal">
                 <Rectangle Fill="#FFFF0000" Stroke="Black" Width="35" Margin="0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text=" = Fejl" VerticalAlignment="Center" FontSize="25" Foreground="White"/>

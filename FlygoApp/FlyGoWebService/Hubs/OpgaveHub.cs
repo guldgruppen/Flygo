@@ -14,9 +14,19 @@ namespace FlyGoWebService.Hubs
             Clients.All.Broadcast(rute);
         }
 
-        public void BroadcastSvar(int roleId)
+        public void BroadcastKorrektSvar(int roleId)
         {
-            Clients.All.Svar(roleId);
+            Clients.All.KorrektSvar(roleId);
+        }
+
+        public void BroadcastForsinketSvar(int roleId, TimeSpan time)
+        {
+            Clients.All.ForsinketSvar(roleId,time);
+        }
+
+        public void BroadcastFejlSvar(int roleId)
+        {
+            Clients.All.FejlSvar(roleId);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -23,6 +24,7 @@ namespace FlygoApp.ViewModels
         private DtoFlySingleton _dtoFly;
         private DtoOpgaveArkivSingleton _dtoOpgaveArkiv;
         private LoginBrugerSingleton _loginBruger;
+        private DtoRolesSingleton _dtoRoles;
         private ICommand _backCommand;
         private NavigationService navigationService;
         private string _selectedMekanikerDetails;
@@ -35,6 +37,11 @@ namespace FlygoApp.ViewModels
         private DispatcherTimer _timer = new DispatcherTimer();
         private string _selectedRengøringDetails;
         private OpgaveAdapter _opgaveAdapter;
+        private string _logInRole;
+        private ICommand _sendKorrektSvarCommand;
+        private ICommand _sendForsinketSvarCommand;
+        private ICommand _sendFejlSvarCommand;
+        private int _selectedForsinketTidIndex;
 
         #endregion
         #region Properties
@@ -100,7 +107,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedCountdown
         {
             get { return _selectedCountdown; }
@@ -110,19 +116,56 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string LogInBrugernavn { get; set; }
-        public string LogInRole { get; set; }
+        public List<int> ForsinketTid { get; set; } = new List<int>();
+
+        public int SelectedForsinketTidIndex
+        {
+            get { return _selectedForsinketTidIndex; }
+            set
+            {
+                _selectedForsinketTidIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string LogInRole
+        {
+            get { return _logInRole; }
+            set
+            {
+                _logInRole = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand BackCommand
         {
             get { return _backCommand ?? (new RelayCommand((() => navigationService.Navigate(typeof(RedcapTaskPage))))); }
             set { _backCommand = value; }
         }
-        public ICommand SendOpgaveCommand
+
+        public ICommand SendKorrektSvarCommand
         {
-            get { return _sendOpgaveCommand ?? (_sendOpgaveCommand = new RelayCommand(Send)); }
-            set { _sendOpgaveCommand = value; }
+            get { return _sendKorrektSvarCommand ?? (_sendKorrektSvarCommand = new RelayCommand(SendKorrektSvar)); }
+            set { _sendKorrektSvarCommand = value; }
         }
+
+        public ICommand SendForsinketSvarCommand    
+        {
+            get
+            {
+                return _sendForsinketSvarCommand ?? (_sendForsinketSvarCommand = new RelayCommand(SendForsinketSvar));
+            }
+            set { _sendForsinketSvarCommand = value; }
+        }
+
+        public ICommand SendFejlSvarCommand
+        {
+            get { return _sendFejlSvarCommand ?? (_sendFejlSvarCommand = new RelayCommand(SendFejlSvar)); }
+            set { _sendFejlSvarCommand = value; }
+        }
+
         public FlyRute FlyRute { get; set; }
         public HubConnection Conn { get; set; }
         public IHubProxy Proxy { get; set; }
@@ -140,14 +183,23 @@ namespace FlygoApp.ViewModels
 
         public RedcapTaskListViewModel()
         {
-            SignalRConnection();
             navigationService = new NavigationService();
+            SignalRConnection();
+            InitData();
+            InsertForsinketTidValgmuligheder();         
+
+        }
+
+        public void InitData()
+        {
             _dtoHangar = DtoHangarSingleton.GetInstance();
-            _dtoFly = DtoFlySingleton.GetInstance();  
-            _dtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance();  
+            _dtoFly = DtoFlySingleton.GetInstance();
+            _dtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance();
             _loginBruger = LoginBrugerSingleton.GetInstance();
+            _dtoRoles = DtoRolesSingleton.GetInstance();
             LogInBrugernavn = _loginBruger.BrugerLogIn.BrugerNavn;
-                    
+
+            LogInRole = _dtoRoles.RolesListe.First(x => x.Id.Equals(_loginBruger.BrugerLogIn.RoleId)).ToString();
             var s = SearchListSingleton.GetInstance();
 
             FlyRute = s.FlyRute;
@@ -158,30 +210,49 @@ namespace FlygoApp.ViewModels
             HangarId = FlyRute.HangarId;
             GetFlyObject();
             GetHangarObject();
-            OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv,FlyRute);
+            OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, FlyRute);
             OpgaveArkivinit();
             CountdownToDeadline();
-
-            Proxy.On<int>("Svar", OnMessage);
-
-
         }
 
+        public void InsertForsinketTidValgmuligheder()
+        {
+            for (int i = 5; i < 120; i+=5)
+            {
+                ForsinketTid.Add(i);
+            }
+        }
         public void SignalRConnection()
         {
             Conn = new HubConnection("http://flygowebservice1.azurewebsites.net/");
             Proxy = Conn.CreateHubProxy("OpgaveHub");
             Conn.Start();
+
+            Proxy.On<int>("KorrektSvar", OnKorrektMessage);
+            Proxy.On<int>("FejlSvar", OnFejlMessage);
+            Proxy.On<int,TimeSpan>("ForsinketSvar", OnForsinketMessage);
+
         }
 
         #region Metoder
 
-        public void Send()
+        public void SendKorrektSvar()
         {
-            Proxy.Invoke("BroadcastOpgave", FlyRute);
+            Proxy.Invoke("BroadcastKorrektSvar", _loginBruger.BrugerLogIn.RoleId);
         }
 
-        private async void OnMessage(int roleId)
+        public void SendForsinketSvar()
+        {
+            TimeSpan chosenSpan = TimeSpan.FromTicks(ForsinketTid[SelectedForsinketTidIndex]);            
+            Proxy.Invoke("BroadcastForsinketSvar", _loginBruger.BrugerLogIn.RoleId, chosenSpan);           
+        }
+
+        public void SendFejlSvar()
+        {
+            Proxy.Invoke("BroadcastFejlSvar", _loginBruger.BrugerLogIn.RoleId);
+        }
+
+        private async void OnKorrektMessage(int roleId)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -217,7 +288,79 @@ namespace FlygoApp.ViewModels
 
             });
         }
+        private async void OnForsinketMessage(int roleId, TimeSpan span)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                DateTime forsinketTime = FlyRute.Afgang + span;
+                
+                switch (roleId)
+                {
+                    case 2:
+                        SelectedMekanikerDetails = "Forventet klar: "+forsinketTime;
+                        OpgaveArkiv.Mekanikker = forsinketTime;
+                        break;
+                    case 3:
+                        SelectedCrewDetails = "Forventet klar: " + forsinketTime;
+                        OpgaveArkiv.Crew = forsinketTime;
+                        break;
+                    case 4:
+                        SelectedFulersDetails = "Forventet klar: " + forsinketTime;
+                        OpgaveArkiv.Fuelers = forsinketTime;
+                        break;
+                    case 5:
+                        SelectedBaggersDetails = "Forventet klar: " + forsinketTime;
+                        OpgaveArkiv.Baggers = forsinketTime;
+                        break;
+                    case 6:
+                        SelectedCatersDetails = "Forventet klar: " + forsinketTime;
+                        OpgaveArkiv.Caters = forsinketTime;
+                        break;
+                }
+                OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, FlyRute);
+                OnPropertyChanged();
+                _dtoOpgaveArkiv.UpdateOpgaveArkiv(OpgaveArkiv, OpgaveArkiv.Id);
 
+                _dtoOpgaveArkiv.LoadOpgaveArkiv();
+
+            });
+        }
+        private async void OnFejlMessage(int roleId)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+
+                switch (roleId)
+                {
+                    case 2:
+                        SelectedMekanikerDetails = "Fejl";
+                        OpgaveArkiv.Mekanikker = DateTime.Parse("01-01-1995");
+                        break;
+                    case 3:
+                        SelectedCrewDetails = "Fejl";
+                        OpgaveArkiv.Crew = DateTime.Parse("01-01-1995");
+                        break;
+                    case 4:
+                        SelectedFulersDetails = "Fejl";
+                        OpgaveArkiv.Fuelers = DateTime.Parse("01-01-1995");
+                        break;
+                    case 5:
+                        SelectedBaggersDetails = "Fejl";
+                        OpgaveArkiv.Baggers = DateTime.Parse("01-01-1995");
+                        break;
+                    case 6:
+                        SelectedCatersDetails = "Fejl";
+                        OpgaveArkiv.Caters = DateTime.Parse("01-01-1995");
+                        break;
+                }
+                OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, FlyRute);
+                OnPropertyChanged();
+                _dtoOpgaveArkiv.UpdateOpgaveArkiv(OpgaveArkiv, OpgaveArkiv.Id);
+
+                _dtoOpgaveArkiv.LoadOpgaveArkiv();
+
+            });
+        }
         public void CountdownToDeadline()
         {
             _timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
@@ -236,12 +379,12 @@ namespace FlygoApp.ViewModels
             DateTime til = FlyRute.Afgang;
             TimeSpan span = til - DateTime.Now;
             SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
-            SelectedMekanikerDetails = OpgaveArkiv.Mekanikker.ToString();
-            SelectedBaggersDetails = OpgaveArkiv.Baggers.ToString();
-            SelectedCatersDetails = OpgaveArkiv.Caters.ToString();
-            SelectedCrewDetails = OpgaveArkiv.Crew.ToString();
-            SelectedFulersDetails = OpgaveArkiv.Fuelers.ToString();
-
+            SelectedMekanikerDetails = (OpgaveArkiv.Mekanikker == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Mekanikker.ToString();
+            SelectedBaggersDetails = (OpgaveArkiv.Baggers == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Baggers.ToString();
+            SelectedCatersDetails = (OpgaveArkiv.Caters == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Caters.ToString();
+            SelectedCrewDetails = (OpgaveArkiv.Crew == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Crew.ToString();
+            SelectedFulersDetails = (OpgaveArkiv.Fuelers == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Fuelers.ToString();
+            //SelectedRengøringDetails = (OpgaveArkiv.Reng == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Fuelers.ToString();
         }
 
         public void GetFlyObject()

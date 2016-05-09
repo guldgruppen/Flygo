@@ -133,6 +133,7 @@
     <Compile Include="Persistency\DtoFlySingleton.cs" />
     <Compile Include="Persistency\DtoHangarSingleton.cs" />
     <Compile Include="Persistency\DtoOpgaveArkivSingleton.cs" />
+    <Compile Include="Persistency\DtoRolesSingleton.cs" />
     <Compile Include="Persistency\LoginBrugerSingleton.cs" />
     <Compile Include="Persistency\SearchListSingleton.cs" />
     <Compile Include="Properties\Annotations.cs" />

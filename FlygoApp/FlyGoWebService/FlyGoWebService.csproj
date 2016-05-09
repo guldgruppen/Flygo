@@ -278,6 +278,7 @@
     <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy %285%29.pubxml" />
+    <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy %286%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
