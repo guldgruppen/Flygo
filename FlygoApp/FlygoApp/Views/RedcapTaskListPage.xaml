@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:FlygoApp.ViewModels"
     xmlns:converters="using:FlygoApp.Converters"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
     x:Class="FlygoApp.Views.RedcapTaskListPage"
     mc:Ignorable="d">
     <Page.Resources>
@@ -44,39 +45,44 @@
             </Grid.ColumnDefinitions>
             <StackPanel Margin="10,0,0,0">
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-                    <TextBlock Name="Brugernavn" Text="Brugernavn:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
-                    <TextBlock Name="Navn" Text="{Binding LogInBrugernavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Brugernavn" Text="Brugernavn:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Navn" Text="{Binding LogInBrugernavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Name="Rolle" Text="Rolle:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
-                    <TextBlock Name="Mekaniker" Text="{Binding LogInRole, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Rolle" Text="Rolle:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Mekaniker" Text="{Binding LogInRole, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
                 <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding SelectedCountdown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="40" Foreground="#FFC9F500" HorizontalAlignment="Center" Margin="0"/>
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="10,0,0,0">
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-                    <TextBlock Name="Flyrute" Text="Flyrute:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
-                    <TextBlock Name="Navn1" Text="{Binding FlyRuteNr}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Flyrute" Text="Flyrute:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Navn1" Text="{Binding FlyRuteNr}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-                    <TextBlock Name="Flyrute2" Text="Fly:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
-                    <TextBlock Name="Navn12" Text="{Binding FlyType}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Flyrute2" Text="Fly:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Navn12" Text="{Binding FlyType}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-                    <TextBlock Name="Flyrute3" Text="Hangar" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
-                    <TextBlock Name="Navn3" Text="{Binding Hangar}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Flyrute3" Text="Hangar" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Navn3" Text="{Binding Hangar}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-                    <TextBlock Name="Flyrute13" Text="Afgang:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
-                    <TextBlock Name="Navn13" Text="{Binding Afgang}" Margin="5,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Flyrute13" Text="Afgang:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Navn13" Text="{Binding Afgang}" Margin="5,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
 
             </StackPanel>
             <StackPanel Grid.Column="2">
-                <Button Name="Fuldført" Content="Fuldført" Command="{Binding SendKorrektSvarCommand}" Background="#FF3AF53A" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
-                <Button Name="Fejl" Content="Fejl" Command="{Binding SendFejlSvarCommand}" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
-                <Button Name="Forsinket" Command="{Binding SendForsinketSvarCommand}" Content="Forsinket" Background="Yellow" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
-                <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" ItemsSource="{Binding ForsinketTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedForsinketTidIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button x:Name="Fuldført" Content="Fuldført" Command="{Binding SendKorrektSvarCommand}" Background="#FF3AF53A" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                <Button x:Name="Fejl" Content="Fejl" Command="{Binding SendFejlSvarCommand}" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
+                <Button x:Name="Forsinket"  Content="Forsinket" Background="Yellow" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold">
+                    <Button.Flyout>
+                        <Flyout x:Name="ButtonFlyOut" Placement="Bottom" >
+                            <ComboBox x:Name="comboBoxx" Width="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" ItemsSource="{Binding ForsinketTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedForsinketTidIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Forsinket tid (min)" /> 
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
 
             </StackPanel>
 
@@ -92,65 +98,65 @@
                 <RowDefinition Height="54*"/>
                 <RowDefinition Height="54*"/>
             </Grid.RowDefinitions>
-            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MekanikerColorConverter}}">
+            <Grid Background="{Binding OpgaveAdapter, Converter={StaticResource MekanikerColorConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="MekanikerOpgave" Margin="20,0,0,0" Text="Mekaniker" FontSize="25" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
-                <TextBlock Name="MekanikerTimestamp" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="MekanikerOpgave" Margin="20,0,0,0" Text="Mekaniker" FontSize="25" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                <TextBlock x:Name="MekanikerTimestamp" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
-            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CatersColorConverter}}" Grid.Row="1">
+            <Grid Background="{Binding OpgaveAdapter, Converter={StaticResource CatersColorConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="CaterOpgave" Margin="20,32,0,32" Text="Cater" FontSize="25" VerticalAlignment="Center" Height="33"/>
-                <TextBlock Name="CaterTimestamp" Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="CaterOpgave" Margin="20,0, 0, 0" Text="Cater" FontSize="25" VerticalAlignment="Center" Height="33"/>
+                <TextBlock x:Name="CaterTimestamp" Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
-            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RengøringColorConverter}}" Grid.Row="2">
+            <Grid Background="{Binding OpgaveAdapter, Converter={StaticResource RengøringColorConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="RengøringOpgave" Margin="20,0,0,0" Text="Rengøring" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="RengøringTimestamp" Text="{Binding SelectedRengøringDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="RengøringOpgave" Margin="20,0,0,0" Text="Rengøring" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock x:Name="RengøringTimestamp" Text="{Binding SelectedRengøringDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
             </Grid>
-            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FuelerColorConverter}}" Grid.Row="3">
+            <Grid Background="{Binding OpgaveAdapter, Converter={StaticResource FuelerColorConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="FuelerOpgave" Margin="20,0,0,0" Text="Fueler" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="FuelerTimestamp"  Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="FuelerOpgave" Margin="20,0,0,0" Text="Fueler" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock x:Name="FuelerTimestamp"  Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
             </Grid>
-            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RedcapColorConverter}}" Grid.Row="4">
+            <Grid Background="{Binding OpgaveAdapter, Converter={StaticResource RedcapColorConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="RedcapOpgave" Margin="20,0,0,0" Text="Redcap" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="RedcapTimestamp" Text="{Binding SelectedRedcapDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="RedcapOpgave" Margin="20,0,0,0" Text="Redcap" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock x:Name="RedcapTimestamp" Text="{Binding SelectedRedcapDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
             </Grid>
-            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BaggersColorConverter}}" Grid.Row="5">
+            <Grid Background="{Binding OpgaveAdapter, Converter={StaticResource BaggersColorConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="BaggersOpgave" Margin="20,0,0,0" Text="Baggers" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="BaggersTimestamp" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="BaggersOpgave" Margin="20,0,0,0" Text="Baggers" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock x:Name="BaggersTimestamp" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
             </Grid>
-            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CrewColorConverter}}" Grid.Row="6">
+            <Grid Background="{Binding OpgaveAdapter, Converter={StaticResource CrewColorConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="6*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Name="CrewOpgave" Margin="20,0,0,0" Text="Crew" FontSize="25" VerticalAlignment="Center"/>
-                <TextBlock Name="CrewTimestamp"  Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="CrewOpgave" Margin="20,0,0,0" Text="Crew" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock x:Name="CrewTimestamp"  Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
 
             </Grid>
         </Grid>

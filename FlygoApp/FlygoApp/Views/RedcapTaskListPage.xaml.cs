@@ -26,5 +26,7 @@ namespace FlygoApp.Views
         {
             this.InitializeComponent();
         }
+
+        
     }
 }
