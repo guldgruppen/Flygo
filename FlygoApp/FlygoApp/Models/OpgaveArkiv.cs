@@ -1,12 +1,13 @@
-using FlyGoWebService.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FlygoApp.Models
+
+
+namespace FlyGoWebService.Models
 {
-   
+
     [Table("OpgaveArkiv")]
     public partial class OpgaveArkiv
     {
@@ -23,6 +24,10 @@ namespace FlygoApp.Models
         public DateTime? Fuelers { get; set; }
 
         public DateTime? Mekanikker { get; set; }
+
+        public DateTime? Rengøring { get; set; }
+
+        public DateTime? Redcap { get; set; }
 
         public virtual FlyRute FlyRute { get; set; }
     }

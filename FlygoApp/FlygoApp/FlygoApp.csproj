@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FlygoApp</RootNamespace>
     <AssemblyName>FlygoApp</AssemblyName>
-    <DefaultLanguage>da-DK</DefaultLanguage>
+    <DefaultLanguage>da</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
@@ -108,6 +108,8 @@
     <Compile Include="Converters\CrewColorConverter.cs" />
     <Compile Include="Converters\FuelerColorConverter.cs" />
     <Compile Include="Converters\MekanikerColorConverter.cs" />
+    <Compile Include="Converters\RedcapColorConverter.cs" />
+    <Compile Include="Converters\RengøringColorConverter.cs" />
     <Compile Include="Exceptions\DateWrongException.cs" />
     <Compile Include="Exceptions\InfoWrongException.cs" />
     <Compile Include="Exceptions\NullOrEmptyException.cs" />
@@ -126,16 +128,35 @@
     <Compile Include="Models\OpgaveArkiv.cs" />
     <Compile Include="Models\RedcapHandler.cs" />
     <Compile Include="Models\Roles.cs" />
-    <Compile Include="Persistency\DTOSingleton.cs" />
+    <Compile Include="Persistency\DtoBrugerLoginSingleton.cs" />
+    <Compile Include="Persistency\DtoFlyruteSingleton.cs" />
+    <Compile Include="Persistency\DtoFlySingleton.cs" />
+    <Compile Include="Persistency\DtoHangarSingleton.cs" />
+    <Compile Include="Persistency\DtoOpgaveArkivSingleton.cs" />
+    <Compile Include="Persistency\DtoRolesSingleton.cs" />
+    <Compile Include="Persistency\LoginBrugerSingleton.cs" />
     <Compile Include="Persistency\SearchListSingleton.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\BrugerDataViewModel.cs" />
+    <Compile Include="ViewModels\HangarDataViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RedcapTaskListViewModel.cs" />
     <Compile Include="ViewModels\RedcapViewModel.cs" />
+    <Compile Include="ViewModels\WorkerViewModel.cs" />
     <Compile Include="Views\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BrugerDataPage.xaml.cs">
+      <DependentUpon>BrugerDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlyDataPage.xaml.cs">
+      <DependentUpon>FlyDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HangarDataPage.xaml.cs">
+      <DependentUpon>HangarDataPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IndstillingerPage.xaml.cs">
       <DependentUpon>IndstillingerPage.xaml</DependentUpon>
@@ -182,6 +203,8 @@
     <Content Include="Assets\1461286384_Stats.png" />
     <Content Include="Assets\1461286405_Settings.png" />
     <Content Include="Assets\1461351761_01.png" />
+    <Content Include="Assets\1461516027_accepted_48.png" />
+    <Content Include="Assets\1461516030_cancel_48.png" />
     <Content Include="Assets\1462312231_airplane.png" />
     <Content Include="Assets\1462312246_user.png" />
     <Content Include="Assets\1462365794_circle-back-arrow-outline-stroke.png" />
@@ -203,6 +226,18 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="Views\AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BrugerDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlyDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HangarDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

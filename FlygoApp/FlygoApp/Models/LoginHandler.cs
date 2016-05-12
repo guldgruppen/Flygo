@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlygoApp.Commons;
+﻿using FlygoApp.Commons;
 using FlygoApp.Exceptions;
 using FlygoApp.Persistency;
 using FlygoApp.Views;
@@ -12,12 +7,14 @@ namespace FlygoApp.Models
 {
     public class LoginHandler
     {
-        public DTOSingleton s;
+        private readonly DtoBrugerLoginSingleton _dtoBruger;
         public NavigationService NavigationService;
+        private readonly LoginBrugerSingleton _loginBruger;
 
         public LoginHandler()
         {
-            s = DTOSingleton.GetInstance();
+            _dtoBruger = DtoBrugerLoginSingleton.GetInstance();
+            _loginBruger = LoginBrugerSingleton.GetInstance();
             NavigationService = new NavigationService();
         }
 
@@ -38,33 +35,30 @@ namespace FlygoApp.Models
                 throw new NullOrEmptyException("Kodeordet er tomt. Venligst udfyld dette!");
             }
 
-            int x = s.BrugerLogInsDictionary.Count;
+            int x = _dtoBruger.BrugerLogInsDictionary.Count;
 
-            foreach (var login in s.BrugerLogInsDictionary)
+            foreach (var login in _dtoBruger.BrugerLogInsDictionary)
             {
-                x--; 
-
+                x--;
+                _loginBruger.BrugerLogIn.BrugerNavn = login.Key;
+                _loginBruger.BrugerLogIn.RoleId = login.Value.RoleId;
+                
                 if (login.Key == brugernavn && login.Value.Password == kodeord)
                 {
                     if (login.Value.RoleId == 1)
-                    {
+                    {                        
                         NavigationService.Navigate(typeof(HomePage));
                         break;
                     }
                     if (login.Value.RoleId == 2 || login.Value.RoleId == 3 || login.Value.RoleId == 4 ||
-                        login.Value.RoleId == 5 || login.Value.RoleId == 6)
-                    {
-                        NavigationService.Navigate(typeof(WorkerPage));
-                        break;
-                    }
-                    if (login.Value.RoleId == 7)
+                        login.Value.RoleId == 5 || login.Value.RoleId == 6 || login.Value.RoleId == 7 || login.Value.RoleId == 9)
                     {
                         NavigationService.Navigate(typeof(RedcapTaskPage));
                         break;
                     }
                     if (login.Value.RoleId == 8)
                     {
-                        NavigationService.Navigate(typeof(HomePage));
+                        NavigationService.Navigate(typeof(AdminPage));
                         break;
                     }
 

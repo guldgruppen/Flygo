@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Text.RegularExpressions;
 using Windows.UI.Popups;
-using FlygoApp.Commons;
 using FlygoApp.Persistency;
 using FlyGoWebService.Models;
-using Newtonsoft.Json.Bson;
 
 namespace FlygoApp.Models
 {
     public class FlyruteHandler : IHandler
     {
-        private ICommand _createFlyruteCommand;
 
-        public DTOSingleton  DTO { get; set; }
+        public DtoFlyruteSingleton DtoFlyrute;
+        public DtoOpgaveArkivSingleton DtoOpgaveArkiv;
         public ObservableCollection<FlyRute> Flyruter { get; set; }
         public ObservableCollection<OpgaveArkiv> OpgaveArkivs { get; set; }
         public IFactory FlyRuteFactory { get; set; }
@@ -26,13 +21,18 @@ namespace FlygoApp.Models
         {
             try
             {
+                bool match = Regex.IsMatch(nummer, @"^[a-zA-Z]{2}\d{3,4}$");
+                if (!match)
+                {
+                    throw new ArgumentException("Flyrutenummer skal starte 2 bogstaver og slutte med 4 cifre");
+                }
                 FlyRute rute = FlyRuteFactory.CreateFlyrute(afgang, ankomst, flyid, hangarid, nummer);
-                await DTO.PostFlyRuter(rute);
-                DTO.Loadflyrute();
-                int id = DTO.FlyruteListe.Last().Id;
+                await DtoFlyrute.PostFlyRuter(rute);
+                DtoFlyrute.Loadflyrute();
+                int id = DtoFlyrute.FlyruteListe.Last().Id;
 
                 OpgaveArkiv temp = new OpgaveArkiv() {FlyRuteId = id};              
-                await DTO.PostOpgaveArkiv(temp);
+                await DtoOpgaveArkiv.PostOpgaveArkiv(temp);
             }
             catch (ArgumentException ex)
             {
@@ -48,8 +48,9 @@ namespace FlygoApp.Models
         }
 
         public FlyruteHandler()
-        {   
-            DTO = DTOSingleton.GetInstance();
+        {
+            DtoFlyrute = DtoFlyruteSingleton.GetInstance();
+            DtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance();
             FlyRuteFactory = new FlyRuteFactory();
             Flyruter = new ObservableCollection<FlyRute>();
             OpgaveArkivs = new ObservableCollection<OpgaveArkiv>();
@@ -61,7 +62,7 @@ namespace FlygoApp.Models
             
         }
 
-        public FlyRute Get(int Id)
+        public FlyRute Get(int id)
         {
             return null;
         }
@@ -78,14 +79,14 @@ namespace FlygoApp.Models
 
         
 
-        public void LoadDTOFlyruter()
+        public void LoadDtoFlyruter()
         {
-            foreach (var flyrute in DTO.FlyruteListe)
+            foreach (var flyrute in DtoFlyrute.FlyruteListe)
             {               
                 Flyruter.Add(flyrute);
 
             }
-            foreach (var opgaveArkiv in DTO.OpgaveArkivListe)
+            foreach (var opgaveArkiv in DtoOpgaveArkiv.OpgaveArkivListe)
             {
                 OpgaveArkivs.Add(opgaveArkiv);
             }

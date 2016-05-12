@@ -5,107 +5,167 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:FlygoApp.ViewModels"
+    xmlns:converters="using:FlygoApp.Converters"
     x:Class="FlygoApp.Views.RedcapTaskListPage"
     mc:Ignorable="d">
     <Page.Resources>
-        <DataTemplate x:Key="flyinformation">
-            <Grid/>
-        </DataTemplate>
-        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
-            <StackPanel/>
-        </ItemsPanelTemplate>
-        <DataTemplate x:Key="DataTemplate1">
-            <Grid Height="436" Width="388">
-                <StackPanel HorizontalAlignment="Left" Height="433" VerticalAlignment="Top" Width="389" Margin="0,0,-1,0" Orientation="Horizontal">
-                    <StackPanel x:Name="Venstre" Width="194.5">
-                        <TextBlock x:Name="textBlock" TextWrapping="Wrap"  FontSize="20" FontWeight="Bold" Text="Flyrute nummer:" Margin="0,10,0,20"/>
-                        <TextBlock x:Name="textBlock_Copy" TextWrapping="Wrap"  FontSize="20" FontWeight="Bold" Margin="0,0,0,20" Text="Ankomst"/>
-                        <TextBlock x:Name="textBlock_Copy1" TextWrapping="Wrap"  FontSize="20" FontWeight="Bold" Margin="0,0,0,20">
-                        	<Run Text="Afgang"/>
-                        	<Run Text=":"/>
-                        </TextBlock>
-                        <TextBlock x:Name="textBlock_Copy2" TextWrapping="Wrap"  FontSize="20" FontWeight="Bold" Text="Fly type:" Margin="0,0,0,20"/>
-                        <TextBlock x:Name="textBlock_Copy3" TextWrapping="Wrap"  FontSize="20" FontWeight="Bold" Text="Hangar:"/>
-                    </StackPanel>
-                    <StackPanel x:Name="Højre" Width="194.5">
-                        <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding FlyRuteNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,20" FontSize="20"/>
-                        <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding AnkomstSomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Margin="0,0,0,20"/>
-                        <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="{Binding AfgangSomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Margin="0,0,0,20"/>
-                        <TextBlock x:Name="textBlock2_Copy1" TextWrapping="Wrap" Text="{Binding Fly.FlyNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Margin="0,0,0,20"/>
-                        <TextBlock x:Name="textBlock2_Copy2" TextWrapping="Wrap" Text="{Binding Hangar.Placering, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Margin="0,0,0,20"/>
-                    </StackPanel>
-                </StackPanel>
-            </Grid>
-        </DataTemplate>
+        <converters:BaggersColorConverter x:Key="BaggersColorConverter"/>
+        <converters:CrewColorConverter x:Key="CrewColorConverter"/>
+        <converters:CatersColorConverter x:Key="CatersColorConverter"/>
+        <converters:MekanikerColorConverter x:Key="MekanikerColorConverter"/>
+        <converters:FuelerColorConverter x:Key="FuelerColorConverter"/>
+        <converters:RengøringColorConverter x:Key="RengøringColorConverter"/>
+        <converters:RedcapColorConverter x:Key="RedcapColorConverter"/>
     </Page.Resources>
-
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="68*"/>
-            <RowDefinition Height="97*"/>
-            <RowDefinition Height="438*"/>
-            <RowDefinition Height="117*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="140*"/>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="161*"/>
-            <ColumnDefinition Width="400*"/>
-            <ColumnDefinition Width="179*"/>
-        </Grid.ColumnDefinitions>
         <Grid.DataContext>
             <ViewModels:RedcapTaskListViewModel/>
         </Grid.DataContext>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="59*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="226*"/>
+            <RowDefinition Height="28*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="22*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/Planesample1.jpg"/>
         </Grid.Background>
-        <StackPanel HorizontalAlignment="Left" Height="100" Margin="0,43,0,0" VerticalAlignment="Top" Width="400" Grid.Column="1" Grid.RowSpan="2">
-            <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Fly Information" FontWeight="Bold" FontStyle="Italic" FontSize="35" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Height="100" Margin="0,43,0,0" VerticalAlignment="Top" Width="400" Grid.Column="3" Grid.RowSpan="2">
-            <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Worker Information" FontWeight="Bold" FontStyle="Italic" FontSize="35" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </StackPanel>
-        <StackPanel x:Name="venstre" Grid.Column="1" Grid.Row="2" Background="#A5000000" Orientation="Horizontal">
-            <StackPanel x:Name="Venstre" Width="200">
-                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Flyrute nummer:" FontSize="20" FontWeight="Bold" Margin="10,10,0,0" Foreground="White"/>
-                <TextBlock x:Name="textBlock1_Copy" TextWrapping="Wrap" Text="Ankomst:" Margin="10,30,0,0" FontSize="20" FontWeight="Bold" Foreground="White"/>
-                <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Afgang:" Margin="10,30,0,0" FontSize="20" FontWeight="Bold" Foreground="White"/>
-                <TextBlock x:Name="textBlock1_Copy3" TextWrapping="Wrap" Text="Flytype:" Margin="10,30,0,0" FontSize="20" FontWeight="Bold" Foreground="White"/>
-                <TextBlock x:Name="textBlock1_Copy2" TextWrapping="Wrap" Text="Hangar:" Margin="10,30,0,0" FontSize="20" FontWeight="Bold" Foreground="White"/>
-            </StackPanel>
-            <StackPanel x:Name="Højre" Width="200">
-                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding FlyRuteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,10,0,0" FontSize="20" Foreground="White"/>
-                <TextBlock x:Name="textBlock2_Copy1" TextWrapping="Wrap" Text="{Binding Ankomst, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,30,0,0" FontSize="20" Foreground="White"/>
-                <TextBlock x:Name="textBlock2_Copy" TextWrapping="Wrap" Text="{Binding Afgang, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,30,0,0" FontSize="20" Foreground="White"/>
-                <TextBlock x:Name="textBlock2_Copy3" TextWrapping="Wrap" Text="{Binding FlyType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,30,0,0" FontSize="20" Foreground="White"/>
-                <TextBlock x:Name="textBlock2_Copy4" TextWrapping="Wrap" Text="{Binding Hangar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,30,0,0" FontSize="20" Foreground="White"/>
-                <StackPanel Margin="0,30,0,0">
-                    <Button x:Name="button1" Content="" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="35" Margin="0,0,10,0">
-                        <Button.Background>
-                            <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/Uddeleger opgavebutton.png"/>
-                        </Button.Background>
-                    </Button>
+        <Grid Grid.Column="1" Grid.Row="1" Background="#66000000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="139*"/>
+                <ColumnDefinition Width="126*"/>
+                <ColumnDefinition Width="175*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="10,0,0,0">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <TextBlock Name="Brugernavn" Text="Brugernavn:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock Name="Navn" Text="{Binding LogInBrugernavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="Rolle" Text="Rolle:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock Name="Mekaniker" Text="{Binding LogInRole, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                </StackPanel>
+                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding SelectedCountdown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="40" Foreground="#FFC9F500" HorizontalAlignment="Center" Margin="0"/>
             </StackPanel>
-        </StackPanel>
-        <StackPanel x:Name="højre" Grid.Column="3" Margin="0" Grid.Row="2" Background="#A5000000">
-            <StackPanel Height="73" Background="Black"/>
-            <StackPanel Height="73" Background="#FF6F3D3D"/>
-            <StackPanel Height="73" Background="#FF659A32"/>
-            <StackPanel Height="73" Background="#FF5A2180"/>
-            <StackPanel Height="73" Background="#FF2D8580"/>
-            <StackPanel Height="73" Background="Red"/>
-        </StackPanel>
-        <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Height="58" Width="64" Command="{Binding BackCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.RowSpan="2">
-            <Button.Background>
-                <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/1462365794_circle-back-arrow-outline-stroke.png"/>
-            </Button.Background>
-        </Button>
-        <!--<Button x:Name="button" Content="" HorizontalAlignment="Stretch" Margin="30,10,40,10" VerticalAlignment="Stretch" Command="{Binding BackCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            <Button.Background>
-                <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/TilbageknapFlygo1.png"/>
-            </Button.Background>
-        </Button>-->
+            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <TextBlock Name="Flyrute" Text="Flyrute:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock Name="Navn1" Text="{Binding FlyRuteNr}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <TextBlock Name="Flyrute2" Text="Fly:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock Name="Navn12" Text="{Binding FlyType}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <TextBlock Name="Flyrute3" Text="Hangar" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock Name="Navn3" Text="{Binding Hangar}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                    <TextBlock Name="Flyrute13" Text="Afgang:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock Name="Navn13" Text="{Binding Afgang}" Margin="5,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                </StackPanel>
+
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+                <Button Name="Fuldført" Content="Fuldført" Command="{Binding SendKorrektSvarCommand}" Background="#FF3AF53A" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
+                <Button Name="Fejl" Content="Fejl" Command="{Binding SendFejlSvarCommand}" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
+                <Button Name="Forsinket" Command="{Binding SendForsinketSvarCommand}" Content="Forsinket" Background="Yellow" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"></Button>
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" ItemsSource="{Binding ForsinketTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedForsinketTidIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+                <RowDefinition Height="54*"/>
+            </Grid.RowDefinitions>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MekanikerColorConverter}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="MekanikerOpgave" Margin="20,0,0,0" Text="Mekaniker" FontSize="25" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+                <TextBlock Name="MekanikerTimestamp" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CatersColorConverter}}" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="CaterOpgave" Margin="20,32,0,32" Text="Cater" FontSize="25" VerticalAlignment="Center" Height="33"/>
+                <TextBlock Name="CaterTimestamp" Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RengøringColorConverter}}" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="RengøringOpgave" Margin="20,0,0,0" Text="Rengøring" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock Name="RengøringTimestamp" Text="{Binding SelectedRengøringDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            </Grid>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FuelerColorConverter}}" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="FuelerOpgave" Margin="20,0,0,0" Text="Fueler" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock Name="FuelerTimestamp"  Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+
+            </Grid>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource RedcapColorConverter}}" Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="RedcapOpgave" Margin="20,0,0,0" Text="Redcap" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock Name="RedcapTimestamp" Text="{Binding SelectedRedcapDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+
+            </Grid>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BaggersColorConverter}}" Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="BaggersOpgave" Margin="20,0,0,0" Text="Baggers" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock Name="BaggersTimestamp" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+
+            </Grid>
+            <Grid Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CrewColorConverter}}" Grid.Row="6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Name="CrewOpgave" Margin="20,0,0,0" Text="Crew" FontSize="25" VerticalAlignment="Center"/>
+                <TextBlock Name="CrewTimestamp"  Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="25" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Center"/>
+
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="2" Background="#66000000">
+            <StackPanel HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="880" Orientation="Horizontal">
+                <Rectangle Fill="#FFFF0000" Stroke="Black" Width="35" Margin="0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text=" = Fejl" VerticalAlignment="Center" FontSize="25" Foreground="White"/>
+                <Rectangle Fill="Yellow" Stroke="Black" Width="35" Margin="60,0,0,0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text=" = Forsinket" VerticalAlignment="Center" FontSize="25" Foreground="White"/>
+                <Rectangle Fill="Green" Stroke="Black" Width="35" Margin="60,0,0,0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text=" = Fuldført" VerticalAlignment="Center" FontSize="25" Foreground="White"/>
+                <Rectangle Fill="AntiqueWhite" Stroke="Black" Width="35" Margin="60,0,0,0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text=" = Ikke startet" VerticalAlignment="Center" FontSize="25" Foreground="White"/>
+            </StackPanel>
+        </Grid>
 
     </Grid>
 </Page>

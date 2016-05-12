@@ -14,7 +14,7 @@ namespace FlyGoWebService.Controllers
 {
     public class BrugerLogInsController : ApiController
     {
-        private FlygoEntityContext db = new FlygoEntityContext();
+        private FlygoEntityFrameworkContext db = new FlygoEntityFrameworkContext();
 
         // GET: api/BrugerLogIns
         public IQueryable<BrugerLogIn> GetBrugerLogIn()

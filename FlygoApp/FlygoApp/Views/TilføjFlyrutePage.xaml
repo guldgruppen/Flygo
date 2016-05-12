@@ -46,7 +46,14 @@
                 <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Dato til:" FontSize="29.333" Height="64" Foreground="White" Margin="0,60,0,0"/>
             </StackPanel>
             <StackPanel Margin="0,2,1,0" Grid.Column="1">
-                <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="24" Margin="0,5,0,0" Padding="10,3,6,5"/>
+                <Grid Height="44">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="439*"/>
+                        <ColumnDefinition Width="59*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyruteNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="24" Padding="10,3,6,5"/>
+                    <Image x:Name="image" Grid.Column="1" HorizontalAlignment="Left" Height="44" VerticalAlignment="Bottom" Width="59" Source="{Binding ImageSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
                 <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0" FontSize="24" ItemsSource="{Binding FlyHandler.Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedFlyIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <ComboBox x:Name="comboBox2_Copy" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,15,0,0" FontSize="24" ItemsSource="{Binding HangarHandler.Hangar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedHangarIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,20,0,0" Date="{Binding AnkomstDato, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding MinYear}" Padding="0"/>

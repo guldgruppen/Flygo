@@ -1,3 +1,5 @@
+using FlyGoWebService.Models;
+
 namespace FlyGoWebService
 {
     using System;
