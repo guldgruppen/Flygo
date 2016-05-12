@@ -6,7 +6,7 @@ using FlygoApp.Views;
 
 namespace FlygoApp.Models
 {
-    public class RedcapHandler
+    public class SøgFlyOpgaveHandler
     {
         private readonly DtoFlyruteSingleton _dtoFlyrute;
 
@@ -16,7 +16,7 @@ namespace FlygoApp.Models
 
 
 
-        public RedcapHandler()
+        public SøgFlyOpgaveHandler()
         {
             _dtoFlyrute = DtoFlyruteSingleton.GetInstance();
             SearchListSingleton = SearchListSingleton.GetInstance();
@@ -32,7 +32,7 @@ namespace FlygoApp.Models
                 throw new NullOrEmptyException("Flyrute nummeret er tomt. Udfyld venligst dette!");
             }
 
-            if (dateTime < DateTime.Now)
+            if (dateTime < DateTime.Now.AddDays(-1))
             {
                 throw new DateWrongException("Datoen er mindre end dagsdato. Udfyld venligst korrekt dato!");
             }

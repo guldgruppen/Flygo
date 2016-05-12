@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
 using FlygoApp.Models;
@@ -41,8 +42,9 @@ namespace FlygoApp.ViewModels
         private ICommand _sendKorrektSvarCommand;
         private ICommand _sendForsinketSvarCommand;
         private ICommand _sendFejlSvarCommand;
-        private int _selectedForsinketTidIndex;
+        private int _selectedForsinketTidIndex = -1;
         private string _selectedRedcapDetails;
+        
 
         #endregion
         #region Properties
@@ -136,6 +138,15 @@ namespace FlygoApp.ViewModels
             set
             {
                 _selectedForsinketTidIndex = value;
+                
+                if (_selectedForsinketTidIndex != -1)
+                {
+                    TimeSpan chosenSpan = TimeSpan.FromMinutes(ForsinketTid[SelectedForsinketTidIndex]);
+                    Proxy.Invoke("BroadcastForsinketSvar", _loginBruger.BrugerLogIn.RoleId, chosenSpan);
+                    
+                }
+                
+                
                 OnPropertyChanged();
             }
         }
@@ -162,14 +173,14 @@ namespace FlygoApp.ViewModels
             set { _sendKorrektSvarCommand = value; }
         }
 
-        public ICommand SendForsinketSvarCommand    
-        {
-            get
-            {
-                return _sendForsinketSvarCommand ?? (_sendForsinketSvarCommand = new RelayCommand(SendForsinketSvar));
-            }
-            set { _sendForsinketSvarCommand = value; }
-        }
+        //public ICommand SendForsinketSvarCommand    
+        //{
+        //    get
+        //    {
+        //        return _sendForsinketSvarCommand ?? (_sendForsinketSvarCommand = new RelayCommand(SendForsinketSvar));
+        //    }
+        //    set { _sendForsinketSvarCommand = value; }
+        //}
 
         public ICommand SendFejlSvarCommand
         {
@@ -193,7 +204,7 @@ namespace FlygoApp.ViewModels
         #endregion
 
         public RedcapTaskListViewModel()
-        {
+        {         
             navigationService = new NavigationService();
             SignalRConnection();
             InitData();
@@ -202,7 +213,9 @@ namespace FlygoApp.ViewModels
             Proxy.On<int>("KorrektSvar", OnKorrektMessage);
             Proxy.On<int>("FejlSvar", OnFejlMessage);
             Proxy.On<int, TimeSpan>("ForsinketSvar", OnForsinketMessage);
-
+            
+            
+           
         }
 
         public void InitData()
@@ -252,17 +265,19 @@ namespace FlygoApp.ViewModels
         public void SendKorrektSvar()
         {
             Proxy.Invoke("BroadcastKorrektSvar", _loginBruger.BrugerLogIn.RoleId);
+            SelectedForsinketTidIndex = -1; 
         }
 
-        public void SendForsinketSvar()
-        {
-            TimeSpan chosenSpan = TimeSpan.FromMinutes(ForsinketTid[SelectedForsinketTidIndex]);       
-            Proxy.Invoke("BroadcastForsinketSvar", _loginBruger.BrugerLogIn.RoleId, chosenSpan);           
-        }
+        //public void SendForsinketSvar()
+        //{
+        //    TimeSpan chosenSpan = TimeSpan.FromMinutes(ForsinketTid[SelectedForsinketTidIndex]);       
+        //    Proxy.Invoke("BroadcastForsinketSvar", _loginBruger.BrugerLogIn.RoleId, chosenSpan);           
+        //}
 
         public void SendFejlSvar()
         {
             Proxy.Invoke("BroadcastFejlSvar", _loginBruger.BrugerLogIn.RoleId);
+            SelectedForsinketTidIndex = -1; 
         }
 
         private async void OnKorrektMessage(int roleId)
@@ -395,7 +410,7 @@ namespace FlygoApp.ViewModels
                 _dtoOpgaveArkiv.UpdateOpgaveArkiv(OpgaveArkiv, OpgaveArkiv.Id);
 
                 _dtoOpgaveArkiv.LoadOpgaveArkiv();
-
+                    
             });
         }
         public void CountdownToDeadline()

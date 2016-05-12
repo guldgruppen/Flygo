@@ -12,13 +12,13 @@ namespace UnitTestFlygoApp
     [TestClass]
     public class RedcapHandlerUnittest
     {
-        private RedcapHandler handler;
+        private SøgFlyOpgaveHandler handler;
 
         [TestInitialize]
 
         public void BeforeEachTest()
         {
-            handler = new RedcapHandler();
+            handler = new SøgFlyOpgaveHandler();
         }
 
 

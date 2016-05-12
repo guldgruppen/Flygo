@@ -14,7 +14,7 @@ namespace FlygoApp.ViewModels
     public class RedcapViewModel
     {
         #region instance fields
-        private RedcapHandler handler;
+        private SøgFlyOpgaveHandler handler;
         private ICommand _searchCommand; 
         #endregion
         #region Properties
@@ -33,7 +33,7 @@ namespace FlygoApp.ViewModels
         #endregion
         public RedcapViewModel()
         {
-            handler = new RedcapHandler();
+            handler = new SøgFlyOpgaveHandler();
             DateTimeNow = DateTimeOffset.Now;
         }
         #region Metoder
