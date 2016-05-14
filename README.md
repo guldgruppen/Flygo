@@ -1,3 +1,6 @@
 # Flygo
 2. semester projekt - EASJ Roskilde.
-3. 
+
+FlyGo har til formål at effektivisere kommunikation mellem medarbejderne i SAS.
+
+
