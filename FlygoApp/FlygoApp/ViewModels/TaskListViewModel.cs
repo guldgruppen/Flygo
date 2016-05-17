@@ -20,12 +20,12 @@ namespace FlygoApp.ViewModels
 
         #region Instance Fields
 
-        private ICommand _createFlyruteCommand;
+        private ICommand _createFlyopgaveCommand;
         private int _selectedFlyIndex;
         private int _selectedHangarIndex;
         private ICommand _deleteOpgaveCommand;
         private int _selectedOpgaveIndex = -1;
-        private string _selectedFlyruteNummerDetail;
+        private string _selectedFlyopgaveNummerDetail;
         private string _selectedHangarDetail;
         private string _selectedFlyDetail;
         private string _selectedAnkomstDetail;
@@ -35,12 +35,12 @@ namespace FlygoApp.ViewModels
         private string _selectedCrewDetails;
         private string _selectedFulersDetails;
         private string _selectedBaggersDetails;
-        private FlyRute _selectedFlyrute;
+        private Flyopgave _selectedFlyopgave;
         private OpgaveAdapter _opgaveAdapter;
         private readonly DispatcherTimer _timer = new DispatcherTimer();
         private string _selectedCountdown;
         private ICommand _sendOpgaveCommand;
-        private string _flyruteNr;
+        private string _FlyopgaveNr;
         private Uri _imageSource;
 
         #endregion
@@ -49,14 +49,14 @@ namespace FlygoApp.ViewModels
         public DateTimeOffset Now { get; set; }
         public FlyHandler FlyHandler { get; set; }
         public HangarHandler HangarHandler { get; set; }
-        public FlyruteHandler FlyruteHandler { get; set; }
+        public FlyopgaveHandler FlyopgaveHandler { get; set; }
 
-        public string FlyruteNr
+        public string FlyopgaveNr
         {
-            get { return _flyruteNr; }
+            get { return _FlyopgaveNr; }
             set
             {
-                _flyruteNr = value;
+                _FlyopgaveNr = value;
                 bool match = Regex.IsMatch(value, @"^[a-zA-Z]{2}\d{3,4}$");
                 if (match)
                 {
@@ -100,12 +100,12 @@ namespace FlygoApp.ViewModels
             get { return _opgaveAdapter; }
             set { _opgaveAdapter = value;OnPropertyChanged(); }
         }
-        public FlyRute SelectedFlyrute
+        public Flyopgave SelectedFlyopgave
         {
-            get { return _selectedFlyrute; }
+            get { return _selectedFlyopgave; }
             set
             {
-                _selectedFlyrute = value;
+                _selectedFlyopgave = value;
                 OnPropertyChanged();
             }
         }
@@ -163,12 +163,12 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        public string SelectedFlyruteNummerDetail
+        public string SelectedFlyopgaveNummerDetail
         {
-            get { return _selectedFlyruteNummerDetail; }
+            get { return _selectedFlyopgaveNummerDetail; }
             set
             {
-                _selectedFlyruteNummerDetail = value;
+                _selectedFlyopgaveNummerDetail = value;
                 OnPropertyChanged();
             }
         }
@@ -216,38 +216,38 @@ namespace FlygoApp.ViewModels
                 _selectedOpgaveIndex = value;
                 if (_selectedOpgaveIndex >= 0)
                 {
-                    SelectedFlyruteNummerDetail = FlyruteHandler.Flyruter[_selectedOpgaveIndex].FlyRuteNummer;
-                    SelectedAfgangDetail = FlyruteHandler.Flyruter[_selectedOpgaveIndex].AfgangSomText;
-                    SelectedAnkomstDetail = FlyruteHandler.Flyruter[_selectedOpgaveIndex].AnkomstSomText;
-                    int hangarId = FlyruteHandler.Flyruter[_selectedOpgaveIndex].HangarId;
-                    int flyId = FlyruteHandler.Flyruter[_selectedOpgaveIndex].FlyId;
+                    SelectedFlyopgaveNummerDetail = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].FlyopgaveNummer;
+                    SelectedAfgangDetail = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].AfgangSomText;
+                    SelectedAnkomstDetail = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].AnkomstSomText;
+                    int hangarId = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].HangarId;
+                    int flyId = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].FlyId;
                     SelectedHangarDetail = HangarHandler.Hangar.Single(x => x.Id.Equals(hangarId)).ToString();
                     SelectedFlyDetail = FlyHandler.Fly.Single(x => x.Id.Equals(flyId)).ToString();
              
-                    DateTime til = FlyruteHandler.Flyruter[_selectedOpgaveIndex].Afgang;
+                    DateTime til = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Afgang;
                     TimeSpan span = til - DateTime.Now;
                     SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
 
                     OpgaveArkiv selectedArkiv =
-                        FlyruteHandler.OpgaveArkivs.Single(
-                            x => x.FlyRuteId.Equals(FlyruteHandler.Flyruter[_selectedOpgaveIndex].Id));
+                        FlyopgaveHandler.OpgaveArkivs.Single(
+                            x => x.FlyopgaveId.Equals(FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Id));
                     SelectedMekanikerDetails = selectedArkiv.Mekanikker.ToString();
                     SelectedBaggersDetails = selectedArkiv.Baggers.ToString();
                     SelectedCatersDetails = selectedArkiv.Caters.ToString();
                     SelectedCrewDetails = selectedArkiv.Crew.ToString();
                     SelectedFulersDetails = selectedArkiv.Fuelers.ToString();
-                    SelectedFlyrute = FlyruteHandler.Flyruter[_selectedOpgaveIndex];
-                    OpgaveAdapter = new OpgaveAdapter(selectedArkiv,SelectedFlyrute);
+                    SelectedFlyopgave = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex];
+                    OpgaveAdapter = new OpgaveAdapter(selectedArkiv,SelectedFlyopgave);
                     CountdownToDeadline();
 
                 }
                 OnPropertyChanged();
             }
         }
-        public ICommand CreateFlyruteCommand
+        public ICommand CreateFlyopgaveCommand
         {
-            get { return _createFlyruteCommand ?? (_createFlyruteCommand = new RelayCommand(CreateFlyrute)); }
-            set { _createFlyruteCommand = value; }
+            get { return _createFlyopgaveCommand ?? (_createFlyopgaveCommand = new RelayCommand(CreateFlyopgave)); }
+            set { _createFlyopgaveCommand = value; }
         }
 
         public ICommand DeleteOpgaveCommand
@@ -277,8 +277,8 @@ namespace FlygoApp.ViewModels
             HangarHandler = new HangarHandler();
             HangarHandler.LoadDtoHangar();
 
-            FlyruteHandler = new FlyruteHandler();
-            FlyruteHandler.LoadDtoFlyruter();
+            FlyopgaveHandler = new FlyopgaveHandler();
+            FlyopgaveHandler.LoadDtoFlyopgaver();
 
 
         }
@@ -289,10 +289,9 @@ namespace FlygoApp.ViewModels
             get { return _sendOpgaveCommand ?? (_sendOpgaveCommand = new RelayCommand(Send)); }
             set { _sendOpgaveCommand = value; }
         }
-
         public void Send()
         {
-            FlyRute rute = FlyruteHandler.Flyruter[_selectedOpgaveIndex];
+            Flyopgave rute = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex];
             if (rute != null)
             {
                 Proxy.Invoke("BroadcastOpgave", rute);
@@ -310,7 +309,7 @@ namespace FlygoApp.ViewModels
         
         public void MyTimer_Tick(object o, object sender)
         {
-            DateTime til = FlyruteHandler.Flyruter[_selectedOpgaveIndex].Afgang;
+            DateTime til = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Afgang;
             TimeSpan span = til - DateTime.Now;
             SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
         }
@@ -319,20 +318,20 @@ namespace FlygoApp.ViewModels
         {
             try
             {
-                string flyrute = (string) param;
-                FlyRute tempFlyrute = FlyruteHandler.Flyruter.First(x => x.FlyRuteNummer.Equals(flyrute));
-                if (tempFlyrute != null)
+                string Flyopgave = (string) param;
+                Flyopgave tempFlyopgave = FlyopgaveHandler.Flyopgaver.First(x => x.FlyopgaveNummer.Equals(Flyopgave));
+                if (tempFlyopgave != null)
                 {
                     var myMessageDialog =
-                        new MessageDialog("Er du sikker på at slette flyruten: " + tempFlyrute.FlyRuteNummer,
-                            "Sletning af flyrute");
+                        new MessageDialog("Er du sikker på at slette Flyopgaven: " + tempFlyopgave.FlyopgaveNummer,
+                            "Sletning af Flyopgave");
                     myMessageDialog.Commands.Add(new UICommand("YES", command =>
                     {
                         
-                        int id = tempFlyrute.Id;
-                        FlyruteHandler.DtoFlyrute.DeleteFlyrute(id);
-                        FlyruteHandler.Flyruter.Remove(tempFlyrute);
-                        FlyruteHandler.DtoFlyrute.Loadflyrute();
+                        int id = tempFlyopgave.Id;
+                        FlyopgaveHandler.DtoFlyopgave.DeleteFlyopgave(id);
+                        FlyopgaveHandler.Flyopgaver.Remove(tempFlyopgave);
+                        FlyopgaveHandler.DtoFlyopgave.LoadFlyopgave();
                         
                     }));
                     myMessageDialog.Commands.Add(new UICommand("NO", command => { }));
@@ -347,19 +346,18 @@ namespace FlygoApp.ViewModels
 
         }
 
-        public void CreateFlyrute()
-        {
-            
+        public void CreateFlyopgave()
+        {          
             int flyId = FlyHandler.Fly[SelectedFlyIndex].Id;
             int hangarId = HangarHandler.Hangar[SelectedHangarIndex].Id;
             DateTime fra = DateAndTimeConverter(AnkomstDato, AnkomstTid);
             DateTime til = DateAndTimeConverter(AfgangDato,AfgangTid);
-            FlyruteHandler.Add(til,fra,flyId,hangarId,FlyruteNr); 
-            FlyruteHandler.DtoFlyrute.Loadflyrute(); 
+            FlyopgaveHandler.Add(til,fra,flyId,hangarId,FlyopgaveNr); 
+            FlyopgaveHandler.DtoFlyopgave.LoadFlyopgave();          
         }
         public DateTime DateAndTimeConverter(DateTimeOffset dato, TimeSpan tid)
         {
-            return new DateTime(dato.Year, dato.Month, dato.Day, tid.Hours, tid.Minutes, 0);
+            return new DateTime(dato.Year, dato.Month, dato.Day, tid.Hours, tid.Minutes, 0).AddHours(1);
         }
         #endregion
         #region NotifyChange Region

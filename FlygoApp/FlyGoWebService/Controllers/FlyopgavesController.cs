@@ -12,44 +12,44 @@ using FlyGoWebService.Models;
 
 namespace FlyGoWebService.Controllers
 {
-    public class FlyRutesController : ApiController
+    public class FlyopgavesController : ApiController
     {
         private FlygoEntityFrameworkContext db = new FlygoEntityFrameworkContext();
 
-        // GET: api/FlyRutes
-        public IQueryable<FlyRute> GetFlyRute()
+        // GET: api/Flyopgaves
+        public IQueryable<Flyopgave> GetFlyopgave()
         {
-            return db.FlyRute;
+            return db.Flyopgave;
         }
 
-        // GET: api/FlyRutes/5
-        [ResponseType(typeof(FlyRute))]
-        public IHttpActionResult GetFlyRute(int id)
+        // GET: api/Flyopgaves/5
+        [ResponseType(typeof(Flyopgave))]
+        public IHttpActionResult GetFlyopgave(int id)
         {
-            FlyRute flyRute = db.FlyRute.Find(id);
-            if (flyRute == null)
+            Flyopgave flyopgave = db.Flyopgave.Find(id);
+            if (flyopgave == null)
             {
                 return NotFound();
             }
 
-            return Ok(flyRute);
+            return Ok(flyopgave);
         }
 
-        // PUT: api/FlyRutes/5
+        // PUT: api/Flyopgaves/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutFlyRute(int id, FlyRute flyRute)
+        public IHttpActionResult PutFlyopgave(int id, Flyopgave flyopgave)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != flyRute.Id)
+            if (id != flyopgave.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(flyRute).State = EntityState.Modified;
+            db.Entry(flyopgave).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace FlyGoWebService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FlyRuteExists(id))
+                if (!FlyopgaveExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace FlyGoWebService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/FlyRutes
-        [ResponseType(typeof(FlyRute))]
-        public IHttpActionResult PostFlyRute(FlyRute flyRute)
+        // POST: api/Flyopgaves
+        [ResponseType(typeof(Flyopgave))]
+        public IHttpActionResult PostFlyopgave(Flyopgave flyopgave)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.FlyRute.Add(flyRute);
+            db.Flyopgave.Add(flyopgave);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = flyRute.Id }, flyRute);
+            return CreatedAtRoute("DefaultApi", new { id = flyopgave.Id }, flyopgave);
         }
 
-        // DELETE: api/FlyRutes/5
-        [ResponseType(typeof(FlyRute))]
-        public IHttpActionResult DeleteFlyRute(int id)
+        // DELETE: api/Flyopgaves/5
+        [ResponseType(typeof(Flyopgave))]
+        public IHttpActionResult DeleteFlyopgave(int id)
         {
-            FlyRute flyRute = db.FlyRute.Find(id);
-            if (flyRute == null)
+            Flyopgave flyopgave = db.Flyopgave.Find(id);
+            if (flyopgave == null)
             {
                 return NotFound();
             }
 
-            db.FlyRute.Remove(flyRute);
+            db.Flyopgave.Remove(flyopgave);
             db.SaveChanges();
 
-            return Ok(flyRute);
+            return Ok(flyopgave);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace FlyGoWebService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool FlyRuteExists(int id)
+        private bool FlyopgaveExists(int id)
         {
-            return db.FlyRute.Count(e => e.Id == id) > 0;
+            return db.Flyopgave.Count(e => e.Id == id) > 0;
         }
     }
 }

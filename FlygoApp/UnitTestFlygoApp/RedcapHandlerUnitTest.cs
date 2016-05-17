@@ -23,34 +23,34 @@ namespace UnitTestFlygoApp
 
 
         [TestMethod]
-        public void FlyruteNummerIsNullOrEmpty()
+        public void FlyopgaveNummerIsNullOrEmpty()
         {
-            string Flyrutenummer = "";
+            string Flyopgavenummer = "";
             DateTime datetime1 = DateTime.Now;
 
-            Assert.ThrowsException<NullOrEmptyException>((() => handler.SearchForFlyRute(Flyrutenummer, datetime1)));
+            Assert.ThrowsException<NullOrEmptyException>((() => handler.SearchForFlyopgave(Flyopgavenummer, datetime1)));
 
         }
 
 
         [TestMethod]
-        public void FlyruteNummerIsNorCorrect()
+        public void FlyopgaveNummerIsNorCorrect()
         {
-            string Flyrutenummer = "aa";
+            string Flyopgavenummer = "aa";
             DateTime dato = DateTime.Parse("2016-06-03");
 
-            Assert.ThrowsException<InfoWrongException>((() => handler.SearchForFlyRute(Flyrutenummer, dato)));
+            Assert.ThrowsException<InfoWrongException>((() => handler.SearchForFlyopgave(Flyopgavenummer, dato)));
         }
 
 
 
         [TestMethod]
-        public void FlyruteNummerDatoForkert()
+        public void FlyopgaveNummerDatoForkert()
         {
-            string FlyruteNummer = "Test";
+            string FlyopgaveNummer = "Test";
             DateTime dato = DateTime.Parse("2016-05-01");
 
-            Assert.ThrowsException<DateWrongException>((() => handler.SearchForFlyRute(FlyruteNummer, dato)));
+            Assert.ThrowsException<DateWrongException>((() => handler.SearchForFlyopgave(FlyopgaveNummer, dato)));
         }
     }
 

@@ -19,7 +19,7 @@ namespace FlyGoWebService.Models
 
         public DateTime? Crew { get; set; }
 
-        public int FlyRuteId { get; set; }
+        public int FlyopgaveId { get; set; }
 
         public DateTime? Fuelers { get; set; }
 
@@ -29,6 +29,6 @@ namespace FlyGoWebService.Models
 
         public DateTime? Redcap { get; set; }
 
-        public virtual FlyRute FlyRute { get; set; }
+        public virtual Flyopgave Flyopgave { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace FlygoApp.ViewModels
         #region Properties
 
         public DateTimeOffset DateTimeNow { get; set; }
-        public string FlyRuteNr { get; set; }
+        public string FlyopgaveNr { get; set; }
 
         public DateTimeOffset Date { get; set; }
 
@@ -42,7 +42,7 @@ namespace FlygoApp.ViewModels
             DateTime tempt = DateTime.Parse(Date.ToString());
             try
             {
-                handler.SearchForFlyRute(FlyRuteNr, tempt);
+                handler.SearchForFlyopgave(FlyopgaveNr, tempt);
             }
             catch (NullOrEmptyException ex)
             {

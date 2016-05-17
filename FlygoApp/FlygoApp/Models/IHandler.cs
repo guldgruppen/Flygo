@@ -4,9 +4,9 @@ namespace FlygoApp.Models
 {
     public interface IHandler
     {
-        FlyRute Get(int Id);
-        void Remove(FlyRute flyrute);
-        void Update(FlyRute flyrute);
+        Flyopgave Get(int Id);
+        void Remove(Flyopgave Flyopgave);
+        void Update(Flyopgave Flyopgave);
 
 
     }

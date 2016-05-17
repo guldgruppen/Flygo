@@ -220,7 +220,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BrugerLogInsController.cs" />
     <Compile Include="Controllers\FliesController.cs" />
-    <Compile Include="Controllers\FlyRutesController.cs" />
+    <Compile Include="Controllers\FlyopgavesController.cs" />
     <Compile Include="Controllers\HangarsController.cs" />
     <Compile Include="Controllers\OpgaveArkivsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -231,7 +231,7 @@
     <Compile Include="Models\BrugerLogIn.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\FlygoEntityFrameworkContext.cs" />
-    <Compile Include="Models\FlyRute.cs" />
+    <Compile Include="Models\Flyopgave.cs" />
     <Compile Include="Models\Hangar.cs" />
     <Compile Include="Models\OpgaveArkiv.cs" />
     <Compile Include="Models\Roles.cs" />
@@ -271,9 +271,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\FlyGoWebService1 %2810%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 %285%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 %286%29.pubxml" />
+    <None Include="Properties\PublishProfiles\FlyGoWebService1 %289%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\FlyGoWebService1 - Web Deploy %284%29.pubxml" />

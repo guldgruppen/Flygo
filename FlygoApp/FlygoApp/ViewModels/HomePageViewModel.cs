@@ -16,7 +16,7 @@ namespace FlygoApp.ViewModels
         private Frame _currentFrame;
         private ICommand _goToStatistikPageCommand;
         private readonly NavigationService _navService;
-        private ICommand _goToTilføjFlyrutePageCommand;
+        private ICommand _goToTilføjFlyopgavePageCommand;
         private ICommand _goToIndstillingerPageCommand;
         private ICommand _logudCommand;
         private ICommand _goToHomePageCommand;
@@ -44,16 +44,16 @@ namespace FlygoApp.ViewModels
             }
             set { _goToStatistikPageCommand = value; }
         }
-        public ICommand GoToTilføjFlyrutePageCommand
+        public ICommand GoToTilføjFlyopgavePageCommand
         {
             get
             {
-                return _goToTilføjFlyrutePageCommand ?? (_goToTilføjFlyrutePageCommand = new RelayCommand(() =>
+                return _goToTilføjFlyopgavePageCommand ?? (_goToTilføjFlyopgavePageCommand = new RelayCommand(() =>
                 {
-                    _currentFrame.Navigate(typeof (TilføjFlyrutePage));
+                    _currentFrame.Navigate(typeof (TilføjFlyopgavePage));
                 }));
             }
-            set { _goToTilføjFlyrutePageCommand = value; }
+            set { _goToTilføjFlyopgavePageCommand = value; }
         }
         public ICommand GoToIndstillingerPageCommand
         {

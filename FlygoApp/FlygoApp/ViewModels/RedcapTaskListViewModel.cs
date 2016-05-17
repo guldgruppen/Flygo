@@ -48,7 +48,7 @@ namespace FlygoApp.ViewModels
 
         #endregion
         #region Properties
-        public string FlyRuteNr { get; set; }
+        public string FlyopgaveNr { get; set; }
         public string Afgang { get; set; }
         public string Ankomst { get; set; }
         public int FlyId { get; set; }
@@ -188,7 +188,7 @@ namespace FlygoApp.ViewModels
             set { _sendFejlSvarCommand = value; }
         }
 
-        public FlyRute FlyRute { get; set; }
+        public Flyopgave Flyopgave { get; set; }
         public HubConnection Conn { get; set; }
         public IHubProxy Proxy { get; set; }
         public OpgaveAdapter OpgaveAdapter
@@ -230,15 +230,15 @@ namespace FlygoApp.ViewModels
             LogInRole = _dtoRoles.RolesListe.First(x => x.Id.Equals(_loginBruger.BrugerLogIn.RoleId)).ToString();
             var s = SearchListSingleton.GetInstance();
 
-            FlyRute = s.FlyRute;
-            OpgaveArkiv = _dtoOpgaveArkiv.OpgaveArkivListe.Single(x => x.FlyRuteId.Equals(FlyRute.Id));
-            FlyRuteNr = FlyRute.FlyRuteNummer;
-            Afgang = FlyRute.AfgangSomText;
-            FlyId = FlyRute.FlyId;
-            HangarId = FlyRute.HangarId;
+            Flyopgave = s.Flyopgave;
+            OpgaveArkiv = _dtoOpgaveArkiv.OpgaveArkivListe.Single(x => x.FlyopgaveId.Equals(Flyopgave.Id));
+            FlyopgaveNr = Flyopgave.FlyopgaveNummer;
+            Afgang = Flyopgave.AfgangSomText;
+            FlyId = Flyopgave.FlyId;
+            HangarId = Flyopgave.HangarId;
             GetFlyObject();
             GetHangarObject();
-            OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, FlyRute);
+            OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, Flyopgave);
             OpgaveArkivinit();
             CountdownToDeadline();
         }
@@ -316,7 +316,7 @@ namespace FlygoApp.ViewModels
                         OpgaveArkiv.Rengøring = DateTime.Now;
                         break;
                 }
-                OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv,FlyRute);
+                OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv,Flyopgave);
                 OnPropertyChanged();
                 _dtoOpgaveArkiv.UpdateOpgaveArkiv(OpgaveArkiv, OpgaveArkiv.Id);
                
@@ -328,7 +328,7 @@ namespace FlygoApp.ViewModels
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                DateTime forsinketTime = FlyRute.Afgang + span;
+                DateTime forsinketTime = Flyopgave.Afgang + span;
                 
                 switch (roleId)
                 {
@@ -361,7 +361,7 @@ namespace FlygoApp.ViewModels
                         OpgaveArkiv.Rengøring = forsinketTime;
                         break;
                 }
-                OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, FlyRute);
+                OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, Flyopgave);
                 OnPropertyChanged();
                 _dtoOpgaveArkiv.UpdateOpgaveArkiv(OpgaveArkiv, OpgaveArkiv.Id);
 
@@ -405,7 +405,7 @@ namespace FlygoApp.ViewModels
                         OpgaveArkiv.Rengøring = DateTime.Parse("01-01-1995");
                         break;
                 }
-                OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, FlyRute);
+                OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, Flyopgave);
                 OnPropertyChanged();
                 _dtoOpgaveArkiv.UpdateOpgaveArkiv(OpgaveArkiv, OpgaveArkiv.Id);
 
@@ -422,13 +422,13 @@ namespace FlygoApp.ViewModels
 
         public void MyTimer_Tick(object o, object sender)
         {
-            DateTime til = FlyRute.Afgang;
+            DateTime til = Flyopgave.Afgang;
             TimeSpan span = til - DateTime.Now;
             SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
         }
         public void OpgaveArkivinit()
         {
-            DateTime til = FlyRute.Afgang;
+            DateTime til = Flyopgave.Afgang;
             TimeSpan span = til - DateTime.Now;
             SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
             SelectedMekanikerDetails = (OpgaveArkiv.Mekanikker == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Mekanikker.ToString();

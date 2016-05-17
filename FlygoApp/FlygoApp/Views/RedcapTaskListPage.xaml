@@ -56,19 +56,19 @@
             </StackPanel>
             <StackPanel Grid.Column="1" Margin="10,0,0,0">
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-                    <TextBlock x:Name="Flyrute" Text="Flyrute:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
-                    <TextBlock x:Name="Navn1" Text="{Binding FlyRuteNr}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Flyopgave" Text="Flyopgave:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Navn1" Text="{Binding FlyopgaveNr}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-                    <TextBlock x:Name="Flyrute2" Text="Fly:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Flyopgave2" Text="Fly:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                     <TextBlock x:Name="Navn12" Text="{Binding FlyType}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-                    <TextBlock x:Name="Flyrute3" Text="Hangar" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Flyopgave3" Text="Hangar" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                     <TextBlock x:Name="Navn3" Text="{Binding Hangar}" Margin="20,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
-                    <TextBlock x:Name="Flyrute13" Text="Afgang:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="Flyopgave13" Text="Afgang:" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                     <TextBlock x:Name="Navn13" Text="{Binding Afgang}" Margin="5,0,0,0" Foreground="AliceBlue" FontSize="20" VerticalAlignment="Center"/>
                 </StackPanel>
 

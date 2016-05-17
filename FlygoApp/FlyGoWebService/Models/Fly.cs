@@ -12,7 +12,7 @@ namespace FlyGoWebService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Fly()
         {
-            FlyRute = new HashSet<FlyRute>();
+            Flyopgave = new HashSet<Flyopgave>();
         }
 
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace FlyGoWebService.Models
         public string Type { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FlyRute> FlyRute { get; set; }
+        public virtual ICollection<Flyopgave> Flyopgave { get; set; }
     }
 }

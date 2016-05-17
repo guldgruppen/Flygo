@@ -8,21 +8,21 @@ using FlyGoWebService.Models;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoFlyruteSingleton
+    public class DtoFlyopgaveSingleton
     {
-        public List<FlyRute> FlyruteListe { get; set; } = new List<FlyRute>();
-        private static DtoFlyruteSingleton _dtoFlyrute;
-        private DtoFlyruteSingleton()
+        public List<Flyopgave> FlyopgaveListe { get; set; } = new List<Flyopgave>();
+        private static DtoFlyopgaveSingleton _dtoFlyopgave;
+        private DtoFlyopgaveSingleton()
         {
-            Loadflyrute();
+            LoadFlyopgave();
         }
 
-        public static DtoFlyruteSingleton GetInstance()
+        public static DtoFlyopgaveSingleton GetInstance()
         {
-            return _dtoFlyrute ?? (_dtoFlyrute = new DtoFlyruteSingleton());
+            return _dtoFlyopgave ?? (_dtoFlyopgave = new DtoFlyopgaveSingleton());
         }
 
-        public async Task PostFlyRuter(FlyRute rute)
+        public async Task PostFlyopgaver(Flyopgave rute)
         {
 
             const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
@@ -36,7 +36,7 @@ namespace FlygoApp.Persistency
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-                    await client.PostAsJsonAsync("api/FlyRutes/PostFlyRute", rute);
+                    await client.PostAsJsonAsync("api/Flyopgaves/PostFlyopgave", rute);
                 }
                 catch (Exception ex)
                 {
@@ -45,7 +45,7 @@ namespace FlygoApp.Persistency
             }
         }
 
-        public async void DeleteFlyrute(int id)
+        public async void DeleteFlyopgave(int id)
         {
 
             const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
@@ -59,7 +59,7 @@ namespace FlygoApp.Persistency
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-                    await client.DeleteAsync("api/flyRutes/DeleteFlyRute" + id);
+                    await client.DeleteAsync("api/Flyopgaves/DeleteFlyopgave" + id);
                 }
                 catch (Exception ex)
                 {
@@ -68,7 +68,7 @@ namespace FlygoApp.Persistency
             }
         }
 
-        public async void Loadflyrute()
+        public async void LoadFlyopgave()
         {
             const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
 
@@ -81,15 +81,15 @@ namespace FlygoApp.Persistency
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 try
                 {
-                    var response = client.GetAsync("api/FlyRutes/GetFlyRute").Result;
+                    var response = client.GetAsync("api/Flyopgaves/GetFlyopgave").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
-                        IEnumerable<FlyRute> flyrutedata = response.Content.ReadAsAsync<IEnumerable<FlyRute>>().Result;
-                        FlyruteListe.Clear();
-                        foreach (var fly in flyrutedata)
+                        IEnumerable<Flyopgave> Flyopgavedata = response.Content.ReadAsAsync<IEnumerable<Flyopgave>>().Result;
+                        FlyopgaveListe.Clear();
+                        foreach (var fly in Flyopgavedata)
                         {
-                            FlyruteListe.Add(fly);
+                            FlyopgaveListe.Add(fly);
                         }
 
                     }

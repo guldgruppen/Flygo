@@ -9,36 +9,36 @@ using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 namespace UnitTestFlygoApp
 {
     [TestClass]
-    public class FlyruteUnitTest
+    public class FlyopgaveUnitTest
     {
-        FlyRute flyrute;
+        Flyopgave Flyopgave;
 
         [TestInitialize]
         public void InitTest()
         {
-            flyrute = new FlyRute();
+            Flyopgave = new Flyopgave();
 
         }
 
         [TestMethod]
-        public void TestFlyruteNummer()
+        public void TestFlyopgaveNummer()
         {
             string nummer = "";
-            Assert.ThrowsException<ArgumentException>(() => flyrute.CheckFlyruteNummer(nummer));
+            Assert.ThrowsException<ArgumentException>(() => Flyopgave.CheckFlyopgaveNummer(nummer));
         }
         [TestMethod]
-        public void TestFlyruteAfgangAnkomstDif()
+        public void TestFlyopgaveAfgangAnkomstDif()
         {
             DateTime fra = DateTime.Now;
             DateTime til = DateTime.Now;
-            Assert.ThrowsException<ArgumentException>(() => flyrute.CheckAfgangAnkomst(til,fra));
+            Assert.ThrowsException<ArgumentException>(() => Flyopgave.CheckAfgangAnkomst(til,fra));
         }
 
         [TestMethod]
         public void TestFlyId()
         {
             int id = -1;
-            Assert.ThrowsException<IndexOutOfRangeException>(() => flyrute.CheckFlyId(id));
+            Assert.ThrowsException<IndexOutOfRangeException>(() => Flyopgave.CheckFlyId(id));
         }
 
 
@@ -47,14 +47,14 @@ namespace UnitTestFlygoApp
         public void TestHangarId()
         {
             int id = -1;
-            Assert.ThrowsException<IndexOutOfRangeException>(() => flyrute.CheckHangarId(id));
+            Assert.ThrowsException<IndexOutOfRangeException>(() => Flyopgave.CheckHangarId(id));
         }
         [TestMethod]
-        public void TestFlyruteAfgangAnkomstFørNu()
+        public void TestFlyopgaveAfgangAnkomstFørNu()
         {
             DateTime fra = DateTime.Now.AddDays(-4);
             DateTime til = DateTime.Now.AddDays(-1);
-            Assert.ThrowsException<ArgumentException>(() => flyrute.CheckAfgangAnkomst(til, fra));
+            Assert.ThrowsException<ArgumentException>(() => Flyopgave.CheckAfgangAnkomst(til, fra));
         }
     }
 }

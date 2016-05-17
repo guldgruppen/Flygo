@@ -1,28 +1,41 @@
-using System.Collections.Generic;
 using FlygoApp.Models;
 
 namespace FlyGoWebService.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations.Schema;    
 
-    [Table("FlyRute")]
-    public partial class FlyRute
+    [Table("Flyopgave")]
+    public partial class Flyopgave
     {
         private DateTime _ankomst;
         private DateTime _afgang;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FlyRute()
+        public Flyopgave()
         {
             OpgaveArkiv = new HashSet<OpgaveArkiv>();
-            
         }
 
+        public Flyopgave(int flyId, int hangarId, string flyopgaveNummer,DateTime ankomst,DateTime afgang)
+        {
+            CheckAfgangAnkomst(afgang, ankomst);
+            CheckFlyId(flyId);
+            CheckHangarId(hangarId);
+            CheckFlyopgaveNummer(flyopgaveNummer);
+            FlyId = flyId;
+            HangarId = hangarId;
+            FlyopgaveNummer = flyopgaveNummer;
+            Ankomst = ankomst;
+            Afgang = afgang;
+
+        }
+
+        public int Id { get; set; }
         public string AfgangSomText { get; set; }
         public string AnkomstSomText { get; set; }
-        public int Id { get; set; }
 
         public DateTime Ankomst
         {
@@ -49,29 +62,15 @@ namespace FlyGoWebService.Models
         public int HangarId { get; set; }
 
         [StringLength(50)]
-        public string FlyRuteNummer { get; set; }
-        
+        public string FlyopgaveNummer { get; set; }
+
         public virtual Fly Fly { get; set; }
 
         public virtual Hangar Hangar { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OpgaveArkiv> OpgaveArkiv { get; set; }
-
-        public FlyRute(DateTime afgang, DateTime ankomst, int flyid, int hangarid, string flyrutenummer)
-        {
-            CheckAfgangAnkomst(afgang, ankomst);
-            CheckFlyId(flyid);
-            CheckHangarId(hangarid);
-            CheckFlyruteNummer(flyrutenummer);
-            Afgang = afgang;
-            Ankomst = ankomst;
-            FlyId = flyid;
-            HangarId = hangarid;
-            FlyRuteNummer = flyrutenummer;
-        }
-
-        public void CheckFlyruteNummer(string nummer)
+        public void CheckFlyopgaveNummer(string nummer)
         {
             if (String.IsNullOrEmpty(nummer))
             {
@@ -93,7 +92,7 @@ namespace FlyGoWebService.Models
             }
         }
 
-        
+
         public void CheckAfgangAnkomst(DateTime afgang, DateTime ankomst)
         {
 
@@ -108,7 +107,7 @@ namespace FlyGoWebService.Models
         }
         public override string ToString()
         {
-            return $"Id: {Id}, Ankomst: {Ankomst}, Afgang: {Afgang}, FlyRuteNummer: {FlyRuteNummer}, Fly: {Fly}, Hangar: {Hangar}";
+            return $"Id: {Id}, Ankomst: {Ankomst}, Afgang: {Afgang}, FlyRuteNummer: {FlyopgaveNummer}, Fly: {Fly}, Hangar: {Hangar}";
         }
     }
 }
