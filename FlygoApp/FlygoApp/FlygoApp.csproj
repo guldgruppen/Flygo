@@ -129,7 +129,7 @@
     <Compile Include="Models\SøgFlyOpgaveHandler.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Persistency\DtoBrugerLoginSingleton.cs" />
-    <Compile Include="Persistency\DtoFlyruteSingleton.cs" />
+    <Compile Include="Persistency\DtoFlyopgaveSingleton.cs" />
     <Compile Include="Persistency\DtoFlySingleton.cs" />
     <Compile Include="Persistency\DtoHangarSingleton.cs" />
     <Compile Include="Persistency\DtoOpgaveArkivSingleton.cs" />
