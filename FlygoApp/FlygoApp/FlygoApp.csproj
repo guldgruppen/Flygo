@@ -116,9 +116,9 @@
     <Compile Include="Models\BrugerLogIn.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\FlyHandler.cs" />
-    <Compile Include="Models\FlyRute.cs" />
-    <Compile Include="Models\FlyRuteFactory.cs" />
-    <Compile Include="Models\FlyruteHandler.cs" />
+    <Compile Include="Models\Flyopgave.cs" />
+    <Compile Include="Models\FlyopgaveFactory.cs" />
+    <Compile Include="Models\FlyopgaveHandler.cs" />
     <Compile Include="Models\Hangar.cs" />
     <Compile Include="Models\HangarHandler.cs" />
     <Compile Include="Models\IFactory.cs" />

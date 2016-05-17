@@ -20,7 +20,7 @@ namespace FlygoApp.ViewModels
 
         private string _ankomst;
         private string _afgang;
-        private string _flyruteNummer;
+        private string _FlyopgaveNummer;
         private DispatcherTimer timer = new DispatcherTimer();
         private DateTime _ankomstDateTime;
         private DateTime _afgangDateTime;
@@ -49,12 +49,12 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        public string FlyruteNummer
+        public string FlyopgaveNummer
         {
-            get { return _flyruteNummer; }
+            get { return _FlyopgaveNummer; }
             set
             {
-                _flyruteNummer = value;
+                _FlyopgaveNummer = value;
                 OnPropertyChanged();
             }
         }
@@ -121,7 +121,7 @@ namespace FlygoApp.ViewModels
 
             BrugerLogIn = loginBruger.BrugerLogIn;
             
-            Proxy.On<FlyRute>("Broadcast", OnMessage);
+            Proxy.On<Flyopgave>("Broadcast", OnMessage);
         }
 
 
@@ -135,11 +135,11 @@ namespace FlygoApp.ViewModels
 
 
 
-        private async void OnMessage(FlyRute msg)
+        private async void OnMessage(Flyopgave msg)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                FlyruteNummer = msg.FlyRuteNummer;
+                FlyopgaveNummer = msg.FlyopgaveNummer;
                 Ankomst = msg.Ankomst.ToString(CultureInfo.InvariantCulture);
                 Afgang = msg.Afgang.ToString(CultureInfo.InvariantCulture);
 

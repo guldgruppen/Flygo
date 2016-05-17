@@ -5,12 +5,12 @@ namespace FlygoApp.Models
     public class OpgaveAdapter
     {
         public OpgaveArkiv OpgaveArkiv { get; set; }
-        public FlyRute FlyRute { get; set; }
+        public Flyopgave Flyopgave { get; set; }
 
-        public OpgaveAdapter(OpgaveArkiv opgaveArkiv, FlyRute flyRute)
+        public OpgaveAdapter(OpgaveArkiv opgaveArkiv, Flyopgave Flyopgave)
         {
             OpgaveArkiv = opgaveArkiv;
-            FlyRute = flyRute;
+            Flyopgave = Flyopgave;
         }
     }
 }

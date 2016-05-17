@@ -29,7 +29,7 @@ namespace FlygoApp.Converters
             if (opg != null)
             {
                 OpgaveArkiv arkiv = opg.OpgaveArkiv;
-                FlyRute rute = opg.FlyRute;
+                Flyopgave rute = opg.Flyopgave;
 
                 if (arkiv.Mekanikker == DateTime.Parse("01-01-1995"))
                     return red;

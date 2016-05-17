@@ -26,8 +26,8 @@
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding CountdownTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFEEE641" FontSize="53.333" HorizontalAlignment="Center"/>
             <StackPanel Height="429" Margin="0,20,0,0" Background="#CC000000">
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Center" Padding="0" Margin="0,70,0,0">
-                    <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Flyrute:" FontSize="26.667" Foreground="White" Margin="0,0,30,0"/>
-                    <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding FlyruteNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFEEE641" FontSize="26.667"/>
+                    <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Flyopgave:" FontSize="26.667" Foreground="White" Margin="0,0,30,0"/>
+                    <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding FlyopgaveNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFEEE641" FontSize="26.667"/>
                 </StackPanel>
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Center" Padding="0" Margin="0">
                     <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Ankomst:" FontSize="26.667" Foreground="White" Margin="0,0,30,0"/>

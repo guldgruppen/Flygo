@@ -8,7 +8,7 @@ namespace FlygoApp.Models
 {
     public class SøgFlyOpgaveHandler
     {
-        private readonly DtoFlyruteSingleton _dtoFlyrute;
+        private readonly DtoFlyopgaveSingleton _dtoFlyopgave;
 
         public SearchListSingleton SearchListSingleton;
 
@@ -18,18 +18,18 @@ namespace FlygoApp.Models
 
         public SøgFlyOpgaveHandler()
         {
-            _dtoFlyrute = DtoFlyruteSingleton.GetInstance();
+            _dtoFlyopgave = DtoFlyopgaveSingleton.GetInstance();
             SearchListSingleton = SearchListSingleton.GetInstance();
             NavigationService = new NavigationService();
         }
 
-        public void SearchForFlyRute(string flyRuteNr, DateTime dateTime)
+        public void SearchForFlyopgave(string FlyopgaveNr, DateTime dateTime)
         {
 
 
-            if (string.IsNullOrEmpty(flyRuteNr))
+            if (string.IsNullOrEmpty(FlyopgaveNr))
             {
-                throw new NullOrEmptyException("Flyrute nummeret er tomt. Udfyld venligst dette!");
+                throw new NullOrEmptyException("Flyopgave nummeret er tomt. Udfyld venligst dette!");
             }
 
             if (dateTime < DateTime.Now.AddDays(-1))
@@ -37,21 +37,21 @@ namespace FlygoApp.Models
                 throw new DateWrongException("Datoen er mindre end dagsdato. Udfyld venligst korrekt dato!");
             }
 
-            int x = _dtoFlyrute.FlyruteListe.Count;
+            int x = _dtoFlyopgave.FlyopgaveListe.Count;
 
-            foreach (var rute in _dtoFlyrute.FlyruteListe)
+            foreach (var rute in _dtoFlyopgave.FlyopgaveListe)
             {
                 x--;
-                if (String.Equals(rute.FlyRuteNummer, flyRuteNr, StringComparison.CurrentCultureIgnoreCase) && rute.Afgang.Date == dateTime.Date)
+                if (String.Equals(rute.FlyopgaveNummer, FlyopgaveNr, StringComparison.CurrentCultureIgnoreCase) && rute.Afgang.Date == dateTime.Date)
                 {
-                    SearchListSingleton.FlyRute = rute;
+                    SearchListSingleton.Flyopgave = rute;
                     NavigationService.Navigate(typeof(RedcapTaskListPage));
                     break;
                 }
 
                 if (x == 0)
                 {
-                    throw new InfoWrongException("Flyrute nummeret eller dato matcher ikke. Prøv venligst igen!");
+                    throw new InfoWrongException("Flyopgave nummeret eller dato matcher ikke. Prøv venligst igen!");
                 }
 
             }
