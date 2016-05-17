@@ -289,7 +289,6 @@ namespace FlygoApp.ViewModels
             get { return _sendOpgaveCommand ?? (_sendOpgaveCommand = new RelayCommand(Send)); }
             set { _sendOpgaveCommand = value; }
         }
-
         public void Send()
         {
             FlyRute rute = FlyruteHandler.Flyruter[_selectedOpgaveIndex];
@@ -348,18 +347,17 @@ namespace FlygoApp.ViewModels
         }
 
         public void CreateFlyrute()
-        {
-            
+        {          
             int flyId = FlyHandler.Fly[SelectedFlyIndex].Id;
             int hangarId = HangarHandler.Hangar[SelectedHangarIndex].Id;
             DateTime fra = DateAndTimeConverter(AnkomstDato, AnkomstTid);
             DateTime til = DateAndTimeConverter(AfgangDato,AfgangTid);
             FlyruteHandler.Add(til,fra,flyId,hangarId,FlyruteNr); 
-            FlyruteHandler.DtoFlyrute.Loadflyrute(); 
+            FlyruteHandler.DtoFlyrute.Loadflyrute();          
         }
         public DateTime DateAndTimeConverter(DateTimeOffset dato, TimeSpan tid)
         {
-            return new DateTime(dato.Year, dato.Month, dato.Day, tid.Hours, tid.Minutes, 0);
+            return new DateTime(dato.Year, dato.Month, dato.Day, tid.Hours, tid.Minutes, 0).AddHours(1);
         }
         #endregion
         #region NotifyChange Region

@@ -6,11 +6,11 @@ namespace FlyGoWebService.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("FlyRute")]
-    public partial class FlyRute
+    [Table("Flyopgave")]
+    public partial class Flyopgave
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FlyRute()
+        public Flyopgave()
         {
             OpgaveArkiv = new HashSet<OpgaveArkiv>();
         }
@@ -26,7 +26,7 @@ namespace FlyGoWebService.Models
         public int HangarId { get; set; }
 
         [StringLength(50)]
-        public string FlyRuteNummer { get; set; }
+        public string FlyopgaveNummer { get; set; }
 
         public virtual Fly Fly { get; set; }
 

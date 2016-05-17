@@ -33,6 +33,7 @@ namespace FlygoApp.Models
 
                 OpgaveArkiv temp = new OpgaveArkiv() {FlyRuteId = id};              
                 await DtoOpgaveArkiv.PostOpgaveArkiv(temp);
+                await new MessageDialog("Flyopgave er oprettet").ShowAsync();
             }
             catch (ArgumentException ex)
             {

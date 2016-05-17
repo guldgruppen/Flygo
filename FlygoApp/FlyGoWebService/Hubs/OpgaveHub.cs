@@ -9,10 +9,6 @@ namespace FlyGoWebService.Hubs
 {
     public class OpgaveHub : Hub
     {
-        public void BroadcastOpgave(FlyRute rute)
-        {
-            Clients.All.Broadcast(rute);
-        }
 
         public void BroadcastKorrektSvar(int roleId)
         {
