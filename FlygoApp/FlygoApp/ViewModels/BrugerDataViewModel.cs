@@ -154,6 +154,7 @@ namespace FlygoApp.ViewModels
         {
             BrugerLogIns.Clear();
             RollerList.Clear();
+            _dtoBrugerLogin.LoadBrugerLogins();
             foreach (var brugerLogIn in _dtoBrugerLogin.BrugerLogInsDictionary)
             {             
                 BrugerLogIn temp = new BrugerLogIn(brugerLogIn.Key,brugerLogIn.Value.Password,brugerLogIn.Value.RoleId);

@@ -8,6 +8,7 @@ using Windows.UI.Popups;
 using FlygoApp.Commons;
 using FlygoApp.Exceptions;
 using FlygoApp.Models;
+using FlygoApp.Views;
 
 namespace FlygoApp.ViewModels
 {
@@ -15,7 +16,9 @@ namespace FlygoApp.ViewModels
     {
         #region instance fields
         private SøgFlyOpgaveHandler handler;
-        private ICommand _searchCommand; 
+        private ICommand _searchCommand;
+        private ICommand _logoutCommand;
+        private NavigationService _navigationService;
         #endregion
         #region Properties
 
@@ -30,9 +33,19 @@ namespace FlygoApp.ViewModels
             set { _searchCommand = value; }
         }
 
+        public ICommand LogoutCommand
+        {
+            get
+            {
+                return _logoutCommand ?? (_logoutCommand = new RelayCommand(() => { _navigationService.Navigate(typeof(LoginPage)); }));
+            }
+            set { _logoutCommand = value; }
+        }
+      
         #endregion
         public RedcapViewModel()
         {
+            _navigationService = new NavigationService();
             handler = new SøgFlyOpgaveHandler();
             DateTimeNow = DateTimeOffset.Now;
         }

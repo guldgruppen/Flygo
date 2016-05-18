@@ -13,9 +13,10 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="17*"/>
+            <RowDefinition Height="59*"/>
+            <RowDefinition Height="391*"/>
+            <RowDefinition Height="120*"/>
+            <RowDefinition Height="510*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="287*"/>
@@ -25,10 +26,15 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/Planesample1.jpg"/>
         </Grid.Background>
-        <StackPanel Grid.Row="1" Background="White" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1">
-            <DatePicker HorizontalAlignment="Center" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Date="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding DateTimeNow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyopgaveNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="274" FontSize="20" Padding="13,3,6,5" PlaceholderText="Søg efter Flyopgave nummer" FontWeight="Bold"/>
+        <StackPanel Grid.Row="2" Background="White" Orientation="Horizontal" Grid.Column="1" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" FontWeight="Bold" Date="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding DateTimeNow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyopgaveNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="274" FontSize="18" Padding="13,3,6,5" PlaceholderText="Søg efter Flyopgave nummer" FontWeight="Bold"/>
             <Button x:Name="button" Content="&#59166;" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Background="#FFD38C26" FontFamily="Segoe MDL2 Assets" FontSize="25" Width="130" FontWeight="Bold" Command="{Binding SearchCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Grid.ColumnSpan="3" Background="#FF22313F" Orientation="Horizontal">
+            <Button x:Name="button1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="79" Background="{x:Null}" Command="{Binding LogoutCommand}">
+                <Image Source="ms-appx:///Assets/1461286313_Log Out.png" Height="54" Width="48" />
+            </Button>
         </StackPanel>
 
 

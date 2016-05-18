@@ -44,7 +44,7 @@ namespace FlygoApp.ViewModels
         private ICommand _sendFejlSvarCommand;
         private int _selectedForsinketTidIndex = -1;
         private string _selectedRedcapDetails;
-        
+        private ICommand _logudCommand;
 
         #endregion
         #region Properties
@@ -131,7 +131,6 @@ namespace FlygoApp.ViewModels
         }
         public string LogInBrugernavn { get; set; }
         public List<int> ForsinketTid { get; set; } = new List<int>();
-
         public int SelectedForsinketTidIndex
         {
             get { return _selectedForsinketTidIndex; }
@@ -165,6 +164,16 @@ namespace FlygoApp.ViewModels
         {
             get { return _backCommand ?? (new RelayCommand((() => navigationService.Navigate(typeof(RedcapTaskPage))))); }
             set { _backCommand = value; }
+        }
+
+        public ICommand LogudCommand
+        {
+            get
+            {
+                return _logudCommand ??
+                       (_logudCommand = new RelayCommand(() => navigationService.Navigate(typeof (LoginPage))));
+            }
+            set { _logudCommand = value; }
         }
 
         public ICommand SendKorrektSvarCommand

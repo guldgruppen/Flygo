@@ -41,6 +41,7 @@ namespace FlygoApp.Persistency
                     {
                         IEnumerable<BrugerLogIn> brugerLogin =
                             response.Content.ReadAsAsync<IEnumerable<BrugerLogIn>>().Result;
+                        BrugerLogInsDictionary.Clear();
                         foreach (var bruger in brugerLogin)
                         {
                             BrugerLogInsDictionary.Add(bruger.BrugerNavn, new BrugerLogIn(bruger.Password, bruger.RoleId));
