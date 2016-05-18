@@ -1,3 +1,5 @@
+using System.Linq;
+using FlygoApp.Persistency;
 using FlyGoWebService.Models;
 
 namespace FlyGoWebService
@@ -11,6 +13,15 @@ namespace FlyGoWebService
     [Table("BrugerLogIn")]
     public partial class BrugerLogIn
     {
+        DtoRolesSingleton _dtoRolesSingleton = DtoRolesSingleton.GetInstance();
+        private string _rolleNavn;
+
+        public string RolleNavn
+        {
+            get { return _rolleNavn; }
+            set { _rolleNavn = value; }
+        }
+
         public int Id { get; set; }
 
         [Required]
@@ -31,6 +42,14 @@ namespace FlyGoWebService
             
         }
 
+        public BrugerLogIn(string brugerNavn, string password, int roleId)
+        {
+            BrugerNavn = brugerNavn;
+            Password = password;
+            RoleId = roleId;
+            Roles temp = _dtoRolesSingleton.RolesListe.Single(x => x.Id.Equals(RoleId));
+            RolleNavn = temp.RoleName;
+        }
         public BrugerLogIn(string password, int roleId)
         {
             Password = password;
