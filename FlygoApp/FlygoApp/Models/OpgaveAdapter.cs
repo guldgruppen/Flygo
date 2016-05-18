@@ -7,10 +7,10 @@ namespace FlygoApp.Models
         public OpgaveArkiv OpgaveArkiv { get; set; }
         public Flyopgave Flyopgave { get; set; }
 
-        public OpgaveAdapter(OpgaveArkiv opgaveArkiv, Flyopgave Flyopgave)
+        public OpgaveAdapter(OpgaveArkiv opgaveArkiv, Flyopgave flyopgave)
         {
             OpgaveArkiv = opgaveArkiv;
-            Flyopgave = Flyopgave;
+            Flyopgave = flyopgave;
         }
     }
 }

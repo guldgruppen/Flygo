@@ -35,17 +35,24 @@ namespace FlygoApp.ViewModels
         private string _selectedCrewDetails;
         private string _selectedFulersDetails;
         private string _selectedBaggersDetails;
-        private Flyopgave _selectedFlyopgave;
-        private OpgaveAdapter _opgaveAdapter;
+        private Flyopgave _selectedFlyopgave = null;
+        private OpgaveAdapter _opgaveAdapter = null;
         private readonly DispatcherTimer _timer = new DispatcherTimer();
         private string _selectedCountdown;
         private ICommand _sendOpgaveCommand;
         private string _FlyopgaveNr;
         private Uri _imageSource;
+        private OpgaveArkiv _selectedOpgaveArkiv = null;
 
         #endregion
         #region Properties         
-
+        public HubConnection Conn { get; set; }
+        public IHubProxy Proxy { get; set; }
+        public ICommand SendOpgaveCommand
+        {
+            get { return _sendOpgaveCommand ?? (_sendOpgaveCommand = new RelayCommand(Send)); }
+            set { _sendOpgaveCommand = value; }
+        }
         public DateTimeOffset Now { get; set; }
         public FlyHandler FlyHandler { get; set; }
         public HangarHandler HangarHandler { get; set; }
@@ -75,7 +82,6 @@ namespace FlygoApp.ViewModels
         public TimeSpan AfgangTid { get; set; }
         public TimeSpan AnkomstTid { get; set; }
         public DateTimeOffset MinYear { get; set; } = DateTime.Now;
-
         public Uri ImageSource
         {
             get { return _imageSource; }
@@ -85,7 +91,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedMekanikerDetails
         {
             get { return _selectedMekanikerDetails; }
@@ -98,7 +103,11 @@ namespace FlygoApp.ViewModels
         public OpgaveAdapter OpgaveAdapter
         {
             get { return _opgaveAdapter; }
-            set { _opgaveAdapter = value;OnPropertyChanged(); }
+            set
+            {
+                _opgaveAdapter = value;
+                OnPropertyChanged();
+            }
         }
         public Flyopgave SelectedFlyopgave
         {
@@ -106,6 +115,15 @@ namespace FlygoApp.ViewModels
             set
             {
                 _selectedFlyopgave = value;
+                OnPropertyChanged();
+            }
+        }
+        public OpgaveArkiv SelectedOpgaveArkiv
+        {
+            get { return _selectedOpgaveArkiv; }
+            set
+            {
+                _selectedOpgaveArkiv = value; 
                 OnPropertyChanged();
             }
         }
@@ -227,17 +245,17 @@ namespace FlygoApp.ViewModels
                     DateTime til = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Afgang;
                     TimeSpan span = til - DateTime.Now;
                     SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
-
-                    OpgaveArkiv selectedArkiv =
+                    SelectedFlyopgave = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex];
+                    SelectedOpgaveArkiv =
                         FlyopgaveHandler.OpgaveArkivs.Single(
                             x => x.FlyopgaveId.Equals(FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Id));
-                    SelectedMekanikerDetails = selectedArkiv.Mekanikker.ToString();
-                    SelectedBaggersDetails = selectedArkiv.Baggers.ToString();
-                    SelectedCatersDetails = selectedArkiv.Caters.ToString();
-                    SelectedCrewDetails = selectedArkiv.Crew.ToString();
-                    SelectedFulersDetails = selectedArkiv.Fuelers.ToString();
-                    SelectedFlyopgave = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex];
-                    OpgaveAdapter = new OpgaveAdapter(selectedArkiv,SelectedFlyopgave);
+                    OpgaveAdapter = new OpgaveAdapter(SelectedOpgaveArkiv, SelectedFlyopgave);
+                    SelectedMekanikerDetails = SelectedOpgaveArkiv.Mekanikker.ToString();
+                    SelectedBaggersDetails = SelectedOpgaveArkiv.Baggers.ToString();
+                    SelectedCatersDetails = SelectedOpgaveArkiv.Caters.ToString();
+                    SelectedCrewDetails = SelectedOpgaveArkiv.Crew.ToString();
+                    SelectedFulersDetails = SelectedOpgaveArkiv.Fuelers.ToString();
+                                       
                     CountdownToDeadline();
 
                 }
@@ -249,7 +267,6 @@ namespace FlygoApp.ViewModels
             get { return _createFlyopgaveCommand ?? (_createFlyopgaveCommand = new RelayCommand(CreateFlyopgave)); }
             set { _createFlyopgaveCommand = value; }
         }
-
         public ICommand DeleteOpgaveCommand
         {
             get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayCommandWithParameter(DeleteOpgave)); }
@@ -282,13 +299,7 @@ namespace FlygoApp.ViewModels
 
 
         }
-        public HubConnection Conn { get; set; }
-        public IHubProxy Proxy { get; set; }
-        public ICommand SendOpgaveCommand
-        {
-            get { return _sendOpgaveCommand ?? (_sendOpgaveCommand = new RelayCommand(Send)); }
-            set { _sendOpgaveCommand = value; }
-        }
+        #region Metoder
         public void Send()
         {
             Flyopgave rute = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex];
@@ -297,23 +308,18 @@ namespace FlygoApp.ViewModels
                 Proxy.Invoke("BroadcastOpgave", rute);
             }
         }
-
-        #region Metoder
-
         public void CountdownToDeadline()
         {
             _timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
             _timer.Tick += MyTimer_Tick;
             _timer.Start();
-        }
-        
+        }        
         public void MyTimer_Tick(object o, object sender)
         {
             DateTime til = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Afgang;
             TimeSpan span = til - DateTime.Now;
             SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
         }
-
         public async void DeleteOpgave(object param)
         {
             try
@@ -345,7 +351,6 @@ namespace FlygoApp.ViewModels
             }
 
         }
-
         public void CreateFlyopgave()
         {          
             int flyId = FlyHandler.Fly[SelectedFlyIndex].Id;

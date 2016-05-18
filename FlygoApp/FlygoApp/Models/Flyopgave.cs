@@ -36,7 +36,6 @@ namespace FlyGoWebService.Models
         public int Id { get; set; }
         public string AfgangSomText { get; set; }
         public string AnkomstSomText { get; set; }
-
         public DateTime Ankomst
         {
             get { return _ankomst; }
@@ -46,7 +45,6 @@ namespace FlyGoWebService.Models
                 AnkomstSomText = Ankomst.ToString("MM/dd/yyyy HH:mm");
             }
         }
-
         public DateTime Afgang
         {
             get { return _afgang; }
@@ -56,9 +54,7 @@ namespace FlyGoWebService.Models
                 AfgangSomText = Afgang.ToString("MM/dd/yyyy HH:mm");
             }
         }
-
         public int FlyId { get; set; }
-
         public int HangarId { get; set; }
 
         [StringLength(50)]

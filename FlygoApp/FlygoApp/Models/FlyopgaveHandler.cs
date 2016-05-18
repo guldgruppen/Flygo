@@ -55,6 +55,7 @@ namespace FlygoApp.Models
             FlyopgaveFactory = new FlyopgaveFactory();
             Flyopgaver = new ObservableCollection<Flyopgave>();
             OpgaveArkivs = new ObservableCollection<OpgaveArkiv>();
+            
                                               
         }
 
