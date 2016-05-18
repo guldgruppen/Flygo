@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FlygoApp.Models;
 using FlyGoWebService.Models;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
@@ -17,7 +18,6 @@ namespace UnitTestFlygoApp
         public void InitTest()
         {
             Flyopgave = new Flyopgave();
-
         }
 
         [TestMethod]
@@ -26,6 +26,16 @@ namespace UnitTestFlygoApp
             string nummer = "";
             Assert.ThrowsException<ArgumentException>(() => Flyopgave.CheckFlyopgaveNummer(nummer));
         }
+
+        [TestMethod]
+        public void TestFlyOpgaveNummerWrong()
+        {
+            FlyopgaveHandler h = new FlyopgaveHandler();
+
+            string nummer = "AAA123";
+            Assert.ThrowsException<ArgumentException>((() => h.Add(DateTimeOffset.Now.AddDays(1), DateTimeOffset.Now, 2, 2, nummer))); 
+        }
+
         [TestMethod]
         public void TestFlyopgaveAfgangAnkomstDif()
         {
@@ -56,5 +66,7 @@ namespace UnitTestFlygoApp
             DateTime til = DateTime.Now.AddDays(-1);
             Assert.ThrowsException<ArgumentException>(() => Flyopgave.CheckAfgangAnkomst(til, fra));
         }
+        
+
     }
 }
