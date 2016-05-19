@@ -114,6 +114,7 @@
     <Compile Include="Exceptions\InfoWrongException.cs" />
     <Compile Include="Exceptions\NullOrEmptyException.cs" />
     <Compile Include="Models\BrugerLogIn.cs" />
+    <Compile Include="Models\DataMessengerSingleton.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\FlyHandler.cs" />
     <Compile Include="Models\Flyopgave.cs" />
@@ -136,8 +137,6 @@
     <Compile Include="Persistency\DtoOpgaveArkivSingleton.cs" />
     <Compile Include="Persistency\DtoRolesSingleton.cs" />
     <Compile Include="Persistency\IDataTransfer.cs" />
-    <Compile Include="Persistency\LoginBrugerSingleton.cs" />
-    <Compile Include="Persistency\SearchListSingleton.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />

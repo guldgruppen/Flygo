@@ -9,6 +9,7 @@ using Windows.UI.Xaml;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
 using FlygoApp.Models;
+using FlygoApp.Persistency;
 using FlyGoWebService.Models;
 using Microsoft.AspNet.SignalR.Client;
 
@@ -41,7 +42,7 @@ namespace FlygoApp.ViewModels
         private string _flyopgaveNr;
         private Uri _imageSource;
         private OpgaveArkiv _selectedOpgaveArkiv;
-
+        
         #endregion
         #region Properties         
         public HubConnection Conn { get; set; }

@@ -23,7 +23,7 @@ namespace FlygoApp.ViewModels
         private DtoHangarSingleton _dtoHangar;
         private DtoFlySingleton _dtoFly;
         private DtoOpgaveArkivSingleton _dtoOpgaveArkiv;
-        private LoginBrugerSingleton _loginBruger;
+        private DataMessengerSingleton _dataMessenger;
         private DtoRolesSingleton _dtoRoles;
         private ICommand _backCommand;
         private readonly NavigationService _navigationService;
@@ -138,7 +138,7 @@ namespace FlygoApp.ViewModels
                 if (_selectedForsinketTidIndex != -1)
                 {
                     TimeSpan chosenSpan = TimeSpan.FromMinutes(ForsinketTid[SelectedForsinketTidIndex]);
-                    Proxy.Invoke("BroadcastForsinketSvar", _loginBruger.BrugerLogIn.RoleId, chosenSpan);
+                    Proxy.Invoke("BroadcastForsinketSvar", _dataMessenger.BrugerLogIn.RoleId, chosenSpan);
                     
                 }
                 
@@ -220,12 +220,12 @@ namespace FlygoApp.ViewModels
             _dtoHangar = DtoHangarSingleton.GetInstance();
             _dtoFly = DtoFlySingleton.GetInstance();
             _dtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance();
-            _loginBruger = LoginBrugerSingleton.GetInstance();
+           _dataMessenger = DataMessengerSingleton.GetInstance;
             _dtoRoles = DtoRolesSingleton.GetInstance();
-            LogInBrugernavn = _loginBruger.BrugerLogIn.BrugerNavn;
+            LogInBrugernavn = _dataMessenger.BrugerLogIn.BrugerNavn;
 
-            LogInRole = _dtoRoles.RolesListe.First(x => x.Id.Equals(_loginBruger.BrugerLogIn.RoleId)).ToString();
-            var s = SearchListSingleton.GetInstance();
+            LogInRole = _dtoRoles.RolesListe.First(x => x.Id.Equals(_dataMessenger.BrugerLogIn.RoleId)).ToString();
+            var s = DataMessengerSingleton.GetInstance;
 
             Flyopgave = s.Flyopgave;
             OpgaveArkiv = _dtoOpgaveArkiv.OpgaveArkivListe.Single(x => x.FlyopgaveId.Equals(Flyopgave.Id));
@@ -261,7 +261,7 @@ namespace FlygoApp.ViewModels
 
         public void SendKorrektSvar()
         {
-            Proxy.Invoke("BroadcastKorrektSvar", _loginBruger.BrugerLogIn.RoleId);
+            Proxy.Invoke("BroadcastKorrektSvar", _dataMessenger.BrugerLogIn.RoleId);
             SelectedForsinketTidIndex = -1; 
         }
 
@@ -273,7 +273,7 @@ namespace FlygoApp.ViewModels
 
         public void SendFejlSvar()
         {
-            Proxy.Invoke("BroadcastFejlSvar", _loginBruger.BrugerLogIn.RoleId);
+            Proxy.Invoke("BroadcastFejlSvar", _dataMessenger.BrugerLogIn.RoleId);
             SelectedForsinketTidIndex = -1; 
         }
 

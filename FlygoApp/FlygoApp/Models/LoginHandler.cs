@@ -9,12 +9,12 @@ namespace FlygoApp.Models
     {
         private readonly DtoBrugerLoginSingleton _dtoBruger;
         public NavigationService NavigationService;
-        private readonly LoginBrugerSingleton _loginBruger;
+        private readonly DataMessengerSingleton _dataMessenger;
 
         public LoginHandler()
         {
             _dtoBruger = DtoBrugerLoginSingleton.GetInstance();
-            _loginBruger = LoginBrugerSingleton.GetInstance();
+           _dataMessenger = DataMessengerSingleton.GetInstance;
             NavigationService = new NavigationService();
         }
 
@@ -41,8 +41,8 @@ namespace FlygoApp.Models
             foreach (var login in _dtoBruger.BrugerLogInsDictionary)
             {
                 x--;
-                _loginBruger.BrugerLogIn.BrugerNavn = login.Key;
-                _loginBruger.BrugerLogIn.RoleId = login.Value.RoleId;
+                _dataMessenger.BrugerLogIn.BrugerNavn = login.Key;
+                _dataMessenger.BrugerLogIn.RoleId = login.Value.RoleId;
                 
 
                 if (login.Key == brugernavn && login.Value.Password == kodeord)

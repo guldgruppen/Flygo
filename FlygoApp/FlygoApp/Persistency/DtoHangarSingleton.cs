@@ -7,7 +7,7 @@ using FlygoApp.Models;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoHangarSingleton
+    public class DtoHangarSingleton : DataTransferBase<Hangar>
     {
         public List<Hangar> HangarListe { get; set; } = new List<Hangar>();
         private static DtoHangarSingleton _dtoHangar;
@@ -24,85 +24,19 @@ namespace FlygoApp.Persistency
             return _dtoHangar ?? (_dtoHangar = new DtoHangarSingleton());
         }
 
-        public async void Loadhangar()
+        public void Loadhangar()
         {
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler {UseDefaultCredentials = true};
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-
-                    var response = client.GetAsync("api/Hangars/GetHangar").Result;
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        IEnumerable<Hangar> hangardata = response.Content.ReadAsAsync<IEnumerable<Hangar>>().Result;
-                        HangarListe.Clear();
-                        foreach (var h in hangardata)
-                        {
-                            HangarListe.Add(h);
-                        }
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
-
+            Load(HangarListe, "api/Hangars/GetHangar");           
         }
 
-        public async void PostHangar(Hangar hangar)
+        public void PostHangar(Hangar hangar)
         {
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler {UseDefaultCredentials = true};
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                   await client.PostAsJsonAsync("api/Hangars/PostHangar/",hangar);
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
-
+            Post(hangar, "api/Hangars/PostHangar/");           
         }
 
-        public async void DeleteHangar(int id)
+        public void DeleteHangar(int id)
         {
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler {UseDefaultCredentials = true};
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                    await client.DeleteAsync("api/Hangars/DeleteHangar/"+id);
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
-
+            Delete(id, "api/Hangars/DeleteHangar/");                       
         }
     }
 }

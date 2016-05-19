@@ -7,7 +7,7 @@ using FlyGoWebService.Models;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoRolesSingleton
+    public class DtoRolesSingleton : DataTransferBase<Roles>
     {
         private static DtoRolesSingleton _dtoRoles;
         public List<Roles> RolesListe { get; set; } = new List<Roles>();
@@ -20,37 +20,9 @@ namespace FlygoApp.Persistency
         {
             return _dtoRoles ?? (_dtoRoles = new DtoRolesSingleton());
         }
-        public async void LoadRoles()
+        public void LoadRoles()
         {
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                    var response = client.GetAsync("api/Roles/GetRoles").Result;
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        IEnumerable<Roles> roller = response.Content.ReadAsAsync<IEnumerable<Roles>>().Result;
-                        
-                        foreach (var rolle in roller)
-                        {
-                            RolesListe.Add(rolle);
-                        }
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
+            Load(RolesListe, "api/Roles/GetRoles");
         }
     }
 }

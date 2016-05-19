@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FlygoApp.Persistency
 {
-    public interface IDataTransfer<in T>
+    public interface IDataTransfer<T>
     {
-        void Load();
-        void Post(T type);
-        void Delete(int id);
+        void Load(List<T> listToAdd, string url);
+        void Post(T type,string url);
+        void Delete(int id,string url);
         
     }
 }

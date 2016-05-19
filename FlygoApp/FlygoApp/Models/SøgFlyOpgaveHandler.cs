@@ -10,7 +10,7 @@ namespace FlygoApp.Models
     {
         private readonly DtoFlyopgaveSingleton _dtoFlyopgave;
 
-        public SearchListSingleton SearchListSingleton;
+        private DataMessengerSingleton _dataMessenger;
 
         public NavigationService NavigationService;
 
@@ -19,7 +19,7 @@ namespace FlygoApp.Models
         public SøgFlyOpgaveHandler()
         {
             _dtoFlyopgave = DtoFlyopgaveSingleton.GetInstance();
-            SearchListSingleton = SearchListSingleton.GetInstance();
+            _dataMessenger = DataMessengerSingleton.GetInstance;
             NavigationService = new NavigationService();
         }
 
@@ -45,7 +45,7 @@ namespace FlygoApp.Models
                 x--;
                 if (String.Equals(rute.FlyopgaveNummer, flyopgaveNr, StringComparison.CurrentCultureIgnoreCase) && rute.Afgang.Date == dateTime.Date)
                 {
-                    SearchListSingleton.Flyopgave = rute;
+                    _dataMessenger.Flyopgave = rute;
                     NavigationService.Navigate(typeof(WorkerTaskListPage));
                     break;
                 }
