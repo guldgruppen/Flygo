@@ -8,7 +8,7 @@ using FlyGoWebService.Models;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoFlyopgaveSingleton : DataTransferBase<Flyopgave>
+    public sealed class DtoFlyopgaveSingleton : DataTransferBase<Flyopgave>
     {
         public List<Flyopgave> FlyopgaveListe { get; set; } = new List<Flyopgave>();
 

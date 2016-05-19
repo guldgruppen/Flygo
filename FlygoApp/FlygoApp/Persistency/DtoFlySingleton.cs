@@ -7,7 +7,7 @@ using FlygoApp.Models;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoFlySingleton : DataTransferBase<Fly>
+    public sealed class DtoFlySingleton : DataTransferBase<Fly>
     {
         public List<Fly> FlyListe { get; set; } = new List<Fly>();
 

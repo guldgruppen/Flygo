@@ -8,7 +8,7 @@ using FlyGoWebService;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoBrugerLoginSingleton : DataTransferBase<BrugerLogIn>
+    public sealed class DtoBrugerLoginSingleton : DataTransferBase<BrugerLogIn>
     {
         public Dictionary<string, BrugerLogIn> BrugerLogInsDictionary { get; set; } = new Dictionary<string, BrugerLogIn>();
 

@@ -19,18 +19,14 @@ namespace FlygoApp.Models
         //Kaldes for at oprette et flyopgave.
         public async void Add(DateTimeOffset afgang, DateTimeOffset ankomst, int flyid, int hangarid, string nummer)
         {
+            string message = String.Empty;
+
             try
             {
-                //Kontrollere om flyopgavenummer har 2 bogstaver og 3 til 4 tal
-                bool match = Regex.IsMatch(nummer, @"^[a-zA-Z]{2}\d{3,4}$");
-                if (!match)
-                {
-                    throw new ArgumentException("Flyopgavenummer skal starte 2 bogstaver og slutte med 4 cifre");
-                }
-
+                CheckEksisterendeFlyopgave(nummer);
                 //Hvor flyopgave objektet bliver oprettet.
                 Flyopgave rute = FlyopgaveFactory.CreateFlyopgave(afgang, ankomst, flyid, hangarid, nummer);
-                
+
                 //indsætter i databasen
                 DtoFlyopgave.PostFlyopgaver(rute);
 
@@ -42,19 +38,23 @@ namespace FlygoApp.Models
 
                 //Opretter et opgavearkiv objekt hvor flyopgaveid er baseret på den nylig oprettede flyopgave
                 OpgaveArkiv temp = new OpgaveArkiv() {FlyopgaveId = id};
-                
+
                 //indsætter opgavearkiv i databasen
                 DtoOpgaveArkiv.PostOpgaveArkiv(temp);
-                //Fortæller brugeren, at flyopgave er oprettet
-                await new MessageDialog("Flyopgave er oprettet").ShowAsync();
+
+                message = "flyopgave er oprettet";
             }
             catch (ArgumentException ex)
             {
-                await new MessageDialog(ex.Message).ShowAsync();
+                message = ex.Message;
             }
             catch (IndexOutOfRangeException e)
-            {              
-                await new MessageDialog(e.Message).ShowAsync();
+            {
+                message = e.Message;
+            }
+            finally
+            {
+                await new MessageDialog(message).ShowAsync();
             }
             
 
@@ -72,9 +72,12 @@ namespace FlygoApp.Models
                                               
         }
 
-        public void CheckEksisterendeFlyopgave(Flyopgave flyopgave)
+        public void CheckEksisterendeFlyopgave(string flyopgaveNummer)
         {
-            
+            if (DtoFlyopgave.FlyopgaveListe.Exists(x => x.FlyopgaveNummer.Equals(flyopgaveNummer)))
+            {
+                throw new ArgumentException("flyrutenummer eksisterer i forvejen");
+            }
         }
 
         public Flyopgave Get(int id)

@@ -14,7 +14,6 @@ namespace FlygoApp.Models
             Fly = new ObservableCollection<Fly>();
         }
 
-
         //Loader data fra Dto og indsætter flyene i ObservableCollection
         public void LoadDtoFly()
         {

@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.RegularExpressions;
+
 namespace FlyGoWebService.Models
 {
 
@@ -72,6 +74,14 @@ namespace FlyGoWebService.Models
             {
                 throw new ArgumentException("Venligst indtast et flyrute nummer");
             }
+
+            bool match = Regex.IsMatch(nummer, @"^[a-zA-Z]{2}\d{3,4}$");
+
+            if (!match)
+            {
+                    throw new ArgumentException("Flyopgavenummer skal starte 2 bogstaver og slutte med 4 cifre");
+            }
+            
         }
         //Checker om der er valgt et fly
         public void CheckFlyId(int id)

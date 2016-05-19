@@ -9,7 +9,6 @@ using Windows.UI.Xaml;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
 using FlygoApp.Models;
-using FlygoApp.Persistency;
 using FlyGoWebService.Models;
 using Microsoft.AspNet.SignalR.Client;
 
@@ -51,7 +50,6 @@ namespace FlygoApp.ViewModels
         public FlyHandler FlyHandler { get; set; }
         public HangarHandler HangarHandler { get; set; }
         public FlyopgaveHandler FlyopgaveHandler { get; set; }
-
         public string FlyopgaveNr
         {
             get { return _flyopgaveNr; }
@@ -63,12 +61,10 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public DateTimeOffset AfgangDato { get; set; }
         public DateTimeOffset AnkomstDato { get; set; }
         public TimeSpan AfgangTid { get; set; }
         public TimeSpan AnkomstTid { get; set; }
-        public DateTimeOffset MinYear { get; set; } = DateTime.Now;
         public Uri ImageSource
         {
             get { return _imageSource; }
@@ -213,7 +209,8 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        //Bruges til at opdatere alt data i højre side, der er baseret på valget af flyopgave i venstre side.
+       
+        //Bruges til at opdatere alt data i højre side af GUI, der er baseret på valget af flyopgave i venstre side.
         public int SelectedOpgaveIndex
         {
             get { return _selectedOpgaveIndex; }

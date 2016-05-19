@@ -7,7 +7,7 @@ using FlygoApp.Models;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoHangarSingleton : DataTransferBase<Hangar>
+    public sealed class DtoHangarSingleton : DataTransferBase<Hangar>
     {
         public List<Hangar> HangarListe { get; set; } = new List<Hangar>();
         private static DtoHangarSingleton _dtoHangar;

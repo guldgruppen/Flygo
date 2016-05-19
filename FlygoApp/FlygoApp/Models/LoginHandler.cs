@@ -1,4 +1,5 @@
-﻿using FlygoApp.Commons;
+﻿using System.Linq;
+using FlygoApp.Commons;
 using FlygoApp.Exceptions;
 using FlygoApp.Persistency;
 using FlygoApp.Views;
@@ -22,6 +23,38 @@ namespace FlygoApp.Models
         //Kontrollere om login info er korrekt
         public void CheckLoginInfo(string brugernavn, string kodeord)
         {
+                CheckLoginException(brugernavn, kodeord);
+          
+                var result = _dtoBruger.BrugerLogInsDictionary.SingleOrDefault( bruger =>
+                             bruger.Key.ToLower().Equals(brugernavn.ToLower()) &&
+                             bruger.Value.Password.ToLower().Equals(kodeord.ToLower())
+                             );
+
+                if (result.Key == null || result.Value == null)
+                {
+                    throw new InfoWrongException("Brugernavnet eller kodeordet er forkert. Prøv venligst igen!");
+                }
+                _dataMessenger.BrugerLogIn.BrugerNavn = result.Key;
+                _dataMessenger.BrugerLogIn.RoleId = result.Value.RoleId;
+
+                    //Ser hvilken rolle brugeren har, og navigere derefter brugeren til deres respektive side
+                    if (result.Value.RoleId == 1)
+                    {                        
+                        NavigationService.Navigate(typeof(HomePage));
+                    }
+                    if ((result.Value.RoleId >= 2 && result.Value.RoleId <= 7) || result.Value.RoleId == 9)
+                    {
+                        NavigationService.Navigate(typeof(WorkerTaskPage));
+                    }
+                    if (result.Value.RoleId == 8)
+                    {
+                        NavigationService.Navigate(typeof(AdminPage));
+                    }
+
+                    
+         }
+        private static void CheckLoginException(string brugernavn, string kodeord)
+        {
             if (string.IsNullOrEmpty(brugernavn) && string.IsNullOrEmpty(kodeord))
             {
                 throw new NullOrEmptyException("Brugernavnet og kodeordet er tomt. Venligst udfyld dette!");
@@ -34,50 +67,9 @@ namespace FlygoApp.Models
             {
                 throw new NullOrEmptyException("Kodeordet er tomt. Venligst udfyld dette!");
             }
-
-            int x = _dtoBruger.BrugerLogInsDictionary.Count;
-
-            //Indsættes i en dictionary hvor brugernavn er key
-            foreach (var login in _dtoBruger.BrugerLogInsDictionary)
-            {
-                x--;
-                _dataMessenger.BrugerLogIn.BrugerNavn = login.Key;
-                _dataMessenger.BrugerLogIn.RoleId = login.Value.RoleId;
-                
-
-                if (login.Key == brugernavn && login.Value.Password == kodeord)
-                {
-                    //Ser hvilken rolle brugeren har, og navigere derefter brugeren til deres respektive side
-                    if (login.Value.RoleId == 1)
-                    {                        
-                        NavigationService.Navigate(typeof(HomePage));
-                        break;
-                    }
-                    if (login.Value.RoleId == 2 || login.Value.RoleId == 3 || login.Value.RoleId == 4 ||
-                        login.Value.RoleId == 5 || login.Value.RoleId == 6 || login.Value.RoleId == 7 || login.Value.RoleId == 9)
-                    {
-                        NavigationService.Navigate(typeof(WorkerTaskPage));
-                        break;
-                    }
-                    if (login.Value.RoleId == 8)
-                    {
-                        NavigationService.Navigate(typeof(AdminPage));
-                        break;
-                    }
-
-                    
-                }
-
-                //Hvis brugernavn eller kodeord ikke er matchet i dictionary, så er x=0, og en exception bliver kastet.
-                if (x == 0)
-                {                    
-                    throw new InfoWrongException("Brugernavnet eller kodeordet er forkert. Prøv venligst igen!");
-                }
-            }
-
-
-
         }
-
     }
-}
+ }
+
+   
+

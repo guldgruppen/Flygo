@@ -18,7 +18,7 @@ namespace FlygoApp.ViewModels
         private bool _openMenu;
         private Frame _currentFrame = new Frame();
         private ICommand _logUdCommand;
-        private NavigationService _navigationService;
+        private readonly NavigationService _navigationService;
 
         #endregion
 

@@ -14,18 +14,17 @@ namespace FlygoApp.ViewModels
 {
     public class FlyDataViewModel : INotifyPropertyChanged
     {
+              
+        #region instance fields
         private ICommand _opretFlyCommand;
         private ICommand _deleteFlyCommand;
         private int _selectedFlyIndex;
         private string _selectedFlyProducent;
         private string _selectedFlyType;
-        private DtoFlySingleton _dtoFlySingleton;
-
-        #region instance fields
-
+        private readonly DtoFlySingleton _dtoFlySingleton;       
         #endregion
+     
         #region Properties
-
         public string FlyType { get; set; }
         public string FlyProducent { get; set; }
         public string SelectedFlyType
@@ -37,7 +36,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public ObservableCollection<Fly> Fly { get; set; }
         public string SelectedFlyProducent
         {
@@ -48,7 +46,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public int SelectedFlyIndex
         {
             get { return _selectedFlyIndex; }
@@ -63,13 +60,11 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public ICommand OpretFlyCommand
         {
             get { return _opretFlyCommand ?? (_opretFlyCommand = new RelayCommand(OpretFlyAsync)); }
             set { _opretFlyCommand = value; }
         }
-
         public ICommand DeleteFlyCommand
         {
             get { return _deleteFlyCommand ?? (_deleteFlyCommand = new RelayCommandWithParameter(DeleteFly)); }
@@ -77,17 +72,15 @@ namespace FlygoApp.ViewModels
         }
 
         #endregion
-
-
-
-        #region Metoder
         public FlyDataViewModel()
         {
             _dtoFlySingleton = DtoFlySingleton.GetInstance;
             Fly = new ObservableCollection<Fly>();
             LoadDtoFly();
-            
+
         }
+
+        #region Metoder
 
         public async void OpretFlyAsync()
         {

@@ -7,7 +7,7 @@ using FlyGoWebService.Models;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoRolesSingleton : DataTransferBase<Roles>
+    public sealed class DtoRolesSingleton : DataTransferBase<Roles>
     {
         private static DtoRolesSingleton _dtoRoles;
         public List<Roles> RolesListe { get; set; } = new List<Roles>();

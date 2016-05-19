@@ -20,8 +20,8 @@ namespace FlygoApp.Persistency
 
         public virtual async void Load(List<T> listToAdd, string url)
         {
-            HttpClientHandler _handler = new HttpClientHandler { UseDefaultCredentials = true };
-            using (var client = new HttpClient(_handler))
+            HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
+            using (var client = new HttpClient(handler))
             {
                 ClientHeaderInfo(client);
                 try
@@ -42,8 +42,8 @@ namespace FlygoApp.Persistency
         }      
         public virtual async void Post(T type,string url)
         {
-            HttpClientHandler _handler = new HttpClientHandler { UseDefaultCredentials = true };
-            using (var client = new HttpClient(_handler))
+            HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
+            using (var client = new HttpClient(handler))
             {
                 ClientHeaderInfo(client);
                 try
@@ -60,8 +60,8 @@ namespace FlygoApp.Persistency
         }
         public virtual async void Delete(int id,string url)
         {
-            HttpClientHandler _handler = new HttpClientHandler { UseDefaultCredentials = true };
-            using (var client = new HttpClient(_handler))
+            HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
+            using (var client = new HttpClient(handler))
             {
                 ClientHeaderInfo(client);
                 try
@@ -74,11 +74,10 @@ namespace FlygoApp.Persistency
                 }
             }
         }
-
-        public async Task Update(T type, int id, string url)
+        public virtual async Task Update(T type, int id, string url)
         {
-            HttpClientHandler _handler = new HttpClientHandler { UseDefaultCredentials = true };
-            using (var client = new HttpClient(_handler))
+            HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
+            using (var client = new HttpClient(handler))
             {
                 ClientHeaderInfo(client);
                 try
