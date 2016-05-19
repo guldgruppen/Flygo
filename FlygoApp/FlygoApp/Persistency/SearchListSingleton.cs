@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlyGoWebService.Models;
+﻿using FlyGoWebService.Models;
 
 namespace FlygoApp.Persistency
 {
+    //Indeholder flyopgaven der bliver søgt på, således at GC ikke fjerner den.
     public class SearchListSingleton
     {
         public Flyopgave Flyopgave;

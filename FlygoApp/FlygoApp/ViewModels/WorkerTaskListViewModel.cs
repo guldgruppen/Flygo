@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
 using FlygoApp.Models;
 using FlygoApp.Persistency;
 using FlygoApp.Views;
-using FlyGoWebService;
 using FlyGoWebService.Models;
 using Microsoft.AspNet.SignalR.Client;
 
 namespace FlygoApp.ViewModels
 {
-    public class RedcapTaskListViewModel : INotifyPropertyChanged
+    public class WorkerTaskListViewModel : INotifyPropertyChanged
     {
         #region instance fields
         private DtoHangarSingleton _dtoHangar;
@@ -27,20 +26,18 @@ namespace FlygoApp.ViewModels
         private LoginBrugerSingleton _loginBruger;
         private DtoRolesSingleton _dtoRoles;
         private ICommand _backCommand;
-        private NavigationService navigationService;
+        private readonly NavigationService _navigationService;
         private string _selectedMekanikerDetails;
         private string _selectedCatersDetails;
         private string _selectedCrewDetails;
         private string _selectedFulersDetails;
         private string _selectedBaggersDetails;
         private string _selectedCountdown;
-        private ICommand _sendOpgaveCommand;
-        private DispatcherTimer _timer = new DispatcherTimer();
+        private readonly DispatcherTimer _timer = new DispatcherTimer();
         private string _selectedRengøringDetails;
         private OpgaveAdapter _opgaveAdapter;
         private string _logInRole;
         private ICommand _sendKorrektSvarCommand;
-        private ICommand _sendForsinketSvarCommand;
         private ICommand _sendFejlSvarCommand;
         private int _selectedForsinketTidIndex = -1;
         private string _selectedRedcapDetails;
@@ -162,7 +159,7 @@ namespace FlygoApp.ViewModels
 
         public ICommand BackCommand
         {
-            get { return _backCommand ?? (new RelayCommand((() => navigationService.Navigate(typeof(RedcapTaskPage))))); }
+            get { return _backCommand ?? (new RelayCommand((() => _navigationService.Navigate(typeof(WorkerTaskPage))))); }
             set { _backCommand = value; }
         }
 
@@ -171,7 +168,7 @@ namespace FlygoApp.ViewModels
             get
             {
                 return _logudCommand ??
-                       (_logudCommand = new RelayCommand(() => navigationService.Navigate(typeof (LoginPage))));
+                       (_logudCommand = new RelayCommand(() => _navigationService.Navigate(typeof (LoginPage))));
             }
             set { _logudCommand = value; }
         }
@@ -181,15 +178,6 @@ namespace FlygoApp.ViewModels
             get { return _sendKorrektSvarCommand ?? (_sendKorrektSvarCommand = new RelayCommand(SendKorrektSvar)); }
             set { _sendKorrektSvarCommand = value; }
         }
-
-        //public ICommand SendForsinketSvarCommand    
-        //{
-        //    get
-        //    {
-        //        return _sendForsinketSvarCommand ?? (_sendForsinketSvarCommand = new RelayCommand(SendForsinketSvar));
-        //    }
-        //    set { _sendForsinketSvarCommand = value; }
-        //}
 
         public ICommand SendFejlSvarCommand
         {
@@ -212,9 +200,9 @@ namespace FlygoApp.ViewModels
 
         #endregion
 
-        public RedcapTaskListViewModel()
+        public WorkerTaskListViewModel()
         {         
-            navigationService = new NavigationService();
+            _navigationService = new NavigationService();
             SignalRConnection();
             InitData();
             InsertForsinketTidValgmuligheder();
@@ -297,31 +285,31 @@ namespace FlygoApp.ViewModels
                 switch (roleId)
                 {
                     case 2:
-                        SelectedMekanikerDetails = DateTime.Now.ToString();
+                        SelectedMekanikerDetails = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                         OpgaveArkiv.Mekanikker = DateTime.Now;
                         break;
                     case 3:
-                        SelectedCrewDetails = DateTime.Now.ToString();
+                        SelectedCrewDetails = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                         OpgaveArkiv.Crew = DateTime.Now;
                         break;
                     case 4:
-                        SelectedFulersDetails = DateTime.Now.ToString();
+                        SelectedFulersDetails = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                         OpgaveArkiv.Fuelers = DateTime.Now;
                         break;
                     case 5:
-                        SelectedBaggersDetails = DateTime.Now.ToString();
+                        SelectedBaggersDetails = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                         OpgaveArkiv.Baggers = DateTime.Now;
                         break;
                     case 6:
-                        SelectedCatersDetails = DateTime.Now.ToString();
+                        SelectedCatersDetails = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                         OpgaveArkiv.Caters = DateTime.Now;
                         break;
                     case 7:
-                        SelectedRedcapDetails = DateTime.Now.ToString();
+                        SelectedRedcapDetails = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                         OpgaveArkiv.Redcap = DateTime.Now;
                         break;
                     case 9:
-                        SelectedRengøringDetails = DateTime.Now.ToString();
+                        SelectedRengøringDetails = DateTime.Now.ToString(CultureInfo.InvariantCulture);
                         OpgaveArkiv.Rengøring = DateTime.Now;
                         break;
                 }

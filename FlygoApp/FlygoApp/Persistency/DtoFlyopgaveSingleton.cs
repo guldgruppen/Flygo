@@ -85,9 +85,9 @@ namespace FlygoApp.Persistency
 
                     if (response.IsSuccessStatusCode)
                     {
-                        IEnumerable<Flyopgave> Flyopgavedata = response.Content.ReadAsAsync<IEnumerable<Flyopgave>>().Result;
+                        IEnumerable<Flyopgave> flyopgavedata = response.Content.ReadAsAsync<IEnumerable<Flyopgave>>().Result;
                         FlyopgaveListe.Clear();
-                        foreach (var fly in Flyopgavedata)
+                        foreach (var fly in flyopgavedata)
                         {
                             FlyopgaveListe.Add(fly);
                         }

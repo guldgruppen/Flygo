@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
 using FlygoApp.Models;
 using FlygoApp.Persistency;
-using FlyGoWebService.Models;
 
 namespace FlygoApp.ViewModels
 {
@@ -137,7 +133,7 @@ namespace FlygoApp.ViewModels
         {
             Hangars.Clear();
             _dtoHangar.Loadhangar();
-            Hangars = _dtoHangar.HangarListe.ToObservableCollection<Hangar>();
+            Hangars = _dtoHangar.HangarListe.ToObservableCollection();
             
         }
         #endregion

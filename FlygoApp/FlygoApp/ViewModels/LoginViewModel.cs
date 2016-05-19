@@ -1,5 +1,4 @@
 ﻿using System.Windows.Input;
-using Windows.Security.Cryptography.Core;
 using Windows.UI.Popups;
 using FlygoApp.Commons;
 using FlygoApp.Exceptions;
@@ -18,7 +17,7 @@ namespace FlygoApp.ViewModels
         private ICommand _goToHomePageCommand;
         public ICommand GoToHomePageCommand
         {
-            get { return _goToHomePageCommand ?? (_goToHomePageCommand = new RelayCommand((() => Login()))); }
+            get { return _goToHomePageCommand ?? (_goToHomePageCommand = new RelayCommand(Login)); }
             set { _goToHomePageCommand = value; }   
         }
 

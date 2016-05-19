@@ -19,7 +19,7 @@ namespace FlygoApp.Models
         }
 
 
-
+        //Kontrollere om login info er korrekt
         public void CheckLoginInfo(string brugernavn, string kodeord)
         {
             if (string.IsNullOrEmpty(brugernavn) && string.IsNullOrEmpty(kodeord))
@@ -37,14 +37,17 @@ namespace FlygoApp.Models
 
             int x = _dtoBruger.BrugerLogInsDictionary.Count;
 
+            //Indsættes i en dictionary hvor brugernavn er key
             foreach (var login in _dtoBruger.BrugerLogInsDictionary)
             {
                 x--;
                 _loginBruger.BrugerLogIn.BrugerNavn = login.Key;
                 _loginBruger.BrugerLogIn.RoleId = login.Value.RoleId;
                 
+
                 if (login.Key == brugernavn && login.Value.Password == kodeord)
                 {
+                    //Ser hvilken rolle brugeren har, og navigere derefter brugeren til deres respektive side
                     if (login.Value.RoleId == 1)
                     {                        
                         NavigationService.Navigate(typeof(HomePage));
@@ -53,7 +56,7 @@ namespace FlygoApp.Models
                     if (login.Value.RoleId == 2 || login.Value.RoleId == 3 || login.Value.RoleId == 4 ||
                         login.Value.RoleId == 5 || login.Value.RoleId == 6 || login.Value.RoleId == 7 || login.Value.RoleId == 9)
                     {
-                        NavigationService.Navigate(typeof(RedcapTaskPage));
+                        NavigationService.Navigate(typeof(WorkerTaskPage));
                         break;
                     }
                     if (login.Value.RoleId == 8)
@@ -65,8 +68,9 @@ namespace FlygoApp.Models
                     
                 }
 
+                //Hvis brugernavn eller kodeord ikke er matchet i dictionary, så er x=0, og en exception bliver kastet.
                 if (x == 0)
-                {
+                {                    
                     throw new InfoWrongException("Brugernavnet eller kodeordet er forkert. Prøv venligst igen!");
                 }
             }

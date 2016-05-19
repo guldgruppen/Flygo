@@ -2,6 +2,8 @@
 
 namespace FlygoApp.Models
 {
+
+    //Bruges til at sende 2 objekter ned i vores value converters.
     public class OpgaveAdapter
     {
         public OpgaveArkiv OpgaveArkiv { get; set; }

@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
 using FlygoApp.Models;
@@ -35,24 +34,18 @@ namespace FlygoApp.ViewModels
         private string _selectedCrewDetails;
         private string _selectedFulersDetails;
         private string _selectedBaggersDetails;
-        private Flyopgave _selectedFlyopgave = null;
-        private OpgaveAdapter _opgaveAdapter = null;
+        private Flyopgave _selectedFlyopgave;
+        private OpgaveAdapter _opgaveAdapter;
         private readonly DispatcherTimer _timer = new DispatcherTimer();
         private string _selectedCountdown;
-        private ICommand _sendOpgaveCommand;
-        private string _FlyopgaveNr;
+        private string _flyopgaveNr;
         private Uri _imageSource;
-        private OpgaveArkiv _selectedOpgaveArkiv = null;
+        private OpgaveArkiv _selectedOpgaveArkiv;
 
         #endregion
         #region Properties         
         public HubConnection Conn { get; set; }
         public IHubProxy Proxy { get; set; }
-        public ICommand SendOpgaveCommand
-        {
-            get { return _sendOpgaveCommand ?? (_sendOpgaveCommand = new RelayCommand(Send)); }
-            set { _sendOpgaveCommand = value; }
-        }
         public DateTimeOffset Now { get; set; }
         public FlyHandler FlyHandler { get; set; }
         public HangarHandler HangarHandler { get; set; }
@@ -60,19 +53,12 @@ namespace FlygoApp.ViewModels
 
         public string FlyopgaveNr
         {
-            get { return _FlyopgaveNr; }
+            get { return _flyopgaveNr; }
             set
             {
-                _FlyopgaveNr = value;
+                _flyopgaveNr = value;
                 bool match = Regex.IsMatch(value, @"^[a-zA-Z]{2}\d{3,4}$");
-                if (match)
-                {
-                    ImageSource = new Uri("ms-appx:///Assets/1461516027_accepted_48.png");
-                }
-                else
-                {
-                    ImageSource = new Uri("ms-appx:///Assets/1461516030_cancel_48.png");
-                }
+                ImageSource = match ? new Uri("ms-appx:///Assets/1461516027_accepted_48.png") : new Uri("ms-appx:///Assets/1461516030_cancel_48.png");
                 OnPropertyChanged();
             }
         }
@@ -226,6 +212,7 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
+        //Bruges til at opdatere alt data i højre side, der er baseret på valget af flyopgave i venstre side.
         public int SelectedOpgaveIndex
         {
             get { return _selectedOpgaveIndex; }
@@ -300,20 +287,16 @@ namespace FlygoApp.ViewModels
 
         }
         #region Metoder
-        public void Send()
-        {
-            Flyopgave rute = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex];
-            if (rute != null)
-            {
-                Proxy.Invoke("BroadcastOpgave", rute);
-            }
-        }
+
+        //Laver en timer der viser deadline
         public void CountdownToDeadline()
         {
             _timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
             _timer.Tick += MyTimer_Tick;
             _timer.Start();
-        }        
+        }
+
+        // Fortæller hvad skal opdateres for hvert tick i CountdownToDeadline metoden
         public void MyTimer_Tick(object o, object sender)
         {
             DateTime til = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Afgang;
@@ -324,8 +307,8 @@ namespace FlygoApp.ViewModels
         {
             try
             {
-                string Flyopgave = (string) param;
-                Flyopgave tempFlyopgave = FlyopgaveHandler.Flyopgaver.First(x => x.FlyopgaveNummer.Equals(Flyopgave));
+                string flyopgave = (string) param;
+                Flyopgave tempFlyopgave = FlyopgaveHandler.Flyopgaver.First(x => x.FlyopgaveNummer.Equals(flyopgave));
                 if (tempFlyopgave != null)
                 {
                     var myMessageDialog =
@@ -360,6 +343,7 @@ namespace FlygoApp.ViewModels
             FlyopgaveHandler.Add(til,fra,flyId,hangarId,FlyopgaveNr); 
             FlyopgaveHandler.DtoFlyopgave.LoadFlyopgave();          
         }
+        //Convertere input fra tilføj flyrute til en datetime.
         public DateTime DateAndTimeConverter(DateTimeOffset dato, TimeSpan tid)
         {
             return new DateTime(dato.Year, dato.Month, dato.Day, tid.Hours, tid.Minutes, 0).AddHours(1);

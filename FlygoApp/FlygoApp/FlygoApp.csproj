@@ -144,8 +144,7 @@
     <Compile Include="ViewModels\HangarDataViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\RedcapTaskListViewModel.cs" />
-    <Compile Include="ViewModels\RedcapViewModel.cs" />
+    <Compile Include="ViewModels\WorkerTaskListViewModel.cs" />
     <Compile Include="ViewModels\WorkerViewModel.cs" />
     <Compile Include="Views\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
@@ -162,19 +161,16 @@
     <Compile Include="Views\IndstillingerPage.xaml.cs">
       <DependentUpon>IndstillingerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RedcapTaskListPage.xaml.cs">
-      <DependentUpon>RedcapTaskListPage.xaml</DependentUpon>
+    <Compile Include="Views\WorkerTaskListPage.xaml.cs">
+      <DependentUpon>WorkerTaskListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RedcapTaskPage.xaml.cs">
-      <DependentUpon>RedcapTaskPage.xaml</DependentUpon>
+    <Compile Include="Views\WorkerTaskPage.xaml.cs">
+      <DependentUpon>WorkerTaskPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StatistikPage.xaml.cs">
       <DependentUpon>StatistikPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\TaskListViewModel.cs" />
-    <Compile Include="Views\test.xaml.cs">
-      <DependentUpon>test.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\TilføjFlyrutePage.xaml.cs">
       <DependentUpon>TilføjFlyrutePage.xaml</DependentUpon>
     </Compile>
@@ -186,9 +182,6 @@
     </Compile>
     <Compile Include="Views\TaskListPage.xaml.cs">
       <DependentUpon>TaskListPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\WorkerPage.xaml.cs">
-      <DependentUpon>WorkerPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -246,19 +239,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RedcapTaskListPage.xaml">
+    <Page Include="Views\WorkerTaskListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RedcapTaskPage.xaml">
+    <Page Include="Views\WorkerTaskPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatistikPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\test.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -275,10 +264,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TaskListPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\WorkerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

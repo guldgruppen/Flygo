@@ -23,11 +23,12 @@ namespace FlygoApp.Models
             NavigationService = new NavigationService();
         }
 
-        public void SearchForFlyopgave(string FlyopgaveNr, DateTime dateTime)
+        //Søger på Brugerens indtastet data, og navigere dem til den detaljerede flyopgave liste.
+        public void SearchForFlyopgave(string flyopgaveNr, DateTime dateTime)
         {
 
 
-            if (string.IsNullOrEmpty(FlyopgaveNr))
+            if (string.IsNullOrEmpty(flyopgaveNr))
             {
                 throw new NullOrEmptyException("Flyopgave nummeret er tomt. Udfyld venligst dette!");
             }
@@ -42,10 +43,10 @@ namespace FlygoApp.Models
             foreach (var rute in _dtoFlyopgave.FlyopgaveListe)
             {
                 x--;
-                if (String.Equals(rute.FlyopgaveNummer, FlyopgaveNr, StringComparison.CurrentCultureIgnoreCase) && rute.Afgang.Date == dateTime.Date)
+                if (String.Equals(rute.FlyopgaveNummer, flyopgaveNr, StringComparison.CurrentCultureIgnoreCase) && rute.Afgang.Date == dateTime.Date)
                 {
                     SearchListSingleton.Flyopgave = rute;
-                    NavigationService.Navigate(typeof(RedcapTaskListPage));
+                    NavigationService.Navigate(typeof(WorkerTaskListPage));
                     break;
                 }
 

@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace FlygoApp.Commons
 {
     public class RelayCommand : ICommand
     {
+        //Bruges til at binde metoder til knapper i GUI.
         private readonly Action _action;
 
         public RelayCommand(Action action)

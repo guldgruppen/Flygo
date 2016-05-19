@@ -15,6 +15,7 @@ namespace FlygoApp.Models
            Hangar= new ObservableCollection<Hangar>();
         }
 
+        //Loader data ind fra hangar
         public void LoadDtoHangar()
         {
             foreach (var h in _dtoHangar.HangarListe)

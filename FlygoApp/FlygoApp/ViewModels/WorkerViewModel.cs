@@ -1,183 +1,73 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Globalization;
-using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using FlygoApp.Annotations;
+using Windows.UI.Popups;
 using FlygoApp.Commons;
-using FlygoApp.Persistency;
-using FlyGoWebService;
-using FlyGoWebService.Models;
-using Microsoft.AspNet.SignalR.Client;
+using FlygoApp.Exceptions;
+using FlygoApp.Models;
+using FlygoApp.Views;
 
 namespace FlygoApp.ViewModels
 {
-    public class WorkerViewModel : INotifyPropertyChanged
+    public class WorkerViewModel
     {
         #region instance fields
-
-        private string _ankomst;
-        private string _afgang;
-        private string _FlyopgaveNummer;
-        private DispatcherTimer timer = new DispatcherTimer();
-        private DateTime _ankomstDateTime;
-        private DateTime _afgangDateTime;
-        private TimeSpan _timeSpanCountdown;
-        private string _tid;
-        private string _countdownTid;
-        private ICommand _sendSvarCommand;
-
+        private readonly SøgFlyOpgaveHandler _handler;
+        private ICommand _searchCommand;
+        private ICommand _logoutCommand;
+        private readonly NavigationService _navigationService;
         #endregion
         #region Properties
-        public string Ankomst
+
+        public DateTimeOffset DateTimeNow { get; set; }
+        public string FlyopgaveNr { get; set; }
+
+        public DateTimeOffset Date { get; set; }
+
+        public ICommand SearchCommand
         {
-            get { return _ankomst; }
-            set
-            {
-                _ankomst = value;
-                OnPropertyChanged();
-            }
-        }
-        public string Afgang
-        {
-            get { return _afgang; }
-            set
-            {
-                _afgang = value;
-                OnPropertyChanged();
-            }
-        }
-        public string FlyopgaveNummer
-        {
-            get { return _FlyopgaveNummer; }
-            set
-            {
-                _FlyopgaveNummer = value;
-                OnPropertyChanged();
-            }
-        }
-        public string Tid
-        {
-            get { return _tid; }
-            set { _tid = value; OnPropertyChanged(); }
-        }
-        public string CountdownTid
-        {
-            get { return _countdownTid; }
-            set
-            {
-                _countdownTid = value;
-                OnPropertyChanged();
-            }
-        }     
-        public HubConnection HubConnection { get; set; }
-        public IHubProxy Proxy { get; set; }
-        public TimeSpan TimeSpanCountdown
-        {
-            get { return _timeSpanCountdown; }
-            set
-            {
-                _timeSpanCountdown = value;
-                OnPropertyChanged();
-            }
-        }
-        public DateTime AnkomstDateTime
-        {
-            get { return _ankomstDateTime; }
-            set
-            {
-                _ankomstDateTime = value;
-                OnPropertyChanged();
-            }
-        }
-        public DateTime AfgangDateTime
-        {
-            get { return _afgangDateTime; }
-            set
-            {
-                _afgangDateTime = value;
-                OnPropertyChanged();
-            }
+            get { return _searchCommand ?? (new RelayCommand(SearchAsync)); }
+            set { _searchCommand = value; }
         }
 
-        public BrugerLogIn BrugerLogIn { get; set; }
-
+        public ICommand LogoutCommand
+        {
+            get
+            {
+                return _logoutCommand ?? (_logoutCommand = new RelayCommand(() => { _navigationService.Navigate(typeof(LoginPage)); }));
+            }
+            set { _logoutCommand = value; }
+        }
+      
         #endregion
-
-        public ICommand SendSvarCommand
-        {
-            get { return _sendSvarCommand ?? (_sendSvarCommand = new RelayCommand(SendSvar)); }
-            set { _sendSvarCommand = value; }
-        }
-
         public WorkerViewModel()
         {
-            var loginBruger = LoginBrugerSingleton.GetInstance();
-            HubConnection = new HubConnection("http://flygowebservice1.azurewebsites.net/");
-            Proxy = HubConnection.CreateHubProxy("OpgaveHub");
-            HubConnection.Start();
-
-            BrugerLogIn = loginBruger.BrugerLogIn;
-            
-            Proxy.On<Flyopgave>("Broadcast", OnMessage);
+            _navigationService = new NavigationService();
+            _handler = new SøgFlyOpgaveHandler();
+            DateTimeNow = DateTimeOffset.Now;
         }
-
-
         #region Metoder
-
-        public void SendSvar()
+        public async void SearchAsync()
         {
-            int brugerId = BrugerLogIn.RoleId;
-            Proxy.Invoke("BroadcastSvar",brugerId);
-        }
-
-
-
-        private async void OnMessage(Flyopgave msg)
-        {
-            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            DateTime tempt = DateTime.Parse(Date.ToString());
+            try
             {
-                FlyopgaveNummer = msg.FlyopgaveNummer;
-                Ankomst = msg.Ankomst.ToString(CultureInfo.InvariantCulture);
-                Afgang = msg.Afgang.ToString(CultureInfo.InvariantCulture);
+                _handler.SearchForFlyopgave(FlyopgaveNr, tempt);
+            }
+            catch (NullOrEmptyException ex)
+            {
+                await new MessageDialog(ex.Message).ShowAsync();
+            }
+            catch (InfoWrongException ex)
+            {
+                await new MessageDialog(ex.Message).ShowAsync();
+            }
+            catch (DateWrongException ex)
+            {
+                await new MessageDialog(ex.Message).ShowAsync();
+            }
 
-                AnkomstDateTime = msg.Ankomst;
-                AfgangDateTime = msg.Afgang;
 
-                TimeSpan tidspan = msg.Afgang - msg.Ankomst;
-                Tid = tidspan.ToString();
 
-                TimeSpanCountdown = msg.Afgang - DateTime.Now;
-                CountdownTid = TimeSpanCountdown.ToString(@"dd\.hh\:mm\:ss");
-
-                CountdownToDeadline();
-
-            });
-        }
-        public void CountdownToDeadline()
-        {
-            timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
-            timer.Tick += MyTimer_Tick;
-            timer.Start();
-        }
-
-        public void MyTimer_Tick(object o, object sender)
-        {
-            TimeSpan spantid = AfgangDateTime - DateTime.Now;
-            CountdownTid = (DateTime.Now >= AfgangDateTime) ? "færdig" : spantid.ToString(@"dd\.hh\:mm\:ss");
-
-        }
-
-        #endregion
-        #region OnPropertyChanged region
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         } 
         #endregion
     }

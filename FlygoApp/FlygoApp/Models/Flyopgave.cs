@@ -1,11 +1,10 @@
 using FlygoApp.Models;
-
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace FlyGoWebService.Models
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;    
 
     [Table("Flyopgave")]
     public partial class Flyopgave
@@ -66,6 +65,7 @@ namespace FlyGoWebService.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OpgaveArkiv> OpgaveArkiv { get; set; }
+        //Checker om flyopgavenummer indeholder en tekst
         public void CheckFlyopgaveNummer(string nummer)
         {
             if (String.IsNullOrEmpty(nummer))
@@ -73,6 +73,7 @@ namespace FlyGoWebService.Models
                 throw new ArgumentException("Venligst indtast et flyrute nummer");
             }
         }
+        //Checker om der er valgt et fly
         public void CheckFlyId(int id)
         {
             if (id < 0)
@@ -80,6 +81,7 @@ namespace FlyGoWebService.Models
                 throw new IndexOutOfRangeException("Du mangler at vælge et fly");
             }
         }
+        //Checker om der er valgt en hangar
         public void CheckHangarId(int id)
         {
             if (id < 0)
@@ -87,8 +89,7 @@ namespace FlyGoWebService.Models
                 throw new IndexOutOfRangeException("Du mangler at vælge en hangar");
             }
         }
-
-
+        //Checker at ankomst tid ikke forekommer før afgangstid
         public void CheckAfgangAnkomst(DateTime afgang, DateTime ankomst)
         {
 

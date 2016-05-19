@@ -4,8 +4,6 @@ using FlyGoWebService.Models;
 
 namespace FlyGoWebService
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     
@@ -13,14 +11,9 @@ namespace FlyGoWebService
     [Table("BrugerLogIn")]
     public partial class BrugerLogIn
     {
-        DtoRolesSingleton _dtoRolesSingleton = DtoRolesSingleton.GetInstance();
-        private string _rolleNavn;
+        private readonly DtoRolesSingleton _dtoRolesSingleton = DtoRolesSingleton.GetInstance();
 
-        public string RolleNavn
-        {
-            get { return _rolleNavn; }
-            set { _rolleNavn = value; }
-        }
+        public string RolleNavn { get; set; }
 
         public int Id { get; set; }
 
@@ -47,6 +40,7 @@ namespace FlyGoWebService
             BrugerNavn = brugerNavn;
             Password = password;
             RoleId = roleId;
+            //Bruges til at vedhæfte rollenavnet til hver bruger.
             Roles temp = _dtoRolesSingleton.RolesListe.Single(x => x.Id.Equals(RoleId));
             RolleNavn = temp.RoleName;
         }
