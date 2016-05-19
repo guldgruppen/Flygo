@@ -20,7 +20,6 @@ namespace FlygoApp.Persistency
         {
             return _dtoRoles ?? (_dtoRoles = new DtoRolesSingleton());
         }
-
         public async void LoadRoles()
         {
             const string serverUrl = "http://flygowebservice1.azurewebsites.net/";

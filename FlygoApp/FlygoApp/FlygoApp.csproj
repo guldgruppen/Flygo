@@ -128,12 +128,14 @@
     <Compile Include="Models\OpgaveArkiv.cs" />
     <Compile Include="Models\SøgFlyOpgaveHandler.cs" />
     <Compile Include="Models\Roles.cs" />
+    <Compile Include="Persistency\DataTransferBase.cs" />
     <Compile Include="Persistency\DtoBrugerLoginSingleton.cs" />
     <Compile Include="Persistency\DtoFlyopgaveSingleton.cs" />
     <Compile Include="Persistency\DtoFlySingleton.cs" />
     <Compile Include="Persistency\DtoHangarSingleton.cs" />
     <Compile Include="Persistency\DtoOpgaveArkivSingleton.cs" />
     <Compile Include="Persistency\DtoRolesSingleton.cs" />
+    <Compile Include="Persistency\IDataTransfer.cs" />
     <Compile Include="Persistency\LoginBrugerSingleton.cs" />
     <Compile Include="Persistency\SearchListSingleton.cs" />
     <Compile Include="Properties\Annotations.cs" />
