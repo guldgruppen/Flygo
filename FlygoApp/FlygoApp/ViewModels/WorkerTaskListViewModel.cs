@@ -116,7 +116,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedCountdown
         {
             get { return _selectedCountdown; }
@@ -146,7 +145,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string LogInRole
         {
             get { return _logInRole; }
@@ -156,13 +154,11 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public ICommand BackCommand
         {
             get { return _backCommand ?? (new RelayCommand((() => _navigationService.Navigate(typeof(WorkerTaskPage))))); }
             set { _backCommand = value; }
         }
-
         public ICommand LogudCommand
         {
             get
@@ -172,19 +168,16 @@ namespace FlygoApp.ViewModels
             }
             set { _logudCommand = value; }
         }
-
         public ICommand SendKorrektSvarCommand
         {
             get { return _sendKorrektSvarCommand ?? (_sendKorrektSvarCommand = new RelayCommand(SendKorrektSvar)); }
             set { _sendKorrektSvarCommand = value; }
         }
-
         public ICommand SendFejlSvarCommand
         {
             get { return _sendFejlSvarCommand ?? (_sendFejlSvarCommand = new RelayCommand(SendFejlSvar)); }
             set { _sendFejlSvarCommand = value; }
         }
-
         public Flyopgave Flyopgave { get; set; }
         public HubConnection Conn { get; set; }
         public IHubProxy Proxy { get; set; }
@@ -197,7 +190,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         #endregion
 
         public WorkerTaskListViewModel()
@@ -209,12 +201,12 @@ namespace FlygoApp.ViewModels
 
             Proxy.On<int>("KorrektSvar", OnKorrektMessage);
             Proxy.On<int>("FejlSvar", OnFejlMessage);
-            Proxy.On<int, TimeSpan>("ForsinketSvar", OnForsinketMessage);
-            
-            
+            Proxy.On<int, TimeSpan>("ForsinketSvar", OnForsinketMessage);                       
            
         }
 
+
+        #region Metoder
         public void InitData()
         {
             _dtoHangar = DtoHangarSingleton.GetInstance;
@@ -233,8 +225,8 @@ namespace FlygoApp.ViewModels
             Afgang = Flyopgave.AfgangSomText;
             FlyId = Flyopgave.FlyId;
             HangarId = Flyopgave.HangarId;
-            GetFlyObject();
-            GetHangarObject();
+            FlyType = GetFlyObject();
+            Hangar = GetHangarObject();
             OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv, Flyopgave);
             OpgaveArkivinit();
             CountdownToDeadline();
@@ -242,7 +234,7 @@ namespace FlygoApp.ViewModels
 
         public void InsertForsinketTidValgmuligheder()
         {
-            for (int i = 5; i < 120; i+=5)
+            for (int i = 5; i < 120; i += 5)
             {
                 ForsinketTid.Add(i);
             }
@@ -253,30 +245,18 @@ namespace FlygoApp.ViewModels
             Proxy = Conn.CreateHubProxy("OpgaveHub");
             Conn.Start();
 
-            
-
         }
-
-        #region Metoder
 
         public void SendKorrektSvar()
         {
             Proxy.Invoke("BroadcastKorrektSvar", _dataMessenger.BrugerLogIn.RoleId);
             SelectedForsinketTidIndex = -1; 
         }
-
-        //public void SendForsinketSvar()
-        //{
-        //    TimeSpan chosenSpan = TimeSpan.FromMinutes(ForsinketTid[SelectedForsinketTidIndex]);       
-        //    Proxy.Invoke("BroadcastForsinketSvar", _loginBruger.BrugerLogIn.RoleId, chosenSpan);           
-        //}
-
         public void SendFejlSvar()
         {
             Proxy.Invoke("BroadcastFejlSvar", _dataMessenger.BrugerLogIn.RoleId);
             SelectedForsinketTidIndex = -1; 
         }
-
         private async void OnKorrektMessage(int roleId)
         {
             await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -439,28 +419,14 @@ namespace FlygoApp.ViewModels
             SelectedRedcapDetails = (OpgaveArkiv.Redcap == DateTime.Parse("1995-01-01")) ? "Fejl" : OpgaveArkiv.Redcap.ToString();
         }
 
-        public void GetFlyObject()
+        public Fly GetFlyObject()
         {
-            foreach (var fly in _dtoFly.FlyListe)
-            {
-                if (fly.Id == FlyId)
-                {
-                    FlyType = fly;
-                    break;
-                }
-            }
+            return _dtoFly.FlyListe.SingleOrDefault(x => x.Id.Equals(FlyId));                      
         }
 
-        public void GetHangarObject()
+        public Hangar GetHangarObject()
         {
-            foreach (var hangar in _dtoHangar.HangarListe)
-            {
-                if (hangar.Id == HangarId)
-                {
-                    Hangar = hangar;
-                    break;
-                }
-            }
+            return _dtoHangar.HangarListe.SingleOrDefault(x => x.Id.Equals(HangarId));
         }
 
         #endregion
