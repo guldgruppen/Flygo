@@ -87,7 +87,7 @@ namespace FlygoApp.Models
 
         public void Remove(Flyopgave flyopgave)
         {
-           
+            Flyopgaver.Remove(flyopgave);
         }
 
         public void Update(Flyopgave flyopgave)

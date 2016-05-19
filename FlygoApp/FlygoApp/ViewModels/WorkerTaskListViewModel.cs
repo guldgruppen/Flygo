@@ -237,10 +237,7 @@ namespace FlygoApp.ViewModels
 
         public void InsertForsinketTidValgmuligheder()
         {
-            for (int i = 5; i < 120; i += 5)
-            {
-                ForsinketTid.Add(i);
-            }
+            ForsinketTid = Enumerable.Range(5, 25).Select(x => x*5).ToList();
         }
         public void SignalRConnection()
         {
@@ -424,9 +421,8 @@ namespace FlygoApp.ViewModels
 
         public Fly GetFlyObject()
         {
-            return _dtoFly.FlyListe.SingleOrDefault(x => x.Id.Equals(FlyId));                      
+            return _dtoFly.FlyListe.Single(x => x.Id.Equals(FlyId));                     
         }
-
         public Hangar GetHangarObject()
         {
             return _dtoHangar.HangarListe.SingleOrDefault(x => x.Id.Equals(HangarId));
