@@ -11,13 +11,15 @@ namespace FlygoApp.ViewModels
     public class AdminViewModel : INotifyPropertyChanged
     {
         #region instance fields
+        private bool _openMenu;
+
         private ICommand _openMenuCommand;
         private ICommand _goToBrugerLoginPageCommand;
         private ICommand _goToFlyDataPageCommand;
         private ICommand _goToHangarDatePageCommand;
-        private bool _openMenu;
-        private Frame _currentFrame = new Frame();
         private ICommand _logUdCommand;
+       
+        private Frame _currentFrame = new Frame();       
         private readonly NavigationService _navigationService;
 
         #endregion

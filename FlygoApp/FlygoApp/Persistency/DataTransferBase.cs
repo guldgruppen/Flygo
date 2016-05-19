@@ -74,7 +74,7 @@ namespace FlygoApp.Persistency
                 }
             }
         }
-        public virtual async Task Update(T type, int id, string url)
+        public virtual async void Update(T type, int id, string url)
         {
             HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
             using (var client = new HttpClient(handler))

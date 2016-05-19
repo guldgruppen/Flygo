@@ -19,13 +19,15 @@ namespace FlygoApp.ViewModels
 
         private DtoBrugerLoginSingleton _dtoBrugerLogin;
         private DtoRolesSingleton _dtoRolesSingleton;
+
         private int _selectedBrugerIndex;
         private int _selectedRolleIndex;
-        private ICommand _opretBrugerCommand;
-        private ICommand _deleteBrugerCommand;
         private string _selectedBrugernavn;
         private string _selectedKodeord;
         private string _selectedRolle;
+
+        private ICommand _opretBrugerCommand;
+        private ICommand _deleteBrugerCommand;
 
         #endregion
         #region Properties

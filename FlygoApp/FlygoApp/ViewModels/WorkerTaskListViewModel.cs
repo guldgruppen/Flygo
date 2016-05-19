@@ -25,23 +25,26 @@ namespace FlygoApp.ViewModels
         private DtoOpgaveArkivSingleton _dtoOpgaveArkiv;
         private DataMessengerSingleton _dataMessenger;
         private DtoRolesSingleton _dtoRoles;
-        private ICommand _backCommand;
+        private OpgaveAdapter _opgaveAdapter;
         private readonly NavigationService _navigationService;
+        private readonly DispatcherTimer _timer = new DispatcherTimer();
+
         private string _selectedMekanikerDetails;
         private string _selectedCatersDetails;
         private string _selectedCrewDetails;
         private string _selectedFulersDetails;
         private string _selectedBaggersDetails;
-        private string _selectedCountdown;
-        private readonly DispatcherTimer _timer = new DispatcherTimer();
-        private string _selectedRengøringDetails;
-        private OpgaveAdapter _opgaveAdapter;
+        private string _selectedCountdown;      
+        private string _selectedRengøringDetails;           
+        private string _selectedRedcapDetails;
         private string _logInRole;
+        private int _selectedForsinketTidIndex = -1;
+
         private ICommand _sendKorrektSvarCommand;
         private ICommand _sendFejlSvarCommand;
-        private int _selectedForsinketTidIndex = -1;
-        private string _selectedRedcapDetails;
+        private ICommand _backCommand;
         private ICommand _logudCommand;
+
 
         #endregion
         #region Properties

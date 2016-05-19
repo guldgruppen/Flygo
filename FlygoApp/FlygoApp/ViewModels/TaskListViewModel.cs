@@ -18,11 +18,14 @@ namespace FlygoApp.ViewModels
     {
 
         #region Instance Fields
+        private Flyopgave _selectedFlyopgave;
+        private OpgaveAdapter _opgaveAdapter;
+        private readonly DispatcherTimer _timer = new DispatcherTimer();
+        private Uri _imageSource;
+        private OpgaveArkiv _selectedOpgaveArkiv;
 
-        private ICommand _createFlyopgaveCommand;
         private int _selectedFlyIndex;
-        private int _selectedHangarIndex;
-        private ICommand _deleteOpgaveCommand;
+        private int _selectedHangarIndex;        
         private int _selectedOpgaveIndex = -1;
         private string _selectedFlyopgaveNummerDetail;
         private string _selectedHangarDetail;
@@ -34,14 +37,11 @@ namespace FlygoApp.ViewModels
         private string _selectedCrewDetails;
         private string _selectedFulersDetails;
         private string _selectedBaggersDetails;
-        private Flyopgave _selectedFlyopgave;
-        private OpgaveAdapter _opgaveAdapter;
-        private readonly DispatcherTimer _timer = new DispatcherTimer();
         private string _selectedCountdown;
         private string _flyopgaveNr;
-        private Uri _imageSource;
-        private OpgaveArkiv _selectedOpgaveArkiv;
-        
+
+        private ICommand _deleteOpgaveCommand;
+        private ICommand _createFlyopgaveCommand;
         #endregion
         #region Properties         
         public HubConnection Conn { get; set; }

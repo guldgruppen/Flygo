@@ -17,21 +17,20 @@ namespace FlygoApp.ViewModels
 
         #region instance fields
 
-        private DtoHangarSingleton _dtoHangar;
-        private ICommand _deleteHangarCommand;
-        private int _selectedIndex = -1;
-        private ICommand _insertHangarCommand;
+        private readonly DtoHangarSingleton _dtoHangar;      
+                    
         private string _selectedHangarNavn;
         private string _insertHangarNavn;
+        private int _selectedIndex = -1;
+
+        private ICommand _deleteHangarCommand;
+        private ICommand _insertHangarCommand;
 
         #endregion
-        
         #region Properties
 
         public ObservableCollection<Hangar> Hangars { get; set; }
-        public string Placering { get; set; }
-        
-
+        public string Placering { get; set; }       
         public int SelectedIndex
         {
             get { return _selectedIndex; }
@@ -44,7 +43,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedHangarNavn
         {
             get { return _selectedHangarNavn; }
@@ -80,7 +78,6 @@ namespace FlygoApp.ViewModels
         }
 
         #endregion
-
         public HangarDataViewModel()
         {
             _dtoHangar = DtoHangarSingleton.GetInstance;
@@ -136,10 +133,7 @@ namespace FlygoApp.ViewModels
             Hangars = _dtoHangar.HangarListe.ToObservableCollection();
             
         }
-        #endregion
-   
-        
-        
+        #endregion               
         #region OnPropertyChanged region
         public event PropertyChangedEventHandler PropertyChanged;
 

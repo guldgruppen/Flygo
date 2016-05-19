@@ -11,7 +11,7 @@ namespace FlygoApp.Persistency
         void Load(List<T> listToAdd, string url);
         void Post(T type,string url);
         void Delete(int id,string url);
-        Task Update(T type, int id, string url);
+        void Update(T type, int id, string url);
 
     }
 }

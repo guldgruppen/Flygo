@@ -14,16 +14,19 @@ namespace FlygoApp.ViewModels
 {
     public class FlyDataViewModel : INotifyPropertyChanged
     {
-              
+
         #region instance fields
-        private ICommand _opretFlyCommand;
-        private ICommand _deleteFlyCommand;
-        private int _selectedFlyIndex;
+        private readonly DtoFlySingleton _dtoFlySingleton;
+      
         private string _selectedFlyProducent;
         private string _selectedFlyType;
-        private readonly DtoFlySingleton _dtoFlySingleton;       
+        private int _selectedFlyIndex;
+
+        private ICommand _opretFlyCommand;
+        private ICommand _deleteFlyCommand;
+
         #endregion
-     
+
         #region Properties
         public string FlyType { get; set; }
         public string FlyProducent { get; set; }
@@ -97,7 +100,6 @@ namespace FlygoApp.ViewModels
                 await new MessageDialog(ex.Message).ShowAsync();
             }
         }
-
         public void CheckException(string type,string producent)
         {
             if(String.IsNullOrEmpty(type))
@@ -113,7 +115,6 @@ namespace FlygoApp.ViewModels
             Fly.Remove(selectedfly);
             _dtoFlySingleton.LoadFly();
         }
-
         public void LoadDtoFly()
         {
             foreach (var fly in _dtoFlySingleton.FlyListe)

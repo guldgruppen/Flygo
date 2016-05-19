@@ -13,7 +13,7 @@ namespace FlygoApp.Commons
             _action = action;
         }
         public bool CanExecute(object parameter)
-        {
+        {           
             return true;
         }
 

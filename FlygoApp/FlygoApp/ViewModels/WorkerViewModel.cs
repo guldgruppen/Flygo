@@ -12,9 +12,10 @@ namespace FlygoApp.ViewModels
     {
         #region instance fields
         private readonly SøgFlyOpgaveHandler _handler;
+        private readonly NavigationService _navigationService;
+
         private ICommand _searchCommand;
         private ICommand _logoutCommand;
-        private readonly NavigationService _navigationService;
         #endregion
         #region Properties
 
