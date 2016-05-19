@@ -65,12 +65,12 @@ namespace FlygoApp.ViewModels
         }
         public ICommand OpretFlyCommand
         {
-            get { return _opretFlyCommand ?? (_opretFlyCommand = new RelayCommand(OpretFlyAsync)); }
+            get { return _opretFlyCommand ?? (_opretFlyCommand = new RelayCommand<Object>(opret => { OpretFlyAsync(); })); }
             set { _opretFlyCommand = value; }
         }
         public ICommand DeleteFlyCommand
         {
-            get { return _deleteFlyCommand ?? (_deleteFlyCommand = new RelayCommandWithParameter(DeleteFly)); }
+            get { return _deleteFlyCommand ?? (_deleteFlyCommand = new RelayArgCommand(DeleteFly)); }
             set { _deleteFlyCommand = value; }
         }
 

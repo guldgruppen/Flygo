@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
@@ -49,7 +50,7 @@ namespace FlygoApp.ViewModels
             {
                 return _goToHangarDatePageCommand ??
                        (_goToHangarDatePageCommand =
-                           new RelayCommand(() => CurrentFrame.Navigate(typeof (HangarDataPage))));
+                           new RelayCommand<Object>((navigate) => CurrentFrame.Navigate(typeof (HangarDataPage))));
             }
             set { _goToHangarDatePageCommand = value; }
         }
@@ -58,7 +59,7 @@ namespace FlygoApp.ViewModels
             get
             {
                 return _goToFlyDataPageCommand ??
-                       (_goToFlyDataPageCommand = new RelayCommand(() => CurrentFrame.Navigate(typeof (FlyDataPage))));
+                       (_goToFlyDataPageCommand = new RelayCommand<Object>((navigate) => CurrentFrame.Navigate(typeof (FlyDataPage))));
             }
             set { _goToFlyDataPageCommand = value; }
         }
@@ -68,20 +69,20 @@ namespace FlygoApp.ViewModels
             {
                 return _goToBrugerLoginPageCommand ??
                        (_goToBrugerLoginPageCommand =
-                           new RelayCommand(() => CurrentFrame.Navigate(typeof (BrugerDataPage))));
+                           new RelayCommand<Object>((navigate) => CurrentFrame.Navigate(typeof (BrugerDataPage))));
             }
             set { _goToBrugerLoginPageCommand = value; }
         }
         public ICommand OpenMenuCommand
         {
-            get { return _openMenuCommand ?? (_openMenuCommand = new RelayCommand(() => OpenMenu = !OpenMenu)); }
+            get { return _openMenuCommand ?? (_openMenuCommand = new RelayCommand<Object>((open) => OpenMenu = !OpenMenu)); }
             set { _openMenuCommand = value; }
         }
         public ICommand LogUdCommand
         {
             get
             {
-                return _logUdCommand ?? (_logUdCommand = new RelayCommand(() =>
+                return _logUdCommand ?? (_logUdCommand = new RelayCommand<Object>((navigate) =>
                 {
                     _navigationService.Navigate(typeof(LoginPage));
                 }));

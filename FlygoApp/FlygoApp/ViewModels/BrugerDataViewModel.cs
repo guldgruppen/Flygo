@@ -93,12 +93,15 @@ namespace FlygoApp.ViewModels
 
         public ICommand OpretBrugerCommand
         {
-            get { return _opretBrugerCommand ?? (_opretBrugerCommand = new RelayCommand(OpretBrugerAsync)); }
+            get { return _opretBrugerCommand ?? (_opretBrugerCommand = new RelayCommand<Object>(opret =>
+            {
+                OpretBrugerAsync();
+            })); }
             set { _opretBrugerCommand = value; }
         }
         public ICommand DeleteBrugerCommand
         {
-            get { return _deleteBrugerCommand ?? (_deleteBrugerCommand = new RelayCommandWithParameter(DeleteBruger)); }
+            get { return _deleteBrugerCommand ?? (_deleteBrugerCommand = new RelayArgCommand(DeleteBruger)); }
             set { _deleteBrugerCommand = value; }
         }
 

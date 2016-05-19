@@ -3,12 +3,12 @@ using System.Windows.Input;
 
 namespace FlygoApp.Commons
 {
-    public class RelayCommandWithParameter : ICommand
+    public class RelayArgCommand : ICommand
     {
         //Bruges til at binde metoder til knapper i GUI, hvor der er en parameter der skal sendes med
-        private Action<object> _action;
+        private readonly Action<object> _action;
 
-        public RelayCommandWithParameter(Action<object> action)
+        public RelayArgCommand(Action<object> action)
         {
             _action = action;
         }
@@ -20,6 +20,7 @@ namespace FlygoApp.Commons
         public void Execute(object parameter)
         {
             _action(parameter);
+            
         }
 
         public event EventHandler CanExecuteChanged;
