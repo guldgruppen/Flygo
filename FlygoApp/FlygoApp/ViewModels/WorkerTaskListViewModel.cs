@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
 using FlygoApp.Models;
@@ -159,7 +160,7 @@ namespace FlygoApp.ViewModels
         }
         public ICommand BackCommand
         {
-            get { return _backCommand ?? (new RelayCommand((() => _navigationService.Navigate(typeof(WorkerTaskPage))))); }
+            get { return _backCommand ?? (new RelayCommand<Object>(((navigate) => _navigationService.Navigate(typeof(WorkerTaskPage))))); }
             set { _backCommand = value; }
         }
         public ICommand LogudCommand
@@ -167,18 +168,24 @@ namespace FlygoApp.ViewModels
             get
             {
                 return _logudCommand ??
-                       (_logudCommand = new RelayCommand(() => _navigationService.Navigate(typeof (LoginPage))));
+                       (_logudCommand = new RelayCommand<Object>((navigate) => _navigationService.Navigate(typeof (LoginPage))));
             }
             set { _logudCommand = value; }
         }
         public ICommand SendKorrektSvarCommand
         {
-            get { return _sendKorrektSvarCommand ?? (_sendKorrektSvarCommand = new RelayCommand(SendKorrektSvar)); }
+            get { return _sendKorrektSvarCommand ?? (_sendKorrektSvarCommand = new RelayCommand<Object>((broadcast) =>
+            {
+                SendKorrektSvar();
+            })); }
             set { _sendKorrektSvarCommand = value; }
         }
         public ICommand SendFejlSvarCommand
         {
-            get { return _sendFejlSvarCommand ?? (_sendFejlSvarCommand = new RelayCommand(SendFejlSvar)); }
+            get { return _sendFejlSvarCommand ?? (_sendFejlSvarCommand = new RelayCommand<Object>((broadcast) =>
+            {
+                SendFejlSvar();
+            })); }
             set { _sendFejlSvarCommand = value; }
         }
         public Flyopgave Flyopgave { get; set; }

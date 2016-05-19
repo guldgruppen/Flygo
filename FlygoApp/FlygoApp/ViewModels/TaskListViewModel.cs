@@ -249,12 +249,15 @@ namespace FlygoApp.ViewModels
         }
         public ICommand CreateFlyopgaveCommand
         {
-            get { return _createFlyopgaveCommand ?? (_createFlyopgaveCommand = new RelayCommand(CreateFlyopgave)); }
+            get { return _createFlyopgaveCommand ?? (_createFlyopgaveCommand = new RelayCommand<Object>((create)=>
+            {
+                CreateFlyopgave();
+            })); }
             set { _createFlyopgaveCommand = value; }
         }
         public ICommand DeleteOpgaveCommand
         {
-            get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayCommandWithParameter(DeleteOpgave)); }
+            get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayArgCommand(DeleteOpgave)); }
             set { _deleteOpgaveCommand = value; }
         }
         public string SelectedCountdown

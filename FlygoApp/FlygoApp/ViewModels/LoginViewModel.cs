@@ -20,7 +20,7 @@ namespace FlygoApp.ViewModels
 
         public ICommand GoToHomePageCommand
         {
-            get { return _goToHomePageCommand ?? (_goToHomePageCommand = new RelayCommand(Login)); }
+            get { return _goToHomePageCommand ?? (_goToHomePageCommand = new RelayCommand<Object>((navigate) => { Login(); })); }
             set { _goToHomePageCommand = value; }
         }
 

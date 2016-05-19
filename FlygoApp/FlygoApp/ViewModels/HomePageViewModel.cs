@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
@@ -29,7 +30,7 @@ namespace FlygoApp.ViewModels
         {
             get
             {
-                return _openMenuCommand ?? (_openMenuCommand = new RelayCommand(() =>
+                return _openMenuCommand ?? (_openMenuCommand = new RelayCommand<Object>((open) =>
                 { MenuOpen = !MenuOpen; }
                 ));
             }
@@ -39,7 +40,7 @@ namespace FlygoApp.ViewModels
         {
             get
             {
-                return _goToStatistikPageCommand ?? (_goToStatistikPageCommand = new RelayCommand(() =>
+                return _goToStatistikPageCommand ?? (_goToStatistikPageCommand = new RelayCommand<Object>((navigate) =>
                 {
                     _currentFrame.Navigate(typeof (StatistikPage));
                 }));
@@ -50,7 +51,7 @@ namespace FlygoApp.ViewModels
         {
             get
             {
-                return _goToTilføjFlyopgavePageCommand ?? (_goToTilføjFlyopgavePageCommand = new RelayCommand(() =>
+                return _goToTilføjFlyopgavePageCommand ?? (_goToTilføjFlyopgavePageCommand = new RelayCommand<Object>((navigate) =>
                 {
                     _currentFrame.Navigate(typeof (TilføjFlyopgavePage));
                 }));
@@ -61,7 +62,7 @@ namespace FlygoApp.ViewModels
         {
             get
             {
-                return _goToIndstillingerPageCommand ?? (_goToIndstillingerPageCommand = new RelayCommand(() =>
+                return _goToIndstillingerPageCommand ?? (_goToIndstillingerPageCommand = new RelayCommand<Object>((navigate) =>
                 {
                     _currentFrame.Navigate(typeof (IndstillingerPage));
                 }));
@@ -72,7 +73,7 @@ namespace FlygoApp.ViewModels
         {
             get
             {
-                return _goToHomePageCommand ?? (_goToHomePageCommand = new RelayCommand(() =>
+                return _goToHomePageCommand ?? (_goToHomePageCommand = new RelayCommand<Object>((navigate) =>
                 {
                     _currentFrame.Navigate(typeof (TaskListPage));
                 }));
@@ -84,7 +85,7 @@ namespace FlygoApp.ViewModels
             get
             {
                 return _logudCommand ??
-                       (_logudCommand = new RelayCommand(() => { _navService.Navigate(typeof (LoginPage)); }));
+                       (_logudCommand = new RelayCommand<Object>((navigate) => { _navService.Navigate(typeof (LoginPage)); }));
             }
             set { _logudCommand = value; }
         }

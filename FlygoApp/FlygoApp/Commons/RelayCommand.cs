@@ -3,23 +3,29 @@ using System.Windows.Input;
 
 namespace FlygoApp.Commons
 {
-    public class RelayCommand : ICommand
+    public class RelayCommand<T> : ICommand
     {
-        //Bruges til at binde metoder til knapper i GUI.
-        private readonly Action _action;
+        private readonly Action<T> execute;
+        private readonly Predicate<T> canExecute;
 
-        public RelayCommand(Action action)
+        public RelayCommand(Action<T> execute, Predicate<T> canExecute = null)
         {
-            _action = action;
+            if (execute == null)
+                throw new ArgumentNullException(nameof(execute));
+            this.execute = execute;
+            this.canExecute = canExecute;
         }
+
         public bool CanExecute(object parameter)
-        {           
-            return true;
+        {
+            if (canExecute == null)
+                return true;
+            return canExecute((T)parameter);
         }
 
         public void Execute(object parameter)
         {
-            _action();
+            execute((T)parameter);
         }
 
         public event EventHandler CanExecuteChanged;

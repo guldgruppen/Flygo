@@ -65,7 +65,7 @@ namespace FlygoApp.ViewModels
 
         public ICommand DeleteHangarCommand
         {
-            get { return _deleteHangarCommand ?? (_deleteHangarCommand = new RelayCommandWithParameter(DeleteHangarAsync)); }
+            get { return _deleteHangarCommand ?? (_deleteHangarCommand = new RelayArgCommand(DeleteHangarAsync)); }
             set { _deleteHangarCommand = value; }
         }
 
@@ -73,7 +73,10 @@ namespace FlygoApp.ViewModels
 
         public ICommand InsertHangarCommand
         {
-            get { return _insertHangarCommand ?? (_insertHangarCommand = new RelayCommand(InsertHangar)); }
+            get { return _insertHangarCommand ?? (_insertHangarCommand = new RelayCommand<Object>((insert) =>
+            {
+                InsertHangar();
+            })); }
             set { _insertHangarCommand = value; }
         }
 
