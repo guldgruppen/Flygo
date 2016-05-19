@@ -63,8 +63,8 @@ namespace FlygoApp.Models
 
         public FlyopgaveHandler()
         {
-            DtoFlyopgave = DtoFlyopgaveSingleton.GetInstance();
-            DtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance();
+            DtoFlyopgave = DtoFlyopgaveSingleton.GetInstance;
+            DtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance;
             FlyopgaveFactory = new FlyopgaveFactory();
             Flyopgaver = new ObservableCollection<Flyopgave>();
             OpgaveArkivs = new ObservableCollection<OpgaveArkiv>();

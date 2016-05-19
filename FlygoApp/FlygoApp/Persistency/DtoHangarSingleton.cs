@@ -12,17 +12,12 @@ namespace FlygoApp.Persistency
         public List<Hangar> HangarListe { get; set; } = new List<Hangar>();
         private static DtoHangarSingleton _dtoHangar;
 
-
+        public static DtoHangarSingleton GetInstance => _dtoHangar ?? (_dtoHangar = new DtoHangarSingleton());
         private DtoHangarSingleton()
         {
             Loadhangar();
         }
 
-
-        public static DtoHangarSingleton GetInstance()
-        {
-            return _dtoHangar ?? (_dtoHangar = new DtoHangarSingleton());
-        }
 
         public void Loadhangar()
         {

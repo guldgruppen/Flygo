@@ -7,7 +7,7 @@ namespace FlygoApp.Models
     {
         public ObservableCollection<Fly> Fly { get; set; }
 
-        private readonly DtoFlySingleton _dtoFly = DtoFlySingleton.GetInstance();
+        private readonly DtoFlySingleton _dtoFly = DtoFlySingleton.GetInstance;
 
         public FlyHandler()
         {

@@ -217,11 +217,11 @@ namespace FlygoApp.ViewModels
 
         public void InitData()
         {
-            _dtoHangar = DtoHangarSingleton.GetInstance();
-            _dtoFly = DtoFlySingleton.GetInstance();
-            _dtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance();
-           _dataMessenger = DataMessengerSingleton.GetInstance;
-            _dtoRoles = DtoRolesSingleton.GetInstance();
+            _dtoHangar = DtoHangarSingleton.GetInstance;
+            _dtoFly = DtoFlySingleton.GetInstance;
+            _dtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance;
+            _dataMessenger = DataMessengerSingleton.GetInstance;
+            _dtoRoles = DtoRolesSingleton.GetInstance;
             LogInBrugernavn = _dataMessenger.BrugerLogIn.BrugerNavn;
 
             LogInRole = _dtoRoles.RolesListe.First(x => x.Id.Equals(_dataMessenger.BrugerLogIn.RoleId)).ToString();
@@ -314,7 +314,9 @@ namespace FlygoApp.ViewModels
                         break;
                 }
                 OpgaveAdapter = new OpgaveAdapter(OpgaveArkiv,Flyopgave);
+
                 OnPropertyChanged();
+                
                 _dtoOpgaveArkiv.UpdateOpgaveArkiv(OpgaveArkiv, OpgaveArkiv.Id);
                
                 _dtoOpgaveArkiv.LoadOpgaveArkiv();

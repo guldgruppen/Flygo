@@ -11,14 +11,10 @@ namespace FlygoApp.Persistency
     {
         private static DtoRolesSingleton _dtoRoles;
         public List<Roles> RolesListe { get; set; } = new List<Roles>();
+        public static DtoRolesSingleton GetInstance => _dtoRoles ?? (_dtoRoles = new DtoRolesSingleton());
         private DtoRolesSingleton()
         {
             LoadRoles();
-        }
-
-        public static DtoRolesSingleton GetInstance()
-        {
-            return _dtoRoles ?? (_dtoRoles = new DtoRolesSingleton());
         }
         public void LoadRoles()
         {

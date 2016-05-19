@@ -11,7 +11,7 @@ namespace FlygoApp.Models
 
         public HangarHandler()
         {
-            _dtoHangar = DtoHangarSingleton.GetInstance();
+            _dtoHangar = DtoHangarSingleton.GetInstance;
            Hangar= new ObservableCollection<Hangar>();
         }
 

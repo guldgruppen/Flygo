@@ -83,7 +83,7 @@ namespace FlygoApp.ViewModels
 
         public HangarDataViewModel()
         {
-            _dtoHangar = DtoHangarSingleton.GetInstance();
+            _dtoHangar = DtoHangarSingleton.GetInstance;
             Hangars = new ObservableCollection<Hangar>();
             LoadHangarData();
         }

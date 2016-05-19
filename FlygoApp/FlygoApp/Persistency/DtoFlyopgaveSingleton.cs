@@ -12,15 +12,12 @@ namespace FlygoApp.Persistency
     {
         public List<Flyopgave> FlyopgaveListe { get; set; } = new List<Flyopgave>();
 
+        public static DtoFlyopgaveSingleton GetInstance => _dtoFlyopgave ?? (_dtoFlyopgave = new DtoFlyopgaveSingleton());
+
         private static DtoFlyopgaveSingleton _dtoFlyopgave;
         private DtoFlyopgaveSingleton()
         {
             LoadFlyopgave();          
-        }
-
-        public static DtoFlyopgaveSingleton GetInstance()
-        {
-            return _dtoFlyopgave ?? (_dtoFlyopgave = new DtoFlyopgaveSingleton());
         }
 
         public void PostFlyopgaver(Flyopgave rute)

@@ -107,8 +107,8 @@ namespace FlygoApp.ViewModels
 
         public BrugerDataViewModel()
         {
-            _dtoBrugerLogin = DtoBrugerLoginSingleton.GetInstance();
-            _dtoRolesSingleton = DtoRolesSingleton.GetInstance();
+            _dtoBrugerLogin = DtoBrugerLoginSingleton.GetInstance;
+            _dtoRolesSingleton = DtoRolesSingleton.GetInstance;
             BrugerLogIns = new ObservableCollection<BrugerLogIn>();
             RollerList = new List<Roles>();
             LoadBrugerData();

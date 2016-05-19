@@ -11,7 +11,7 @@ namespace FlyGoWebService
     [Table("BrugerLogIn")]
     public partial class BrugerLogIn
     {
-        private readonly DtoRolesSingleton _dtoRolesSingleton = DtoRolesSingleton.GetInstance();
+        private readonly DtoRolesSingleton _dtoRolesSingleton = DtoRolesSingleton.GetInstance;
 
         public string RolleNavn { get; set; }
 

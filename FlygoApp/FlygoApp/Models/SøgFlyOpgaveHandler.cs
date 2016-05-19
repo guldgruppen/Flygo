@@ -18,7 +18,7 @@ namespace FlygoApp.Models
 
         public SøgFlyOpgaveHandler()
         {
-            _dtoFlyopgave = DtoFlyopgaveSingleton.GetInstance();
+            _dtoFlyopgave = DtoFlyopgaveSingleton.GetInstance;
             _dataMessenger = DataMessengerSingleton.GetInstance;
             NavigationService = new NavigationService();
         }

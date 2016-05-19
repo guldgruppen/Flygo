@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using Windows.UI.Popups;
 
 namespace FlygoApp.Persistency
@@ -9,17 +10,63 @@ namespace FlygoApp.Persistency
     public abstract class DataTransferBase<T> : IDataTransfer<T>
     {
         const string ServerUrl = "http://flygowebservice1.azurewebsites.net/";
-        private readonly HttpClientHandler _handler = new HttpClientHandler { UseDefaultCredentials = true };
-        public async void HttpClientHeaderInfo(Action<HttpClient> action)
+        
+        public void ClientHeaderInfo(HttpClient client)
         {
+            client.BaseAddress = new Uri(ServerUrl);
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        public virtual async void Load(List<T> listToAdd, string url)
+        {
+            HttpClientHandler _handler = new HttpClientHandler { UseDefaultCredentials = true };
             using (var client = new HttpClient(_handler))
             {
-                client.BaseAddress = new Uri(ServerUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                ClientHeaderInfo(client);
                 try
                 {
-                    action(client);
+                    var response = client.GetAsync(url).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        IEnumerable<T> loadeddata = response.Content.ReadAsAsync<IEnumerable<T>>().Result;
+                        listToAdd.Clear();
+                        listToAdd.AddRange(loadeddata);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+        }      
+        public virtual async void Post(T type,string url)
+        {
+            HttpClientHandler _handler = new HttpClientHandler { UseDefaultCredentials = true };
+            using (var client = new HttpClient(_handler))
+            {
+                ClientHeaderInfo(client);
+                try
+                {
+                    await client.PostAsJsonAsync(url, type);
+
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
+
+        }
+        public virtual async void Delete(int id,string url)
+        {
+            HttpClientHandler _handler = new HttpClientHandler { UseDefaultCredentials = true };
+            using (var client = new HttpClient(_handler))
+            {
+                ClientHeaderInfo(client);
+                try
+                {
+                    await client.DeleteAsync(url + id);
                 }
                 catch (Exception ex)
                 {
@@ -27,32 +74,22 @@ namespace FlygoApp.Persistency
                 }
             }
         }
-        public virtual void Load(List<T> listToAdd, string url)
+
+        public async Task Update(T type, int id, string url)
         {
-            HttpClientHeaderInfo(client =>
+            HttpClientHandler _handler = new HttpClientHandler { UseDefaultCredentials = true };
+            using (var client = new HttpClient(_handler))
             {
-                var response = client.GetAsync(url).Result;
-                if (response.IsSuccessStatusCode)
+                ClientHeaderInfo(client);
+                try
                 {
-                    IEnumerable<T> loadeddata = response.Content.ReadAsAsync<IEnumerable<T>>().Result;
-                    listToAdd.Clear();
-                    listToAdd.AddRange(loadeddata);
+                    await client.PutAsJsonAsync(url + id, type);
                 }
-            });
-        }      
-        public virtual void Post(T type,string url)
-        {
-            HttpClientHeaderInfo(async client =>
-            {               
-                await client.PostAsJsonAsync(url, type);
-            });
-        }
-        public virtual void Delete(int id,string url)
-        {          
-            HttpClientHeaderInfo(async client =>
-            {
-                await client.DeleteAsync(url + id);
-            });
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+            }
         }
     }
 }

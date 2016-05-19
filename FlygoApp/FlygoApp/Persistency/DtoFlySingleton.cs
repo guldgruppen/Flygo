@@ -12,16 +12,15 @@ namespace FlygoApp.Persistency
         public List<Fly> FlyListe { get; set; } = new List<Fly>();
 
         private static DtoFlySingleton _dtoFly;
+
+        public static DtoFlySingleton GetInstance => _dtoFly ?? (_dtoFly = new DtoFlySingleton());
+        
+
         private DtoFlySingleton()
         {
             LoadFly();
         }
 
-        public static DtoFlySingleton GetInstance()
-        {
-            return _dtoFly ?? (_dtoFly = new DtoFlySingleton());
-
-        }
 
         public void LoadFly()
         {

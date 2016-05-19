@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Windows.UI.Popups;
@@ -7,98 +8,34 @@ using FlyGoWebService;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoBrugerLoginSingleton
+    public class DtoBrugerLoginSingleton : DataTransferBase<BrugerLogIn>
     {
-        public Dictionary<string, BrugerLogIn> BrugerLogInsDictionary = new Dictionary<string, BrugerLogIn>();
+        public Dictionary<string, BrugerLogIn> BrugerLogInsDictionary { get; set; } = new Dictionary<string, BrugerLogIn>();
 
         private static DtoBrugerLoginSingleton _dtoBrugerLogin;
+        public static DtoBrugerLoginSingleton GetInstance => _dtoBrugerLogin ?? (_dtoBrugerLogin = new DtoBrugerLoginSingleton());
         private DtoBrugerLoginSingleton()
         {
            LoadBrugerLogins(); 
         }
 
-        public static DtoBrugerLoginSingleton GetInstance()
+        public  void LoadBrugerLogins()
         {
-            return _dtoBrugerLogin ?? (_dtoBrugerLogin = new DtoBrugerLoginSingleton());
+            List<BrugerLogIn> temp = new List<BrugerLogIn>();           
+            Load(temp,"api/BrugerLogIns/GetBrugerLogIn");
+            BrugerLogInsDictionary = ConvertListToDictionary(temp);            
         }
-
-        public async void LoadBrugerLogins()
+        public Dictionary<string,BrugerLogIn> ConvertListToDictionary(List<BrugerLogIn> brugerlogins)
         {
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler {UseDefaultCredentials = true};
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                    var response = client.GetAsync("api/BrugerLogIns/GetBrugerLogIn").Result;
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        IEnumerable<BrugerLogIn> brugerLogin =
-                            response.Content.ReadAsAsync<IEnumerable<BrugerLogIn>>().Result;
-                        BrugerLogInsDictionary.Clear();
-                        foreach (var bruger in brugerLogin)
-                        {
-                            BrugerLogInsDictionary.Add(bruger.BrugerNavn, new BrugerLogIn(bruger.Password, bruger.RoleId));
-                        }
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
-
+            return brugerlogins.ToDictionary(bruger => bruger.BrugerNavn, bruger => new BrugerLogIn(bruger.Password, bruger.RoleId));          
+        }      
+        public void PostBrugerLogin(BrugerLogIn login)
+        {
+            Post(login,"api/BrugerLogins/PostBrugerLogIn");            
         }
-
-        public async void PostBrugerLogin(BrugerLogIn login)
+        public void DeleteBrugerLogin(int id)
         {
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler {UseDefaultCredentials = true};
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                    await client.PostAsJsonAsync("api/BrugerLogins/PostBrugerLogIn",login);
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
-        }
-
-        public async void DeleteBrugerLogin(int id)
-        {
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler {UseDefaultCredentials = true};
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                    await client.DeleteAsync("/api/BrugerLogIns/DeleteBrugerLogIn/" + id);
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
+            Delete(id, "/api/BrugerLogIns/DeleteBrugerLogIn/");           
         }
     }
 }

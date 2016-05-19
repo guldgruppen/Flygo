@@ -13,7 +13,7 @@ namespace FlygoApp.Models
 
         public LoginHandler()
         {
-            _dtoBruger = DtoBrugerLoginSingleton.GetInstance();
+            _dtoBruger = DtoBrugerLoginSingleton.GetInstance;
            _dataMessenger = DataMessengerSingleton.GetInstance;
             NavigationService = new NavigationService();
         }

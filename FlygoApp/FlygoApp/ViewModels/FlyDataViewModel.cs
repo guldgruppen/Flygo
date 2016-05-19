@@ -83,7 +83,7 @@ namespace FlygoApp.ViewModels
         #region Metoder
         public FlyDataViewModel()
         {
-            _dtoFlySingleton = DtoFlySingleton.GetInstance();
+            _dtoFlySingleton = DtoFlySingleton.GetInstance;
             Fly = new ObservableCollection<Fly>();
             LoadDtoFly();
             

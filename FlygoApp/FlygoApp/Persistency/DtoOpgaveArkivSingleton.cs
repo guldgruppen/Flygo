@@ -13,15 +13,10 @@ namespace FlygoApp.Persistency
         public List<OpgaveArkiv> OpgaveArkivListe { get; set; } = new List<OpgaveArkiv>();
 
         private static DtoOpgaveArkivSingleton _dtoOpgave;
-
+        public static DtoOpgaveArkivSingleton GetInstance => _dtoOpgave ?? (_dtoOpgave = new DtoOpgaveArkivSingleton());
         private DtoOpgaveArkivSingleton()
         {
             LoadOpgaveArkiv();
-        }
-
-        public static DtoOpgaveArkivSingleton GetInstance()
-        {
-            return _dtoOpgave ?? (_dtoOpgave = new DtoOpgaveArkivSingleton());
         }
 
         public void PostOpgaveArkiv(OpgaveArkiv opg)
@@ -35,26 +30,9 @@ namespace FlygoApp.Persistency
         }
 
         //skal laves til base klasse
-        public async void UpdateOpgaveArkiv(OpgaveArkiv arkiv, int id)
+        public void UpdateOpgaveArkiv(OpgaveArkiv arkiv, int id)
         {
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                   await client.PutAsJsonAsync("api/OpgaveArkivs/PutOpgaveArkiv/"+id, arkiv);
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
+            Update(arkiv,id, "api/OpgaveArkivs/PutOpgaveArkiv/");                        
         }
     }
 }
