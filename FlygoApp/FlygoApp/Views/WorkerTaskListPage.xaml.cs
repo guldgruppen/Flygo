@@ -20,16 +20,13 @@ namespace FlygoApp.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class test : Page
+    public sealed partial class WorkerTaskListPage : Page
     {
-        public test()
+        public WorkerTaskListPage()
         {
             this.InitializeComponent();
         }
 
-        private void textBlock1_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

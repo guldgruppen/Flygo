@@ -21,7 +21,7 @@ namespace FlyGoWebService.Controllers
         {
             return db.Flyopgave;
         }
-
+        [HttpGet]
         // GET: api/Flyopgaves/5
         [ResponseType(typeof(Flyopgave))]
         public IHttpActionResult GetFlyopgave(int id)

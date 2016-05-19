@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FlygoApp.Exceptions;
 using FlygoApp.Models;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
@@ -12,13 +8,13 @@ namespace UnitTestFlygoApp
     [TestClass]
     public class RedcapHandlerUnittest
     {
-        private SøgFlyOpgaveHandler handler;
+        private SøgFlyOpgaveHandler _handler;
 
         [TestInitialize]
 
         public void BeforeEachTest()
         {
-            handler = new SøgFlyOpgaveHandler();
+            _handler = new SøgFlyOpgaveHandler();
         }
 
 
@@ -28,7 +24,7 @@ namespace UnitTestFlygoApp
             string Flyopgavenummer = "";
             DateTime datetime1 = DateTime.Now;
 
-            Assert.ThrowsException<NullOrEmptyException>((() => handler.SearchForFlyopgave(Flyopgavenummer, datetime1)));
+            Assert.ThrowsException<NullOrEmptyException>((() => _handler.SearchForFlyopgave(Flyopgavenummer, datetime1)));
 
         }
 
@@ -39,7 +35,7 @@ namespace UnitTestFlygoApp
             string Flyopgavenummer = "aa";
             DateTime dato = DateTime.Parse("2016-06-03");
 
-            Assert.ThrowsException<InfoWrongException>((() => handler.SearchForFlyopgave(Flyopgavenummer, dato)));
+            Assert.ThrowsException<InfoWrongException>((() => _handler.SearchForFlyopgave(Flyopgavenummer, dato)));
         }
 
 
@@ -50,7 +46,7 @@ namespace UnitTestFlygoApp
             string FlyopgaveNummer = "Test";
             DateTime dato = DateTime.Parse("2016-05-01");
 
-            Assert.ThrowsException<DateWrongException>((() => handler.SearchForFlyopgave(FlyopgaveNummer, dato)));
+            Assert.ThrowsException<DateWrongException>((() => _handler.SearchForFlyopgave(FlyopgaveNummer, dato)));
         }
     }
 

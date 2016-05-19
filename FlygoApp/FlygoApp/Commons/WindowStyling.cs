@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI;
+﻿using Windows.UI;
 using Windows.UI.ViewManagement;
 
 namespace FlygoApp.Commons
 {
     public class WindowStyling
     {
+        //Bruges til at style vinduet appen bliver vist i
         public static void WindowAndTitleBarStyling()
         {
 

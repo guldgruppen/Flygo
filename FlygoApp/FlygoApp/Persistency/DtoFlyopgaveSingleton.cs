@@ -8,97 +8,31 @@ using FlyGoWebService.Models;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoFlyopgaveSingleton
+    public sealed class DtoFlyopgaveSingleton : DataTransferBase<Flyopgave>
     {
         public List<Flyopgave> FlyopgaveListe { get; set; } = new List<Flyopgave>();
+
+        public static DtoFlyopgaveSingleton GetInstance => _dtoFlyopgave ?? (_dtoFlyopgave = new DtoFlyopgaveSingleton());
+
         private static DtoFlyopgaveSingleton _dtoFlyopgave;
         private DtoFlyopgaveSingleton()
         {
-            LoadFlyopgave();
+            LoadFlyopgave();          
         }
 
-        public static DtoFlyopgaveSingleton GetInstance()
+        public void PostFlyopgaver(Flyopgave rute)
         {
-            return _dtoFlyopgave ?? (_dtoFlyopgave = new DtoFlyopgaveSingleton());
+            Post(rute, "api/Flyopgaves/PostFlyopgave");
         }
 
-        public async Task PostFlyopgaver(Flyopgave rute)
+        public void DeleteFlyopgave(int id)
         {
-
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler {UseDefaultCredentials = true};
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                    await client.PostAsJsonAsync("api/Flyopgaves/PostFlyopgave", rute);
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
+            Delete(id, "api/Flyopgaves/DeleteFlyopgave");            
         }
 
-        public async void DeleteFlyopgave(int id)
+        public  void LoadFlyopgave()
         {
-
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler {UseDefaultCredentials = true};
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                    await client.DeleteAsync("api/Flyopgaves/DeleteFlyopgave" + id);
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
-        }
-
-        public async void LoadFlyopgave()
-        {
-            const string serverUrl = "http://flygowebservice1.azurewebsites.net/";
-
-            HttpClientHandler handler = new HttpClientHandler {UseDefaultCredentials = true};
-
-            using (var client = new HttpClient(handler))
-            {
-                client.BaseAddress = new Uri(serverUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                try
-                {
-                    var response = client.GetAsync("api/Flyopgaves/GetFlyopgave").Result;
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        IEnumerable<Flyopgave> Flyopgavedata = response.Content.ReadAsAsync<IEnumerable<Flyopgave>>().Result;
-                        FlyopgaveListe.Clear();
-                        foreach (var fly in Flyopgavedata)
-                        {
-                            FlyopgaveListe.Add(fly);
-                        }
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    await new MessageDialog(ex.Message).ShowAsync();
-                }
-            }
+            Load(FlyopgaveListe, "api/Flyopgaves/GetFlyopgave");
         }
 
 

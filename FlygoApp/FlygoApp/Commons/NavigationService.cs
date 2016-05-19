@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -10,6 +6,7 @@ namespace FlygoApp.Commons
 {
     public class NavigationService : INavigationService
     {
+        //Denne klasse bruges til at navigere fra view til view
         public void Navigate(Type sourcePage)
         {
             var frame = (Frame)Window.Current.Content;

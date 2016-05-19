@@ -1,5 +1,4 @@
 ﻿using System.Windows.Input;
-using Windows.Security.Cryptography.Core;
 using Windows.UI.Popups;
 using FlygoApp.Commons;
 using FlygoApp.Exceptions;
@@ -10,17 +9,22 @@ namespace FlygoApp.ViewModels
 {
     public class LoginViewModel
     {
+        #region instance fields
+        private readonly LoginHandler _handler;
+        private ICommand _goToHomePageCommand;
+        #endregion
+        #region Properties
         public string BrugerNavn { get; set; }
         public string Kodeord { get; set; }
 
-        private LoginHandler _handler; 
 
-        private ICommand _goToHomePageCommand;
         public ICommand GoToHomePageCommand
         {
-            get { return _goToHomePageCommand ?? (_goToHomePageCommand = new RelayCommand((() => Login()))); }
-            set { _goToHomePageCommand = value; }   
+            get { return _goToHomePageCommand ?? (_goToHomePageCommand = new RelayCommand(Login)); }
+            set { _goToHomePageCommand = value; }
         }
+
+        #endregion
 
         public LoginViewModel()
         {
@@ -28,6 +32,7 @@ namespace FlygoApp.ViewModels
             _handler = new LoginHandler();
         }
 
+        #region Metoder
         public async void Login()
         {
             MessageDialog messageDialog;
@@ -45,12 +50,10 @@ namespace FlygoApp.ViewModels
                 messageDialog = new MessageDialog(ex.Message);
                 await messageDialog.ShowAsync();
             }
-            
-            
+
+
         }
-        
 
-        
-
+        #endregion
     }
 }

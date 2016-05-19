@@ -11,11 +11,13 @@ namespace FlygoApp.ViewModels
     public class HomePageViewModel : INotifyPropertyChanged
     {
         #region Instance Fields
-        private ICommand _openMenuCommand;
-        private bool _menuOpen;
-        private Frame _currentFrame;
-        private ICommand _goToStatistikPageCommand;
         private readonly NavigationService _navService;
+        private Frame _currentFrame;
+       
+        private bool _menuOpen;
+       
+        private ICommand _goToStatistikPageCommand;
+        private ICommand _openMenuCommand;
         private ICommand _goToTilføjFlyopgavePageCommand;
         private ICommand _goToIndstillingerPageCommand;
         private ICommand _logudCommand;

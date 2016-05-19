@@ -7,7 +7,7 @@
     xmlns:ViewModels="using:FlygoApp.ViewModels"
     xmlns:converters="using:FlygoApp.Converters"
     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
-    x:Class="FlygoApp.Views.RedcapTaskListPage"
+    x:Class="FlygoApp.Views.WorkerTaskListPage"
     mc:Ignorable="d">
     <Page.Resources>
         <converters:BaggersColorConverter x:Key="BaggersColorConverter"/>
@@ -20,14 +20,14 @@
     </Page.Resources>
     <Grid>
         <Grid.DataContext>
-            <ViewModels:RedcapTaskListViewModel/>
+            <ViewModels:WorkerTaskListViewModel/>
         </Grid.DataContext>
         <Grid.RowDefinitions>
-            <RowDefinition Height="11*"/>
-            <RowDefinition Height="59*"/>
-            <RowDefinition Height="36*"/>
-            <RowDefinition Height="226*"/>
             <RowDefinition Height="28*"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="54*"/>
+            <RowDefinition Height="339*"/>
+            <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
@@ -79,7 +79,7 @@
                 <Button x:Name="Forsinket"  Content="Forsinket" Background="Yellow" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold">
                     <Button.Flyout>
                         <Flyout x:Name="ButtonFlyOut" Placement="Bottom" >
-                            <ComboBox x:Name="comboBoxx" Width="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" ItemsSource="{Binding ForsinketTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedForsinketTidIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Forsinket tid (min)" /> 
+                            <ComboBox x:Name="comboBoxx" Width="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" ItemsSource="{Binding ForsinketTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedForsinketTidIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Forsinket tid (min)" />
                         </Flyout>
                     </Button.Flyout>
                 </Button>
@@ -172,6 +172,13 @@
                 <TextBlock Text=" = Ikke startet" VerticalAlignment="Center" FontSize="25" Foreground="White"/>
             </StackPanel>
         </Grid>
+        <StackPanel Grid.ColumnSpan="3" Background="#FF22313F" Orientation="Horizontal" Margin="0,0,0,151" Grid.RowSpan="2">
+            <Button x:Name="button10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="79" Background="{x:Null}" FontFamily="Segoe MDL2 Assets" Content="&#59179;" FontSize="40" Foreground="#FFF1AF39" Command="{Binding BackCommand}"/>
+
+            <Button x:Name="button1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="79" Background="{x:Null}" Command="{Binding LogudCommand}">
+                <Image Source="ms-appx:///Assets/1461286313_Log Out.png" Height="54" Width="48" />
+            </Button>
+        </StackPanel>
 
     </Grid>
 </Page>

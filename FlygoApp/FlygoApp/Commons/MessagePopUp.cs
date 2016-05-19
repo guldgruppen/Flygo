@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Popups;
 
 namespace FlygoApp.Commons
@@ -11,13 +7,13 @@ namespace FlygoApp.Commons
     {
         public static async void YesNoMessageDialog(string message,Action action)
         {
-            var MyMessageDialog = new MessageDialog(message);
-            MyMessageDialog.Commands.Add(new UICommand("YES", command =>
+            var myMessageDialog = new MessageDialog(message);
+            myMessageDialog.Commands.Add(new UICommand("YES", command =>
             {
                 action();
             }));
-            MyMessageDialog.Commands.Add(new UICommand("NO", command => { }));
-            await MyMessageDialog.ShowAsync();
+            myMessageDialog.Commands.Add(new UICommand("NO", command => { }));
+            await myMessageDialog.ShowAsync();
         }
     }
 }

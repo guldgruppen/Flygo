@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
@@ -26,22 +22,24 @@ namespace FlygoApp.Converters
 
             OpgaveAdapter opg = (OpgaveAdapter)value;
 
-            if (opg != null)
-            {
-                OpgaveArkiv arkiv = opg.OpgaveArkiv;
-                Flyopgave rute = opg.Flyopgave;
-
-                if (arkiv.Mekanikker == DateTime.Parse("01-01-1995"))
-                    return red;
-                if (rute.Ankomst > DateTime.Now)
-                    return white;
-                if (arkiv.Mekanikker > rute.Afgang)
-                    return yellow;
-                if (arkiv.Mekanikker < rute.Afgang)
-                    return green;
-                if (arkiv.Mekanikker == null)
-                    return white;
-            }
+            
+                if (opg != null)
+                {
+                    OpgaveArkiv arkiv = opg.OpgaveArkiv;
+                    Flyopgave rute = opg.Flyopgave;
+                    
+                    if (arkiv.Mekanikker == DateTime.Parse("01-01-1995"))
+                        return red;
+                    if (rute.Ankomst > DateTime.Now)
+                        return white;
+                    if (arkiv.Mekanikker > rute.Afgang)
+                        return yellow;
+                    if (arkiv.Mekanikker < rute.Afgang)
+                        return green;
+                    if (arkiv.Mekanikker == null)
+                        return white;
+                }           
+            
             return null;
         }
 

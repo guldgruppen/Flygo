@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
 using FlygoApp.Models;
 using FlygoApp.Persistency;
-using FlyGoWebService.Models;
 
 namespace FlygoApp.ViewModels
 {
@@ -21,21 +17,20 @@ namespace FlygoApp.ViewModels
 
         #region instance fields
 
-        private DtoHangarSingleton _dtoHangar;
-        private ICommand _deleteHangarCommand;
-        private int _selectedIndex = -1;
-        private ICommand _insertHangarCommand;
+        private readonly DtoHangarSingleton _dtoHangar;      
+                    
         private string _selectedHangarNavn;
         private string _insertHangarNavn;
+        private int _selectedIndex = -1;
+
+        private ICommand _deleteHangarCommand;
+        private ICommand _insertHangarCommand;
 
         #endregion
-        
         #region Properties
 
         public ObservableCollection<Hangar> Hangars { get; set; }
-        public string Placering { get; set; }
-        
-
+        public string Placering { get; set; }       
         public int SelectedIndex
         {
             get { return _selectedIndex; }
@@ -48,7 +43,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedHangarNavn
         {
             get { return _selectedHangarNavn; }
@@ -84,10 +78,9 @@ namespace FlygoApp.ViewModels
         }
 
         #endregion
-
         public HangarDataViewModel()
         {
-            _dtoHangar = DtoHangarSingleton.GetInstance();
+            _dtoHangar = DtoHangarSingleton.GetInstance;
             Hangars = new ObservableCollection<Hangar>();
             LoadHangarData();
         }
@@ -137,13 +130,10 @@ namespace FlygoApp.ViewModels
         {
             Hangars.Clear();
             _dtoHangar.Loadhangar();
-            Hangars = _dtoHangar.HangarListe.ToObservableCollection<Hangar>();
+            Hangars = _dtoHangar.HangarListe.ToObservableCollection();
             
         }
-        #endregion
-   
-        
-        
+        #endregion               
         #region OnPropertyChanged region
         public event PropertyChangedEventHandler PropertyChanged;
 

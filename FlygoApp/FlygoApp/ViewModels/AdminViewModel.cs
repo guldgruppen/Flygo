@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using FlygoApp.Annotations;
@@ -16,14 +11,16 @@ namespace FlygoApp.ViewModels
     public class AdminViewModel : INotifyPropertyChanged
     {
         #region instance fields
+        private bool _openMenu;
+
         private ICommand _openMenuCommand;
         private ICommand _goToBrugerLoginPageCommand;
         private ICommand _goToFlyDataPageCommand;
         private ICommand _goToHangarDatePageCommand;
-        private bool _openMenu;
-        private Frame _currentFrame = new Frame();
         private ICommand _logUdCommand;
-        private NavigationService _navigationService;
+       
+        private Frame _currentFrame = new Frame();       
+        private readonly NavigationService _navigationService;
 
         #endregion
 
