@@ -8,6 +8,9 @@
     mc:Ignorable="d">
 
     <Grid Background="#7F000000">
+        <Grid.DataContext>
+            <local:TaskListViewModel/>
+        </Grid.DataContext>
         <Grid.RowDefinitions>
             <RowDefinition Height="31*"/>
             <RowDefinition Height="329*"/>
@@ -38,7 +41,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
                             <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock21" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock21" TextWrapping="Wrap" Text="{Binding StatistikHandler.AntalFejlSamlet,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
                             <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
@@ -120,7 +123,7 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
                             <TextBlock x:Name="textBlock119" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock219" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock219" TextWrapping="Wrap" Text="{Binding StatistikHandler.AntalFejlSamlet, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
                             <TextBlock x:Name="textBlock129" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>

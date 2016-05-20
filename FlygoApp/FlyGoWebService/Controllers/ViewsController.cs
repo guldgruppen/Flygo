@@ -20,15 +20,15 @@ namespace FlyGoWebService.Controllers
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT * FROM AntalFejlSamlet", conn);
                 SqlDataReader reader = cmd.ExecuteReader();
-
+                
                 using (reader)
                 {
                     if (reader.Read())
                     {
-                       return reader.GetInt32(0);
+                        return reader.GetInt32(0);
                     }
+                    
                 }
-
             }
             return 0;
         }
