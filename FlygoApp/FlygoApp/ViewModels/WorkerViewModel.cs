@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls;
 using FlygoApp.Commons;
 using FlygoApp.Exceptions;
 using FlygoApp.Models;
@@ -12,9 +13,10 @@ namespace FlygoApp.ViewModels
     {
         #region instance fields
         private readonly SøgFlyOpgaveHandler _handler;
+        private readonly NavigationService _navigationService;
+
         private ICommand _searchCommand;
         private ICommand _logoutCommand;
-        private readonly NavigationService _navigationService;
         #endregion
         #region Properties
 
@@ -25,7 +27,7 @@ namespace FlygoApp.ViewModels
 
         public ICommand SearchCommand
         {
-            get { return _searchCommand ?? (new RelayCommand(SearchAsync)); }
+            get { return _searchCommand ?? (new RelayCommand<Object>((find) => { SearchAsync(); })); }
             set { _searchCommand = value; }
         }
 
@@ -33,7 +35,7 @@ namespace FlygoApp.ViewModels
         {
             get
             {
-                return _logoutCommand ?? (_logoutCommand = new RelayCommand(() => { _navigationService.Navigate(typeof(LoginPage)); }));
+                return _logoutCommand ?? (_logoutCommand = new RelayCommand<Object>((navigate) => { _navigationService.Navigate(typeof(LoginPage)); }));
             }
             set { _logoutCommand = value; }
         }

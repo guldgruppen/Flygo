@@ -10,7 +10,6 @@ namespace FlygoApp.Models
 {
     public class FlyopgaveHandler : IHandler
     {
-
         public DtoFlyopgaveSingleton DtoFlyopgave;
         public DtoOpgaveArkivSingleton DtoOpgaveArkiv;
         public ObservableCollection<Flyopgave> Flyopgaver { get; set; }
@@ -20,39 +19,42 @@ namespace FlygoApp.Models
         //Kaldes for at oprette et flyopgave.
         public async void Add(DateTimeOffset afgang, DateTimeOffset ankomst, int flyid, int hangarid, string nummer)
         {
+            string message = String.Empty;
+
             try
             {
-                //Kontrollere om flyopgavenummer har 2 bogstaver og 3 til 4 tal
-                bool match = Regex.IsMatch(nummer, @"^[a-zA-Z]{2}\d{3,4}$");
-                if (!match)
-                {
-                    throw new ArgumentException("Flyopgavenummer skal starte 2 bogstaver og slutte med 4 cifre");
-                }
-
+                CheckEksisterendeFlyopgave(nummer);
                 //Hvor flyopgave objektet bliver oprettet.
                 Flyopgave rute = FlyopgaveFactory.CreateFlyopgave(afgang, ankomst, flyid, hangarid, nummer);
-                
+
                 //indsætter i databasen
-                await DtoFlyopgave.PostFlyopgaver(rute);
+                DtoFlyopgave.PostFlyopgaver(rute);
+
                 //Loader flyopgaverne igen.
                 DtoFlyopgave.LoadFlyopgave();
+
                 //Udvinder id fra flyopgaven til opgavearkiv
                 int id = DtoFlyopgave.FlyopgaveListe.Last().Id;
+
                 //Opretter et opgavearkiv objekt hvor flyopgaveid er baseret på den nylig oprettede flyopgave
                 OpgaveArkiv temp = new OpgaveArkiv() {FlyopgaveId = id};
-                
+
                 //indsætter opgavearkiv i databasen
-                await DtoOpgaveArkiv.PostOpgaveArkiv(temp);
-                //Fortæller brugeren, at flyopgave er oprettet
-                await new MessageDialog("Flyopgave er oprettet").ShowAsync();
+                DtoOpgaveArkiv.PostOpgaveArkiv(temp);
+
+                message = "flyopgave er oprettet";
             }
             catch (ArgumentException ex)
             {
-                await new MessageDialog(ex.Message).ShowAsync();
+                message = ex.Message;
             }
             catch (IndexOutOfRangeException e)
-            {              
-                await new MessageDialog(e.Message).ShowAsync();
+            {
+                message = e.Message;
+            }
+            finally
+            {
+                await new MessageDialog(message).ShowAsync();
             }
             
 
@@ -61,9 +63,8 @@ namespace FlygoApp.Models
 
         public FlyopgaveHandler()
         {
-            
-            DtoFlyopgave = DtoFlyopgaveSingleton.GetInstance();
-            DtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance();
+            DtoFlyopgave = DtoFlyopgaveSingleton.GetInstance;
+            DtoOpgaveArkiv = DtoOpgaveArkivSingleton.GetInstance;
             FlyopgaveFactory = new FlyopgaveFactory();
             Flyopgaver = new ObservableCollection<Flyopgave>();
             OpgaveArkivs = new ObservableCollection<OpgaveArkiv>();
@@ -71,9 +72,12 @@ namespace FlygoApp.Models
                                               
         }
 
-        public void CheckEksisterendeFlyopgave(Flyopgave flyopgave)
+        public void CheckEksisterendeFlyopgave(string flyopgaveNummer)
         {
-            
+            if (DtoFlyopgave.FlyopgaveListe.Exists(x => x.FlyopgaveNummer.Equals(flyopgaveNummer)))
+            {
+                throw new ArgumentException("flyrutenummer eksisterer i forvejen");
+            }
         }
 
         public Flyopgave Get(int id)
@@ -83,7 +87,7 @@ namespace FlygoApp.Models
 
         public void Remove(Flyopgave flyopgave)
         {
-           
+            Flyopgaver.Remove(flyopgave);
         }
 
         public void Update(Flyopgave flyopgave)
@@ -96,7 +100,7 @@ namespace FlygoApp.Models
         public void LoadDtoFlyopgaver()
         {
             foreach (var flyopgave in DtoFlyopgave.FlyopgaveListe)
-            {               
+            {
                 Flyopgaver.Add(flyopgave);
 
             }

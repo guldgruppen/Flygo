@@ -17,21 +17,20 @@ namespace FlygoApp.ViewModels
 
         #region instance fields
 
-        private DtoHangarSingleton _dtoHangar;
-        private ICommand _deleteHangarCommand;
-        private int _selectedIndex = -1;
-        private ICommand _insertHangarCommand;
+        private readonly DtoHangarSingleton _dtoHangar;      
+                    
         private string _selectedHangarNavn;
         private string _insertHangarNavn;
+        private int _selectedIndex = -1;
+
+        private ICommand _deleteHangarCommand;
+        private ICommand _insertHangarCommand;
 
         #endregion
-        
         #region Properties
 
         public ObservableCollection<Hangar> Hangars { get; set; }
-        public string Placering { get; set; }
-        
-
+        public string Placering { get; set; }       
         public int SelectedIndex
         {
             get { return _selectedIndex; }
@@ -44,7 +43,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public string SelectedHangarNavn
         {
             get { return _selectedHangarNavn; }
@@ -67,7 +65,7 @@ namespace FlygoApp.ViewModels
 
         public ICommand DeleteHangarCommand
         {
-            get { return _deleteHangarCommand ?? (_deleteHangarCommand = new RelayCommandWithParameter(DeleteHangarAsync)); }
+            get { return _deleteHangarCommand ?? (_deleteHangarCommand = new RelayArgCommand(DeleteHangarAsync)); }
             set { _deleteHangarCommand = value; }
         }
 
@@ -75,15 +73,17 @@ namespace FlygoApp.ViewModels
 
         public ICommand InsertHangarCommand
         {
-            get { return _insertHangarCommand ?? (_insertHangarCommand = new RelayCommand(InsertHangar)); }
+            get { return _insertHangarCommand ?? (_insertHangarCommand = new RelayCommand<Object>((insert) =>
+            {
+                InsertHangar();
+            })); }
             set { _insertHangarCommand = value; }
         }
 
         #endregion
-
         public HangarDataViewModel()
         {
-            _dtoHangar = DtoHangarSingleton.GetInstance();
+            _dtoHangar = DtoHangarSingleton.GetInstance;
             Hangars = new ObservableCollection<Hangar>();
             LoadHangarData();
         }
@@ -136,10 +136,7 @@ namespace FlygoApp.ViewModels
             Hangars = _dtoHangar.HangarListe.ToObservableCollection();
             
         }
-        #endregion
-   
-        
-        
+        #endregion               
         #region OnPropertyChanged region
         public event PropertyChangedEventHandler PropertyChanged;
 

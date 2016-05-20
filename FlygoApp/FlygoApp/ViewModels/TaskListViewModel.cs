@@ -18,11 +18,14 @@ namespace FlygoApp.ViewModels
     {
 
         #region Instance Fields
+        private Flyopgave _selectedFlyopgave;
+        private OpgaveAdapter _opgaveAdapter;
+        private readonly DispatcherTimer _timer = new DispatcherTimer();
+        private Uri _imageSource;
+        private OpgaveArkiv _selectedOpgaveArkiv;
 
-        private ICommand _createFlyopgaveCommand;
         private int _selectedFlyIndex;
-        private int _selectedHangarIndex;
-        private ICommand _deleteOpgaveCommand;
+        private int _selectedHangarIndex;        
         private int _selectedOpgaveIndex = -1;
         private string _selectedFlyopgaveNummerDetail;
         private string _selectedHangarDetail;
@@ -34,14 +37,11 @@ namespace FlygoApp.ViewModels
         private string _selectedCrewDetails;
         private string _selectedFulersDetails;
         private string _selectedBaggersDetails;
-        private Flyopgave _selectedFlyopgave;
-        private OpgaveAdapter _opgaveAdapter;
-        private readonly DispatcherTimer _timer = new DispatcherTimer();
         private string _selectedCountdown;
         private string _flyopgaveNr;
-        private Uri _imageSource;
-        private OpgaveArkiv _selectedOpgaveArkiv;
 
+        private ICommand _deleteOpgaveCommand;
+        private ICommand _createFlyopgaveCommand;
         #endregion
         #region Properties         
         public HubConnection Conn { get; set; }
@@ -50,7 +50,6 @@ namespace FlygoApp.ViewModels
         public FlyHandler FlyHandler { get; set; }
         public HangarHandler HangarHandler { get; set; }
         public FlyopgaveHandler FlyopgaveHandler { get; set; }
-
         public string FlyopgaveNr
         {
             get { return _flyopgaveNr; }
@@ -62,12 +61,10 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public DateTimeOffset AfgangDato { get; set; }
         public DateTimeOffset AnkomstDato { get; set; }
         public TimeSpan AfgangTid { get; set; }
         public TimeSpan AnkomstTid { get; set; }
-        public DateTimeOffset MinYear { get; set; } = DateTime.Now;
         public Uri ImageSource
         {
             get { return _imageSource; }
@@ -212,7 +209,8 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-        //Bruges til at opdatere alt data i højre side, der er baseret på valget af flyopgave i venstre side.
+       
+        //Bruges til at opdatere alt data i højre side af GUI, der er baseret på valget af flyopgave i venstre side.
         public int SelectedOpgaveIndex
         {
             get { return _selectedOpgaveIndex; }
@@ -251,12 +249,15 @@ namespace FlygoApp.ViewModels
         }
         public ICommand CreateFlyopgaveCommand
         {
-            get { return _createFlyopgaveCommand ?? (_createFlyopgaveCommand = new RelayCommand(CreateFlyopgave)); }
+            get { return _createFlyopgaveCommand ?? (_createFlyopgaveCommand = new RelayCommand<Object>((create)=>
+            {
+                CreateFlyopgave();
+            })); }
             set { _createFlyopgaveCommand = value; }
         }
         public ICommand DeleteOpgaveCommand
         {
-            get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayCommandWithParameter(DeleteOpgave)); }
+            get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayArgCommand(DeleteOpgave)); }
             set { _deleteOpgaveCommand = value; }
         }
         public string SelectedCountdown

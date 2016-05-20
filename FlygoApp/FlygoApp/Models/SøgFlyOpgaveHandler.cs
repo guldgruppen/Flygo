@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FlygoApp.Commons;
 using FlygoApp.Exceptions;
 using FlygoApp.Persistency;
@@ -10,7 +11,7 @@ namespace FlygoApp.Models
     {
         private readonly DtoFlyopgaveSingleton _dtoFlyopgave;
 
-        public SearchListSingleton SearchListSingleton;
+        private readonly DataMessengerSingleton _dataMessenger;
 
         public NavigationService NavigationService;
 
@@ -18,15 +19,14 @@ namespace FlygoApp.Models
 
         public SøgFlyOpgaveHandler()
         {
-            _dtoFlyopgave = DtoFlyopgaveSingleton.GetInstance();
-            SearchListSingleton = SearchListSingleton.GetInstance();
+            _dtoFlyopgave = DtoFlyopgaveSingleton.GetInstance;
+            _dataMessenger = DataMessengerSingleton.GetInstance;
             NavigationService = new NavigationService();
         }
 
         //Søger på Brugerens indtastet data, og navigere dem til den detaljerede flyopgave liste.
         public void SearchForFlyopgave(string flyopgaveNr, DateTime dateTime)
         {
-
 
             if (string.IsNullOrEmpty(flyopgaveNr))
             {
@@ -38,29 +38,14 @@ namespace FlygoApp.Models
                 throw new DateWrongException("Datoen er mindre end dagsdato. Udfyld venligst korrekt dato!");
             }
 
-            int x = _dtoFlyopgave.FlyopgaveListe.Count;
-
-            foreach (var rute in _dtoFlyopgave.FlyopgaveListe)
+           var result = _dtoFlyopgave.FlyopgaveListe.SingleOrDefault(flyopgave => flyopgave.FlyopgaveNummer.ToLower().Equals(flyopgaveNr.ToLower()) && flyopgave.Afgang.Date.Equals(dateTime.Date));
+            if (result == null)
             {
-                x--;
-                if (String.Equals(rute.FlyopgaveNummer, flyopgaveNr, StringComparison.CurrentCultureIgnoreCase) && rute.Afgang.Date == dateTime.Date)
-                {
-                    SearchListSingleton.Flyopgave = rute;
-                    NavigationService.Navigate(typeof(WorkerTaskListPage));
-                    break;
-                }
-
-                if (x == 0)
-                {
-                    throw new InfoWrongException("Flyopgave nummeret eller dato matcher ikke. Prøv venligst igen!");
-                }
-
+                throw new InfoWrongException("Flyopgave nummeret eller dato matcher ikke. Prøv venligst igen!");
             }
-
-
+            _dataMessenger.Flyopgave = result;
+            NavigationService.Navigate(typeof(WorkerTaskListPage));
 
         }
-
-
     }
 }

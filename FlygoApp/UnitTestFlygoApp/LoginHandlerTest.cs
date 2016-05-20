@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FlygoApp.Exceptions;
+﻿using FlygoApp.Exceptions;
 using FlygoApp.Models;
-using FlygoApp.Views;
 using Microsoft.VisualStudio.TestPlatform.UnitTestFramework;
 
 namespace UnitTestFlygoApp
@@ -13,12 +7,12 @@ namespace UnitTestFlygoApp
     [TestClass]
     public class LoginHandlerTest
     {
-        private LoginHandler handler;
+        private LoginHandler _handler;
 
         [TestInitialize]
         public void BeforeEachTest()
         {
-            handler = new LoginHandler();
+            _handler = new LoginHandler();
         }
 
         [TestMethod]
@@ -29,7 +23,7 @@ namespace UnitTestFlygoApp
             string kodeord = "1234";
 
 
-            Assert.ThrowsException<NullOrEmptyException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
+            Assert.ThrowsException<NullOrEmptyException>((() => _handler.CheckLoginInfo(brugernavn, kodeord))); 
         }
 
         [TestMethod]
@@ -39,7 +33,7 @@ namespace UnitTestFlygoApp
             string brugernavn = "Ole Henriksen";
             string kodeord = "";
 
-            Assert.ThrowsException<NullOrEmptyException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
+            Assert.ThrowsException<NullOrEmptyException>((() => _handler.CheckLoginInfo(brugernavn, kodeord))); 
         }
 
         [TestMethod]
@@ -48,7 +42,7 @@ namespace UnitTestFlygoApp
             string brugernavn = "";
             string kodeord = "";
 
-            Assert.ThrowsException<NullOrEmptyException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
+            Assert.ThrowsException<NullOrEmptyException>((() => _handler.CheckLoginInfo(brugernavn, kodeord))); 
 
         }
 
@@ -58,7 +52,7 @@ namespace UnitTestFlygoApp
             string brugernavn = "Ole Lukøje";
             string kodeord = "123";
 
-            Assert.ThrowsException<InfoWrongException>((() => handler.CheckLoginInfo(brugernavn, kodeord))); 
+            Assert.ThrowsException<InfoWrongException>((() => _handler.CheckLoginInfo(brugernavn, kodeord))); 
         }
 
        

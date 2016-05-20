@@ -14,18 +14,20 @@ namespace FlygoApp.ViewModels
 {
     public class FlyDataViewModel : INotifyPropertyChanged
     {
-        private ICommand _opretFlyCommand;
-        private ICommand _deleteFlyCommand;
-        private int _selectedFlyIndex;
-        private string _selectedFlyProducent;
-        private string _selectedFlyType;
-        private DtoFlySingleton _dtoFlySingleton;
 
         #region instance fields
+        private readonly DtoFlySingleton _dtoFlySingleton;
+      
+        private string _selectedFlyProducent;
+        private string _selectedFlyType;
+        private int _selectedFlyIndex;
+
+        private ICommand _opretFlyCommand;
+        private ICommand _deleteFlyCommand;
 
         #endregion
-        #region Properties
 
+        #region Properties
         public string FlyType { get; set; }
         public string FlyProducent { get; set; }
         public string SelectedFlyType
@@ -37,7 +39,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public ObservableCollection<Fly> Fly { get; set; }
         public string SelectedFlyProducent
         {
@@ -48,7 +49,6 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public int SelectedFlyIndex
         {
             get { return _selectedFlyIndex; }
@@ -63,31 +63,27 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-
         public ICommand OpretFlyCommand
         {
-            get { return _opretFlyCommand ?? (_opretFlyCommand = new RelayCommand(OpretFlyAsync)); }
+            get { return _opretFlyCommand ?? (_opretFlyCommand = new RelayCommand<Object>(opret => { OpretFlyAsync(); })); }
             set { _opretFlyCommand = value; }
         }
-
         public ICommand DeleteFlyCommand
         {
-            get { return _deleteFlyCommand ?? (_deleteFlyCommand = new RelayCommandWithParameter(DeleteFly)); }
+            get { return _deleteFlyCommand ?? (_deleteFlyCommand = new RelayArgCommand(DeleteFly)); }
             set { _deleteFlyCommand = value; }
         }
 
         #endregion
-
-
-
-        #region Metoder
         public FlyDataViewModel()
         {
-            _dtoFlySingleton = DtoFlySingleton.GetInstance();
+            _dtoFlySingleton = DtoFlySingleton.GetInstance;
             Fly = new ObservableCollection<Fly>();
             LoadDtoFly();
-            
+
         }
+
+        #region Metoder
 
         public async void OpretFlyAsync()
         {
@@ -104,7 +100,6 @@ namespace FlygoApp.ViewModels
                 await new MessageDialog(ex.Message).ShowAsync();
             }
         }
-
         public void CheckException(string type,string producent)
         {
             if(String.IsNullOrEmpty(type))
@@ -120,7 +115,6 @@ namespace FlygoApp.ViewModels
             Fly.Remove(selectedfly);
             _dtoFlySingleton.LoadFly();
         }
-
         public void LoadDtoFly()
         {
             foreach (var fly in _dtoFlySingleton.FlyListe)

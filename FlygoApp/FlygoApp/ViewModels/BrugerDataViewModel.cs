@@ -19,13 +19,15 @@ namespace FlygoApp.ViewModels
 
         private DtoBrugerLoginSingleton _dtoBrugerLogin;
         private DtoRolesSingleton _dtoRolesSingleton;
+
         private int _selectedBrugerIndex;
         private int _selectedRolleIndex;
-        private ICommand _opretBrugerCommand;
-        private ICommand _deleteBrugerCommand;
         private string _selectedBrugernavn;
         private string _selectedKodeord;
         private string _selectedRolle;
+
+        private ICommand _opretBrugerCommand;
+        private ICommand _deleteBrugerCommand;
 
         #endregion
         #region Properties
@@ -91,12 +93,15 @@ namespace FlygoApp.ViewModels
 
         public ICommand OpretBrugerCommand
         {
-            get { return _opretBrugerCommand ?? (_opretBrugerCommand = new RelayCommand(OpretBrugerAsync)); }
+            get { return _opretBrugerCommand ?? (_opretBrugerCommand = new RelayCommand<Object>(opret =>
+            {
+                OpretBrugerAsync();
+            })); }
             set { _opretBrugerCommand = value; }
         }
         public ICommand DeleteBrugerCommand
         {
-            get { return _deleteBrugerCommand ?? (_deleteBrugerCommand = new RelayCommandWithParameter(DeleteBruger)); }
+            get { return _deleteBrugerCommand ?? (_deleteBrugerCommand = new RelayArgCommand(DeleteBruger)); }
             set { _deleteBrugerCommand = value; }
         }
 
@@ -107,8 +112,8 @@ namespace FlygoApp.ViewModels
 
         public BrugerDataViewModel()
         {
-            _dtoBrugerLogin = DtoBrugerLoginSingleton.GetInstance();
-            _dtoRolesSingleton = DtoRolesSingleton.GetInstance();
+            _dtoBrugerLogin = DtoBrugerLoginSingleton.GetInstance;
+            _dtoRolesSingleton = DtoRolesSingleton.GetInstance;
             BrugerLogIns = new ObservableCollection<BrugerLogIn>();
             RollerList = new List<Roles>();
             LoadBrugerData();
