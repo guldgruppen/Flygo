@@ -10,7 +10,8 @@ namespace FlyGoWebService.Controllers
 {
     public class ViewsController : ApiController
     {
-        private string connectionString ="data source=flygodbserver.database.windows.net;initial catalog=FlyGoDB;persist security info=True;user id=Guldgruppen;password=Lort1234!;multipleactiveresultsets=True;application name=EntityFramework";
+        public string connectionString ="data source=flygodbserver.database.windows.net;initial catalog=FlyGoDB;persist security info=True;user id=Guldgruppen;password=Lort1234!;multipleactiveresultsets=True;application name=EntityFramework";
+
 
         public int GetAntalFejlSamlet()
         {
