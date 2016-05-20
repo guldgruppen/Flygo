@@ -14,7 +14,7 @@ namespace FlygoApp.Models
         public StatistikHandler()
         {
             _dtoStatistikSingleton = DtoStatistikSingleton.GetInstance;
-            TestResult = _dtoStatistikSingleton.StatistikListe[0].Result;
+            TestResult = _dtoStatistikSingleton.StatistikListe.First();
         }
     }
 }

@@ -170,6 +170,9 @@
                     <TextBlock x:Name="textBlock17" TextWrapping="Wrap" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="40,0,0,0"/>
                 </StackPanel>
             </StackPanel>
+            <TextBlock x:Name="textBlock19" HorizontalAlignment="Left" Margin="73,377,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Text="{Binding StatistikHandler.TestResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            	<Run Foreground="White" FontSize="26.667" Text="TextBlock"/>
+            </TextBlock>
         </Grid>
         <StackPanel Grid.Column="3" Grid.Row="1" Background="#7F000000">
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Opgave i detalje" Foreground="#FFEAEAEA" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>

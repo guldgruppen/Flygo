@@ -100,8 +100,8 @@
     <Compile Include="Commons\INavigationService.cs" />
     <Compile Include="Commons\MessagePopUp.cs" />
     <Compile Include="Commons\NavigationService.cs" />
+    <Compile Include="Commons\RelayArgCommand.cs" />
     <Compile Include="Commons\RelayCommand.cs" />
-    <Compile Include="Commons\RelayCommandWithParameter.cs" />
     <Compile Include="Commons\WindowStyling.cs" />
     <Compile Include="Converters\BaggersColorConverter.cs" />
     <Compile Include="Converters\CatersColorConverter.cs" />
@@ -114,6 +114,7 @@
     <Compile Include="Exceptions\InfoWrongException.cs" />
     <Compile Include="Exceptions\NullOrEmptyException.cs" />
     <Compile Include="Models\BrugerLogIn.cs" />
+    <Compile Include="Models\DataMessengerSingleton.cs" />
     <Compile Include="Models\Fly.cs" />
     <Compile Include="Models\FlyHandler.cs" />
     <Compile Include="Models\Flyopgave.cs" />
@@ -139,8 +140,6 @@
     <Compile Include="Persistency\DtoRolesSingleton.cs" />
     <Compile Include="Persistency\DTOStatistikSingleton.cs" />
     <Compile Include="Persistency\IDataTransfer.cs" />
-    <Compile Include="Persistency\LoginBrugerSingleton.cs" />
-    <Compile Include="Persistency\SearchListSingleton.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
@@ -196,7 +195,6 @@
     <None Include="FlygoApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\1461286239_todo-list.png" />
     <Content Include="Assets\1461286313_Log Out.png" />
     <Content Include="Assets\1461286350_plus_add_green.png" />
     <Content Include="Assets\1461286384_Stats.png" />
@@ -206,14 +204,12 @@
     <Content Include="Assets\1461516030_cancel_48.png" />
     <Content Include="Assets\1462312231_airplane.png" />
     <Content Include="Assets\1462312246_user.png" />
-    <Content Include="Assets\1462365794_circle-back-arrow-outline-stroke.png" />
     <Content Include="Assets\99920.jpg" />
     <Content Include="Assets\airplane-wallpaper-3.jpg" />
     <Content Include="Assets\FlygoSplash1240x600.scale-200.png" />
     <Content Include="Assets\FlygoSplash2480x1200.png" />
     <Content Include="Assets\hangar_closed_256x256_grayscale.png" />
     <Content Include="Assets\Planesample1.jpg" />
-    <Content Include="Assets\Uddeleger opgavebutton.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>

@@ -7,10 +7,10 @@ using FlygoApp.Models;
 
 namespace FlygoApp.Persistency
 {
-    public class DtoStatistikSingleton : DataTransferBase<Statistik>
+    public class DtoStatistikSingleton : DataTransferBase<int>
     {
         private static DtoStatistikSingleton _dtoStatistikSingleton;
-        public List<Statistik> StatistikListe = new List<Statistik>(); 
+        public List<int> StatistikListe = new List<int>(); 
         public static DtoStatistikSingleton GetInstance
             => _dtoStatistikSingleton ?? (_dtoStatistikSingleton = new DtoStatistikSingleton());
 
