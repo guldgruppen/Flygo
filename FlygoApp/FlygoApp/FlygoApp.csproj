@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FlygoApp</RootNamespace>
     <AssemblyName>FlygoApp</AssemblyName>
-    <DefaultLanguage>en-us</DefaultLanguage>
+    <DefaultLanguage>da</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
@@ -100,8 +100,8 @@
     <Compile Include="Commons\INavigationService.cs" />
     <Compile Include="Commons\MessagePopUp.cs" />
     <Compile Include="Commons\NavigationService.cs" />
-    <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Commons\RelayArgCommand.cs" />
+    <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Commons\WindowStyling.cs" />
     <Compile Include="Converters\BaggersColorConverter.cs" />
     <Compile Include="Converters\CatersColorConverter.cs" />
@@ -127,6 +127,8 @@
     <Compile Include="Models\LoginHandler.cs" />
     <Compile Include="Models\OpgaveAdapter.cs" />
     <Compile Include="Models\OpgaveArkiv.cs" />
+    <Compile Include="Models\Statistik.cs" />
+    <Compile Include="Models\StatistikHandler.cs" />
     <Compile Include="Models\SøgFlyOpgaveHandler.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Persistency\DataTransferBase.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Persistency\DtoHangarSingleton.cs" />
     <Compile Include="Persistency\DtoOpgaveArkivSingleton.cs" />
     <Compile Include="Persistency\DtoRolesSingleton.cs" />
+    <Compile Include="Persistency\DTOStatistikSingleton.cs" />
     <Compile Include="Persistency\IDataTransfer.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

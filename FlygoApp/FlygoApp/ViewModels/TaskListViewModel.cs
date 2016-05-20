@@ -23,6 +23,7 @@ namespace FlygoApp.ViewModels
         private readonly DispatcherTimer _timer = new DispatcherTimer();
         private Uri _imageSource;
         private OpgaveArkiv _selectedOpgaveArkiv;
+        public StatistikHandler StatistikHandler { get; set; }
 
         private int _selectedFlyIndex;
         private int _selectedHangarIndex;        
@@ -255,11 +256,11 @@ namespace FlygoApp.ViewModels
             })); }
             set { _createFlyopgaveCommand = value; }
         }
-        public ICommand DeleteOpgaveCommand
-        {
-            get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayArgCommand(DeleteOpgave)); }
-            set { _deleteOpgaveCommand = value; }
-        }
+        //public ICommand DeleteOpgaveCommand
+        //{
+        //    get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayArgCommand(DeleteOpgave)); }
+        //    set { _deleteOpgaveCommand = value; }
+        //}
         public string SelectedCountdown
         {
             get { return _selectedCountdown; }
@@ -284,6 +285,9 @@ namespace FlygoApp.ViewModels
 
             FlyopgaveHandler = new FlyopgaveHandler();
             FlyopgaveHandler.LoadDtoFlyopgaver();
+
+            StatistikHandler = new StatistikHandler();
+
 
 
         }

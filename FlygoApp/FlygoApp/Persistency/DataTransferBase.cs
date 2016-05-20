@@ -39,7 +39,31 @@ namespace FlygoApp.Persistency
                     await new MessageDialog(ex.Message).ShowAsync();
                 }
             }
-        }      
+        }
+        public virtual async Task<string> LoadSingle(string url)
+        {
+            HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
+            using (var client = new HttpClient(handler))
+            {
+                ClientHeaderInfo(client);
+                try
+                {
+                    var response = client.GetAsync(url).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return response.Content.ReadAsStringAsync().Result;
+                        
+                    }
+                    return String.Empty;
+                }
+                catch (Exception ex)
+                {
+                    await new MessageDialog(ex.Message).ShowAsync();
+                }
+                
+            }
+            return String.Empty;
+        }
         public virtual async void Post(T type,string url)
         {
             HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
