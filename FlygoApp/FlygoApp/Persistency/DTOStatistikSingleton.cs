@@ -10,7 +10,7 @@ namespace FlygoApp.Persistency
     public class DtoStatistikSingleton : DataTransferBase<int>
     {
         private static DtoStatistikSingleton _dtoStatistikSingleton;
-        public List<int> StatistikListe = new List<int>(); 
+        public int Tester { get; set; }
         public static DtoStatistikSingleton GetInstance
             => _dtoStatistikSingleton ?? (_dtoStatistikSingleton = new DtoStatistikSingleton());
 
@@ -19,9 +19,10 @@ namespace FlygoApp.Persistency
             GetAntanFejlSamlet();
         }
 
-        public void GetAntanFejlSamlet()
+        public async Task GetAntanFejlSamlet()
         {
-            Load(StatistikListe, "api/Views/GetAntalFejlSamlet");
+            string temp = await LoadSingle("api/Views/GetAntalFejlSamlet");
+            Tester = int.Parse(temp);
         }
     }
 }

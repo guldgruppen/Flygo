@@ -170,8 +170,8 @@
                     <TextBlock x:Name="textBlock17" TextWrapping="Wrap" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="40,0,0,0"/>
                 </StackPanel>
             </StackPanel>
-            <TextBlock x:Name="textBlock19" HorizontalAlignment="Left" Margin="73,377,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Text="{Binding StatistikHandler.TestResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-            	<Run Foreground="White" FontSize="26.667" Text="TextBlock"/>
+            <TextBlock  Foreground="AliceBlue" FontSize="50" x:Name="textBlock19" HorizontalAlignment="Left" Margin="73,377,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="60" Text="{Binding StatistikHandler.TestResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="37">
+
             </TextBlock>
         </Grid>
         <StackPanel Grid.Column="3" Grid.Row="1" Background="#7F000000">

@@ -9,12 +9,11 @@ namespace FlygoApp.Models
 {
     public class StatistikHandler
     {
-        private DtoStatistikSingleton _dtoStatistikSingleton;
         public int TestResult { get; set; }
         public StatistikHandler()
         {
-            _dtoStatistikSingleton = DtoStatistikSingleton.GetInstance;
-            TestResult = _dtoStatistikSingleton.StatistikListe.First();
+            var dtoStatistikSingleton = DtoStatistikSingleton.GetInstance;
+            TestResult = dtoStatistikSingleton.Tester;
         }
     }
 }
