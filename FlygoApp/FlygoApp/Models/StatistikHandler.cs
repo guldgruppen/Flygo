@@ -8,39 +8,46 @@ using FlygoApp.Persistency;
 namespace FlygoApp.Models
 {
     public class StatistikHandler
-    {       
+    {
+        
+        #region instance fields
         private readonly DtoStatistikSingleton _dtoStatistikSingleton;
 
-        public int AntalFejlSamlet { get; set; }
-        public int BaggerFejl { get; set; }
-        public int BaggerForsinket { get; set; }
-        public int BaggersKlargøringer { get; set; }
-        public int CatersFejl { get; set; }
-        public int CatersForsinket { get; set; }
-        public int CatersKlargøringer { get; set; }
-        public int CrewFejl { get; set; }
-        public int CrewForsinket { get; set; }
-        public int CrewKlargøringer { get; set; }
-        public int FuelersFejl { get; set; }
-        public int FuelersForsinket { get; set; }
-        public int FuelersKlargøringer { get; set; }
-        public int KlargøringerIAlt { get; set; }
-        public int MekanikerFejl { get; set; }
-        public int MekanikerForsinket { get; set; }
-        public int MekanikerKlargøringer { get; set; }
-        public int RedcapFejl { get; set; }
-        public int RedcapForsinket { get; set; }
-        public int RedcapKlargøringer { get; set; }
-        public int SamletForsinkelser { get; set; }
-        public int RengøringFejl { get; set; }
-        public int RengøringForsinket { get; set; }
-        public int RengøringKlargøringer { get; set; }
+        #endregion
+        #region Properties
+        public string AntalFejlSamlet { get; set; }
+        public string BaggerFejl { get; set; }
+        public string BaggerForsinket { get; set; }
+        public string BaggersKlargøringer { get; set; }
+        public string CatersFejl { get; set; }
+        public string CatersForsinket { get; set; }
+        public string CatersKlargøringer { get; set; }
+        public string CrewFejl { get; set; }
+        public string CrewForsinket { get; set; }
+        public string CrewKlargøringer { get; set; }
+        public string FuelersFejl { get; set; }
+        public string FuelersForsinket { get; set; }
+        public string FuelersKlargøringer { get; set; }
+        public string KlargøringerIAlt { get; set; }
+        public string MekanikerFejl { get; set; }
+        public string MekanikerForsinket { get; set; }
+        public string MekanikerKlargøringer { get; set; }
+        public string RedcapFejl { get; set; }
+        public string RedcapForsinket { get; set; }
+        public string RedcapKlargøringer { get; set; }
+        public string SamletForsinkelser { get; set; }
+        public string RengøringFejl { get; set; }
+        public string RengøringForsinket { get; set; }
+        public string RengøringKlargøringer { get; set; }
+
+        #endregion
         public StatistikHandler()
         {
             _dtoStatistikSingleton = DtoStatistikSingleton.GetInstance;
             InitStatistikData();
         }
 
+        #region Metoder
         public async void InitStatistikData()
         {
             AntalFejlSamlet = await _dtoStatistikSingleton.GetAntalFejlSamlet();
@@ -67,6 +74,7 @@ namespace FlygoApp.Models
             RengøringFejl = await _dtoStatistikSingleton.GetRengøringFejl();
             RengøringForsinket = await _dtoStatistikSingleton.GetRengøringForsinket();
             RengøringKlargøringer = await _dtoStatistikSingleton.GetRengøringKlargøringer();
-        }
+        } 
+        #endregion
     }
 }

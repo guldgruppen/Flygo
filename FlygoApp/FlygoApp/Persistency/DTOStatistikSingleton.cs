@@ -20,125 +20,125 @@ namespace FlygoApp.Persistency
 
         }
 
-        public async Task<int> GetAntalFejlSamlet()
+        public async Task<string> GetAntalFejlSamlet()
         {
             string temp = await LoadSingle("api/Views/GetAntalFejlSamlet");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetBaggerFejl()
+        public async Task<string> GetBaggerFejl()
         {
             string temp = await LoadSingle("api/Views/GetBaggerFejl");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetBaggerForsinket()
+        public async Task<string> GetBaggerForsinket()
         {
-            string temp = await LoadSingle("api/Views/GetBaggerForsinket");
-            return int.Parse(temp);
+            string temp = await LoadSingle("api/Views/GetBaggersForsinket");
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetBaggersKlargøringer()
+        public async Task<string> GetBaggersKlargøringer()
         {
             string temp = await LoadSingle("api/Views/GetBaggersKlargøringer");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetCatersFejl()
+        public async Task<string> GetCatersFejl()
         {
             string temp = await LoadSingle("api/Views/GetCatersFejl");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetCatersForsinket()
+        public async Task<string> GetCatersForsinket()
         {
             string temp = await LoadSingle("api/Views/GetCatersForsinket");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetCatersKlargøringer()
+        public async Task<string> GetCatersKlargøringer()
         {
             string temp = await LoadSingle("api/Views/GetCatersKlargøringer");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetCrewFejl()
+        public async Task<string> GetCrewFejl()
         {
             string temp = await LoadSingle("api/Views/GetCrewFejl");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetCrewForsinket()
+        public async Task<String> GetCrewForsinket()
         {
             string temp = await LoadSingle("api/Views/GetCrewForsinket");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";           
         }
-        public async Task<int> GetCrewKlargøringer()
+        public async Task<string> GetCrewKlargøringer()
         {
             string temp = await LoadSingle("api/Views/GetCrewKlargøringer");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetFuelersFejl()
+        public async Task<string> GetFuelersFejl()
         {
             string temp = await LoadSingle("api/Views/GetFuelersFejl");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetFuelersForsinket()
+        public async Task<string> GetFuelersForsinket()
         {
             string temp = await LoadSingle("api/Views/GetFuelersForsinket");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetFuelersKlargøringer()
+        public async Task<string> GetFuelersKlargøringer()
         {
             string temp = await LoadSingle("api/Views/GetFuelersKlargøringer");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetKlargøringerIAlt()
+        public async Task<string> GetKlargøringerIAlt()
         {
             string temp = await LoadSingle("api/Views/GetKlargøringerIAlt");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetMekanikerFejl()
+        public async Task<string> GetMekanikerFejl()
         {
             string temp = await LoadSingle("api/Views/GetMekanikerFejl");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetMekanikerForsinket()
+        public async Task<string> GetMekanikerForsinket()
         {
             string temp = await LoadSingle("api/Views/GetMekanikerForsinket");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetMekanikerKlargøringer()
+        public async Task<string> GetMekanikerKlargøringer()
         {
             string temp = await LoadSingle("api/Views/GetMekanikerKlargøringer");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetRedcapFejl()
+        public async Task<string> GetRedcapFejl()
         {
             string temp = await LoadSingle("api/Views/GetRedcapFejl");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetRedcapForsinket()
+        public async Task<string> GetRedcapForsinket()
         {
             string temp = await LoadSingle("api/Views/GetRedcapForsinket");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetRedcapKlargøringer()
+        public async Task<string> GetRedcapKlargøringer()
         {
             string temp = await LoadSingle("api/Views/GetRedcapKlargøringer");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetRengøringFejl()
+        public async Task<string> GetRengøringFejl()
         {
             string temp = await LoadSingle("api/Views/GetRengøringFejl");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetRengøringForsinket()
+        public async Task<string> GetRengøringForsinket()
         {
             string temp = await LoadSingle("api/Views/GetRengøringForsinket");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetRengøringKlargøringer()
+        public async Task<string> GetRengøringKlargøringer()
         {
             string temp = await LoadSingle("api/Views/GetRengøringKlargøringer");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
-        public async Task<int> GetSamletForsinkelser()
+        public async Task<string> GetSamletForsinkelser()
         {
             string temp = await LoadSingle("api/Views/GetSamletForsinkelser");
-            return int.Parse(temp);
+            return (!String.IsNullOrEmpty(temp)) ? temp : "ingen data";
         }
     }
 }
