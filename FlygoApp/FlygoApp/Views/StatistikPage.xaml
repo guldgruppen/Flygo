@@ -8,6 +8,9 @@
     mc:Ignorable="d">
 
     <Grid Background="#7F000000">
+        <Grid.DataContext>
+            <local:TaskListViewModel/>
+        </Grid.DataContext>
         <Grid.RowDefinitions>
             <RowDefinition Height="31*"/>
             <RowDefinition Height="329*"/>
@@ -29,16 +32,16 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1">
                         <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
-                            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Antal fejl samlet:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding StatistikHandler.AntalFejlSamlet}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock20" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock20" TextWrapping="Wrap" Text="{Binding StatistikHandler.KlargøringerIAlt}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock21" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="Forsinkelser i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock21" TextWrapping="Wrap" Text="{Binding StatistikHandler.SamletForsinkelser}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
                             <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
@@ -69,24 +72,21 @@
                         <RowDefinition Height="68*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1">
-                        <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
-                            <TextBlock x:Name="textBlock111" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock211" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+     
+                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
+                            <TextBlock x:Name="textBlock101" TextWrapping="Wrap" Text="Antal forsinkelser i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock201" TextWrapping="Wrap" Text="{Binding StatistikHandler.MekanikerForsinket,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock101" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock201" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock112" TextWrapping="Wrap" Text="Antal fejl i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock212" TextWrapping="Wrap" Text="{Binding StatistikHandler.MekanikerFejl,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock112" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock212" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock122" TextWrapping="Wrap" Text="Antal klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock222" TextWrapping="Wrap" Text="{Binding StatistikHandler.MekanikerKlargøringer,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock122" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock222" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock132" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock132" TextWrapping="Wrap" Text="Gennemsnit af forsinkelser i minutter:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock232" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
@@ -111,24 +111,20 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1">
                         <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
-                            <TextBlock x:Name="textBlock19" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock29" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock19" TextWrapping="Wrap" Text="Antal forsinkelser i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock29" TextWrapping="Wrap" Text="{Binding StatistikHandler.CrewForsinket}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock109" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock209" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock109" TextWrapping="Wrap" Text="Antal fejl i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock209" TextWrapping="Wrap" Text="{Binding StatistikHandler.CrewFejl}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock119" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock219" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock119" TextWrapping="Wrap" Text="Antal klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock219" TextWrapping="Wrap" Text="{Binding StatistikHandler.CrewKlargøringer, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock129" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock129" TextWrapping="Wrap" Text="Gennemsnit af forsinkelser i minutter:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock229" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock139" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock239" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">
@@ -152,24 +148,20 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1">
                         <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
-                            <TextBlock x:Name="textBlock18" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock28" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock18" TextWrapping="Wrap" Text="Antal fejl i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock28" TextWrapping="Wrap" Text="{Binding StatistikHandler.RengøringFejl}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock108" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock208" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock108" TextWrapping="Wrap" Text="Antal forsinkelser i alt" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock208" TextWrapping="Wrap" Text="{Binding StatistikHandler.RengøringForsinket}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock118" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock218" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock118" TextWrapping="Wrap" Text="Antal klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock218" TextWrapping="Wrap" Text="{Binding StatistikHandler.RengøringKlargøringer}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock128" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock128" TextWrapping="Wrap" Text="Gennemsnitlig forsinkelse i minutter" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock228" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock138" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock238" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">
@@ -193,24 +185,20 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1">
                         <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
-                            <TextBlock x:Name="textBlock17" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock27" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock17" TextWrapping="Wrap" Text="Antal fejl i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock27" TextWrapping="Wrap" Text="{Binding StatistikHandler.CatersFejl}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock107" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock207" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock107" TextWrapping="Wrap" Text="Antal forsinkelser i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock207" TextWrapping="Wrap" Text="{Binding StatistikHandler.CatersForsinket}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock177" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock217" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock177" TextWrapping="Wrap" Text="Antal klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock217" TextWrapping="Wrap" Text="{Binding StatistikHandler.CatersKlargøringer}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock127" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock127" TextWrapping="Wrap" Text="Gennemsnitlig forsinkelser i minutter:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock227" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock137" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock237" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">
@@ -234,23 +222,19 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1">
                         <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
-                            <TextBlock x:Name="textBlock16" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock26" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock16" TextWrapping="Wrap" Text="Antal fejl i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock26" TextWrapping="Wrap" Text="{Binding StatistikHandler.BaggerFejl}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock106" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock206" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock106" TextWrapping="Wrap" Text="Antal forsinkelser i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock206" TextWrapping="Wrap" Text="{Binding StatistikHandler.BaggerForsinket}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock116" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock216" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock116" TextWrapping="Wrap" Text="Antal klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock216" TextWrapping="Wrap" Text="{Binding StatistikHandler.BaggersKlargøringer}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock126" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock226" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock136" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock136" TextWrapping="Wrap" Text="Gennemsnitlig forsinkelse i minutter:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock236" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
@@ -275,24 +259,20 @@
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="1">
                         <StackPanel Orientation="Horizontal" Margin="20,45,0,0">
-                            <TextBlock x:Name="textBlock15" TextWrapping="Wrap" Text="Gennemsnits tid:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock25" TextWrapping="Wrap" Text="30:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock15" TextWrapping="Wrap" Text="Antal fejl i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock25" TextWrapping="Wrap" Text="{Binding StatistikHandler.FuelersFejl}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock105" TextWrapping="Wrap" Text="Gennemsnit forsinket:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock205" TextWrapping="Wrap" Text="08:00" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock105" TextWrapping="Wrap" Text="Antal forsinkelser i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock205" TextWrapping="Wrap" Text="{Binding StatistikHandler.FuelersForsinket}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock115" TextWrapping="Wrap" Text="Antal fejl:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock215" TextWrapping="Wrap" Text="6" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock115" TextWrapping="Wrap" Text="antal klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock215" TextWrapping="Wrap" Text="{Binding StatistikHandler.FuelersKlargøringer}" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock125" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
+                            <TextBlock x:Name="textBlock125" TextWrapping="Wrap" Text="Gennemsnit forsinkelse i minutter:" Foreground="White" FontSize="30"/>
                             <TextBlock x:Name="textBlock225" TextWrapping="Wrap" Text="103" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
-                            <TextBlock x:Name="textBlock135" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock235" TextWrapping="Wrap" Text="17" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">
