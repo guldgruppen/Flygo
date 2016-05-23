@@ -27,10 +27,10 @@ namespace FlygoApp.Models
                 Flyopgave rute = FlyopgaveFactory.CreateFlyopgave(afgang, ankomst, flyid, hangarid, nummer);
 
                 //indsætter i databasen
-                DtoFlyopgave.PostFlyopgaver(rute);
+                await DtoFlyopgave.PostFlyopgaver(rute);
 
                 //Loader flyopgaverne igen.
-                DtoFlyopgave.LoadFlyopgave();
+                await DtoFlyopgave.LoadFlyopgave();
 
                 //Udvinder id fra flyopgaven til opgavearkiv
                 int id = DtoFlyopgave.FlyopgaveListe.Last().Id;
@@ -39,7 +39,8 @@ namespace FlygoApp.Models
                 OpgaveArkiv temp = new OpgaveArkiv() {FlyopgaveId = id};
 
                 //indsætter opgavearkiv i databasen
-                DtoOpgaveArkiv.PostOpgaveArkiv(temp);
+                await DtoOpgaveArkiv.PostOpgaveArkiv(temp);
+                await DtoOpgaveArkiv.LoadOpgaveArkiv();
 
                 await new MessageDialog("flyopgave oprettet").ShowAsync();
             }
