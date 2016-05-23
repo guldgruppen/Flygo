@@ -345,7 +345,9 @@ namespace FlygoApp.ViewModels
             int hangarId = HangarHandler.Hangar[SelectedHangarIndex].Id;
             DateTime fra = DateAndTimeConverter(AnkomstDato, AnkomstTid);
             DateTime til = DateAndTimeConverter(AfgangDato,AfgangTid);
+
             FlyopgaveHandler.Add(til,fra,flyId,hangarId,FlyopgaveNr); 
+
             FlyopgaveHandler.DtoFlyopgave.LoadFlyopgave();          
         }
         //Convertere input fra tilføj flyrute til en datetime.
