@@ -42,8 +42,8 @@
                             <ColumnDefinition Width="254*"/>
                             <ColumnDefinition Width="61*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Hangar navn:" VerticalAlignment="Center" FontSize="30" Margin="0"/>
-                        <TextBlock x:Name="textBlock1" Grid.Column="1" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="{Binding Placering, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontSize="30"/>
+                        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Hangar navn:" FontSize="20" Margin="0"/>
+                        <TextBlock x:Name="textBlock1" Grid.Column="1" Margin="0" TextWrapping="Wrap" Text="{Binding Placering, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
                         <StackPanel Grid.Column="2"  Orientation="Vertical">
                             <Button x:Name="button" Content="&#xE894;" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Command="{Binding DataContext.DeleteHangarCommand, ElementName=listView}" CommandParameter="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Background="#CCFF0000" Foreground="White" Height="22" Width="22"/>
                         </StackPanel>
@@ -55,21 +55,21 @@
             </ListView.ItemTemplate>
         </ListView>
         <StackPanel Grid.ColumnSpan="2" Grid.Column="1" Margin="0" Orientation="Vertical" Grid.Row="1" Background="#7F000000">
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Hangar" VerticalAlignment="Center" FontSize="60" Foreground="#FFFFE362"/>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Hangar" VerticalAlignment="Center" FontSize="45" Foreground="White"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Margin="0" Grid.Row="2" Background="#7F000000">
-            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Tilføj Hangar:" HorizontalAlignment="Center" FontSize="40" Foreground="#FFFFE362"/>
+            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Tilføj hangar:" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Hangar navn:" FontSize="25" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding InsertHangarNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,10,0" Width="266" PlaceholderText="" VerticalAlignment="Center" FontSize="25"/>
+                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Hangar navn:" FontSize="20" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
+                <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding InsertHangarNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,10,0" Width="230" PlaceholderText="Navn" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast hangar navn"/>
             </StackPanel>
-            <Button x:Name="button" Content="Opret Hangar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="30" Margin="10,20,10,0" Background="#E8FFC834" Command="{Binding InsertHangarCommand}"/>
-            <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Opdatér hangar" FontSize="40" HorizontalAlignment="Center" Margin="0,97,0,0" Foreground="#FFFFE362"/>
+            <Button x:Name="button" Content="Opret Hangar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Margin="10,20,10,0" Background="#E8FFC834" Command="{Binding InsertHangarCommand}" ToolTipService.ToolTip="Tryk for at oprette ny hangar"/>
+            <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Opdater hangar:" FontSize="30" HorizontalAlignment="Center" Margin="0,50,0,0" Foreground="White"/>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                <TextBlock x:Name="textBlock28" TextWrapping="Wrap" Text="Hangar navn:" FontSize="25" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBox0" TextWrapping="Wrap" Text="{Binding SelectedHangarNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,10,0" Width="266" PlaceholderText="navn" VerticalAlignment="Center" FontSize="25"/>
+                <TextBlock x:Name="textBlock28" TextWrapping="Wrap" Text="Hangar navn:" FontSize="20" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
+                <TextBox x:Name="textBox0" TextWrapping="Wrap" Text="{Binding SelectedHangarNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,10,0" Width="230" PlaceholderText="Navn" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast nyt hangar navn"/>
             </StackPanel>
-            <Button x:Name="button1" Content="Opret Hangar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="30" Margin="10,20,10,0" Background="#E8FFC834" Command="{Binding UpdateHangarCommand}"/>
+            <Button x:Name="button1" Content="Opdater Hangar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Margin="10,20,10,0" Background="#E8FFC834" Command="{Binding UpdateHangarCommand}" ToolTipService.ToolTip="Tryk for at opdatere hangar"/>
         </StackPanel>
 
     </Grid>
