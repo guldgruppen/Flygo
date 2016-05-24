@@ -17,9 +17,8 @@ namespace FlygoApp.Models
         public IFactory FlyopgaveFactory { get; set; }
    
         //Kaldes for at oprette et flyopgave.
-        public async void Add(DateTimeOffset afgang, DateTimeOffset ankomst, int flyid, int hangarid, string nummer)
+        public async void Add(DateTime afgang, DateTime ankomst, int flyid, int hangarid, string nummer)
         {
-            string message = String.Empty;
 
             try
             {
@@ -28,10 +27,10 @@ namespace FlygoApp.Models
                 Flyopgave rute = FlyopgaveFactory.CreateFlyopgave(afgang, ankomst, flyid, hangarid, nummer);
 
                 //indsætter i databasen
-                DtoFlyopgave.PostFlyopgaver(rute);
+                await DtoFlyopgave.PostFlyopgaver(rute);
 
                 //Loader flyopgaverne igen.
-                DtoFlyopgave.LoadFlyopgave();
+                await DtoFlyopgave.LoadFlyopgave();
 
                 //Udvinder id fra flyopgaven til opgavearkiv
                 int id = DtoFlyopgave.FlyopgaveListe.Last().Id;
@@ -40,24 +39,24 @@ namespace FlygoApp.Models
                 OpgaveArkiv temp = new OpgaveArkiv() {FlyopgaveId = id};
 
                 //indsætter opgavearkiv i databasen
-                DtoOpgaveArkiv.PostOpgaveArkiv(temp);
+                await DtoOpgaveArkiv.PostOpgaveArkiv(temp);
+                await DtoOpgaveArkiv.LoadOpgaveArkiv();
 
-                message = "flyopgave er oprettet";
+                await new MessageDialog("flyopgave oprettet").ShowAsync();
             }
             catch (ArgumentException ex)
             {
-                message = ex.Message;
+                await new MessageDialog(ex.Message).ShowAsync();
             }
             catch (IndexOutOfRangeException e)
             {
-                message = e.Message;
+                await new MessageDialog(e.Message).ShowAsync();
             }
-            finally
+            catch (Exception ex)
             {
-                await new MessageDialog(message).ShowAsync();
+                await new MessageDialog(ex.Message).ShowAsync();
             }
             
-
 
         }
 

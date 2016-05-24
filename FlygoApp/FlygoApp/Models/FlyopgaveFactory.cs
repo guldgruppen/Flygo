@@ -14,8 +14,8 @@ namespace FlygoApp.Models
             DateTime til = DateTime.Parse(afgang.ToString());
             DateTime fraDanskTid = fra.AddHours(1);
             DateTime tilDanskTid = til.AddHours(1);
-            
-            return new Flyopgave() {Afgang = tilDanskTid, Ankomst = fraDanskTid, FlyId = flyid,HangarId = hangarid, FlyopgaveNummer = nummer};
+
+            return new Flyopgave(flyid, hangarid, nummer, fraDanskTid, tilDanskTid);
 
         }
 

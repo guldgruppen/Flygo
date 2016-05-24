@@ -218,33 +218,40 @@ namespace FlygoApp.ViewModels
             set
             {
                 _selectedOpgaveIndex = value;
-                if (_selectedOpgaveIndex >= 0)
+                try
                 {
-                    SelectedFlyopgaveNummerDetail = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].FlyopgaveNummer;
-                    SelectedAfgangDetail = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].AfgangSomText;
-                    SelectedAnkomstDetail = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].AnkomstSomText;
-                    int hangarId = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].HangarId;
-                    int flyId = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].FlyId;
-                    SelectedHangarDetail = HangarHandler.Hangar.Single(x => x.Id.Equals(hangarId)).ToString();
-                    SelectedFlyDetail = FlyHandler.Fly.Single(x => x.Id.Equals(flyId)).ToString();
-             
-                    DateTime til = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Afgang;
-                    TimeSpan span = til - DateTime.Now;
-                    SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
-                    SelectedFlyopgave = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex];
-                    SelectedOpgaveArkiv =
-                        FlyopgaveHandler.OpgaveArkivs.Single(
-                            x => x.FlyopgaveId.Equals(FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Id));
-                    OpgaveAdapter = new OpgaveAdapter(SelectedOpgaveArkiv, SelectedFlyopgave);
-                    SelectedMekanikerDetails = SelectedOpgaveArkiv.Mekanikker.ToString();
-                    SelectedBaggersDetails = SelectedOpgaveArkiv.Baggers.ToString();
-                    SelectedCatersDetails = SelectedOpgaveArkiv.Caters.ToString();
-                    SelectedCrewDetails = SelectedOpgaveArkiv.Crew.ToString();
-                    SelectedFulersDetails = SelectedOpgaveArkiv.Fuelers.ToString();
-                                       
-                    CountdownToDeadline();
+                    if (_selectedOpgaveIndex >= 0)
+                    {
+                        SelectedFlyopgaveNummerDetail =
+                            FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].FlyopgaveNummer;
+                        SelectedAfgangDetail = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].AfgangSomText;
+                        SelectedAnkomstDetail = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].AnkomstSomText;
+                        int hangarId = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].HangarId;
+                        int flyId = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].FlyId;
+                        SelectedHangarDetail = HangarHandler.Hangar.Single(x => x.Id.Equals(hangarId)).ToString();
+                        SelectedFlyDetail = FlyHandler.Fly.Single(x => x.Id.Equals(flyId)).ToString();
 
+                        DateTime til = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Afgang;
+                        TimeSpan span = til - DateTime.Now;
+                        SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
+                        SelectedFlyopgave = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex];
+                        SelectedOpgaveArkiv =
+                            FlyopgaveHandler.OpgaveArkivs.SingleOrDefault(
+                                x => x.FlyopgaveId.Equals(FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Id));
+                        OpgaveAdapter = new OpgaveAdapter(SelectedOpgaveArkiv, SelectedFlyopgave);
+                        SelectedMekanikerDetails = SelectedOpgaveArkiv.Mekanikker.ToString();
+                        SelectedBaggersDetails = SelectedOpgaveArkiv.Baggers.ToString();
+                        SelectedCatersDetails = SelectedOpgaveArkiv.Caters.ToString();
+                        SelectedCrewDetails = SelectedOpgaveArkiv.Crew.ToString();
+                        SelectedFulersDetails = SelectedOpgaveArkiv.Fuelers.ToString();
+
+                        CountdownToDeadline();
+
+                    }
                 }
+                catch (Exception ex)
+                {
+                    new MessageDialog(ex.Message).ShowAsync();}
                 OnPropertyChanged();
             }
         }
@@ -345,7 +352,9 @@ namespace FlygoApp.ViewModels
             int hangarId = HangarHandler.Hangar[SelectedHangarIndex].Id;
             DateTime fra = DateAndTimeConverter(AnkomstDato, AnkomstTid);
             DateTime til = DateAndTimeConverter(AfgangDato,AfgangTid);
+
             FlyopgaveHandler.Add(til,fra,flyId,hangarId,FlyopgaveNr); 
+
             FlyopgaveHandler.DtoFlyopgave.LoadFlyopgave();          
         }
         //Convertere input fra tilføj flyrute til en datetime.
