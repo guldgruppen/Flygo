@@ -244,7 +244,7 @@ namespace FlygoApp.ViewModels
 
         public void InsertForsinketTidValgmuligheder()
         {
-            ForsinketTid = Enumerable.Range(5, 25).Select(x => x*5).ToList();
+            ForsinketTid = Enumerable.Range(1, 24).Select(x => x*5).ToList();
         }
         public void SignalRConnection()
         {

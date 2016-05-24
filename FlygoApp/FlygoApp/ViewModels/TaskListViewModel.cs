@@ -66,6 +66,7 @@ namespace FlygoApp.ViewModels
         public DateTimeOffset AnkomstDato { get; set; }
         public TimeSpan AfgangTid { get; set; }
         public TimeSpan AnkomstTid { get; set; }
+        public DateTimeOffset MinYear { get; set; } 
         public Uri ImageSource
         {
             get { return _imageSource; }
@@ -295,6 +296,9 @@ namespace FlygoApp.ViewModels
 
             StatistikHandler = new StatistikHandler();
 
+            MinYear = DateTimeOffset.Now;
+            SelectedHangarIndex = -1;
+            SelectedFlyIndex = -1; 
 
 
         }
