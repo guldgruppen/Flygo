@@ -74,9 +74,9 @@
 
             </StackPanel>
             <StackPanel Grid.Column="2">
-                <Button x:Name="Fuldført" Content="Fuldført" Command="{Binding SendKorrektSvarCommand}" Background="#FF3AF53A" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
-                <Button x:Name="Fejl" Content="Fejl" Command="{Binding SendFejlSvarCommand}" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"/>
-                <Button x:Name="Forsinket"  Content="Forsinket" Background="Yellow" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold">
+                <Button x:Name="Fuldført" Content="Fuldført" Command="{Binding SendKorrektSvarCommand}" Background="#FF3AF53A" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" ToolTipService.ToolTip="Tryk for fuldført opgave"/>
+                <Button x:Name="Fejl" Content="Fejl" Command="{Binding SendFejlSvarCommand}" Background="Red" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" ToolTipService.ToolTip="Tryk for fejl på flyopgave"/>
+                <Button x:Name="Forsinket"  Content="Forsinket" Background="Yellow" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" ToolTipService.ToolTip="Tryk på for forsinket flyopgave">
                     <Button.Flyout>
                         <Flyout x:Name="ButtonFlyOut" Placement="Bottom" >
                             <ComboBox x:Name="comboBoxx" Width="400" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" ItemsSource="{Binding ForsinketTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedForsinketTidIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Forsinket tid (min)" />
