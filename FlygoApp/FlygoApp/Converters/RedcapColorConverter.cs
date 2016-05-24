@@ -27,6 +27,8 @@ namespace FlygoApp.Converters
             {
                 OpgaveArkiv arkiv = opg.OpgaveArkiv;
                 Flyopgave rute = opg.Flyopgave;
+                if (arkiv.Redcap == DateTime.Parse("01-01-1995") && rute.Ankomst > DateTime.Now)
+                    return white;
                 if (arkiv.Redcap == DateTime.Parse("01-01-1995"))
                     return red;
                 if (rute.Ankomst > DateTime.Now)
