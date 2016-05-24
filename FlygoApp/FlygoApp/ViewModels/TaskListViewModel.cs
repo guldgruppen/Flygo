@@ -230,7 +230,7 @@ namespace FlygoApp.ViewModels
              
                     DateTime til = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Afgang;
                     TimeSpan span = til - DateTime.Now;
-                    SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
+                    SelectedCountdown = DateTime.Now >= til ? "Flyopgave Slut" : span.ToString(@"dd\.hh\:mm\:ss");
                     SelectedFlyopgave = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex];
                     SelectedOpgaveArkiv =
                         FlyopgaveHandler.OpgaveArkivs.Single(
@@ -285,10 +285,8 @@ namespace FlygoApp.ViewModels
 
             FlyopgaveHandler = new FlyopgaveHandler();
             FlyopgaveHandler.LoadDtoFlyopgaver();
-
+            
             StatistikHandler = new StatistikHandler();
-
-
 
         }
         #region Metoder
@@ -306,7 +304,7 @@ namespace FlygoApp.ViewModels
         {
             DateTime til = FlyopgaveHandler.Flyopgaver[_selectedOpgaveIndex].Afgang;
             TimeSpan span = til - DateTime.Now;
-            SelectedCountdown = DateTime.Now >= til ? "færdig" : span.ToString(@"dd\.hh\:mm\:ss");
+            SelectedCountdown = DateTime.Now >= til ? "Flyopgave Slut" : span.ToString(@"dd\.hh\:mm\:ss");
         }
         public async void DeleteOpgave(object param)
         {

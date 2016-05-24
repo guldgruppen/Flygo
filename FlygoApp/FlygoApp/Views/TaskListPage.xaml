@@ -37,17 +37,17 @@
                 <DataTemplate x:Key="DataTemplate1">
                     <Grid Name="opgaveview" Margin="10" Background="#D8FFFFFF" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="112*"/>
-                            <ColumnDefinition Width="292*"/>
+                            <ColumnDefinition Width="131*"/>
+                            <ColumnDefinition Width="282*"/>
 
-                            <ColumnDefinition Width="151*"/>
-                            <ColumnDefinition Width="28*"/>
+                            <ColumnDefinition Width="155*"/>
+                            <ColumnDefinition Width="29*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel HorizontalAlignment="Stretch" Margin="0">
                             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Flyopgave:" d:LayoutOverrides="Width, LeftPosition, RightPosition, TopPosition, BottomPosition" FontSize="21.333" Margin="15,0,0,0" HorizontalAlignment="Center"/>
                             <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding FlyopgaveNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" d:LayoutOverrides="Width, LeftPosition, RightPosition" FontSize="21.333" Margin="20,0,0,0" HorizontalAlignment="Center"/>
                         </StackPanel>
-                        <StackPanel Margin="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel Margin="45,7,37,7" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="58" Width="200">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Fra:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333"/>
                                 <TextBlock x:Name="textBlock3_Copy" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333" Text="{Binding AnkomstSomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -72,7 +72,7 @@
                                 <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="0" Margin="63,0,0,0" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Grid.Column="4"  Orientation="Vertical">
+                        <StackPanel Grid.Column="3"  Orientation="Vertical">
                             <Button x:Name="button" Content="&#xE894;" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Command="{Binding DataContext.DeleteOpgaveCommand, ElementName=listView}" CommandParameter="{Binding FlyopgaveNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Background="#CCFF0000" Foreground="White" Height="22" Width="22"/>
                         </StackPanel>
                     </Grid>
@@ -133,10 +133,10 @@
                 <TextBox x:Name="textBlock4" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedFlyopgaveNummerDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Fly:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock11" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedFlyDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox x:Name="comboBox" SelectedIndex="{Binding SelectedFlyIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0" Foreground="White" FontSize="24" ItemsSource="{Binding FlyHandler.Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Hangar:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock13" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedHangarDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox x:Name="comboBox2_Copy" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Foreground="White" FontSize="24" ItemsSource="{Binding HangarHandler.Hangar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedHangarIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <TextBlock x:Name="textBlock128" TextWrapping="Wrap" Text="Ankomst:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
                 <TextBox x:Name="textBlock137" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedAnkomstDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -147,7 +147,7 @@
             <StackPanel Grid.ColumnSpan="2" Margin="10,0">
                 <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding SelectedCountdown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFECD91F" FontSize="70" Margin="0" HorizontalAlignment="Center"/>
             </StackPanel>
-            <Button x:Name="button" Content="Opdater" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Background="#CCFFE25F" FontSize="26.667" Command="{Binding SendOpgaveCommand}" Grid.Row="2" Margin="10,0,0,10"/>
+            <Button x:Name="button" Content="Opdater" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Background="#CCFFE25F" FontSize="26.667" Command="{Binding SendOpgaveCommand}" Grid.Row="1" Margin="10,421,0,10" Grid.RowSpan="2"/>
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,30,20,0">
                 <StackPanel Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MekanikerColorConverter}}" Orientation="Horizontal">
                     <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Mekaniker" FontSize="20"/>
