@@ -19,20 +19,20 @@ namespace FlygoApp.Persistency
             LoadOpgaveArkiv();
         }
 
-        public void PostOpgaveArkiv(OpgaveArkiv opg)
+        public async Task PostOpgaveArkiv(OpgaveArkiv opg)
         {
-            Post(opg, "api/OpgaveArkivs/PostOpgaveArkiv");           
+            await Post(opg, "api/OpgaveArkivs/PostOpgaveArkiv");           
         }
 
-        public void LoadOpgaveArkiv()
+        public async Task LoadOpgaveArkiv()
         {
-            Load(OpgaveArkivListe, "api/OpgaveArkivs/GetOpgaveArkiv");
+            await Load(OpgaveArkivListe, "api/OpgaveArkivs/GetOpgaveArkiv");
         }
 
         //skal laves til base klasse
-        public void UpdateOpgaveArkiv(OpgaveArkiv arkiv, int id)
+        public async Task UpdateOpgaveArkiv(OpgaveArkiv arkiv, int id)
         {
-            Update(arkiv,id, "api/OpgaveArkivs/PutOpgaveArkiv/");                        
+            await Update(arkiv,id, "api/OpgaveArkivs/PutOpgaveArkiv/");                        
         }
     }
 }
