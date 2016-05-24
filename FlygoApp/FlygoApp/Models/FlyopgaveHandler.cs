@@ -17,9 +17,8 @@ namespace FlygoApp.Models
         public IFactory FlyopgaveFactory { get; set; }
    
         //Kaldes for at oprette et flyopgave.
-        public async void Add(DateTime afgang, DateTime ankomst, int flyid, int hangarid, string nummer)
+        public async void Add(DateTimeOffset afgang, DateTimeOffset ankomst, int flyid, int hangarid, string nummer)
         {
-
             try
             {
                 CheckEksisterendeFlyopgave(nummer);
