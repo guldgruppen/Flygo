@@ -99,6 +99,7 @@ namespace FlygoApp.Models
         //Loader data ind fra flyopgaver og opgavearkiv
         public void LoadDtoFlyopgaver()
         {
+            //hej
             foreach (var flyopgave in DtoFlyopgave.FlyopgaveListe.OrderBy(x => x.Ankomst))
             {
                 Flyopgaver.Add(flyopgave);
