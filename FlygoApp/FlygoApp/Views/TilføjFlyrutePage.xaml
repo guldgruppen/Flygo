@@ -21,8 +21,8 @@
             <RowDefinition Height="17*"/>
             <RowDefinition Height="163*"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Margin="5,0,0,0" Grid.Column="1">
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Tilføj Flyopgave" FontSize="46.667" Foreground="White" HorizontalAlignment="Center" Width="253" Height="68"/>
+        <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock  TextWrapping="Wrap" Text="Tilføj Flyopgave" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="36"/>
         </StackPanel>
         <Grid Margin="5,5,0,20" Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -35,15 +35,13 @@
             </Grid.ColumnDefinitions>
             <StackPanel Margin="0">
                 <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Flyopgave nummer:" Height="64" FontSize="29.333" Foreground="White"/>
-                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" FontSize="29.333" Foreground="White" Height="64" Margin="0">
-                	<Run Text="Fly"/>
-                	<Run Text=":"/>
-                	<LineBreak/>
-                	<Run/>
+                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" FontSize="29.333" Foreground="White" Height="64" Margin="0" Text="Fly:">
+                	
+                	
                 </TextBlock>
                 <TextBlock x:Name="textBlock4_Copy" TextWrapping="Wrap" Text="Hangar:" FontSize="29.333" Height="64" Foreground="White" Margin="0" />
-                <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Dato fra:" FontSize="29.333" Height="64" Foreground="White" Margin="0"/>
-                <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Dato til:" FontSize="29.333" Height="64" Foreground="White" Margin="0,60,0,0"/>
+                <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Ankomst:" FontSize="29.333" Height="64" Foreground="White" Margin="0"/>
+                <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Afgang:" FontSize="29.333" Height="64" Foreground="White" Margin="0,60,0,0"/>
             </StackPanel>
             <StackPanel Margin="0,2,1,0" Grid.Column="1">
                 <Grid Height="44">
@@ -51,11 +49,11 @@
                         <ColumnDefinition Width="439*"/>
                         <ColumnDefinition Width="59*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyopgaveNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="24" Padding="10,3,6,5"/>
-                    <Image x:Name="image" Grid.Column="1" HorizontalAlignment="Left" Height="44" VerticalAlignment="Bottom" Width="59" Source="{Binding ImageSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyopgaveNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="24" Padding="10,3,6,5" Grid.ColumnSpan="2"/>
+                    <Image x:Name="image" Grid.Column="1" HorizontalAlignment="Left" Height="44" VerticalAlignment="Bottom" Width="59" Source="{Binding ImageSource, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="44,0,-64,0"/>
                 </Grid>
-                <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0" FontSize="24" ItemsSource="{Binding FlyHandler.Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedFlyIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <ComboBox x:Name="comboBox2_Copy" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,15,0,0" FontSize="24" ItemsSource="{Binding HangarHandler.Hangar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedHangarIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,0" FontSize="24" ItemsSource="{Binding FlyHandler.Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedFlyIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Vælg fly"/>
+                <ComboBox x:Name="comboBox2_Copy" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,15,0,0" FontSize="24" ItemsSource="{Binding HangarHandler.Hangar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedHangarIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Vælg hangar" />
                 <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,20,0,0" Date="{Binding AnkomstDato, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding MinYear}" Padding="0"/>
                 <TimePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,10,0,0" ClockIdentifier="24HourClock" Time="{Binding AnkomstTid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Margin="0,20,0,0" Date="{Binding AfgangDato, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinYear="{Binding MinYear}" Padding="0"/>
