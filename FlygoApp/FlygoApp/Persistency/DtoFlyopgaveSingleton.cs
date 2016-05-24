@@ -34,7 +34,6 @@ namespace FlygoApp.Persistency
         public  void LoadFlyopgave()
         {
             Load(FlyopgaveListe, "api/Flyopgaves/GetFlyopgave");
-            FlyopgaveListe.OrderByDescending(x => x.Ankomst);
         }
 
 
