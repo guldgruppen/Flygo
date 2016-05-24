@@ -23,11 +23,11 @@
             <ViewModels:WorkerTaskListViewModel/>
         </Grid.DataContext>
         <Grid.RowDefinitions>
-            <RowDefinition Height="28*"/>
-            <RowDefinition Height="77*"/>
-            <RowDefinition Height="54*"/>
-            <RowDefinition Height="339*"/>
-            <RowDefinition Height="42*"/>
+            <RowDefinition Height="41"/>
+            <RowDefinition Height="133*"/>
+            <RowDefinition Height="68*"/>
+            <RowDefinition Height="460*"/>
+            <RowDefinition Height="18*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
@@ -37,7 +37,7 @@
         <Grid.Background>
             <ImageBrush Stretch="Fill" ImageSource="ms-appx:///Assets/Planesample1.jpg"/>
         </Grid.Background>
-        <Grid Grid.Column="1" Grid.Row="1" Background="#66000000">
+        <Grid Grid.Column="1" Grid.Row="1" Background="#66000000" Margin="0,5,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="139*"/>
                 <ColumnDefinition Width="126*"/>
@@ -161,22 +161,26 @@
             </Grid>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="2" Background="#66000000">
-            <StackPanel HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="880" Orientation="Horizontal">
-                <Rectangle Fill="#FFFF0000" Stroke="Black" Width="35" Margin="0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Text=" = Fejl" VerticalAlignment="Center" FontSize="25" Foreground="White"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="37*"/>
+                <ColumnDefinition Width="18*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Left" Height="72" VerticalAlignment="Top" Width="880" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,0,0,-2">
+                <Rectangle Fill="#FFFF0000" Stroke="Black" Width="35" Margin="25,0,0,0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text=" = Fejl" VerticalAlignment="Center" FontSize="25" Foreground="White" Margin="0,18,0,21"/>
                 <Rectangle Fill="Yellow" Stroke="Black" Width="35" Margin="60,0,0,0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text=" = Forsinket" VerticalAlignment="Center" FontSize="25" Foreground="White"/>
-                <Rectangle Fill="Green" Stroke="Black" Width="35" Margin="60,0,0,0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Rectangle Fill="#FF3AF53A" Stroke="Black" Width="35" Margin="60,0,0,0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text=" = Fuldført" VerticalAlignment="Center" FontSize="25" Foreground="White"/>
                 <Rectangle Fill="AntiqueWhite" Stroke="Black" Width="35" Margin="60,0,0,0" Height="35" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text=" = Ikke startet" VerticalAlignment="Center" FontSize="25" Foreground="White"/>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.ColumnSpan="3" Background="#FF22313F" Orientation="Horizontal" Margin="0,0,0,151" Grid.RowSpan="2">
-            <Button x:Name="button10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="79" Background="{x:Null}" FontFamily="Segoe MDL2 Assets" Content="&#59179;" FontSize="40" Foreground="#FFF1AF39" Command="{Binding BackCommand}"/>
+        <StackPanel Grid.ColumnSpan="3" Background="#FF22313F" Orientation="Horizontal" Margin="0">
+            <Button x:Name="button10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="79" Background="{x:Null}" FontFamily="Segoe MDL2 Assets" Content="&#59179;" FontSize="32" Foreground="#FFF1AF39" Command="{Binding BackCommand}"/>
 
             <Button x:Name="button1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="79" Background="{x:Null}" Command="{Binding LogudCommand}">
-                <Image Source="ms-appx:///Assets/1461286313_Log Out.png" Height="54" Width="48" />
+                <Image Source="ms-appx:///Assets/1461286313_Log Out.png" Margin="-29,-6,-19,-6" />
             </Button>
         </StackPanel>
 
