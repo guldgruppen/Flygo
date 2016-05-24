@@ -18,7 +18,7 @@ namespace FlygoApp.Persistency
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public virtual async void Load(List<T> listToAdd, string url)
+        public virtual async Task Load(List<T> listToAdd, string url)
         {
             HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
             using (var client = new HttpClient(handler))
@@ -64,7 +64,7 @@ namespace FlygoApp.Persistency
             }
             return String.Empty;
         }
-        public virtual async void Post(T type,string url)
+        public virtual async Task Post(T type,string url)
         {
             HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
             using (var client = new HttpClient(handler))
@@ -82,7 +82,7 @@ namespace FlygoApp.Persistency
             }
 
         }
-        public virtual async void Delete(int id,string url)
+        public virtual async Task Delete(int id,string url)
         {
             HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
             using (var client = new HttpClient(handler))
@@ -98,7 +98,7 @@ namespace FlygoApp.Persistency
                 }
             }
         }
-        public virtual async void Update(T type, int id, string url)
+        public virtual async Task Update(T type, int id, string url)
         {
             HttpClientHandler handler = new HttpClientHandler { UseDefaultCredentials = true };
             using (var client = new HttpClient(handler))

@@ -20,19 +20,19 @@ namespace FlygoApp.Persistency
             LoadFlyopgave();          
         }
 
-        public void PostFlyopgaver(Flyopgave rute)
+        public async Task PostFlyopgaver(Flyopgave rute)
         {
-            Post(rute, "api/Flyopgaves/PostFlyopgave");
+            await Post(rute, "api/Flyopgaves/PostFlyopgave");
         }
 
-        public void DeleteFlyopgave(int id)
+        public async void DeleteFlyopgave(int id)
         {
-            Delete(id, "api/Flyopgaves/DeleteFlyopgave");            
+            await Delete(id, "api/Flyopgaves/DeleteFlyopgave");            
         }
 
-        public  void LoadFlyopgave()
+        public async Task LoadFlyopgave()
         {
-            Load(FlyopgaveListe, "api/Flyopgaves/GetFlyopgave");
+            await Load(FlyopgaveListe, "api/Flyopgaves/GetFlyopgave");
         }
 
 
