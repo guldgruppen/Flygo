@@ -173,7 +173,7 @@
                 <TextBlock Text=" = Ikke startet" VerticalAlignment="Center" FontSize="25" Foreground="White"/>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.ColumnSpan="3" Background="#FF385168" Orientation="Horizontal" Margin="0">
+        <StackPanel Grid.ColumnSpan="3" Background="#FF22313F" Orientation="Horizontal" Margin="0">
             <Button x:Name="button10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="79" Background="{x:Null}" FontFamily="Segoe MDL2 Assets" Content="&#59179;" FontSize="32" Foreground="#FFF1AF39" Command="{Binding BackCommand}"/>
 
             <Button x:Name="button1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="79" Background="{x:Null}" Command="{Binding LogudCommand}">
