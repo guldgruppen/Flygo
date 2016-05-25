@@ -29,7 +29,7 @@
                     <ListBoxItem x:Name="LukMenu">
                         <Interactivity:Interaction.Behaviors>
                             <Core:EventTriggerBehavior EventName="Tapped" SourceObject="{Binding ElementName=LukMenu}">
-                                <Core:InvokeCommandAction Command="{Binding OpenMenuCommand}"/>
+                                <Core:InvokeCommandAction Command="{Binding OpenMenuCommand}" />
                             </Core:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
@@ -107,11 +107,7 @@
                 </ListBox>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame x:Name="frame" Content="{Binding CurrentFrame, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2" UseLayoutRounding="True" BorderThickness="0">
-                    <Frame.Background>
-                        <ImageBrush Stretch="Fill"/>
-                    </Frame.Background>
-                </Frame>
+                <Frame x:Name="frame" Content="{Binding CurrentFrame, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2" UseLayoutRounding="True" BorderThickness="0" Background="#FF1D618F"/>
             </SplitView.Content>
         </SplitView>
         <!--<Grid HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="1280" Background="#FF3C3C3C">

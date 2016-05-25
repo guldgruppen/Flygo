@@ -32,10 +32,10 @@
         <Grid.DataContext>
             <ViewModels:TaskListViewModel/>
         </Grid.DataContext>
-        <ListView x:Name="listView" Grid.Column="1" Grid.Row="2" Background="#7F000000" ItemsSource="{Binding FlyopgaveHandler.Flyopgaver, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedOpgaveIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView x:Name="listView" Grid.Column="1" Grid.Row="2" Background="#FFFFFCF5" ItemsSource="{Binding FlyopgaveHandler.Flyopgaver, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedOpgaveIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <ListView.Resources>
                 <DataTemplate x:Key="DataTemplate1">
-                    <Grid Name="opgaveview" Margin="10" Background="#D8FFFFFF" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid Name="opgaveview" Margin="10" Background="#FFFFFCF5" Padding="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="#FF191919" BorderThickness="0,0,0,2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="112*"/>
                             <ColumnDefinition Width="292*"/>
@@ -44,32 +44,32 @@
                             <ColumnDefinition Width="28*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel HorizontalAlignment="Stretch" Margin="0">
-                            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Flyopgave:" d:LayoutOverrides="Width, LeftPosition, RightPosition, TopPosition, BottomPosition" FontSize="21.333" Margin="15,0,0,0" HorizontalAlignment="Center"/>
-                            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding FlyopgaveNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" d:LayoutOverrides="Width, LeftPosition, RightPosition" FontSize="21.333" Margin="20,0,0,0" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Flyopgave:" d:LayoutOverrides="Width, LeftPosition, RightPosition, TopPosition, BottomPosition" FontSize="21.333" Margin="5,0,0,0" HorizontalAlignment="Center" Foreground="#FF383838"/>
+                            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="{Binding FlyopgaveNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" d:LayoutOverrides="Width, LeftPosition, RightPosition" FontSize="21.333" Margin="20,0,0,0" HorizontalAlignment="Center" Foreground="#FF383838"/>
                         </StackPanel>
                         <StackPanel Margin="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Fra:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333"/>
-                                <TextBlock x:Name="textBlock3_Copy" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333" Text="{Binding AnkomstSomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Fra:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333" Foreground="#FF383838"/>
+                                <TextBlock x:Name="textBlock3_Copy" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333" Text="{Binding AnkomstSomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF383838"/>
 
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Til:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333"/>
-                                <TextBlock x:Name="textBlock4_Copy" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333" Text="{Binding AfgangSomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock x:Name="textBlock4" TextWrapping="Wrap" Text="Til:" d:LayoutOverrides="LeftPosition, RightPosition" VerticalAlignment="Top" FontSize="21.333" Foreground="#FF383838"/>
+                                <TextBlock x:Name="textBlock4_Copy" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="21.333" Text="{Binding AfgangSomText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF383838"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="2">
                             <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                                <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Fuldført:" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="5" Margin="30,0,0,0" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Fuldført:" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF383838"/>
+                                <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="5" Margin="30,0,0,0" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF383838"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
-                                <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Forsinket:" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="0" Margin="19,0,0,0" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Forsinket:" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF383838"/>
+                                <TextBlock x:Name="textBlock11" TextWrapping="Wrap" Text="0" Margin="19,0,0,0" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF383838"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="10,0,0,0" VerticalAlignment="Center">
-                                <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Fejl:" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="0" Margin="63,0,0,0" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Fejl:" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF383838"/>
+                                <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="0" Margin="63,0,0,0" FontSize="17.333" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF383838"/>
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="4"  Orientation="Vertical">
@@ -118,64 +118,65 @@
                 <StaticResource ResourceKey="DataTemplate1"/>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Column="3" Grid.Row="2" Margin="0" Background="#7F000000">
+        <Grid Grid.Column="3" Grid.Row="2" Margin="0" Background="#FFFFFCF5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="183*"/>
                 <ColumnDefinition Width="238*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="171*"/>
-                <RowDefinition Height="671*"/>
-                <RowDefinition Height="80*"/>
+                <RowDefinition Height="111*"/>
+                <RowDefinition Height="437*"/>
+                <RowDefinition Height="48*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Margin="10,0" Grid.Row="1">
-                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Flyopgave nr:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock4" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedFlyopgaveNummerDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Flyopgave nr:" FontSize="24" VerticalAlignment="Center" Foreground="#FF22313F"/>
+                <TextBox x:Name="textBlock4" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="Black" Text="{Binding SelectedFlyopgaveNummerDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Fly:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock11" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedFlyDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock x:Name="textBlock10" TextWrapping="Wrap" Text="Fly:" FontSize="24" VerticalAlignment="Center" Foreground="#FF22313F"/>
+                <TextBox x:Name="textBlock11" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="Black" Text="{Binding SelectedFlyDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Hangar:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock13" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedHangarDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Hangar:" FontSize="24" VerticalAlignment="Center" Foreground="#FF22313F"/>
+                <TextBox x:Name="textBlock13" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="Black" Text="{Binding SelectedHangarDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBlock x:Name="textBlock128" TextWrapping="Wrap" Text="Ankomst:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock137" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedAnkomstDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock x:Name="textBlock128" TextWrapping="Wrap" Text="Ankomst:" FontSize="24" VerticalAlignment="Center" Foreground="#FF22313F"/>
+                <TextBox x:Name="textBlock137" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="Black" Text="{Binding SelectedAnkomstDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBlock x:Name="textBlock127" TextWrapping="Wrap" Text="Afgang:" FontSize="24" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBlock138" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="White" Text="{Binding SelectedAfgangDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock x:Name="textBlock127" TextWrapping="Wrap" Text="Afgang:" FontSize="24" VerticalAlignment="Center" Foreground="#FF22313F"/>
+                <TextBox x:Name="textBlock138" TextWrapping="Wrap" FontSize="21.333" VerticalAlignment="Center" Foreground="Black" Text="{Binding SelectedAfgangDetail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.ColumnSpan="2" Margin="10,0">
-                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding SelectedCountdown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FFECD91F" FontSize="70" Margin="0" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="{Binding SelectedCountdown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="#FF22313F" FontSize="70" Margin="0" HorizontalAlignment="Center"/>
             </StackPanel>
-            <Button x:Name="button" Content="Opdater" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Background="#CCFFE25F" FontSize="26.667" Command="{Binding SendOpgaveCommand}" Grid.Row="2" Margin="10,0,0,10"/>
+            <Button x:Name="button" Content="Opdater" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Background="#FFDCCE42" FontSize="25.333" Command="{Binding SendOpgaveCommand}" Grid.Row="2" Foreground="#FF0F0F0F" Margin="4,0,0,0"/>
             <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,30,20,0">
                 <StackPanel Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource MekanikerColorConverter}}" Orientation="Horizontal">
-                    <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Mekaniker" FontSize="20"/>
+                    <TextBlock x:Name="textBlock5" TextWrapping="Wrap" Text="Mekaniker" FontSize="20" Foreground="#FF22313F"/>
                     <TextBlock x:Name="textBlock14" TextWrapping="Wrap" Text="{Binding SelectedMekanikerDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="40,0,0,0"/>
                 </StackPanel>
                 <StackPanel Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CatersColorConverter}}" Orientation="Horizontal">
-                    <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Caters" FontSize="20"/>
+                    <TextBlock x:Name="textBlock6" TextWrapping="Wrap" Text="Caters" FontSize="20" Foreground="#FF22313F"/>
                     <TextBlock x:Name="textBlock15" TextWrapping="Wrap" Text="{Binding SelectedCatersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="60,0,0,0"/>
                 </StackPanel>
                 <StackPanel Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource CrewColorConverter}}" Orientation="Horizontal">
-                    <TextBlock x:Name="textBlock7" TextWrapping="Wrap" Text="Crews" FontSize="20"/>
+                    <TextBlock x:Name="textBlock7" TextWrapping="Wrap" Text="Crews" FontSize="20" Foreground="#FF22313F"/>
                     <TextBlock x:Name="textBlock16" TextWrapping="Wrap" Text="{Binding SelectedCrewDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="60,0,0,0"/>
                 </StackPanel>
                 <StackPanel Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource FuelerColorConverter}}" Orientation="Horizontal">
-                    <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Fuelers" FontSize="20"/>
+                    <TextBlock x:Name="textBlock8" TextWrapping="Wrap" Text="Fuelers" FontSize="20" Foreground="#FF22313F"/>
                     <TextBlock x:Name="textBlock18" TextWrapping="Wrap" Text="{Binding SelectedFulersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="50,0,0,0"/>
                 </StackPanel>
                 <StackPanel x:Name="baggers" Height="60" Background="{Binding OpgaveAdapter,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BaggersColorConverter}}" Orientation="Horizontal">
-                    <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="Baggers" FontSize="20"/>
+                    <TextBlock x:Name="textBlock9" TextWrapping="Wrap" Text="Baggers" FontSize="20" Foreground="#FF22313F"/>
                     <TextBlock x:Name="textBlock17" TextWrapping="Wrap" Text="{Binding SelectedBaggersDetails, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="40,0,0,0"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Column="3" Grid.Row="1" Background="#7F000000">
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Opgave i detalje" Foreground="#FFEAEAEA" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
+        <StackPanel Grid.Column="3" Grid.Row="1" Background="#FFE6E2D9">
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Opgave i detalje" Foreground="#FF383838" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" Background="#7F000000">
-            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Opgaveliste" Foreground="White" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Grid.Column="1" Grid.Row="1" Background="#FFE6E2D9">
+            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Opgaveliste" Foreground="#FF383838" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
 
     </Grid>
