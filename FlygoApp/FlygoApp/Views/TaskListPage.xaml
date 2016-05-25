@@ -173,10 +173,10 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.Column="3" Grid.Row="1" Background="#FF385168">
-            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Opgave i detalje" Foreground="#FFC1C1C1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Opgave i detalje" Foreground="#FFC1C1C1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26.667"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Background="#FF385168">
-            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Opgaveliste" Foreground="#FFC1C1C1" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Opgaveliste" Foreground="#FFC1C1C1" FontSize="26.667" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
 
     </Grid>

@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="#7F000000">
+    <Grid Background="#00000000">
         <Grid.DataContext>
             <local:TaskListViewModel/>
         </Grid.DataContext>

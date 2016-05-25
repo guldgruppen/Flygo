@@ -20,9 +20,9 @@
         <SplitView Grid.Row="1"
 			x:Name="MySplitView" 
 			OpenPaneLength="220" 
-			CompactPaneLength="56" IsPaneOpen="{Binding OpenMenu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMode="CompactOverlay">
+			CompactPaneLength="56" IsPaneOpen="{Binding OpenMenu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMode="CompactOverlay" Background="#FF22313F">
             <SplitView.Pane>
-                <ListBox SelectionMode="Single" Background="#FF22313F" Margin="0" HorizontalAlignment="Left" Width="600">
+                <ListBox SelectionMode="Single" Background="#FF385168" Margin="0" HorizontalAlignment="Left" Width="600">
                     <ListBoxItem x:Name="LukMenu">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="Tapped" SourceObject="{Binding ElementName=LukMenu}">

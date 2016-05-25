@@ -114,8 +114,7 @@ namespace FlygoApp.ViewModels
             WindowStyling.WindowAndTitleBarStyling();
             CurrentFrame = new Frame();
             CurrentFrame.Navigate(typeof(TaskListPage));
-            _navService = new NavigationService();
-            
+            _navService = new NavigationService();            
         }      
 
         #region Notify Changed Region
