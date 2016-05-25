@@ -25,7 +25,7 @@
 			OpenPaneLength="220" 
 			CompactPaneLength="56" IsPaneOpen="{Binding MenuOpen, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMode="CompactOverlay">
             <SplitView.Pane>
-                <ListBox SelectionMode="Single" Background="#FF22313F" Margin="0" HorizontalAlignment="Left" Width="600">
+                <ListBox SelectionMode="Single" Background="#FF34495E" Margin="0" HorizontalAlignment="Left" Width="600">
                     <ListBoxItem x:Name="LukMenu">
                         <Interactivity:Interaction.Behaviors>
                             <Core:EventTriggerBehavior EventName="Tapped" SourceObject="{Binding ElementName=LukMenu}">
@@ -33,8 +33,8 @@
                             </Core:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
-                            <TextBlock Name="Hej" Text="&#xE700;" FontSize="40" FontFamily="Segoe MDL2 Assets" Foreground="#FFF5AB35" Height="45" Width="52" Padding="0"/>
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
+                            <TextBlock Name="Hej" Text="&#xE700;" FontSize="40" FontFamily="Segoe MDL2 Assets" Foreground="Gainsboro" Height="45" Width="52" Padding="0"/>
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
 								<Run Text="Luk menu"/>
                             </TextBlock>
                         </StackPanel>
@@ -47,7 +47,7 @@
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
                             <Image Source="ms-appx:///Assets/1461351761_01.png" Height="61" Width="52" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5ab35" VerticalAlignment="Center">
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
 								<Run Text="Hjem"/>
                             </TextBlock>
                         </StackPanel>
@@ -60,7 +60,7 @@
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
                             <Image Source="ms-appx:///Assets/1461286350_plus_add_green.png" Height="55" Width="46" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
 								<Run Text="Tilføj Flyopgave"/>
                             </TextBlock>
                         </StackPanel>
@@ -73,7 +73,7 @@
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
                             <Image Source="ms-appx:///Assets/1461286384_Stats.png" Height="50" Width="45" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
 								<Run Text="Statistik"/>
                             </TextBlock>
                         </StackPanel>
@@ -86,7 +86,7 @@
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
                             <Image Source="ms-appx:///Assets/1461286405_Settings.png" Height="54" Width="48" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
 								<Run Text="Indstillinger"/>
                             </TextBlock>
                         </StackPanel>
@@ -99,7 +99,7 @@
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
                             <Image Source="ms-appx:///Assets/1461286313_Log Out.png" Height="54" Width="48" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="#FFF5AB35" VerticalAlignment="Center">
+                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
 								<Run Text="Log ud"/>
                             </TextBlock>
                         </StackPanel>
@@ -107,7 +107,7 @@
                 </ListBox>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame x:Name="frame" Content="{Binding CurrentFrame, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2" UseLayoutRounding="True" BorderThickness="0" Background="#FF1D618F"/>
+                <Frame x:Name="frame" Content="{Binding CurrentFrame, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.ColumnSpan="2" UseLayoutRounding="True" BorderThickness="0" Background="#FF22313F"/>
             </SplitView.Content>
         </SplitView>
         <!--<Grid HorizontalAlignment="Left" Height="59" VerticalAlignment="Top" Width="1280" Background="#FF3C3C3C">

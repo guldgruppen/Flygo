@@ -15,7 +15,7 @@
         <converters:MekanikerColorConverter x:Key="MekanikerColorConverter"/>
         <converters:FuelerColorConverter x:Key="FuelerColorConverter"/>
     </Page.Resources>
-    <Grid Background="#00FD5C5C">
+    <Grid Background="#00000000">
         <Grid.RowDefinitions>
             <RowDefinition Height="26*"/>
             <RowDefinition Height="29*"/>
@@ -172,10 +172,10 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Column="3" Grid.Row="1" Background="#FF17232E">
+        <StackPanel Grid.Column="3" Grid.Row="1" Background="#FF385168">
             <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Opgave i detalje" Foreground="#FFC1C1C1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" Background="#FF17232E">
+        <StackPanel Grid.Column="1" Grid.Row="1" Background="#FF385168">
             <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Opgaveliste" Foreground="#FFC1C1C1" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
 
