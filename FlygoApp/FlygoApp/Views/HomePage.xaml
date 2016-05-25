@@ -33,8 +33,8 @@
                             </Core:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
-                            <TextBlock Name="Hej" Text="&#xE700;" FontSize="40" FontFamily="Segoe MDL2 Assets" Foreground="Gainsboro" Height="45" Width="52" Padding="0"/>
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
+                            <TextBlock Name="Hej" Text="&#xE700;" FontSize="40" FontFamily="Segoe MDL2 Assets" Foreground="#FFF0F0F0" Height="45" Width="52" Padding="0"/>
+                            <TextBlock FontSize="20" Margin="20,0,0,0" Foreground="#FFF0F0F0" VerticalAlignment="Center">
 								<Run Text="Luk menu"/>
                             </TextBlock>
                         </StackPanel>
@@ -47,7 +47,7 @@
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
                             <Image Source="ms-appx:///Assets/1461351761_01.png" Height="61" Width="52" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
+                            <TextBlock FontSize="20" Margin="20,0,0,0" Foreground="#FFF0F0F0" VerticalAlignment="Center">
 								<Run Text="Hjem"/>
                             </TextBlock>
                         </StackPanel>
@@ -60,7 +60,7 @@
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
                             <Image Source="ms-appx:///Assets/1461286350_plus_add_green.png" Height="55" Width="46" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
+                            <TextBlock FontSize="20" Margin="20,0,0,0" Foreground="#FFF0F0F0" VerticalAlignment="Center">
 								<Run Text="Tilføj Flyopgave"/>
                             </TextBlock>
                         </StackPanel>
@@ -73,8 +73,8 @@
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
                             <Image Source="ms-appx:///Assets/1461286384_Stats.png" Height="50" Width="45" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
-								<Run Text="Statistik"/>
+                            <TextBlock FontSize="20" Margin="20,0,0,0" Foreground="#FFF0F0F0" VerticalAlignment="Center">
+                            	<Run Text="Statistik"/>
                             </TextBlock>
                         </StackPanel>
                     </ListBoxItem>
@@ -86,7 +86,7 @@
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
                             <Image Source="ms-appx:///Assets/1461286405_Settings.png" Height="54" Width="48" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
+                            <TextBlock FontSize="20" Margin="20,0,0,0" Foreground="#FFF0F0F0" VerticalAlignment="Center">
 								<Run Text="Indstillinger"/>
                             </TextBlock>
                         </StackPanel>
@@ -99,7 +99,7 @@
                         </Interactivity:Interaction.Behaviors>
                         <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
                             <Image Source="ms-appx:///Assets/1461286313_Log Out.png" Height="54" Width="48" />
-                            <TextBlock FontSize="24" Margin="20,0,0,0" Foreground="Gainsboro" VerticalAlignment="Center">
+                            <TextBlock FontSize="20" Margin="20,0,0,0" Foreground="#FFF0F0F0" VerticalAlignment="Center">
 								<Run Text="Log ud"/>
                             </TextBlock>
                         </StackPanel>
