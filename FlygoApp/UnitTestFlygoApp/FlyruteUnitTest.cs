@@ -26,10 +26,8 @@ namespace UnitTestFlygoApp
         [TestMethod]
         public void TestFlyOpgaveNummerWrong()
         {
-            FlyopgaveHandler h = new FlyopgaveHandler();
-
             string nummer = "AAA123";
-            Assert.ThrowsException<ArgumentException>((() => h.Add(DateTimeOffset.Now.AddDays(1), DateTimeOffset.Now, 2, 2, nummer))); 
+            Assert.ThrowsException<ArgumentException>(() => _flyopgave.CheckFlyopgaveNummer(nummer));
         }
 
         [TestMethod]

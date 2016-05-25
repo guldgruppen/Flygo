@@ -25,9 +25,9 @@ namespace FlygoApp.Persistency
             await Post(rute, "api/Flyopgaves/PostFlyopgave");
         }
 
-        public async void DeleteFlyopgave(int id)
+        public async Task DeleteFlyopgave(int id)
         {
-            await Delete(id, "api/Flyopgaves/DeleteFlyopgave");            
+            await Delete(id, "api/Flyopgaves/DeleteFlyopgave/");            
         }
 
         public async Task LoadFlyopgave()
