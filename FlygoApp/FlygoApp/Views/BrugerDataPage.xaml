@@ -43,9 +43,9 @@
                             <ColumnDefinition Width="223*"/>
                             <ColumnDefinition Width="60*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding BrugerNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Margin="0,0,0,5" Foreground="#FFC1C1C1"/>
-                        <TextBlock x:Name="textBlock1" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Foreground="#FFC1C1C1"/>
-                        <TextBlock x:Name="textBlock61" Grid.Column="2" Margin="0" TextWrapping="Wrap" Text="{Binding RolleNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Foreground="#FFC1C1C1"/>
+                        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding BrugerNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Margin="0,0,0,5" Foreground="White"/>
+                        <TextBlock x:Name="textBlock1" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Foreground="White"/>
+                        <TextBlock x:Name="textBlock61" Grid.Column="2" Margin="0" TextWrapping="Wrap" Text="{Binding RolleNavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Foreground="White"/>
 
                         <StackPanel Grid.Column="3"  Orientation="Vertical">
                             <Button x:Name="button" Content="&#xE894;" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Command="{Binding DataContext.DeleteFlyCommand, ElementName=listView10}" CommandParameter="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Background="#CCFF0000" Foreground="White" Height="19" Width="21"/>
@@ -64,30 +64,30 @@
             <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Tilføj bruger:" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Brugernavn:" FontSize="20" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
-                <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding Brugernavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="29,0,10,0" Width="230" PlaceholderText="Brugernavn" VerticalAlignment="Center" FontSize="17" HorizontalAlignment="Right" Height="35" ToolTipService.ToolTip="Indtast brugernavn"/>
+                <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding Brugernavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="29,0,10,0" Width="230" PlaceholderText="Brugernavn" VerticalAlignment="Center" FontSize="17" HorizontalAlignment="Right" Height="35" ToolTipService.ToolTip="Indtast brugernavn" Background="Transparent" BorderBrush="White" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <TextBlock x:Name="textBlock82" TextWrapping="Wrap" Text="Kodeord:" FontSize="20" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
-                <TextBox x:Name="textBox8" TextWrapping="Wrap" Text="{Binding Kodeord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="56,0,10,0" Width="230" PlaceholderText="Kodeord" VerticalAlignment="Center" FontSize="17" HorizontalAlignment="Right" Height="35" ToolTipService.ToolTip="Indtast kodeord"/>
+                <TextBox x:Name="textBox8" TextWrapping="Wrap" Text="{Binding Kodeord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="56,0,10,0" Width="230" PlaceholderText="Kodeord" VerticalAlignment="Center" FontSize="17" HorizontalAlignment="Right" Height="35" ToolTipService.ToolTip="Indtast kodeord" Background="Transparent" BorderBrush="White" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <TextBlock x:Name="textBlock882" TextWrapping="Wrap" Text="Rolle" FontSize="20" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
-                <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="92,0,10,0" PlaceholderText="Vælg en rolle" Width="230" FontSize="20" ItemsSource="{Binding RollerList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedRolleIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="35"/>
+                <ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="92,0,10,0" PlaceholderText="Vælg en rolle" Width="230" FontSize="20" ItemsSource="{Binding RollerList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedRolleIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="35" Background="Transparent" BorderBrush="White" Foreground="White"/>
             </StackPanel>
 
             <Button x:Name="button" Content="Opret bruger" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Margin="10,10,10,0" Background="#E8FFC834" Command="{Binding OpretBrugerCommand}" ToolTipService.ToolTip="Tryk for at oprette ny bruger"/>
             <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Opdater bruger:" FontSize="30" HorizontalAlignment="Center" Margin="0,3,0,0" Foreground="White"/>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <TextBlock x:Name="textBlock28" TextWrapping="Wrap" Text="Brugernavn:" FontSize="20" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBox0" TextWrapping="Wrap" Text="{Binding SelectedBrugernavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,0,10,0" Width="230" PlaceholderText="Brugernavn" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast nyt brugernavn"/>
+                <TextBox x:Name="textBox0" TextWrapping="Wrap" Text="{Binding SelectedBrugernavn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="30,0,10,0" Width="230" PlaceholderText="Brugernavn" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast nyt brugernavn" Background="Transparent" BorderBrush="White" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <TextBlock x:Name="textBlock280" TextWrapping="Wrap" Text="Kodeord:" FontSize="20" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBox00" TextWrapping="Wrap" Text="{Binding SelectedKodeord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="56,0,10,0" Width="230" PlaceholderText="Kodeord" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast nyt kodeord"/>
+                <TextBox x:Name="textBox00" TextWrapping="Wrap" Text="{Binding SelectedKodeord, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="56,0,10,0" Width="230" PlaceholderText="Kodeord" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast nyt kodeord" Background="Transparent" BorderBrush="White" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <TextBlock x:Name="textBlock2800" TextWrapping="Wrap" Text="Rolle" FontSize="20" VerticalAlignment="Center" Foreground="White"/>
-                <TextBox x:Name="textBox009" TextWrapping="Wrap" Text="{Binding SelectedRolle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="93,0,10,0" Width="230" PlaceholderText="Rolle" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast ny rolle"/>
+                <TextBox x:Name="textBox009" TextWrapping="Wrap" Text="{Binding SelectedRolle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="93,0,10,0" Width="230" PlaceholderText="Rolle" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast ny rolle" Background="Transparent" BorderBrush="White" Foreground="White"/>
             </StackPanel>
             <Button x:Name="button1" Content="Opdater bruger" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Margin="10,10,10,0" Background="#E8FFC834" Command="{Binding UpdateHangarCommand}" ToolTipService.ToolTip="Tryk for at opdatere bruger"/>
         </StackPanel>
