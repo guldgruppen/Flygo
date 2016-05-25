@@ -2,6 +2,7 @@
 using Windows.UI;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using FlygoApp.Commons;
 using FlygoApp.Models;
 using FlyGoWebService.Models;
 
@@ -18,8 +19,7 @@ namespace FlygoApp.Converters
             SolidColorBrush green = new SolidColorBrush(Colors.Green);
             SolidColorBrush red = new SolidColorBrush(Colors.Red);
             SolidColorBrush yellow = new SolidColorBrush(Colors.Yellow);
-            SolidColorBrush white = new SolidColorBrush(Colors.GhostWhite);
-
+            SolidColorBrush white = new SolidColorBrush(Colors.GhostWhite);           
             OpgaveAdapter opg = (OpgaveAdapter)value;
 
             if (opg != null)

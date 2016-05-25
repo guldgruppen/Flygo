@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using FlygoApp.Annotations;
 using FlygoApp.Commons;
@@ -115,7 +115,7 @@ namespace FlygoApp.ViewModels
             CurrentFrame = new Frame();
             CurrentFrame.Navigate(typeof(TaskListPage));
             _navService = new NavigationService();
-           
+            
         }      
 
         #region Notify Changed Region
