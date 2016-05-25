@@ -111,6 +111,10 @@ namespace FlyGoWebService.Models
             {
                 throw new ArgumentException("Ankomst og afgang skal forekomme efter dags dato");
             }
+            if (ankomst == afgang)
+            {
+                throw new ArgumentException("Ankomst og afgang må ikke være ens");
+            }
         }
         public override string ToString()
         {

@@ -41,7 +41,7 @@ namespace FlygoApp.Models
                 await DtoOpgaveArkiv.PostOpgaveArkiv(temp);
                 await DtoOpgaveArkiv.LoadOpgaveArkiv();
 
-                await new MessageDialog("flyopgave oprettet").ShowAsync();
+                await new MessageDialog("Flyopgave oprettet").ShowAsync();
             }
             catch (ArgumentException ex)
             {
@@ -74,7 +74,7 @@ namespace FlygoApp.Models
         {
             if (DtoFlyopgave.FlyopgaveListe.Exists(x => x.FlyopgaveNummer.Equals(flyopgaveNummer)))
             {
-                throw new ArgumentException("flyrutenummer eksisterer i forvejen");
+                throw new ArgumentException("Flyrutenummer eksisterer i forvejen");
             }
         }
 

@@ -26,7 +26,7 @@ namespace FlygoApp.ViewModels
         public StatistikHandler StatistikHandler { get; set; }
 
         private int _selectedFlyIndex;
-        private int _selectedHangarIndex;        
+        private int _selectedHangarIndex;
         private int _selectedOpgaveIndex = -1;
         private string _selectedFlyopgaveNummerDetail;
         private string _selectedHangarDetail;
@@ -66,7 +66,7 @@ namespace FlygoApp.ViewModels
         public DateTimeOffset AnkomstDato { get; set; }
         public TimeSpan AfgangTid { get; set; }
         public TimeSpan AnkomstTid { get; set; }
-        public DateTimeOffset MinYear { get; set; } 
+        public DateTimeOffset MinYear { get; set; }
         public Uri ImageSource
         {
             get { return _imageSource; }
@@ -108,7 +108,7 @@ namespace FlygoApp.ViewModels
             get { return _selectedOpgaveArkiv; }
             set
             {
-                _selectedOpgaveArkiv = value; 
+                _selectedOpgaveArkiv = value;
                 OnPropertyChanged();
             }
         }
@@ -211,7 +211,7 @@ namespace FlygoApp.ViewModels
                 OnPropertyChanged();
             }
         }
-       
+
         //Bruges til at opdatere alt data i højre side af GUI, der er baseret på valget af flyopgave i venstre side.
         public int SelectedOpgaveIndex
         {
@@ -252,16 +252,20 @@ namespace FlygoApp.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    new MessageDialog(ex.Message).ShowAsync();}
+                    new MessageDialog(ex.Message).ShowAsync();
+                }
                 OnPropertyChanged();
             }
         }
         public ICommand CreateFlyopgaveCommand
         {
-            get { return _createFlyopgaveCommand ?? (_createFlyopgaveCommand = new RelayCommand<Object>((create)=>
+            get
             {
-                CreateFlyopgave();
-            })); }
+                return _createFlyopgaveCommand ?? (_createFlyopgaveCommand = new RelayCommand<Object>((create) =>
+          {
+              CreateFlyopgave();
+          }));
+            }
             set { _createFlyopgaveCommand = value; }
         }
         //public ICommand DeleteOpgaveCommand
@@ -274,7 +278,7 @@ namespace FlygoApp.ViewModels
             get { return _selectedCountdown; }
             set
             {
-                _selectedCountdown = value; 
+                _selectedCountdown = value;
                 OnPropertyChanged();
             }
         }
@@ -285,7 +289,7 @@ namespace FlygoApp.ViewModels
             Proxy = Conn.CreateHubProxy("OpgaveHub");
             Conn.Start();
 
-            FlyHandler = new FlyHandler();  
+            FlyHandler = new FlyHandler();
             FlyHandler.LoadDtoFly();
 
             HangarHandler = new HangarHandler();
@@ -298,7 +302,7 @@ namespace FlygoApp.ViewModels
 
             MinYear = DateTimeOffset.Now;
             SelectedHangarIndex = -1;
-            SelectedFlyIndex = -1; 
+            SelectedFlyIndex = -1;
 
 
         }
@@ -323,7 +327,7 @@ namespace FlygoApp.ViewModels
         {
             try
             {
-                string flyopgave = (string) param;
+                string flyopgave = (string)param;
                 Flyopgave tempFlyopgave = FlyopgaveHandler.Flyopgaver.First(x => x.FlyopgaveNummer.Equals(flyopgave));
                 if (tempFlyopgave != null)
                 {
@@ -332,12 +336,12 @@ namespace FlygoApp.ViewModels
                             "Sletning af Flyopgave");
                     myMessageDialog.Commands.Add(new UICommand("YES", command =>
                     {
-                        
+
                         int id = tempFlyopgave.Id;
                         FlyopgaveHandler.DtoFlyopgave.DeleteFlyopgave(id);
                         FlyopgaveHandler.Flyopgaver.Remove(tempFlyopgave);
                         FlyopgaveHandler.DtoFlyopgave.LoadFlyopgave();
-                        
+
                     }));
                     myMessageDialog.Commands.Add(new UICommand("NO", command => { }));
                     await myMessageDialog.ShowAsync();
@@ -350,16 +354,26 @@ namespace FlygoApp.ViewModels
             }
 
         }
-        public void CreateFlyopgave()
-        {          
-            int flyId = FlyHandler.Fly[SelectedFlyIndex].Id;
-            int hangarId = HangarHandler.Hangar[SelectedHangarIndex].Id;
-            DateTime fra = DateAndTimeConverter(AnkomstDato, AnkomstTid);
-            DateTime til = DateAndTimeConverter(AfgangDato,AfgangTid);
+        public async void CreateFlyopgave()
+        {
 
-            FlyopgaveHandler.Add(til,fra,flyId,hangarId,FlyopgaveNr); 
+            try
+            {
+                int flyId = FlyHandler.Fly[SelectedFlyIndex].Id;
+                int hangarId = HangarHandler.Hangar[SelectedHangarIndex].Id;
+                DateTime fra = DateAndTimeConverter(AnkomstDato, AnkomstTid);
+                DateTime til = DateAndTimeConverter(AfgangDato, AfgangTid);
 
-            FlyopgaveHandler.DtoFlyopgave.LoadFlyopgave();          
+                FlyopgaveHandler.Add(til, fra, flyId, hangarId, FlyopgaveNr);
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                await new MessageDialog("Intet fly eller hangar valgt. Vælg venligst dette!").ShowAsync(); 
+
+            }
+
+
+
         }
         //Convertere input fra tilføj flyrute til en datetime.
         public DateTime DateAndTimeConverter(DateTimeOffset dato, TimeSpan tid)
@@ -374,7 +388,7 @@ namespace FlygoApp.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        } 
+        }
         #endregion
     }
 }
