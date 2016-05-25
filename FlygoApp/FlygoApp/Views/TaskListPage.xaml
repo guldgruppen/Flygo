@@ -73,7 +73,7 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="4"  Orientation="Vertical">
-                            <Button x:Name="button" Content="&#xE894;" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Command="{Binding DataContext.DeleteOpgaveCommand, ElementName=listView}" CommandParameter="{Binding FlyopgaveNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Background="#CCFF0000" Foreground="White" Height="22" Width="22"/>
+                            <Button x:Name="button" Content="&#xE894;" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Command="{Binding DataContext.DeleteOpgaveCommand, ElementName=listView}" CommandParameter="{Binding FlyopgaveNummer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Background="#CCFF0000" Foreground="White" Height="22" Width="22" Margin="21,0,0,0"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

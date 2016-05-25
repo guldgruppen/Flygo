@@ -264,11 +264,11 @@ namespace FlygoApp.ViewModels
             })); }
             set { _createFlyopgaveCommand = value; }
         }
-        //public ICommand DeleteOpgaveCommand
-        //{
-        //    get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayArgCommand(DeleteOpgave)); }
-        //    set { _deleteOpgaveCommand = value; }
-        //}
+        public ICommand DeleteOpgaveCommand
+        {
+            get { return _deleteOpgaveCommand ?? (_deleteOpgaveCommand = new RelayArgCommand(DeleteOpgave)); }
+            set { _deleteOpgaveCommand = value; }
+        }
         public string SelectedCountdown
         {
             get { return _selectedCountdown; }
@@ -330,12 +330,17 @@ namespace FlygoApp.ViewModels
                     var myMessageDialog =
                         new MessageDialog("Er du sikker på at slette Flyopgaven: " + tempFlyopgave.FlyopgaveNummer,
                             "Sletning af Flyopgave");
-                    myMessageDialog.Commands.Add(new UICommand("YES", command =>
+                    myMessageDialog.Commands.Add(new UICommand("YES", async command =>
                     {
                         
                         int id = tempFlyopgave.Id;
-                        FlyopgaveHandler.DtoFlyopgave.DeleteFlyopgave(id);
+                        OpgaveArkiv oa =
+                            FlyopgaveHandler.DtoOpgaveArkiv.OpgaveArkivListe.Single(x => x.FlyopgaveId.Equals(id));
+                        await FlyopgaveHandler.DtoOpgaveArkiv.DeleteOpgaveArkiv(oa.Id);
+                        await FlyopgaveHandler.DtoFlyopgave.DeleteFlyopgave(id);                        
                         FlyopgaveHandler.Flyopgaver.Remove(tempFlyopgave);
+                        SelectedOpgaveIndex = -1;
+                        _timer.Stop();
                         FlyopgaveHandler.DtoFlyopgave.LoadFlyopgave();
                         
                     }));
