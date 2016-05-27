@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="#7F000000">
+    <Grid Background="#00000000">
         <Grid.DataContext>
             <local:TaskListViewModel/>
         </Grid.DataContext>
@@ -46,11 +46,11 @@
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
                             <TextBlock x:Name="textBlock12" TextWrapping="Wrap" Text="Klargøringer i alt:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock22" TextWrapping="Wrap" Text="103 MAAAANGLER" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock22" TextWrapping="Wrap" Text="12" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="20,15,0,0">
                             <TextBlock x:Name="textBlock13" TextWrapping="Wrap" Text="Klargøringer denne måned:" Foreground="White" FontSize="30"/>
-                            <TextBlock x:Name="textBlock23" TextWrapping="Wrap" Text="17 MAAAAGLER" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
+                            <TextBlock x:Name="textBlock23" TextWrapping="Wrap" Text="14" Foreground="#FFE7F554" Margin="30,0,0,0" FontSize="30"/>
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Height="56" Width="640">

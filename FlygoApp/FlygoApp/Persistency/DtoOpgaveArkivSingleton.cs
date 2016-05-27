@@ -34,5 +34,9 @@ namespace FlygoApp.Persistency
         {
             await Update(arkiv,id, "api/OpgaveArkivs/PutOpgaveArkiv/");                        
         }
+        public async Task DeleteOpgaveArkiv(int id)
+        {
+            await Delete(id, "api/OpgaveArkivs/DeleteOpgaveArkiv/");
+        }
     }
 }

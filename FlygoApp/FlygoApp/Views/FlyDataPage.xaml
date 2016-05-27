@@ -25,7 +25,7 @@
         <Grid.DataContext>
             <viewModels:FlyDataViewModel/>
         </Grid.DataContext>
-        <ListView x:Name="listView10" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="#FFE0E0E0" SelectedIndex="{Binding SelectedFlyIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <ListView x:Name="listView10" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Fly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="#FF22313F" SelectedIndex="{Binding SelectedFlyIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderBrush="#FFE4E4E4">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -36,14 +36,14 @@
             </ListView.ItemContainerStyle>
             <ListView.Resources>
                 <DataTemplate x:Key="DataTemplate1">
-                    <Grid Margin="0,10,0,0">
+                    <Grid Margin="0,10,0,0" Background="#FF22313F" BorderThickness="0,0,0,2" BorderBrush="#FFF0F0F0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="315*"/>
                             <ColumnDefinition Width="254*"/>
                             <ColumnDefinition Width="61*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding Producent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Margin="0"/>
-                        <TextBlock x:Name="textBlock1" Grid.Column="1" Margin="0" TextWrapping="Wrap" Text="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20"/>
+                        <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="{Binding Producent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Margin="0" Foreground="White"/>
+                        <TextBlock x:Name="textBlock1" Grid.Column="1" Margin="0" TextWrapping="Wrap" Text="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="20" Foreground="White"/>
                         <StackPanel Grid.Column="2"  Orientation="Vertical">
                             <Button x:Name="button" Content="&#xE894;" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="10.667" FontFamily="Segoe MDL2 Assets" Padding="0" Command="{Binding DataContext.DeleteFlyCommand, ElementName=listView10}" CommandParameter="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Background="#CCFF0000" Foreground="White" Height="22" Width="22"/>
                         </StackPanel>
@@ -54,28 +54,28 @@
                 <StaticResource ResourceKey="DataTemplate1"/>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.ColumnSpan="2" Grid.Column="1" Margin="0" Orientation="Vertical" Grid.Row="1" Background="#7F000000">
+        <StackPanel Grid.ColumnSpan="2" Grid.Column="1" Margin="0" Orientation="Vertical" Grid.Row="1" Background="#00000000">
             <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Fly" VerticalAlignment="Center" FontSize="45" Foreground="White"/>
         </StackPanel>
-        <StackPanel Grid.Column="2" Margin="0" Grid.Row="2" Background="#7F000000">
+        <StackPanel Grid.Column="2" Margin="0" Grid.Row="2" Background="#00000000">
             <TextBlock x:Name="textBlock1" TextWrapping="Wrap" Text="Tilføj fly:" HorizontalAlignment="Center" FontSize="30" Foreground="White"/>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <TextBlock x:Name="textBlock2" TextWrapping="Wrap" Text="Fly type:" FontSize="20" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
-                <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="74,0,10,0" Width="230" PlaceholderText="Type" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast fly type"/>
+                <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="74,0,10,0" Width="230" PlaceholderText="Type" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast fly type" Background="Transparent" BorderBrush="White" Foreground="White"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <TextBlock x:Name="textBlock82" TextWrapping="Wrap" Text="Fly producent:" FontSize="20" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
-                <TextBox x:Name="textBox8" TextWrapping="Wrap" Text="{Binding FlyProducent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,10,0" Width="230" PlaceholderText="Producent" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast fly producent"/>
+                <TextBox x:Name="textBox8" TextWrapping="Wrap" Text="{Binding FlyProducent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="20,0,10,0" Width="230" PlaceholderText="Producent" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast fly producent" Background="Transparent" BorderBrush="White" Foreground="White"/>
             </StackPanel>
             <Button x:Name="button" Content="Opret Fly" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Margin="10,20,10,0" Background="#E8FFC834" Command="{Binding OpretFlyCommand}" ToolTipService.ToolTip="Tryk for at oprette nyt fly"/>
             <TextBlock x:Name="textBlock3" TextWrapping="Wrap" Text="Opdater fly:" FontSize="30" HorizontalAlignment="Center" Margin="0,20,0,0" Foreground="White"/>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <TextBlock x:Name="textBlock28" TextWrapping="Wrap" Text="fly type:" FontSize="20" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
-                <TextBox x:Name="textBox0" TextWrapping="Wrap" Text="{Binding SelectedFlyType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="74,0,10,0" Width="230" PlaceholderText="Type" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast ny fly type"/>
+                <TextBox x:Name="textBox0" TextWrapping="Wrap" Text="{Binding SelectedFlyType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="74,0,10,0" Width="230" PlaceholderText="Type" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast ny fly type" Foreground="White" BorderBrush="White" Background="Transparent"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
                 <TextBlock x:Name="textBlock280" TextWrapping="Wrap" Text="fly producent:" FontSize="20" VerticalAlignment="Center" Foreground="White" Margin="5,0,0,0"/>
-                <TextBox x:Name="textBox00" TextWrapping="Wrap" Text="{Binding SelectedFlyProducent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="22,0,10,0" Width="230" PlaceholderText="Producent" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast ny fly producent"/>
+                <TextBox x:Name="textBox00" TextWrapping="Wrap" Text="{Binding SelectedFlyProducent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="22,0,10,0" Width="230" PlaceholderText="Producent" VerticalAlignment="Center" FontSize="17" Height="35" ToolTipService.ToolTip="Indtast ny fly producent" BorderBrush="White" Foreground="White" Background="Transparent"/>
             </StackPanel>
             <Button x:Name="button1" Content="Opdater fly" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="20" Margin="10,20,10,0" Background="#E8FFC834" Command="{Binding UpdateHangarCommand}" ToolTipService.ToolTip="Tryk for at opdatere fly"/>
         </StackPanel>

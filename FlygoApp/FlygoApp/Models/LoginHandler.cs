@@ -1,8 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Windows.Media.SpeechSynthesis;
+using Windows.UI.Xaml.Controls;
 using FlygoApp.Commons;
 using FlygoApp.Exceptions;
 using FlygoApp.Persistency;
 using FlygoApp.Views;
+using System.Threading.Tasks;
 
 namespace FlygoApp.Models
 {
@@ -24,7 +28,6 @@ namespace FlygoApp.Models
         public void CheckLoginInfo(string brugernavn, string kodeord)
         {
                 CheckLoginException(brugernavn, kodeord);
-          
                 var result = _dtoBruger.BrugerLogInsDictionary.SingleOrDefault( bruger =>
                              bruger.Key.ToLower().Equals(brugernavn.ToLower()) &&
                              bruger.Value.Password.ToLower().Equals(kodeord.ToLower())
@@ -53,6 +56,7 @@ namespace FlygoApp.Models
 
                     
          }
+
         private static void CheckLoginException(string brugernavn, string kodeord)
         {
             if (string.IsNullOrEmpty(brugernavn) && string.IsNullOrEmpty(kodeord))
