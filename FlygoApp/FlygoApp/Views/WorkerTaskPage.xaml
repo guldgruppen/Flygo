@@ -28,7 +28,7 @@
             <TextBox x:Name="textBox" TextWrapping="Wrap" Text="{Binding FlyopgaveNr, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="274" FontSize="18" Padding="13,3,6,5" PlaceholderText="Søg efter Flyopgave nummer" FontWeight="Bold"/>
             <Button x:Name="button" Content="&#59166;" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" Background="#FF385168" FontFamily="Segoe MDL2 Assets" FontSize="25" Width="130" FontWeight="Bold" Command="{Binding SearchCommand, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White"/>
         </StackPanel>
-        <StackPanel Grid.ColumnSpan="3" Background="#FF385168" Orientation="Horizontal">
+        <StackPanel Grid.ColumnSpan="3" Background="#FF22313F" Orientation="Horizontal">
             <Button x:Name="button1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="79" Background="{x:Null}" Command="{Binding LogoutCommand}">
                 <Image Source="ms-appx:///Assets/1461286313_Log Out.png" Height="54" Width="48" />
             </Button>
